@@ -1,31 +1,37 @@
 === Disable Updates Manager ===
 Contributors: kidsguide
-Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings
+Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check
 Requires at least: 3.0
-Tested up to: 3.8
+Tested up to: 3.8.1
 Stable tag: trunk
 
-A configurable plugin that disables updates. Easy to customize with 5+ settings.
+A configurable plugin that disables updates. Easy to customize with 7+ settings.
 
 == Description ==
 This plugin is 100% configurable! Check the updates you would like to disable in the settings page.
 
+Their are also other settings to customize.
+
 = Features =
 <ol>
-<li>Has a simple settings page to disable any type of update.</li>
-<li>Has extra settings like remove the "updates" page, or remove WordPress core version. </li>
-<li>Disable All Updates setting disables update e-mails, debug e-mails, and more. </li>
-<li>Has a link to Support, FAQ, Settings, and the Tutorial in the plugin page</li>
+<li>Disables plugins individually.</li>
+<li>Disables plugin updates.</li>
+<li>Disables theme updates.</li>
+<li>Disable WordPress core updates.</li>
+<li>Removes admin footer.</li>
+<li>Disables backgroud updates.</li>
+<li>Removes updates menu in admin sidebar.</li>
 </ol> 
+and many more things!
 
-To see more features view the screenshots.
+To see more features view the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a>.
 
 = Video Tutorial =
-[youtube http://www.youtube.com/watch?v=jAqd0SjLQ_M]
+[youtube http://www.youtube.com/watch?v=7sMEBGNxhwA]
+<small>Version 3.5.0 tutorial video.</small>
 
 = Just Won't to Disable One or Two? =
-With the new settings form under dashboard, it easy. 
-Just check the things you won't disabled.
+With the settings form under dashboard, it easy. Just check the things you won't disabled. Also if you would like to disable just one plugin, use the Disable Plugins Individually setting.
 
 == Frequently Asked Questions ==
 = Q: How is this plugin different from the other disable updates plugins? =
@@ -34,54 +40,84 @@ A: Their are a couple of differences.
 <li>They do not disable WordPress automatic updates.</li>
 <li>They do not have video tutorials and screenshots.</li>
 <li>They do not have settings to make it configurable.</li>
+<li>They do not disable plugins individually.</li>
 </ol>
+
 
 = Q: If I remove this plugin from my website will I be able to update my plugins, themes, and WordPress core again? =
 A: Yes, this plugin just disables the update (not removes). 
 
+
+= Q: Is it possible to disable one plugin or theme? Are you considering it? =
+A: This plugin does not disable themes individual but it can disable plugins individually. We are considering a setting to disable themes individually. 
+
+
 == Screenshots ==
-1. Before View Core (Dashboard)
-4. Before View Plugin (Plugin Page)
-5. After View Plugin (Plugin Page)
-2. Before View (Dashboard)
-3. After View (Dashboard)
-6. Settings Page (Disable Updates Manager)
+1. Settings Page
+2. Disable Plugin Updates
+3. Disable Plugins Individually
 
 == Installation ==
-Their are three way to install Disable All Updates.
+Their are two way to install "Disable Updates Manager".
 
-<strong>1)</strong> The WordPress dashboard way.
-
+<strong>1)</strong>
 <ol>
-<li>Push the button above to download the latest version of Disable All Updates.</li>
+<li>Push the button above to download the latest version of "Disable Updates Manager".</li>
 <li>Go in your websites admin to the Plugins> Add New> page and push Upload.</li>
 
 <li>Upload the zip file and push install.</li>
 <li>Go to the Plugins section in your admin dashboard and activate.</li>
 </ol>
 
-<strong>2)</strong> The dashboard way. <u><strong>Recommended</strong></u>
-
+<strong>2)</strong> <u><strong>Recommended</strong></u>
 <ol>
 <li>Go in your websites admin to the Plugins> Add New> page and push on the search bar.</li>
-
-<li>Search "Disable All Updates" and push install.</li>
+<li>Search  "Disable Updates Manager" and push install.</li>
 <li>Go to the Plugins section in your admin dashboard and activate.</li>
-</ol>
-
-<strong>3)</strong> The cpanel (or whatever you use) way.
-
-<ol>
-<li>Push the button above to download the latest version of Disable All Updates.</li>
-<li>Login into your cpanel (or whatever you use).</li>
-<li>Go to your www file and find the file titled plugins.</li>
-<li>Push on the plugins file and add a new folder titled "disable-all-updates".</li>
-<li>Then upload the zip file into that folder.</li>
-<li>Go to your plugin page in your dashboard and activate the plugin called "Disable All Updates.</li>
 </ol>
 
 == Changelog ==
 = Versions Available for Downloading =
+= 3.5.0 =
+* Added: "Disable Plugins Individually" postbox.
+* Removed: "Disable Updates Individually" section.
+* Updated: screenshots.
+* Updated: video tutorial.
+* Updated: readme.txt description.
+* Updated: code notes.
+* Changed: "Disable Plugin Updates Individually" format (working on better format for upcoming versions).
+* Changed: postbox format.
+* Changed: "Please Note" border box to proper notice.
+* Moved: CSS script.
+= second update =
+* Fixed: screenshot error.
+* Fixed: changelog error.
+* Fixed: contributor error.
+
+(Sorry for all these errors)
+
+= 3.4.0 =
+* Added "Disable Plugins Individually" Setting and Section
+* Added Help Postbox to Settings 
+* Updated Screenshots
+* Added Tooltips to some Settings
+* Added Better License 
+* Updated Description
+
+= 3.3.0 =
+* Fixed Error with Remove WordPress Version from Footer in Admin
+* Added Help Spot in Settings
+* Added border-radius Code to Postboxes and Boxes 
+* Updated Screenshots
+* FAQ Updated
+
+= 3.2.0 =
+* Fixed Please Note Spelling Mistake
+* Fixed Readme.txt Spelling Mistakes
+* Works with WordPress 3.8.1
+* Changed Video Tutorial Link
+* Added CSS to Postboxes and Please Note Box (changed width, added padding, moved around) 
+
 = 3.1.0 =
 * Added "Disable Automatic Background Updates" Setting
 * Removed "Please Note!" Postbox
