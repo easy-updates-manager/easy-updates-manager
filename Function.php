@@ -2,17 +2,19 @@
 /**
  * @package Disable Updates Manager
  * @author Websiteguy
- * @version 3.5.0
+ * @version 3.7.0
 */
 /*
 Plugin Name: Disable Updates Manager
 Plugin URI: http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
-Version: 3.5.0
+Version: 3.7.0
 Description: Pick which type of updates you would like to disable. Just use the settings.
 Author: Websiteguy
 Author URI: http://profiles.wordpress.org/kidsguide/
 License: GPL2
-Tested up to WordPress 3.8.1
+Text Domain: stops-core-theme-and-plugin-updates
+Domain Path: /lang
+Tested up to WordPress 3.9
 */
 /*
 License:
@@ -31,11 +33,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+or go to the license.txt in the trunk.
 */
 
 // Define version.
 
-	define("DISABLEUPDATESMANAGERVERSION", "3.5.0");
+	define("DISABLEUPDATESMANAGERVERSION", "3.7.0");
 
     class Disable_Updates {
 	    // Set status in array
@@ -43,8 +47,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 		
 		// Set checkboxes in array
 	    private $checkboxes = array(); 
-	
-	function Disable_Updates() {
+	  
+function Disable_Updates() { 
 		
 // Add menu page.
 	        add_action('admin_menu', array(&$this, 'add_submenu'));
@@ -54,9 +58,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 		
 		
 // load the values recorded.
-		    $this->load_disable_updates();
-		}
-
+			$this->load_disable_updates();
+}
+	
 // Register settings.
 	function register_setting()	{
 	    register_setting('_disable_updates', '_disable_updates', array(&$this, 'validate_settings'));		
@@ -75,11 +79,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 	function add_submenu() {
 // Add submenu to "Dashboard" menu.
-		add_submenu_page( 'index.php', 'Disable Updates', __('Disable Updates','disable-updates-manager'), 'administrator', __FILE__, array(&$this, 'display_page') );
+add_submenu_page( 'index.php', 'Disable Updates', __('Disable Updates','disable-updates-manager'), 'administrator', __FILE__, array(&$this, 'display_page') );
 		}
 
-		
-// Functions for plugin (Change in settings)	
+	  // Functions for plugin (Change in settings)	
 	function load_disable_updates() {
 		$this->status = get_option('_disable_updates');
 		
@@ -97,7 +100,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 		add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) );
 
     // Disable Plugin Update E-mails (only works for some plugins)
-		apply_filters( 'auto_plugin_update_send_email', false, $type, $plugin_update, $result );
+	    apply_filters( 'auto_plugin_update_send_email', false, $type, $plugin_update, $result );
+	
+		apply_filters('automatic_plugin_updates_send_debug_email', true, $type, $plugin_update, $result );
 			
 			break;
 	
@@ -109,7 +114,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 		add_filter( 'pre_site_transient_update_themes', create_function( '$a', "return null;" ) );
 
     // Disable Theme Update E-mails (only works for some plugins)
-		apply_filters( 'auto_theme_update_send_email', false, $type, $theme_update, $result );
+	    apply_filters( 'auto_theme_update_send_email', false, $type, $theme_update, $result );
+	
+		apply_filters('automatic_theme_updates_send_debug_email', true, $type, $theme_update, $result );
 
 			break;
 				
@@ -122,6 +129,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     // Disable WordPress Core Update E-mails (only works for some plugins)
 		apply_filters( 'auto_core_update_send_email', false, $type, $core_update, $result );
+		
+		apply_filters('automatic_core_updates_send_debug_email', true, $type, $core_update, $result );
 					
 			break;
 
@@ -238,7 +247,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 		
 		
 		// Disable Debug E-mails
-		add_filter( 'automatic_updates_send_debug_email ', '__return_false', 1 );
+		add_filter( 'automatic_updates_send_debug_email ', '__return_true', 1 );
 		
 		// Disable WordPress Automatic Updates
 		define( 'Automatic_Updater_Disabled', true );
@@ -248,23 +257,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 		
 		// Core E-mails Only
 		apply_filters( 'auto_core_update_send_email', false, $type, $core_update, $result );
+		
+		apply_filters('automatic_core_updates_send_debug_email', true, $type, $core_update, $result );
 
         // Plugin E-mails Only
 		apply_filters( 'auto_plugin_update_send_email', false, $type, $plugin_update, $result );
 
+		apply_filters('automatic_plugin_updates_send_debug_email', true, $type, $plugin_update, $result );
+		
         // Theme E-mails Only
 		apply_filters( 'auto_theme_update_send_email', false, $type, $theme_update, $result );
 		
-
+		apply_filters('automatic_theme_updates_send_debug_email', true, $type, $theme_update, $result );
+		
 			break;
 
 // Remove WordPress Version Number
 			case 'wpv' :
 				
-	function change_footer_admin () {return '&nbsp;';}
-	add_filter('admin_footer_text', 'change_footer_admin', 9999);
-	function change_footer_version() {return ' ';}
-	add_filter( 'update_footer', 'change_footer_version', 9999);
+	function remove_version() {
+    return '';
+    }
+    add_filter('the_generator', 'remove_version');
 
             break;
 
@@ -401,7 +415,7 @@ break;
 	}
 	}
 	}
-
+	  
 	// Settings page (under dashboard).
 	    function display_page() { 
 	
@@ -422,7 +436,7 @@ break;
 			    			    
 				<table class="form-table">
 					<tr>
-<div class="error" style="width: 780px"><p><strong>Please Note! - </strong>If either your WordPress core, theme, or plugins get too out of date, you may run into compatibility problems.</p></div>
+
 </table>
 <table class="wp-list-table widefat fixed bookmarks" style="width: 590px; border-radius: 4px;">
 <thead>
@@ -475,13 +489,14 @@ break;
 							<label for="ip_notify">
 									<input type="checkbox" <?php checked(1, (int)$this->status['ip'], true); ?> value="1" id="ip_notify" name="_disable_updates[ip]"> <?php _e('Disable Plugins Individually', 'disable-updates-manager') ?>
 							</label>
+							
  	<span>
  	<a href="#" class="viewdescription">?</a>
  	<span class="hovertext">Go to the "Plugins" section in your dashboard to disable.</span>
  	</span>
  	</div>
 	</span>
-<span style="font-size:8px">New format for this setting coming soon!</span>
+	<br>
 </td>
 </tr>
 </tbody>
@@ -528,41 +543,24 @@ break;
 									<input type="submit" class="button-primary" value="<?php _e('Update Settings') ?>" />
 	</p>
 
-<table class="wp-list-table widefat fixed bookmarks" style="width: 200px; border-radius: 4px;">
+<table class="wp-list-table widefat fixed bookmarks" style="width: auto; padding: 5px; border-radius: 4px;">
 <tbody>
 <tr>
 <td>
 		                    <p align="center">
-	<a href="http://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a> | <a href="http://www.youtube.com/watch?v=jAqd0SjLQ_M">Tutorial</a> | <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>
+	<a href="http://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a> | <a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a> | <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a> | <a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>
 				    </p>	
 </td>
 </tr>
 </tbody>
 </table>
+<div class="error" style="width: 780px;">
+<p>
+<strong>Please Note! - </strong>If either your WordPress core, theme, or plugins get too out of date, you may run into compatibility problems.
+</p>
+</div>
 			</form>
 		</div>
-		
-	<style type="text/css"> 
-	.showonhover {position: relative;}
-	 .showonhover .hovertext {
-	 opacity: 0;
- 	top: -99999px;
- 	position:absolute;
- 	z-index:1000;
- 	border:1px solid #ffd971;
- 	background-color:#fffdce;
- 	padding:7.5px;
- 	width:170px;
- 	font-size: 0.90em;
- 	-webkit-transition: opacity 0.3s ease;
- 	-moz-transition: opacity 0.3s ease;
- 	-o-transition: opacity 0.3s ease;
- 	transition: opacity 0.3s ease;
- 	}
- 	.showonhover:hover .hovertext {opacity:1;top:0;}
- 	a.viewdescription {color:#999;}
-	 a.viewdescription:hover {background-color:#999; color: White;}
-	</style> 
 	
 	<?php
 		}	
@@ -583,7 +581,8 @@ break;
 		    $links,	
 		        array( '<a href="http://www.wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>' ),
 		        array( '<a href="http://www.wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>' ),
-		        array( '<a href="http://www.youtube.com/watch?v=jAqd0SjLQ_M">Tutorial</a>' )
+		        array( '<a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a>' ),
+				array( '<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>' )
 		);	
 		}	
 		return $links;
@@ -598,3 +597,25 @@ break;
 			array('settings' => '<a href="' . admin_url( 'index.php?page=stops-core-theme-and-plugin-updates/Function.php' ) . '">' . __( 'Configure', 'ts-fab' ) . '</a>'),
 				$links);
 		}
+
+	// Add Files	
+	
+	// Style.css
+		function css() {
+            wp_register_style('css', plugins_url('style.css',__FILE__ ));
+            wp_enqueue_style('css');
+        }
+		add_action( 'admin_init','css');
+		
+	// uninstall.php	
+		function php() {
+            wp_register_style('php', plugins_url('uninstall.php',__FILE__ ));
+            wp_enqueue_style('php');
+        }
+		add_action( 'admin_init','php');
+		
+	// lang folder	
+		 function action_init() { 
+                // Load our textdomain 
+                load_plugin_textdomain('stops-core-theme-and-plugin-updates', false , basename(dirname(__FILE__)).'/lang'); 
+        } 
