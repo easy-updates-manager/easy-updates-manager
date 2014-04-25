@@ -2,12 +2,12 @@
 /**
  * @package Disable Updates Manager
  * @author Websiteguy
- * @version 3.7.0
+ * @version 4.0
 */
 /*
 Plugin Name: Disable Updates Manager
 Plugin URI: http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
-Version: 3.7.0
+Version: 4.0
 Description: Pick which type of updates you would like to disable. Just use the settings.
 Author: Websiteguy
 Author URI: http://profiles.wordpress.org/kidsguide/
@@ -39,7 +39,7 @@ or go to the license.txt in the trunk.
 
 // Define version.
 
-	define("DISABLEUPDATESMANAGERVERSION", "3.7.0");
+	define("DISABLEUPDATESMANAGERVERSION", "4.0");
 
     class Disable_Updates {
 	    // Set status in array
@@ -79,7 +79,7 @@ function Disable_Updates() {
 
 	function add_submenu() {
 // Add submenu to "Dashboard" menu.
-add_submenu_page( 'index.php', 'Disable Updates', __('Disable Updates','disable-updates-manager'), 'administrator', __FILE__, array(&$this, 'display_page') );
+add_submenu_page( 'options-general.php', 'Disable Updates Manager', __('Disable Updates Manager','disable-updates-manager'), 'administrator', __FILE__, array(&$this, 'display_page') );
 		}
 
 	  // Functions for plugin (Change in settings)	
@@ -274,11 +274,12 @@ add_submenu_page( 'index.php', 'Disable Updates', __('Disable Updates','disable-
 
 // Remove WordPress Version Number
 			case 'wpv' :
-				
-	function remove_version() {
+
+add_filter( 'update_footer', 'my_footer_version', 11 );
+  
+function my_footer_version() {
     return '';
-    }
-    add_filter('the_generator', 'remove_version');
+}
 
             break;
 
@@ -447,13 +448,14 @@ break;
 <tbody>
 <tr>
 <td>
+
 	<div class="showonhover">
 							<label for="all_notify">
 									<input type="checkbox" <?php checked(1, (int)$this->status['all'], true); ?> value="1" id="all_notify" name="_disable_updates[all]"> <?php _e('Disable All Updates', 'disable-updates-manager') ?>
 							</label>
  	<span>
  	<a href="#" class="viewdescription">?</a>
- 	<span class="hovertext">Just disables the three updates, nothing else.</span>
+ 	<span class="hovertext">Just disables core, theme, and plugin updates.</span>
  	</span>
  	</div>
 	</span>
@@ -496,7 +498,6 @@ break;
  	</span>
  	</div>
 	</span>
-	<br>
 </td>
 </tr>
 </tbody>
@@ -517,7 +518,7 @@ break;
 							</label>
  	<span>
  	<a href="#" class="viewdescription">?</a>
- 	<span class="hovertext">The one under the dashboard.</span>
+ 	<span class="hovertext">The one in the dashboard tab.</span>
  	</span>
  	</div>
 	</span>
@@ -594,7 +595,7 @@ break;
 		function thsp_plugin_action_links( $links ) {
 
 		return array_merge(
-			array('settings' => '<a href="' . admin_url( 'index.php?page=stops-core-theme-and-plugin-updates/Function.php' ) . '">' . __( 'Configure', 'ts-fab' ) . '</a>'),
+			array('settings' => '<a href="' . admin_url( 'options-general.php?page=stops-core-theme-and-plugin-updates/Function.php' ) . '">' . __( 'Configure', 'ts-fab' ) . '</a>'),
 				$links);
 		}
 
@@ -613,9 +614,10 @@ break;
             wp_enqueue_style('php');
         }
 		add_action( 'admin_init','php');
-		
+				
 	// lang folder	
 		 function action_init() { 
                 // Load our textdomain 
                 load_plugin_textdomain('stops-core-theme-and-plugin-updates', false , basename(dirname(__FILE__)).'/lang'); 
         } 
+?>
