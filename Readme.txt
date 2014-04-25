@@ -74,20 +74,26 @@ Their are two way to install Disable Updates Manager.
 </ol>
 
 == Changelog ==
-= Preview: 3.8.0 + =
+= Preview: 4.1.0 + =
 * Work on WordPress Multisite capability.
 * New video tutorial.
 
 = Versions Available for Downloading =
-= 3.7.0 =
-* Fixed: remove WordPress version code (removing all footer text).
+= 4.0 =
+* Fixed: output problems.
+* Fixed: remove WordPress version code (removing all footer text now only removes version).
+* Fixed: tooltips CSS; fixed overlapping errors.
 * Updated: readme.txt.
 * Updated: video tutorial (added music). Note: new video tutorial coming soon!
 * Updated: GitHub version to 3.7.0 (Note: We did not put the lang file in GitHub). - Thanks szepe.viktor!
-* Updated: tooltips CSS; fixed overlapping errors (added <br> spacing to it).
 * Updated: link box CSS in settings. 
 * Updated: settings notice CSS.
-* Moved: settings notice in php.
+* Updated: tooltips text.
+* Renamed: settings page from Disable Updates to Disable Updates Manager.
+* Moved: settings error notice in php.
+* Moved: settings page to Settings section in admin area.
+* Added: some <?php and ?> tags at the end of the files.
+* Added: Settings saved notice in settings.
 * Added: disable core, theme and plugin updates e-mails debug true - Thanks szepe.viktor!
 * Added: license.txt
 * Added: capability with WordPress 3.8.2, 3.8.3, and 3.9.
