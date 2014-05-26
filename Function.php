@@ -99,7 +99,7 @@
 
 						// Disable Plugin Updates Code
 						remove_action( 'load-update-core.php', 'wp_update_plugins' );
-						add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_plugins', '__return_null' );
 
 						// Disable Plugin Update E-mails (only works for some plugins)
 						apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
@@ -113,7 +113,7 @@
 
 						// Disable Theme Updates Code
 						remove_action( 'load-update-core.php', 'wp_update_themes' );
-						add_filter( 'pre_site_transient_update_themes', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_themes', '__return_null' );
 
 						// Disable Theme Update E-mails (only works for some plugins)
 						apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
@@ -127,7 +127,7 @@
 
 						// Disable WordPress Core Updates Code
 						remove_action( 'load-update-core.php', 'wp_update_core' );
-						add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_core', '__return_null' );
 
 						// Disable WordPress Core Update E-mails (only works for some plugins)
 						apply_filters( 'auto_core_update_send_email', FALSE, $type, $core_update, $result );
@@ -154,15 +154,15 @@
 
 						// Disable Plugin Updates Only
 						remove_action( 'load-update-core.php', 'wp_update_plugins' );
-						add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_plugins', '__return_null' );
 
 						// Disable Theme Updates Only
 						remove_action( 'load-update-core.php', 'wp_update_themes' );
-						add_filter( 'pre_site_transient_update_themes', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_themes', '__return_null' );
 
 						// Disable Core Updates Only
 						remove_action( 'load-update-core.php', 'wp_update_core' );
-						add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_core', '__return_null' );
 
 						// Hide Update Notices in Admin Dashboard
 						add_action( 'admin_menu', 'hide_admin_notices' );
@@ -207,40 +207,40 @@
 						}
 
 						// Remove Updates Again (different method)
-						add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_plugins', '__return_null' );
 
 						add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
-						add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_option_update_core', '__return_null' );
 
 						remove_action( 'wp_version_check', 'wp_version_check' );
 						remove_action( 'admin_init', '_maybe_update_core' );
-						add_filter( 'pre_transient_update_core', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_transient_update_core', '__return_null' );
 
-						add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_core', '__return_null' );
 
 						remove_action( 'load-themes.php', 'wp_update_themes' );
 						remove_action( 'load-update.php', 'wp_update_themes' );
 						remove_action( 'admin_init', '_maybe_update_themes' );
 						remove_action( 'wp_update_themes', 'wp_update_themes' );
-						add_filter( 'pre_transient_update_themes', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_transient_update_themes', '__return_null' );
 
 						remove_action( 'load-update-core.php', 'wp_update_themes' );
-						add_filter( 'pre_site_transient_update_themes', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_themes', '__return_null' );
 
 						add_action( 'admin_menu', create_function( '$a', "remove_action( 'load-plugins.php', 'wp_update_plugins' );" ) );
 
 						add_action( 'admin_init', create_function( '$a', "remove_action( 'admin_init', 'wp_update_plugins' );" ), 2 );
 						add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_update_plugins' );" ), 2 );
-						add_filter( 'pre_option_update_plugins', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_option_update_plugins', '__return_null' );
 
 						remove_action( 'load-plugins.php', 'wp_update_plugins' );
 						remove_action( 'load-update.php', 'wp_update_plugins' );
 						remove_action( 'admin_init', '_maybe_update_plugins' );
 						remove_action( 'wp_update_plugins', 'wp_update_plugins' );
-						add_filter( 'pre_transient_update_plugins', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_transient_update_plugins', '__return_null' );
 
 						remove_action( 'load-update-core.php', 'wp_update_plugins' );
-						add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) );
+						add_filter( 'pre_site_transient_update_plugins', '__return_null' );
 
 
 						// Disable Debug E-mails
