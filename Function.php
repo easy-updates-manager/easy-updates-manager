@@ -441,6 +441,12 @@
 
 			<h2><?php _e( 'Disable Updates Manager Settings', 'disable-updates-manager' ); ?></h2>
 
+				<div class="error" style="width: 780px;">
+					<p>
+						<strong>Please Note! - </strong>If either your WordPress core, theme, or plugins get too out
+						of date, you may run into compatibility problems.
+					</p>
+				</div>
 
 				<form method="post" action="options.php">
 
@@ -589,12 +595,7 @@
 						</tr>
 						</tbody>
 					</table>
-					<div class="error" style="width: 780px;">
-						<p>
-							<strong>Please Note! - </strong>If either your WordPress core, theme, or plugins get too out
-							of date, you may run into compatibility problems.
-						</p>
-					</div>
+
 				</form>
 			</div>
 
