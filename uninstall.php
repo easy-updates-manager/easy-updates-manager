@@ -7,5 +7,3 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 // it was defined, now delete 
 delete_option('_disable_updates');
-
-?>
