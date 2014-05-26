@@ -472,7 +472,7 @@
  	<span class="hovertext">Just disables core, theme, and plugin updates.</span>
  	</span>
 								</div>
-								</span>
+
 							<span style="padding-left: 12px; display:block">
 							<label for="plugins_notify">
 								<input type="checkbox" <?php checked( 1, (int) $this->status[ 'plugin' ], TRUE ); ?>
@@ -519,7 +519,7 @@
  	<span class="hovertext">Go to the "Plugins" section in your dashboard to disable.</span>
  	</span>
 								</div>
-								</span>
+
 							</td>
 						</tr>
 						</tbody>
@@ -546,7 +546,7 @@
  	<span class="hovertext">The one in the dashboard tab.</span>
  	</span>
 								</div>
-								</span>
+
 								<div class="showonhover">
 									<label for="wpv_notify">
 										<input
@@ -559,7 +559,7 @@
  	<span class="hovertext">Removes it for all users.</span>
  	</span>
 								</div>
-								</span>
+
 								<label for="abup_notify">
 									<input type="checkbox" <?php checked( 1, (int) $this->status[ 'abup' ], TRUE ); ?>
 									       value="1" id="abup_notify"
