@@ -438,9 +438,9 @@
 			?>
 
 			<div class="wrap">
-<span style="display:block; padding-left: 5px; padding-bottom: 5px">
+
 			<h2><?php _e( 'Disable Updates Manager Settings', 'disable-updates-manager' ); ?></h2>
-</span>
+
 
 				<form method="post" action="options.php">
 
