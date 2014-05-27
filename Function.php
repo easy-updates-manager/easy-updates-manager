@@ -258,7 +258,6 @@ class Disable_Updates {
 						remove_action( 'admin_init', '_maybe_update_core' );
 						wp_clear_scheduled_hook( 'wp_version_check' );
 
-						wp_clear_scheduled_hook( 'wp_version_check' );
 					}
 
 					// Remove Updates Again (different method)
