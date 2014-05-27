@@ -348,8 +348,6 @@ class Disable_Updates {
 	// Disable Core Updates
 	static function disable_core_updates() {
 
-		remove_action( 'load-update-core.php', 'wp_update_core' );
-
 		# 2.3 to 2.7:
 		add_action( 'init', create_function( '', 'remove_action( \'init\', \'wp_version_check\' );' ), 2 );
 		add_filter( 'pre_option_update_core', '__return_null' );
@@ -360,6 +358,7 @@ class Disable_Updates {
 		add_filter( 'pre_transient_update_core', array( __CLASS__,'last_checked' ) );
 
 		# >3.0:
+		remove_action( 'load-update-core.php', 'wp_update_core' );
 		add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
 
 		// Hide Update Notices in Admin Dashboard
