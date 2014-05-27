@@ -407,7 +407,7 @@ class Disable_Updates {
 						foreach ( $to_block as $filename => $plugin ) {
 
 							if ( isset( $plugins->response[ $filename ] )
-							     && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
+								 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
 							) {
 
 								$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
@@ -508,20 +508,20 @@ class Disable_Updates {
 								<span style="padding-left: 12px; display:block">
 									<label for="plugins_notify">
 										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'plugin' ], TRUE ); ?>
-										       value="1" id="plugins_notify"
-										       name="_disable_updates[plugin]"> <?php _e( 'Disable Plugin Updates', 'disable-updates-manager' ) ?>
+											   value="1" id="plugins_notify"
+											   name="_disable_updates[plugin]"> <?php _e( 'Disable Plugin Updates', 'disable-updates-manager' ) ?>
 									</label>
 									<br>
 									<label for="themes_notify">
 										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'theme' ], TRUE ); ?>
-										       value="1" id="themes_notify"
-										       name="_disable_updates[theme]"> <?php _e( 'Disable Theme Updates', 'disable-updates-manager' ) ?>
+											   value="1" id="themes_notify"
+											   name="_disable_updates[theme]"> <?php _e( 'Disable Theme Updates', 'disable-updates-manager' ) ?>
 									</label>
 									<br>
 									<label for="core_notify">
 										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'core' ], TRUE ); ?>
-										       value="1" id="core_notify"
-										       name="_disable_updates[core]"> <?php _e( 'Disable WordPress Core Update', 'disable-updates-manager' ) ?>
+											   value="1" id="core_notify"
+											   name="_disable_updates[core]"> <?php _e( 'Disable WordPress Core Update', 'disable-updates-manager' ) ?>
 									</label>
 								</span>
 							</td>
@@ -542,8 +542,8 @@ class Disable_Updates {
 								<div class="showonhover">
 									<label for="ip_notify">
 										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'ip' ], TRUE ); ?>
-										       value="1" id="ip_notify"
-										       name="_disable_updates[ip]"> <?php _e( 'Disable Plugins Individually', 'disable-updates-manager' ) ?>
+											   value="1" id="ip_notify"
+											   name="_disable_updates[ip]"> <?php _e( 'Disable Plugins Individually', 'disable-updates-manager' ) ?>
 									</label>
 
 									<span>
@@ -594,8 +594,8 @@ class Disable_Updates {
 
 								<label for="abup_notify">
 									<input type="checkbox" <?php checked( 1, (int) $this->status[ 'abup' ], TRUE ); ?>
-									       value="1" id="abup_notify"
-									       name="_disable_updates[abup]"> <?php _e( 'Disable Automatic Background Updates', 'disable-updates-manager' ) ?>
+										   value="1" id="abup_notify"
+										   name="_disable_updates[abup]"> <?php _e( 'Disable Automatic Background Updates', 'disable-updates-manager' ) ?>
 								</label>
 								<br>
 							</td>
@@ -607,7 +607,7 @@ class Disable_Updates {
 				</p>
 
 				<table class="wp-list-table widefat fixed bookmarks"
-				       style="width: auto; padding: 5px; border-radius: 4px;">
+					   style="width: auto; padding: 5px; border-radius: 4px;">
 					<tbody>
 						<tr>
 							<td>
