@@ -296,7 +296,7 @@ class Disable_Updates {
 
 
 					// Disable Debug E-mails
-					add_filter( 'automatic_updates_send_debug_email ', '__return_true', 1 );
+					add_filter( 'automatic_updates_send_debug_email ', '__return_false', 1 );
 
 					// Disable WordPress Automatic Updates
 					define( 'Automatic_Updater_Disabled', TRUE );
