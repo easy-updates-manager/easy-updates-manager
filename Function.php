@@ -54,11 +54,14 @@ class Disable_Updates {
 		// Settings API.
 		add_action( 'admin_init', array( &$this, 'register_setting' ) );
 
+		// Add action links.
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( __CLASS__, 'action_links' ) );
+
 		// load the values recorded.
 		$this->load_disable_updates();
 	}
 
-	static function enqueue_css( $page_hook ) {
+	static function enqueue_css() {
 
 			wp_enqueue_style( 'disable-updates-manager-css', plugins_url( 'style.css', __FILE__ ), array(), self::VERSION );
 	}
@@ -86,6 +89,17 @@ class Disable_Updates {
 
 		// Enqueue the admin CSS.
 		add_action( "load-$page_hook", array( __CLASS__, 'enqueue_css' ) );
+	}
+
+	static function action_links( $links ) {
+
+		return array_merge(
+			array(
+				'settings' => '<a href="' . add_query_arg( array( 'page' => 'disable-updates-manager' ), admin_url( 'options-general.php' ) ) . '">' . __( 'Configure', 'disable-updates-manager' ) . '</a>',
+				),
+			$links
+		);
+
 	}
 
 	// Functions for plugin (Change in settings)
@@ -612,16 +626,6 @@ class Disable_Updates {
 // Start Disable Updates Manager once all other plugins are fully loaded.
 global $Disable_Updates;
 $Disable_Updates = new Disable_Updates();
-
-// Add links.
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'thsp_plugin_action_links' );
-
-function thsp_plugin_action_links( $links ) {
-
-	return array_merge(
-		array( 'settings' => '<a href="' . admin_url( 'options-general.php?page=stops-core-theme-and-plugin-updates/Function.php' ) . '">' . __( 'Configure', 'ts-fab' ) . '</a>' ),
-		$links );
-}
 
 // lang folder
 function action_init() {
