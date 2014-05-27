@@ -132,6 +132,15 @@ class Disable_Updates {
 		return $links;
 	}
 
+	static function last_checked() {
+		global $wp_version;
+
+		return (object) array(
+			'last_checked'    => time(),
+			'version_checked' => $wp_version,
+		);
+	}
+
 	// Functions for plugin (Change in settings)
 	function load_disable_updates() {
 		$this->status = get_option( '_disable_updates' );
@@ -149,7 +158,7 @@ class Disable_Updates {
 
 					// Disable Plugin Updates Code
 					remove_action( 'load-update-core.php', 'wp_update_plugins' );
-					add_filter( 'pre_site_transient_update_plugins', '__return_null' );
+					add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
 
 					// Disable Plugin Update E-mails (only works for some plugins)
 					// This doesn't make sense. Purpose?
@@ -165,7 +174,7 @@ class Disable_Updates {
 
 					// Disable Theme Updates Code
 					remove_action( 'load-update-core.php', 'wp_update_themes' );
-					add_filter( 'pre_site_transient_update_themes', '__return_null' );
+					add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
 
 					// Disable Theme Update E-mails (only works for some plugins)
 					// This doesn't make sense. Purpose?
@@ -181,7 +190,7 @@ class Disable_Updates {
 
 					// Disable WordPress Core Updates Code
 					remove_action( 'load-update-core.php', 'wp_update_core' );
-					add_filter( 'pre_site_transient_update_core', '__return_null' );
+					add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
 
 					// Disable WordPress Core Update E-mails (only works for some plugins)
 					add_filter( 'auto_core_update_send_email', '__return_false' );
