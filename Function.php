@@ -37,10 +37,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 Go to the license.txt in the trunk for more information.
 */
 
-// Define version.
-define( "DISABLEUPDATESMANAGERVERSION", "4.0.3" );
 
 class Disable_Updates {
+
+	// Define version.
+	const VERSION = '4.0.3';
+
 	// Set status in array
 	private $status = array();
 
@@ -64,7 +66,7 @@ class Disable_Updates {
 
 	static function enqueue_css() {
 
-		wp_enqueue_style( 'disable-updates-manager-css', plugins_url( 'style.css', __FILE__ ), array(), DISABLEUPDATESMANAGERVERSION );
+		wp_enqueue_style( 'disable-updates-manager-css', plugins_url( 'style.css', __FILE__ ), array(), self::VERSION );
 	}
 
 	// Register settings.
