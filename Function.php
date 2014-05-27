@@ -211,8 +211,6 @@ class Disable_Updates {
 				// Disable All Updates
 				case 'all' :
 
-					// Disable All Updates
-
 					// Disable Plugin Updates Only
 					remove_action( 'load-update-core.php', 'wp_update_plugins' );
 					add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
