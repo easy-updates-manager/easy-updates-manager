@@ -152,9 +152,11 @@ class Disable_Updates {
 					add_filter( 'pre_site_transient_update_plugins', '__return_null' );
 
 					// Disable Plugin Update E-mails (only works for some plugins)
-					apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
 
-					apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
 
 					break;
 
@@ -166,9 +168,11 @@ class Disable_Updates {
 					add_filter( 'pre_site_transient_update_themes', '__return_null' );
 
 					// Disable Theme Update E-mails (only works for some plugins)
-					apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
 
-					apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
 
 					break;
 
@@ -182,7 +186,8 @@ class Disable_Updates {
 					// Disable WordPress Core Update E-mails (only works for some plugins)
 					apply_filters( 'auto_core_update_send_email', FALSE, $type, $core_update, $result );
 
-					apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
 
 					break;
 
@@ -302,17 +307,22 @@ class Disable_Updates {
 					// Core E-mails Only
 					apply_filters( 'auto_core_update_send_email', FALSE, $type, $core_update, $result );
 
-					apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
 
 					// Plugin E-mails Only
-					apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
 
-					apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
 
 					// Theme E-mails Only
-					apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
 
-					apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
+					// This doesn't make sense. Purpose?
+					// apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
 
 					break;
 
