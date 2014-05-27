@@ -210,8 +210,7 @@ class Disable_Updates {
 
 					add_action( 'init', 'disable_updates_get' );
 					add_action( 'init', array( __CLASS__, 'plugin_action_links' ) );
-
-					add_filter( 'site_transient_update_plugins', 'disable_updates_blockUpdateNotifications' );
+					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_update_notification' ) );
 
 					function disable_updates_get() {
 
@@ -244,28 +243,6 @@ class Disable_Updates {
 						update_option( 'disable_updates_blocked', $blocked );
 					}
 
-					function disable_updates_blockUpdateNotifications( $plugins ) {
-
-						if ( ! isset( $plugins->response ) || count( $plugins->response ) == 0 ) {
-							return $plugins;
-						}
-
-						$to_block = (array) get_option( 'disable_updates_blocked' );
-
-						foreach ( $to_block as $filename => $plugin ) {
-
-							if ( isset( $plugins->response[ $filename ] )
-								 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
-							) {
-
-								$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
-								unset( $plugins->response[ $filename ] );
-							}
-						}
-
-						return $plugins;
-					}
-
 					if ( ! function_exists( 'printr' ) ) {
 						function printr( $txt ) {
 							echo '<pre>';
@@ -283,6 +260,28 @@ class Disable_Updates {
 
 			}
 		}
+	}
+
+	static function remove_update_notification( $plugins ) {
+
+		if ( ! isset( $plugins->response ) || count( $plugins->response ) == 0 ) {
+			return $plugins;
+		}
+
+		$to_block = (array) get_option( 'disable_updates_blocked' );
+
+		foreach ( $to_block as $filename => $plugin ) {
+
+			if ( isset( $plugins->response[ $filename ] )
+				 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
+			) {
+
+				$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
+				unset( $plugins->response[ $filename ] );
+			}
+		}
+
+		return $plugins;
 	}
 
 	static function last_checked() {
