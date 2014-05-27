@@ -202,6 +202,7 @@ class Disable_Updates {
 					add_action( 'init', array( __CLASS__, 'update_plugin_block_status' ) );
 					add_action( 'init', array( __CLASS__, 'plugin_action_links' ) );
 					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_update_notification' ) );
+					add_filter( 'plugin_action_links', array( __CLASS__, 'plugin_block_action_link' ), 10, 4 );
 
 					break;
 
@@ -408,6 +409,22 @@ class Disable_Updates {
 	static function plugin_block_link( $plugin_data, $r ) {
 
 		echo '<ul class="block-update-message" style="list-style-type: square; margin-left:20px;"><li><a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $r->plugin . '">Block updates for this plugin</a>.</li></ul>';
+	}
+
+	static function plugin_block_action_link( $actions, $plugin_file, $plugin_data, $context ) {
+
+		$blocked = get_option( 'disable_updates_blocked' );
+
+		if ( array_key_exists( $plugin_file, $blocked ) ) {
+
+			$actions[] = '<a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $plugin_file . '">Unblock Updates</a>';
+
+		} else {
+
+			$actions[] = '<a class="delete" href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $plugin_file . '">Block Updates</a>';
+		}
+
+		return $actions;
 	}
 
 	// Settings page (under dashboard).
