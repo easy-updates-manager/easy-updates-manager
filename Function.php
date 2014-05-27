@@ -623,12 +623,6 @@ function thsp_plugin_action_links( $links ) {
 		$links );
 }
 
-// uninstall.php
-function php() {
-	wp_register_style( 'php', plugins_url( 'uninstall.php', __FILE__ ) );
-	wp_enqueue_style( 'php' );
-}
-
 add_action( 'admin_init', 'php' );
 
 // lang folder
