@@ -85,7 +85,7 @@ class Disable_Updates {
 
 	function add_submenu() {
 		// Add submenu to "Dashboard" menu.
-		add_submenu_page( 'options-general.php', 'Disable Updates Manager', __( 'Disable Updates Manager', 'disable-updates-manager' ), 'administrator', __FILE__, array( &$this, 'display_page' ) );
+		add_submenu_page( 'options-general.php', 'Disable Updates Manager', __( 'Disable Updates Manager', 'disable-updates-manager' ), 'manage_options', __FILE__, array( &$this, 'display_page' ) );
 	}
 
 	// Functions for plugin (Change in settings)
