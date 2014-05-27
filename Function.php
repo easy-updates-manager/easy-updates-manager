@@ -482,128 +482,124 @@ class Disable_Updates {
 
 				<?php settings_fields( '_disable_updates' ); ?>
 
-				<table class="form-table">
-					<tr>
-
-				</table>
 				<table class="wp-list-table widefat fixed bookmarks" style="width: 590px; border-radius: 4px;">
 					<thead>
-					<tr>
-						<th>Disable Updates</th>
-					</tr>
+						<tr>
+							<th>Disable Updates</th>
+						</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>
+						<tr>
+							<td>
 
-							<div class="showonhover">
-								<label for="all_notify">
-									<input
-										type="checkbox" <?php checked( 1, (int) $this->status[ 'all' ], TRUE ); ?>
-										value="1" id="all_notify"
-										name="_disable_updates[all]"> <?php _e( 'Disable All Updates', 'disable-updates-manager' ) ?>
-								</label>
-	<span>
-	<a href="#" class="viewdescription">?</a>
-	<span class="hovertext">Just disables core, theme, and plugin updates.</span>
-	</span>
-							</div>
+								<div class="showonhover">
+									<label for="all_notify">
+										<input
+											type="checkbox" <?php checked( 1, (int) $this->status[ 'all' ], TRUE ); ?>
+											value="1" id="all_notify"
+											name="_disable_updates[all]"> <?php _e( 'Disable All Updates', 'disable-updates-manager' ) ?>
+									</label>
+									<span>
+										<a href="#" class="viewdescription">?</a>
+										<span class="hovertext">Just disables core, theme, and plugin updates.</span>
+									</span>
+								</div>
 
-						<span style="padding-left: 12px; display:block">
-						<label for="plugins_notify">
-							<input type="checkbox" <?php checked( 1, (int) $this->status[ 'plugin' ], TRUE ); ?>
-							       value="1" id="plugins_notify"
-							       name="_disable_updates[plugin]"> <?php _e( 'Disable Plugin Updates', 'disable-updates-manager' ) ?>
-						</label>
-<br>
-						<label for="themes_notify">
-							<input type="checkbox" <?php checked( 1, (int) $this->status[ 'theme' ], TRUE ); ?>
-							       value="1" id="themes_notify"
-							       name="_disable_updates[theme]"> <?php _e( 'Disable Theme Updates', 'disable-updates-manager' ) ?>
-						</label>
-<br>
-						<label for="core_notify">
-							<input type="checkbox" <?php checked( 1, (int) $this->status[ 'core' ], TRUE ); ?>
-							       value="1" id="core_notify"
-							       name="_disable_updates[core]"> <?php _e( 'Disable WordPress Core Update', 'disable-updates-manager' ) ?>
-						</label>
-</span>
-						</td>
-					</tr>
+								<span style="padding-left: 12px; display:block">
+									<label for="plugins_notify">
+										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'plugin' ], TRUE ); ?>
+										       value="1" id="plugins_notify"
+										       name="_disable_updates[plugin]"> <?php _e( 'Disable Plugin Updates', 'disable-updates-manager' ) ?>
+									</label>
+									<br>
+									<label for="themes_notify">
+										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'theme' ], TRUE ); ?>
+										       value="1" id="themes_notify"
+										       name="_disable_updates[theme]"> <?php _e( 'Disable Theme Updates', 'disable-updates-manager' ) ?>
+									</label>
+									<br>
+									<label for="core_notify">
+										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'core' ], TRUE ); ?>
+										       value="1" id="core_notify"
+										       name="_disable_updates[core]"> <?php _e( 'Disable WordPress Core Update', 'disable-updates-manager' ) ?>
+									</label>
+								</span>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<br>
 
 				<table class="wp-list-table widefat fixed bookmarks" style="width: 590px; border-radius: 4px;">
 					<thead>
-					<tr>
-						<th>Disable Plugins Individually</th>
-					</tr>
+						<tr>
+							<th>Disable Plugins Individually</th>
+						</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>
-							<div class="showonhover">
-								<label for="ip_notify">
-									<input type="checkbox" <?php checked( 1, (int) $this->status[ 'ip' ], TRUE ); ?>
-									       value="1" id="ip_notify"
-									       name="_disable_updates[ip]"> <?php _e( 'Disable Plugins Individually', 'disable-updates-manager' ) ?>
-								</label>
+						<tr>
+							<td>
+								<div class="showonhover">
+									<label for="ip_notify">
+										<input type="checkbox" <?php checked( 1, (int) $this->status[ 'ip' ], TRUE ); ?>
+										       value="1" id="ip_notify"
+										       name="_disable_updates[ip]"> <?php _e( 'Disable Plugins Individually', 'disable-updates-manager' ) ?>
+									</label>
 
-	<span>
-	<a href="#" class="viewdescription">?</a>
-	<span class="hovertext">Go to the "Plugins" section in your dashboard to disable.</span>
-	</span>
-							</div>
+									<span>
+										<a href="#" class="viewdescription">?</a>
+										<span class="hovertext">Go to the "Plugins" section in your dashboard to disable.</span>
+									</span>
+								</div>
 
-						</td>
-					</tr>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<br>
 				<table class="wp-list-table widefat fixed bookmarks" style="width: 590px; border-radius: 4px;">
 					<thead>
-					<tr>
-						<th>Other Settings</th>
-					</tr>
+						<tr>
+							<th>Other Settings</th>
+						</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>
-							<div class="showonhover">
-								<label for="page_notify">
-									<input
-										type="checkbox" <?php checked( 1, (int) $this->status[ 'page' ], TRUE ); ?>
-										value="1" id="page_notify"
-										name="_disable_updates[page]"> <?php _e( 'Remove Updates Page', 'disable-updates-manager' ) ?>
-								</label>
-	<span>
-	<a href="#" class="viewdescription">?</a>
-	<span class="hovertext">The one in the dashboard tab.</span>
-	</span>
-							</div>
+						<tr>
+							<td>
+								<div class="showonhover">
+									<label for="page_notify">
+										<input
+											type="checkbox" <?php checked( 1, (int) $this->status[ 'page' ], TRUE ); ?>
+											value="1" id="page_notify"
+											name="_disable_updates[page]"> <?php _e( 'Remove Updates Page', 'disable-updates-manager' ) ?>
+									</label>
+									<span>
+										<a href="#" class="viewdescription">?</a>
+										<span class="hovertext">The one in the dashboard tab.</span>
+									</span>
+								</div>
 
-							<div class="showonhover">
-								<label for="wpv_notify">
-									<input
-										type="checkbox" <?php checked( 1, (int) $this->status[ 'wpv' ], TRUE ); ?>
-										value="1" id="wpv_notify"
-										name="_disable_updates[wpv]"> <?php _e( 'Remove WordPress Core Version from Footer', 'disable-updates-manager' ) ?>
-								</label>
-	<span>
-	<a href="#" class="viewdescription">?</a>
-	<span class="hovertext">Removes it for all users.</span>
-	</span>
-							</div>
+								<div class="showonhover">
+									<label for="wpv_notify">
+										<input
+											type="checkbox" <?php checked( 1, (int) $this->status[ 'wpv' ], TRUE ); ?>
+											value="1" id="wpv_notify"
+											name="_disable_updates[wpv]"> <?php _e( 'Remove WordPress Core Version from Footer', 'disable-updates-manager' ) ?>
+									</label>
+									<span>
+										<a href="#" class="viewdescription">?</a>
+										<span class="hovertext">Removes it for all users.</span>
+									</span>
+								</div>
 
-							<label for="abup_notify">
-								<input type="checkbox" <?php checked( 1, (int) $this->status[ 'abup' ], TRUE ); ?>
-								       value="1" id="abup_notify"
-								       name="_disable_updates[abup]"> <?php _e( 'Disable Automatic Background Updates', 'disable-updates-manager' ) ?>
-							</label>
-							<br>
-						</td>
-					</tr>
+								<label for="abup_notify">
+									<input type="checkbox" <?php checked( 1, (int) $this->status[ 'abup' ], TRUE ); ?>
+									       value="1" id="abup_notify"
+									       name="_disable_updates[abup]"> <?php _e( 'Disable Automatic Background Updates', 'disable-updates-manager' ) ?>
+								</label>
+								<br>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<p class="submit">
@@ -613,16 +609,16 @@ class Disable_Updates {
 				<table class="wp-list-table widefat fixed bookmarks"
 				       style="width: auto; padding: 5px; border-radius: 4px;">
 					<tbody>
-					<tr>
-						<td>
-							<p align="center">
-								<a href="http://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>
-								| <a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a> | <a
-									href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>
-								| <a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>
-							</p>
-						</td>
-					</tr>
+						<tr>
+							<td>
+								<p align="center">
+									<a href="http://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a> |
+									<a href="https://www.youtube.com/watch?v=ppCxjREhF9g">Tutorial</a> |
+									<a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a> |
+									<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>
+								</p>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 
