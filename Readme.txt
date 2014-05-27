@@ -18,20 +18,19 @@ This plugin is configurable! Check the updates you would like to disable in the 
 <li>Disables plugin updates.</li>
 <li>Disables theme updates.</li>
 <li>Disable WordPress core updates.</li>
-<li>Removes admin footer.</li>
+<li>Removes admin footer version.</li>
 <li>Disables background updates.</li>
 <li>Removes updates menu in admin sidebar.</li>
 </ol> 
 and many more things!
 
-To see more features view the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a>.
+To see more features view the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a> or the video tutorials below.
 
 = Video Tutorials =
 [youtube http://www.youtube.com/watch?v=ppCxjREhF9g]
 
 [youtube http://www.youtube.com/watch?v=TbqYfkDlhCg]
 
-<small>Version 3.5.0 tutorial video.</small>
 
 == Frequently Asked Questions ==
 = Q: How is this plugin different from the other disable updates plugins? =
@@ -47,7 +46,9 @@ A: Their are a couple of differences.
 A: Yes, this plugin just disables the update. We has also recently made an uninstall.php for this plugin.
 
 = Q: Is it possible to disable one plugin? =
-A: This plugin does not disable themes individual but it can disable plugins individually. We are considering a setting to disable themes individually. 
+A: This plugin can disable plugins individually. Watch the tutorial below for help on how to do it.
+
+[youtube http://www.youtube.com/watch?v=TbqYfkDlhCg]
 
 = Q: Does this plugin work with WordPress Multisite? =
 A: This plugin doesn't yet, but we are working on this.
@@ -77,13 +78,28 @@ Their are two way to install Disable Updates Manager.
 </ol>
 
 == Changelog ==
+= 4.0.3 =
+* Fixed: FAQ spelling mistakes.
+* Fixed: changelog star error.
+* Fixed: error with no lang file in version 4.0.
+* Added: version 4.0.3 on GitHub.
+* Added: name to license.txt file. 
+* Cleaned: css files (having trouble with php files).
+* Changed: description.
+* Renamed: remove WordPress version from footer in settings.
 
-= Versions Available for Downloading =
-= 4.0.1 =
-* Updated: code to make it way easier to understand.
+= 4.0.2 =
+* Fixed: unchecked error in settings.
+* Added: version 4.0.2 to GitHub.
+* Removed: code format (will add in version 4.0.3 which will be released soon).
+* Added: 4.0 available for download.
+* Added: footnote at bottom of changelog.
+ 
+= 4.0.1* =
+* Updated: code to make it way easier to understand. - Thanks szepe.viktor!
 * Updated/Added: video tutorials.
 * Added: version 4.0.1 to GitHub.
-* Added: capability with WordPress version 3.9.1. - Thanks szepe.viktor, and sLa NGjI's!
+* Added: capability with WordPress version 3.9.1.
 
 = 4.0 =
 * Fixed: output problems.
@@ -303,9 +319,12 @@ Their are two way to install Disable Updates Manager.
 * Updated Readme.txt
 * Works with WordPress 3.8
 
-= 0.1 =
+= 0.1* =
+
 * Published on Wordpress.org
  (September 1, 2013)
  
 = Note =
 Versions 0.2 to 0.9 are not listed in this changelog.
+
+= * = versions not available for download.
