@@ -12,12 +12,9 @@ Description: A configurable plugin that disables updates for you. Easy, clean an
 Author: Websiteguy
 Author URI: http://profiles.wordpress.org/kidsguide/
 License: GPL2
-Text Domain: stops-core-theme-and-plugin-updates
+Text Domain: disable-updates-manager
 Domain Path: /lang
 Tested up to WordPress: 3.9.1
-*/
-/*
-License:
 
 @Copyright 2013 - 2014 Websiteguy (email: mpsparrow@cogeco.ca)
 
