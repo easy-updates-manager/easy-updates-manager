@@ -348,12 +348,6 @@ class Disable_Updates {
 	// Disable Core Updates
 	static function disable_core_updates() {
 
-		// Disable WordPress Core Update E-mails (only works for some plugins)
-		add_filter( 'auto_core_update_send_email', '__return_false' );
-
-		// This doesn't make sense. Purpose?
-		// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
-
 		remove_action( 'load-update-core.php', 'wp_update_core' );
 
 		# 2.3 to 2.7:
@@ -375,6 +369,9 @@ class Disable_Updates {
 
 		// Disable email.
 		add_filter( 'auto_core_update_send_email', '__return_false' );
+
+		// This doesn't make sense. Purpose?
+		// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
 	}
 
 	// Disable Plugin Updates
