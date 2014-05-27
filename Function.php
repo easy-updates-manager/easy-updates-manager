@@ -193,47 +193,7 @@ class Disable_Updates {
 					// Disable Core Updates Only
 					self::disable_core_updates();
 
-					// Remove Files From WordPress
-					function admin_init() {
-
-						if ( ! function_exists( "remove_action" ) ) {
-							return;
-						}
-
-						// Disable Plugin Updates Only
-						remove_action( 'load-plugins.php', 'wp_update_plugins' );
-						remove_action( 'load-update.php', 'wp_update_plugins' );
-						remove_action( 'admin_init', '_maybe_update_plugins' );
-						remove_action( 'wp_update_plugins', 'wp_update_plugins' );
-						wp_clear_scheduled_hook( 'wp_update_plugins' );
-
-						remove_action( 'load-update-core.php', 'wp_update_plugins' );
-						wp_clear_scheduled_hook( 'wp_update_plugins' );
-
-						// Disable Theme Updates Only
-						remove_action( 'load-themes.php', 'wp_update_themes' );
-						remove_action( 'load-update.php', 'wp_update_themes' );
-						remove_action( 'admin_init', '_maybe_update_themes' );
-						remove_action( 'wp_update_themes', 'wp_update_themes' );
-						wp_clear_scheduled_hook( 'wp_update_themes' );
-
-						remove_action( 'load-update-core.php', 'wp_update_themes' );
-						wp_clear_scheduled_hook( 'wp_update_themes' );
-
-						// Disable Core Updates Only
-						remove_action( 'wp_version_check', 'wp_version_check' );
-						remove_action( 'admin_init', '_maybe_update_core' );
-						wp_clear_scheduled_hook( 'wp_version_check' );
-
-					}
-
-					remove_action( 'load-themes.php', 'wp_update_themes' );
-					remove_action( 'load-update.php', 'wp_update_themes' );
-					remove_action( 'admin_init', '_maybe_update_themes' );
-					remove_action( 'wp_update_themes', 'wp_update_themes' );
 					add_filter( 'pre_transient_update_themes', '__return_null' );
-
-					remove_action( 'load-update-core.php', 'wp_update_themes' );
 
 					add_action( 'admin_menu', create_function( '$a', "remove_action( 'load-plugins.php', 'wp_update_plugins' );" ) );
 
@@ -241,13 +201,7 @@ class Disable_Updates {
 					add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_update_plugins' );" ), 2 );
 					add_filter( 'pre_option_update_plugins', '__return_null' );
 
-					remove_action( 'load-plugins.php', 'wp_update_plugins' );
-					remove_action( 'load-update.php', 'wp_update_plugins' );
-					remove_action( 'admin_init', '_maybe_update_plugins' );
-					remove_action( 'wp_update_plugins', 'wp_update_plugins' );
 					add_filter( 'pre_transient_update_plugins', '__return_null' );
-
-					remove_action( 'load-update-core.php', 'wp_update_plugins' );
 
 					// Disable Debug E-mails
 					add_filter( 'automatic_updates_send_debug_email ', '__return_false', 1 );
@@ -426,17 +380,24 @@ class Disable_Updates {
 		// Hide Update Notices in Admin Dashboard
 		add_action( 'admin_menu', create_function( '', 'remove_action( \'admin_notices\', \'update_nag\', 3 );' ) );
 
-		// Disable Update Emails
+		wp_clear_scheduled_hook( 'wp_version_check' );
 
-		// Core Emails Only
+		// Disable email.
 		add_filter( 'auto_core_update_send_email', '__return_false' );
 	}
 
 	// Disable Plugin Updates
 	static function disable_plugin_updates() {
 
+		remove_action( 'load-plugins.php', 'wp_update_plugins' );
+		remove_action( 'load-update.php', 'wp_update_plugins' );
 		remove_action( 'load-update-core.php', 'wp_update_plugins' );
+		remove_action( 'admin_init', '_maybe_update_plugins' );
+		remove_action( 'wp_update_plugins', 'wp_update_plugins' );
+
 		add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
+
+		wp_clear_scheduled_hook( 'wp_update_plugins' );
 
 		// Disable Plugin Update E-mails (only works for some plugins)
 		// This doesn't make sense. Purpose?
@@ -449,8 +410,15 @@ class Disable_Updates {
 	// Disable Theme Updates
 	static function disable_theme_updates() {
 
+		remove_action( 'load-themes.php', 'wp_update_themes' );
+		remove_action( 'load-update.php', 'wp_update_themes' );
 		remove_action( 'load-update-core.php', 'wp_update_themes' );
+		remove_action( 'admin_init', '_maybe_update_themes' );
+		remove_action( 'wp_update_themes', 'wp_update_themes' );
+
 		add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
+
+		wp_clear_scheduled_hook( 'wp_update_themes' );
 
 		// Disable Theme Update E-mails (only works for some plugins)
 		// This doesn't make sense. Purpose?
