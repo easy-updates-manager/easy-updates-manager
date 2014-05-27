@@ -54,16 +54,13 @@ class Disable_Updates {
 		// Settings API.
 		add_action( 'admin_init', array( &$this, 'register_setting' ) );
 
-		// Enqueue the admin CSS.
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_css' ) );
-
 		// load the values recorded.
 		$this->load_disable_updates();
 	}
 
-	static function enqueue_css() {
+	static function enqueue_css( $page_hook ) {
 
-		wp_enqueue_style( 'disable-updates-manager-css', plugins_url( 'style.css', __FILE__ ), array(), self::VERSION );
+			wp_enqueue_style( 'disable-updates-manager-css', plugins_url( 'style.css', __FILE__ ), array(), self::VERSION );
 	}
 
 	// Register settings.
@@ -84,8 +81,11 @@ class Disable_Updates {
 	}
 
 	function add_submenu() {
-		// Add submenu to "Dashboard" menu.
-		add_submenu_page( 'options-general.php', 'Disable Updates Manager', __( 'Disable Updates Manager', 'disable-updates-manager' ), 'manage_options', 'disable-updates-manager', array( &$this, 'display_page' ) );
+
+		$page_hook = add_submenu_page( 'options-general.php', 'Disable Updates Manager', __( 'Disable Updates Manager', 'disable-updates-manager' ), 'manage_options', 'disable-updates-manager', array( &$this, 'display_page' ) );
+
+		// Enqueue the admin CSS.
+		add_action( "load-$page_hook", array( __CLASS__, 'enqueue_css' ) );
 	}
 
 	// Functions for plugin (Change in settings)
