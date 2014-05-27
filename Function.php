@@ -124,7 +124,7 @@ class Disable_Updates {
 				array( '<a target="_BLANK" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC5UR6667DLXU">Donate</a>' ),
 				array( '<a href="http://www.wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>' ),
 				array( '<a href="http://www.wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>' ),
-				array( '<a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a>' ),
+				array( '<a href="https://www.youtube.com/watch?v=ppCxjREhF9g">Tutorial</a>' ),
 				array( '<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>' )
 			);
 		}
