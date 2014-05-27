@@ -633,6 +633,5 @@ class Disable_Updates {
 	}
 }
 
-// Start Disable Updates Manager once all other plugins are fully loaded.
 global $Disable_Updates;
 $Disable_Updates = new Disable_Updates();
