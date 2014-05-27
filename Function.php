@@ -13,7 +13,7 @@ Author: Websiteguy
 Author URI: http://profiles.wordpress.org/kidsguide/
 License: GPL2
 Text Domain: disable-updates-manager
-Domain Path: /lang
+Domain Path: lang
 Tested up to WordPress: 3.9.1
 
 @Copyright 2013 - 2014 Websiteguy (email: mpsparrow@cogeco.ca)
@@ -48,6 +48,9 @@ class Disable_Updates {
 
 	function __construct() {
 
+		// Load our textdomain
+		add_action( 'init', array( __CLASS__ , 'load_textdomain' ) );
+
 		// Add menu page.
 		add_action( 'admin_menu', array( &$this, 'add_submenu' ) );
 
@@ -59,6 +62,11 @@ class Disable_Updates {
 
 		// load the values recorded.
 		$this->load_disable_updates();
+	}
+
+	static function load_textdomain() {
+
+		load_plugin_textdomain( 'disable-updates-manager', FALSE, basename( dirname( __FILE__ ) ) . '/lang' );
 	}
 
 	static function enqueue_css() {
@@ -626,9 +634,3 @@ class Disable_Updates {
 // Start Disable Updates Manager once all other plugins are fully loaded.
 global $Disable_Updates;
 $Disable_Updates = new Disable_Updates();
-
-// lang folder
-function action_init() {
-	// Load our textdomain
-	load_plugin_textdomain( 'stops-core-theme-and-plugin-updates', FALSE, basename( dirname( __FILE__ ) ) . '/lang' );
-}
