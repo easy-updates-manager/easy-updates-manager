@@ -46,7 +46,7 @@ class Disable_Updates {
 	// Set checkboxes in array
 	private $checkboxes = array();
 
-	function Disable_Updates() {
+	function __construct() {
 
 		// Add menu page.
 		add_action( 'admin_menu', array( &$this, 'add_submenu' ) );
