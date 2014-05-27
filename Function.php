@@ -208,40 +208,9 @@ class Disable_Updates {
 
 					define( 'disable_updates_loaded', 1 );
 
-					add_action( 'init', 'disable_updates_get' );
+					add_action( 'init', array( __CLASS__, 'update_plugin_block_status' ) );
 					add_action( 'init', array( __CLASS__, 'plugin_action_links' ) );
 					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_update_notification' ) );
-
-					function disable_updates_get() {
-
-						if ( ! current_user_can( 'update_plugins' ) ) {
-							return;
-						}
-
-						// see if there are actions to process
-						if ( ! isset( $_GET[ 'disable_updates' ] ) || ! isset( $_GET[ '_wpnonce' ] ) ) {
-							return;
-						}
-
-						if ( ! wp_verify_nonce( $_GET[ '_wpnonce' ], 'disable_updates' ) ) {
-							return;
-						}
-
-						$blocked = get_option( 'disable_updates_blocked' );
-						$plugins = get_site_transient( 'update_plugins' );
-
-						// block action
-						if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
-							$p                           = $plugins->response[ $_GET[ 'block' ] ];
-							$blocked[ $_GET[ 'block' ] ] = array( 'slug' => $p->slug, 'new_version' => $p->new_version );
-						}
-
-						if ( isset( $_GET[ 'unblock' ] ) ) {
-							unset( $blocked[ $_GET[ 'unblock' ] ] );
-						}
-
-						update_option( 'disable_updates_blocked', $blocked );
-					}
 
 					if ( ! function_exists( 'printr' ) ) {
 						function printr( $txt ) {
@@ -260,6 +229,37 @@ class Disable_Updates {
 
 			}
 		}
+	}
+
+	static function update_plugin_block_status() {
+
+		if ( ! current_user_can( 'update_plugins' ) ) {
+			return;
+		}
+
+		// see if there are actions to process
+		if ( ! isset( $_GET[ 'disable_updates' ] ) || ! isset( $_GET[ '_wpnonce' ] ) ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_GET[ '_wpnonce' ], 'disable_updates' ) ) {
+			return;
+		}
+
+		$blocked = get_option( 'disable_updates_blocked' );
+		$plugins = get_site_transient( 'update_plugins' );
+
+		// block action
+		if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
+			$p                           = $plugins->response[ $_GET[ 'block' ] ];
+			$blocked[ $_GET[ 'block' ] ] = array( 'slug' => $p->slug, 'new_version' => $p->new_version );
+		}
+
+		if ( isset( $_GET[ 'unblock' ] ) ) {
+			unset( $blocked[ $_GET[ 'unblock' ] ] );
+		}
+
+		update_option( 'disable_updates_blocked', $blocked );
 	}
 
 	static function remove_update_notification( $plugins ) {
