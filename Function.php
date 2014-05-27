@@ -406,16 +406,15 @@ class Disable_Updates {
 	// Disable Theme Updates
 	static function disable_theme_updates() {
 
+		# 2.8 to 3.0:
 		remove_action( 'load-themes.php', 'wp_update_themes' );
 		remove_action( 'load-update.php', 'wp_update_themes' );
-		remove_action( 'load-update-core.php', 'wp_update_themes' );
 		remove_action( 'admin_init', '_maybe_update_themes' );
 		remove_action( 'wp_update_themes', 'wp_update_themes' );
-
-		# 2.8 to 3.0:
 		add_filter( 'pre_transient_update_themes', array( __CLASS__,'last_checked' ) );
 
 		# >3.0:
+		remove_action( 'load-update-core.php', 'wp_update_themes' );
 		add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
 
 		wp_clear_scheduled_hook( 'wp_update_themes' );
