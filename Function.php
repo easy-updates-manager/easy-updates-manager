@@ -623,8 +623,6 @@ function thsp_plugin_action_links( $links ) {
 		$links );
 }
 
-add_action( 'admin_init', 'php' );
-
 // lang folder
 function action_init() {
 	// Load our textdomain
