@@ -193,12 +193,6 @@ class Disable_Updates {
 					// Disable Core Updates Only
 					self::disable_core_updates();
 
-					add_filter( 'pre_transient_update_themes', '__return_null' );
-
-					add_filter( 'pre_option_update_plugins', '__return_null' );
-
-					add_filter( 'pre_transient_update_plugins', '__return_null' );
-
 					// Disable Debug E-mails
 					add_filter( 'automatic_updates_send_debug_email ', '__return_false', 1 );
 
@@ -391,6 +385,13 @@ class Disable_Updates {
 		remove_action( 'admin_init', '_maybe_update_plugins' );
 		remove_action( 'wp_update_plugins', 'wp_update_plugins' );
 
+		# 2.3 to 2.7:
+		add_filter( 'pre_option_update_plugins', '__return_null' );
+
+		# 2.8 to 3.0:
+		add_filter( 'pre_transient_update_plugins', array( __CLASS__,'last_checked' ) )
+
+		# >3.0:
 		add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
 
 		wp_clear_scheduled_hook( 'wp_update_plugins' );
@@ -412,6 +413,10 @@ class Disable_Updates {
 		remove_action( 'admin_init', '_maybe_update_themes' );
 		remove_action( 'wp_update_themes', 'wp_update_themes' );
 
+		# 2.8 to 3.0:
+		add_filter( 'pre_transient_update_themes', array( __CLASS__,'last_checked' ) );
+
+		# >3.0:
 		add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
 
 		wp_clear_scheduled_hook( 'wp_update_themes' );
