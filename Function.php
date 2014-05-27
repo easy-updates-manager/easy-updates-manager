@@ -156,47 +156,20 @@ class Disable_Updates {
 				// Disable Plugin Updates
 				case 'plugin' :
 
-					// Disable Plugin Updates Code
-					remove_action( 'load-update-core.php', 'wp_update_plugins' );
-					add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
-
-					// Disable Plugin Update E-mails (only works for some plugins)
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
-
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
-
+					self::disable_plugin_updates();
 					break;
 
 				// Disable Theme Updates
 				case 'theme' :
 
-					// Disable Theme Updates Code
-					remove_action( 'load-update-core.php', 'wp_update_themes' );
-					add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
-
-					// Disable Theme Update E-mails (only works for some plugins)
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
-
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
+					self::disable_theme_updates();
 
 					break;
 
 				// Disable WordPress Core Updates
 				case 'core' :
 
-					// Disable WordPress Core Updates Code
-					remove_action( 'load-update-core.php', 'wp_update_core' );
-					add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
-
-					// Disable WordPress Core Update E-mails (only works for some plugins)
-					add_filter( 'auto_core_update_send_email', '__return_false' );
-
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
+					self::disable_core_updates();
 
 					break;
 
@@ -212,30 +185,13 @@ class Disable_Updates {
 				case 'all' :
 
 					// Disable Plugin Updates Only
-					remove_action( 'load-update-core.php', 'wp_update_plugins' );
-					add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
+					self::disable_plugin_updates();
 
 					// Disable Theme Updates Only
-					remove_action( 'load-update-core.php', 'wp_update_themes' );
-					add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
+					self::disable_theme_updates();
 
 					// Disable Core Updates Only
-					remove_action( 'load-update-core.php', 'wp_update_core' );
-
-					# 2.3 to 2.7:
-					add_action( 'init', create_function( '', 'remove_action( \'init\', \'wp_version_check\' );' ), 2 );
-					add_filter( 'pre_option_update_core', '__return_null' );
-
-					# 2.8 to 3.0:
-					remove_action( 'wp_version_check', 'wp_version_check' );
-					remove_action( 'admin_init', '_maybe_update_core' );
-					add_filter( 'pre_transient_update_core', array( __CLASS__,'last_checked' ) );
-
-					# >3.0:
-					add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
-
-					// Hide Update Notices in Admin Dashboard
-					add_action( 'admin_menu', create_function( '', 'remove_action( \'admin_notices\', \'update_nag\', 3 );' ) );
+					self::disable_core_updates();
 
 					// Remove Files From WordPress
 					function admin_init() {
@@ -299,28 +255,6 @@ class Disable_Updates {
 					// Disable WordPress Automatic Updates
 					define( 'Automatic_Updater_Disabled', TRUE );
 					define( 'WP_AUTO_UPDATE_CORE', FALSE );
-
-					// Disable Updates E-mails
-
-					// Core E-mails Only
-					add_filter( 'auto_core_update_send_email', '__return_false' );
-
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
-
-					// Plugin E-mails Only
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
-
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
-
-					// Theme E-mails Only
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
-
-					// This doesn't make sense. Purpose?
-					// apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
 
 					break;
 
@@ -464,6 +398,66 @@ class Disable_Updates {
 
 			}
 		}
+	}
+
+	// Disable Core Updates
+	static function disable_core_updates() {
+
+		// Disable WordPress Core Update E-mails (only works for some plugins)
+		add_filter( 'auto_core_update_send_email', '__return_false' );
+
+		// This doesn't make sense. Purpose?
+		// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
+
+		remove_action( 'load-update-core.php', 'wp_update_core' );
+
+		# 2.3 to 2.7:
+		add_action( 'init', create_function( '', 'remove_action( \'init\', \'wp_version_check\' );' ), 2 );
+		add_filter( 'pre_option_update_core', '__return_null' );
+
+		# 2.8 to 3.0:
+		remove_action( 'wp_version_check', 'wp_version_check' );
+		remove_action( 'admin_init', '_maybe_update_core' );
+		add_filter( 'pre_transient_update_core', array( __CLASS__,'last_checked' ) );
+
+		# >3.0:
+		add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
+
+		// Hide Update Notices in Admin Dashboard
+		add_action( 'admin_menu', create_function( '', 'remove_action( \'admin_notices\', \'update_nag\', 3 );' ) );
+
+		// Disable Update Emails
+
+		// Core Emails Only
+		add_filter( 'auto_core_update_send_email', '__return_false' );
+	}
+
+	// Disable Plugin Updates
+	static function disable_plugin_updates() {
+
+		remove_action( 'load-update-core.php', 'wp_update_plugins' );
+		add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
+
+		// Disable Plugin Update E-mails (only works for some plugins)
+		// This doesn't make sense. Purpose?
+		// apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
+
+		// This doesn't make sense. Purpose?
+		// apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
+	}
+
+	// Disable Theme Updates
+	static function disable_theme_updates() {
+
+		remove_action( 'load-update-core.php', 'wp_update_themes' );
+		add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
+
+		// Disable Theme Update E-mails (only works for some plugins)
+		// This doesn't make sense. Purpose?
+		// apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
+
+		// This doesn't make sense. Purpose?
+		// apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
 	}
 
 	// Settings page (under dashboard).
