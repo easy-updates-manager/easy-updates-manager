@@ -272,11 +272,7 @@
 					// Remove WordPress Version Number
 					case 'wpv' :
 
-						add_filter( 'update_footer', 'my_footer_version', 11 );
-
-						function my_footer_version() {
-							return '';
-						}
+						add_filter( 'update_footer', '__return_empty_string', 11 );
 
 						break;
 
