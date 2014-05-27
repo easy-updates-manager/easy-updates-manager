@@ -449,7 +449,7 @@ class Disable_Updates {
 								<div class="showonhover">
 									<label for="all_notify">
 										<input
-											type="checkbox" <?php checked( 1, (int) $status[ 'all' ], TRUE ); ?>
+											type="checkbox" <?php checked( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ), TRUE ); ?>
 											value="1" id="all_notify"
 											name="_disable_updates[all]"> <?php _e( 'Disable All Updates', 'disable-updates-manager' ) ?>
 									</label>
@@ -461,19 +461,19 @@ class Disable_Updates {
 
 								<span style="padding-left: 12px; display:block">
 									<label for="plugins_notify">
-										<input type="checkbox" <?php checked( 1, (int) $status[ 'plugin' ], TRUE ); ?>
+										<input type="checkbox" <?php checked( 1, ( isset( $status['plugin'] ) ? (int) $status['plugin'] : 0 ), TRUE ); ?>
 											   value="1" id="plugins_notify"
 											   name="_disable_updates[plugin]"> <?php _e( 'Disable Plugin Updates', 'disable-updates-manager' ) ?>
 									</label>
 									<br>
 									<label for="themes_notify">
-										<input type="checkbox" <?php checked( 1, (int) $status[ 'theme' ], TRUE ); ?>
+										<input type="checkbox" <?php checked( 1, ( isset( $status['theme'] ) ? (int) $status['theme'] : 0 ), TRUE ); ?>
 											   value="1" id="themes_notify"
 											   name="_disable_updates[theme]"> <?php _e( 'Disable Theme Updates', 'disable-updates-manager' ) ?>
 									</label>
 									<br>
 									<label for="core_notify">
-										<input type="checkbox" <?php checked( 1, (int) $status[ 'core' ], TRUE ); ?>
+										<input type="checkbox" <?php checked( 1, ( isset( $status['core'] ) ? (int) $status['core'] : 0 ), TRUE ); ?>
 											   value="1" id="core_notify"
 											   name="_disable_updates[core]"> <?php _e( 'Disable WordPress Core Update', 'disable-updates-manager' ) ?>
 									</label>
@@ -495,7 +495,7 @@ class Disable_Updates {
 							<td>
 								<div class="showonhover">
 									<label for="ip_notify">
-										<input type="checkbox" <?php checked( 1, (int) $status[ 'ip' ], TRUE ); ?>
+										<input type="checkbox" <?php checked( 1, ( isset( $status['ip'] ) ? (int) $status['ip'] : 0 ), TRUE ); ?>
 											   value="1" id="ip_notify"
 											   name="_disable_updates[ip]"> <?php _e( 'Disable Plugins Individually', 'disable-updates-manager' ) ?>
 									</label>
@@ -523,7 +523,7 @@ class Disable_Updates {
 								<div class="showonhover">
 									<label for="page_notify">
 										<input
-											type="checkbox" <?php checked( 1, (int) $status[ 'page' ], TRUE ); ?>
+											type="checkbox" <?php checked( 1, ( isset( $status['page'] ) ? (int) $status['page'] : 0 ), TRUE ); ?>
 											value="1" id="page_notify"
 											name="_disable_updates[page]"> <?php _e( 'Remove Updates Page', 'disable-updates-manager' ) ?>
 									</label>
@@ -536,7 +536,7 @@ class Disable_Updates {
 								<div class="showonhover">
 									<label for="wpv_notify">
 										<input
-											type="checkbox" <?php checked( 1, (int) $status[ 'wpv' ], TRUE ); ?>
+											type="checkbox" <?php checked( 1, ( isset( $status['wpv'] ) ? (int) $status['wpv'] : 0 ), TRUE ); ?>
 											value="1" id="wpv_notify"
 											name="_disable_updates[wpv]"> <?php _e( 'Remove WordPress Core Version from Footer', 'disable-updates-manager' ) ?>
 									</label>
@@ -547,7 +547,7 @@ class Disable_Updates {
 								</div>
 
 								<label for="abup_notify">
-									<input type="checkbox" <?php checked( 1, (int) $status[ 'abup' ], TRUE ); ?>
+									<input type="checkbox" <?php checked( 1, ( isset( $status['abup'] ) ? (int) $status['abup'] : 0 ), TRUE ); ?>
 										   value="1" id="abup_notify"
 										   name="_disable_updates[abup]"> <?php _e( 'Disable Automatic Background Updates', 'disable-updates-manager' ) ?>
 								</label>
