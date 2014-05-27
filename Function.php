@@ -253,7 +253,7 @@ class Disable_Updates {
 					add_filter( 'automatic_updates_send_debug_email ', '__return_false', 1 );
 
 					// Disable WordPress Automatic Updates
-					define( 'Automatic_Updater_Disabled', TRUE );
+					define( 'AUTOMATIC_UPDATER_DISABLED', TRUE );
 					define( 'WP_AUTO_UPDATE_CORE', FALSE );
 
 					break;
