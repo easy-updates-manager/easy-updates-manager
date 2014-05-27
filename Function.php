@@ -215,15 +215,15 @@ class Disable_Updates {
 
 					// Disable Plugin Updates Only
 					remove_action( 'load-update-core.php', 'wp_update_plugins' );
-					add_filter( 'pre_site_transient_update_plugins', '__return_null' );
+					add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
 
 					// Disable Theme Updates Only
 					remove_action( 'load-update-core.php', 'wp_update_themes' );
-					add_filter( 'pre_site_transient_update_themes', '__return_null' );
+					add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
 
 					// Disable Core Updates Only
 					remove_action( 'load-update-core.php', 'wp_update_core' );
-					add_filter( 'pre_site_transient_update_core', '__return_null' );
+					add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
 
 					// Hide Update Notices in Admin Dashboard
 					add_action( 'admin_menu', 'hide_admin_notices' );
