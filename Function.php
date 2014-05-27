@@ -195,10 +195,6 @@ class Disable_Updates {
 
 					add_filter( 'pre_transient_update_themes', '__return_null' );
 
-					add_action( 'admin_menu', create_function( '$a', "remove_action( 'load-plugins.php', 'wp_update_plugins' );" ) );
-
-					add_action( 'admin_init', create_function( '$a', "remove_action( 'admin_init', 'wp_update_plugins' );" ), 2 );
-					add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_update_plugins' );" ), 2 );
 					add_filter( 'pre_option_update_plugins', '__return_null' );
 
 					add_filter( 'pre_transient_update_plugins', '__return_null' );
