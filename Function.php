@@ -212,13 +212,6 @@ class Disable_Updates {
 					add_action( 'init', array( __CLASS__, 'plugin_action_links' ) );
 					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_update_notification' ) );
 
-					if ( ! function_exists( 'printr' ) ) {
-						function printr( $txt ) {
-							echo '<pre>';
-							print_r( $txt );
-							echo '</pre>';
-						}
-					}
 					break;
 
 				// Disable automatic background updates.
@@ -599,3 +592,11 @@ class Disable_Updates {
 
 global $Disable_Updates;
 $Disable_Updates = new Disable_Updates();
+
+if ( ! function_exists( 'printr' ) ) {
+	function printr( $txt ) {
+		echo '<pre>';
+		print_r( $txt );
+		echo '</pre>';
+	}
+}
