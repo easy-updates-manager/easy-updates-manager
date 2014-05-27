@@ -60,6 +60,9 @@ class Disable_Updates {
 		// Add action links.
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( __CLASS__, 'action_links' ) );
 
+		// Add meta links.
+		add_filter( 'plugin_row_meta', array( __CLASS__, 'meta_links' ), 10, 2 );
+
 		// load the values recorded.
 		$this->load_disable_updates();
 	}
@@ -108,6 +111,25 @@ class Disable_Updates {
 			$links
 		);
 
+	}
+
+	static function meta_links( $links, $file ) {
+
+		$plugin = plugin_basename( __FILE__ );
+
+		if ( $file == $plugin ) {
+
+			return array_merge(
+				$links,
+				array( '<a target="_BLANK" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC5UR6667DLXU">Donate</a>' ),
+				array( '<a href="http://www.wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>' ),
+				array( '<a href="http://www.wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>' ),
+				array( '<a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a>' ),
+				array( '<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>' )
+			);
+		}
+
+		return $links;
 	}
 
 	// Functions for plugin (Change in settings)
@@ -312,7 +334,6 @@ class Disable_Updates {
 					add_action( 'init', 'disable_updates_get' );
 					add_action( 'init', 'disable_updates_addFilters' );
 
-					add_filter( "plugin_row_meta", 'disable_updates_pluginLinks', 10, 2 );
 					add_filter( 'site_transient_update_plugins', 'disable_updates_blockUpdateNotifications' );
 
 					function disable_updates_addFilters() {
@@ -416,25 +437,6 @@ class Disable_Updates {
 					function disable_updates_blockLink( $plugin_data, $r ) {
 
 						echo '<ul class="block-update-message" style="list-style-type: square; margin-left:20px;"><li><a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $r->plugin . '">Block updates for this plugin</a>.</li></ul>';
-					}
-
-					function disable_updates_pluginLinks( $links, $file ) {
-
-						$plugin = plugin_basename( __FILE__ );
-
-						if ( $file == $plugin ) {
-
-							return array_merge(
-								$links,
-								array( '<a target="_BLANK" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC5UR6667DLXU">Donate</a>' ),
-								array( '<a href="http://www.wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>' ),
-								array( '<a href="http://www.wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>' ),
-								array( '<a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a>' ),
-								array( '<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>' )
-							);
-						}
-
-						return $links;
 					}
 
 					if ( ! function_exists( 'printr' ) ) {
