@@ -43,9 +43,6 @@ class Disable_Updates {
 	// Set status in array
 	private $status = array();
 
-	// Set checkboxes in array
-	private $checkboxes = array();
-
 	function __construct() {
 
 		// Load our textdomain
@@ -55,7 +52,7 @@ class Disable_Updates {
 		add_action( 'admin_menu', array( &$this, 'add_submenu' ) );
 
 		// Settings API.
-		add_action( 'admin_init', array( &$this, 'register_setting' ) );
+		add_action( 'admin_init', array( __CLASS__, 'register_setting' ) );
 
 		// Add action links.
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( __CLASS__, 'action_links' ) );
@@ -78,20 +75,14 @@ class Disable_Updates {
 	}
 
 	// Register settings.
-	function register_setting() {
-		register_setting( '_disable_updates', '_disable_updates', array( &$this, 'validate_settings' ) );
+	static function register_setting() {
+
+		register_setting( '_disable_updates', '_disable_updates', array( __CLASS__, 'validate_settings' ) );
 	}
 
-	function validate_settings( $input ) {
-		$options = get_option( '_disable_updates' );
+	static function validate_settings( $value ) {
 
-		foreach ( $this->checkboxes as $id ) {
-			if ( isset( $options[ $id ] ) && ! isset( $input[ $id ] ) ) {
-				unset( $options[ $id ] );
-			}
-		}
-
-		return $input;
+		return $value;
 	}
 
 	function add_submenu() {
@@ -212,13 +203,6 @@ class Disable_Updates {
 					add_action( 'init', array( __CLASS__, 'plugin_action_links' ) );
 					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_update_notification' ) );
 
-					if ( ! function_exists( 'printr' ) ) {
-						function printr( $txt ) {
-							echo '<pre>';
-							print_r( $txt );
-							echo '</pre>';
-						}
-					}
 					break;
 
 				// Disable automatic background updates.
@@ -599,3 +583,11 @@ class Disable_Updates {
 
 global $Disable_Updates;
 $Disable_Updates = new Disable_Updates();
+
+if ( ! function_exists( 'printr' ) ) {
+	function printr( $txt ) {
+		echo '<pre>';
+		print_r( $txt );
+		echo '</pre>';
+	}
+}
