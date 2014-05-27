@@ -140,10 +140,7 @@
 					case 'page' :
 
 						// Remove the Dashboard Updates Menu Code
-						add_action( 'admin_init', 'wpse_38111' );
-						function wpse_38111() {
-							remove_submenu_page( 'index.php', 'update-core.php' );
-						}
+						add_action( 'admin_init', create_function( '', 'remove_submenu_page( \'index.php\', \'update-core.php\' );' ) );
 
 						break;
 
