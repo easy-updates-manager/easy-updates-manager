@@ -380,19 +380,21 @@ class Disable_Updates {
 	// Disable Plugin Updates
 	static function disable_plugin_updates() {
 
-		remove_action( 'load-plugins.php', 'wp_update_plugins' );
-		remove_action( 'load-update.php', 'wp_update_plugins' );
-		remove_action( 'load-update-core.php', 'wp_update_plugins' );
-		remove_action( 'admin_init', '_maybe_update_plugins' );
-		remove_action( 'wp_update_plugins', 'wp_update_plugins' );
-
 		# 2.3 to 2.7:
+		// add_action( 'admin_menu', create_function( '$a', "remove_action( 'load-plugins.php', 'wp_update_plugins' );") );
+		// add_action( 'admin_init', create_function( '$a', "remove_action( 'admin_init', 'wp_update_plugins' );"), 2 );
+		// add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_update_plugins' );"), 2 );
 		add_filter( 'pre_option_update_plugins', '__return_null' );
 
 		# 2.8 to 3.0:
-		add_filter( 'pre_transient_update_plugins', array( __CLASS__,'last_checked' ) )
+		remove_action( 'load-plugins.php', 'wp_update_plugins' );
+		remove_action( 'load-update.php', 'wp_update_plugins' );
+		remove_action( 'admin_init', '_maybe_update_plugins' );
+		remove_action( 'wp_update_plugins', 'wp_update_plugins' );
+		add_filter( 'pre_transient_update_plugins', array( __CLASS__,'last_checked' ) );
 
 		# >3.0:
+		remove_action( 'load-update-core.php', 'wp_update_plugins' );
 		add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
 
 		wp_clear_scheduled_hook( 'wp_update_plugins' );
