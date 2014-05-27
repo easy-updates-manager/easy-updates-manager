@@ -266,27 +266,6 @@ class Disable_Updates {
 						return $plugins;
 					}
 
-					function disable_updates_unblockLink( $filename ) {
-
-						$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
-						$column_count  = $wp_list_table->get_column_count();
-
-						echo '<tr class="plugin-update-tr ' . ( is_plugin_active( $filename ) ? 'active' : 'inactive' ) . '">';
-
-						echo '<th scope="row" class="check-column"></th>';
-
-						echo '<td colspan="' . ( $column_count - 1 ) . '" class="plugin-update colspanchange">';
-
-						echo '<div class="update-message" style="margin: 0">Updates for this plugin are blocked. <a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $filename . '">Unblock updates</a>.</div>';
-
-						echo '</td></tr>';
-					}
-
-					function disable_updates_blockLink( $plugin_data, $r ) {
-
-						echo '<ul class="block-update-message" style="list-style-type: square; margin-left:20px;"><li><a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $r->plugin . '">Block updates for this plugin</a>.</li></ul>';
-					}
-
 					if ( ! function_exists( 'printr' ) ) {
 						function printr( $txt ) {
 							echo '<pre>';
@@ -413,7 +392,7 @@ class Disable_Updates {
 			foreach ( $plugins->response as $filename => $plugin ) {
 
 				// check that the version is the version we want to block updates to
-				add_action( "in_plugin_update_message-$filename", 'disable_updates_blockLink', 99, 2 );
+				add_action( "in_plugin_update_message-$filename", array( __CLASS__, 'plugin_block_link' ), 99, 2 );
 			}
 		}
 
@@ -422,9 +401,30 @@ class Disable_Updates {
 			foreach ( $plugins->disable_updates as $filename => $plugin ) {
 
 				// check that the version is the version we want to block updates to
-				add_action( "after_plugin_row_$filename", 'disable_updates_unblockLink', -1, 1 );
+				add_action( "after_plugin_row_$filename", array( __CLASS__, 'plugin_unblock_link'), -1, 1 );
 			}
 		}
+	}
+
+	static function plugin_unblock_link( $filename ) {
+
+		$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
+		$column_count  = $wp_list_table->get_column_count();
+
+		echo '<tr class="plugin-update-tr ' . ( is_plugin_active( $filename ) ? 'active' : 'inactive' ) . '">';
+
+		echo '<th scope="row" class="check-column"></th>';
+
+		echo '<td colspan="' . ( $column_count - 1 ) . '" class="plugin-update colspanchange">';
+
+		echo '<div class="update-message" style="margin: 0">Updates for this plugin are blocked. <a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $filename . '">Unblock updates</a>.</div>';
+
+		echo '</td></tr>';
+	}
+
+	static function plugin_block_link( $plugin_data, $r ) {
+
+		echo '<ul class="block-update-message" style="list-style-type: square; margin-left:20px;"><li><a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $r->plugin . '">Block updates for this plugin</a>.</li></ul>';
 	}
 
 	// Settings page (under dashboard).
