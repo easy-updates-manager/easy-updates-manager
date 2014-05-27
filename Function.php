@@ -132,15 +132,6 @@ class Disable_Updates {
 		return $links;
 	}
 
-	static function last_checked() {
-		global $wp_version;
-
-		return (object) array(
-			'last_checked'    => time(),
-			'version_checked' => $wp_version,
-		);
-	}
-
 	// Functions for plugin (Change in settings)
 	function load_disable_updates() {
 		$this->status = get_option( '_disable_updates' );
@@ -342,6 +333,16 @@ class Disable_Updates {
 
 			}
 		}
+	}
+
+	static function last_checked() {
+		global $wp_version;
+
+		return (object) array(
+			'last_checked'    => time(),
+			'updates'         => array(),
+			'version_checked' => $wp_version,
+		);
 	}
 
 	// Disable Core Updates
