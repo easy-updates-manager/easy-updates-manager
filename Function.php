@@ -226,11 +226,7 @@ class Disable_Updates {
 					add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
 
 					// Hide Update Notices in Admin Dashboard
-					add_action( 'admin_menu', 'hide_admin_notices' );
-
-					function hide_admin_notices() {
-						remove_action( 'admin_notices', 'update_nag', 3 );
-					}
+					add_action( 'admin_menu', create_function( '', 'remove_action( \'admin_notices\', \'update_nag\', 3 );' ) );
 
 					// Remove Files From WordPress
 					function admin_init() {
