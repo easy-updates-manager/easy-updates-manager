@@ -396,7 +396,14 @@
 
 							if ( $file == $plugin ) {
 
-								$links[] = '<a target="_BLANK" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC5UR6667DLXU">Donate</a>';
+								return array_merge(
+									$links,
+									array( '<a target="_BLANK" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC5UR6667DLXU">Donate</a>' ),
+									array( '<a href="http://www.wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>' ),
+									array( '<a href="http://www.wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>' ),
+									array( '<a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a>' ),
+									array( '<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>' )
+								);
 							}
 
 							return $links;
@@ -599,26 +606,6 @@
 	// Start Disable Updates Manager once all other plugins are fully loaded.
 	global $Disable_Updates;
 	$Disable_Updates = new Disable_Updates();
-
-	// Plugin page link.
-	add_filter( 'plugin_row_meta', 'thsp_plugin_meta_links', 10, 2 );
-
-	function thsp_plugin_meta_links( $links, $file ) {
-		$plugin = plugin_basename( __FILE__ );
-
-		// Create links.
-		if ( $file == $plugin ) {
-			return array_merge(
-				$links,
-				array( '<a href="http://www.wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>' ),
-				array( '<a href="http://www.wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>' ),
-				array( '<a href="http://www.youtube.com/watch?v=7sMEBGNxhwA">Tutorial</a>' ),
-				array( '<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>' )
-			);
-		}
-
-		return $links;
-	}
 
 	// Add links.
 	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'thsp_plugin_action_links' );
