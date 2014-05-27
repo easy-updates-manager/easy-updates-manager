@@ -393,7 +393,9 @@
 						function disable_updates_pluginLinks( $links, $file ) {
 
 							$plugin = plugin_basename( __FILE__ );
+
 							if ( $file == $plugin ) {
+
 								$links[] = '<a target="_BLANK" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LC5UR6667DLXU">Donate</a>';
 							}
 
