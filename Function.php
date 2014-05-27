@@ -55,9 +55,16 @@ class Disable_Updates {
 		// Settings API.
 		add_action( 'admin_init', array( &$this, 'register_setting' ) );
 
+		// Enqueue the admin CSS.
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_css' ) );
 
 		// load the values recorded.
 		$this->load_disable_updates();
+	}
+
+	static function enqueue_css() {
+
+		wp_enqueue_style( 'disable-updates-manager-css', plugins_url( 'style.css', __FILE__ ), array(), DISABLEUPDATESMANAGERVERSION );
 	}
 
 	// Register settings.
@@ -616,16 +623,6 @@ function thsp_plugin_action_links( $links ) {
 		array( 'settings' => '<a href="' . admin_url( 'options-general.php?page=stops-core-theme-and-plugin-updates/Function.php' ) . '">' . __( 'Configure', 'ts-fab' ) . '</a>' ),
 		$links );
 }
-
-// Add Files
-
-// Style.css
-function css() {
-	wp_register_style( 'css', plugins_url( 'style.css', __FILE__ ) );
-	wp_enqueue_style( 'css' );
-}
-
-add_action( 'admin_init', 'css' );
 
 // uninstall.php
 function php() {
