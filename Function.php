@@ -60,8 +60,44 @@ class Disable_Updates {
 		// Add meta links.
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'meta_links' ), 10, 2 );
 
+		// remove blocked plugins from being checked for updates at wordpress.org
+		add_filter( 'http_request_args', array( __CLASS__, 'http_request_args_filter' ), 5, 2 );
+
 		// load the values recorded.
 		$this->load_disable_updates();
+	}
+
+	static function http_request_args_filter( $r, $url ) {
+
+		if ( 0 !== strpos( $url, 'https://api.wordpress.org/plugins/update-check/1.1/' ) ) {
+
+			return $r;
+		}
+
+		$blocked = get_option( 'disable_updates_blocked' );
+		$blocked = (array) array_keys( $blocked );
+
+		if ( 0 === (int) count( $blocked ) ) {
+
+			return $r;
+		}
+
+		if ( ! isset( $r['body']['plugins'] ) ) {
+
+			return $r;
+		}
+
+		$plugins = json_decode( $r['body']['plugins'], TRUE );
+
+		foreach ( $blocked as $p ) {
+
+			if ( isset( $plugins['plugins'][ $p ] ) ) unset( $plugins['plugins'][ $p ] );
+			if ( FALSE !== $key = array_search( $p, $plugins['active'] ) ) unset( $plugins['active'][ $key ] );
+		}
+
+		$r['body']['plugins'] = json_encode( $plugins );
+
+		return $r;
 	}
 
 	static function load_textdomain() {
