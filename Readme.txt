@@ -1,11 +1,11 @@
 === Disable Updates Manager ===
-Contributors: kidsguide
+Contributors: kidsguide, shazahm1@hotmail.com
 Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check
 Requires at least: 3.0
 Tested up to: 3.9.1
 Stable tag: trunk
 
-A configurable plugin that disables updates for you. Easy, clean and helpful. 
+A configurable plugin that disables updates for you. Easy, clean and helpful.
 
 == Description ==
 The best plugin to disable updates is here!
@@ -21,7 +21,7 @@ This plugin is configurable! Check the updates you would like to disable in the 
 <li>Removes admin footer version.</li>
 <li>Disables background updates.</li>
 <li>Removes updates menu in admin sidebar.</li>
-</ol> 
+</ol>
 and many more things!
 
 To see more features view the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a> or the video tutorials below.
@@ -83,7 +83,7 @@ Their are two way to install Disable Updates Manager.
 * Fixed: changelog star error.
 * Fixed: error with no lang file in version 4.0.
 * Added: version 4.0.3 on GitHub.
-* Added: name to license.txt file. 
+* Added: name to license.txt file.
 * Cleaned: css files (having trouble with php files).
 * Changed: description.
 * Renamed: remove WordPress version from footer in settings.
@@ -94,7 +94,7 @@ Their are two way to install Disable Updates Manager.
 * Removed: code format (will add in version 4.0.3 which will be released soon).
 * Added: 4.0 available for download.
 * Added: footnote at bottom of changelog.
- 
+
 = 4.0.1* =
 * Updated: code to make it way easier to understand. - Thanks szepe.viktor!
 * Updated/Added: video tutorials.
@@ -108,7 +108,7 @@ Their are two way to install Disable Updates Manager.
 * Updated: readme.txt.
 * Updated: video tutorial (added music). Note: new video tutorial coming soon!
 * Updated: GitHub version to 4.0 (Note: We did not put the lang file in GitHub). - Thanks szepe.viktor!
-* Updated: link box CSS in settings. 
+* Updated: link box CSS in settings.
 * Updated: settings notice CSS.
 * Updated: tooltips text.
 * Renamed: settings page from Disable Updates to Disable Updates Manager.
@@ -166,16 +166,16 @@ Their are two way to install Disable Updates Manager.
 
 = 3.4.0 =
 * Added "Disable Plugins Individually" Setting and Section
-* Added Help Postbox to Settings 
+* Added Help Postbox to Settings
 * Updated Screenshots
 * Added Tooltips to some Settings
-* Added Better License 
+* Added Better License
 * Updated Description
 
 = 3.3.0 =
 * Fixed Error with Remove WordPress Version from Footer in Admin
 * Added Help Spot in Settings
-* Added border-radius Code to Postboxes and Boxes 
+* Added border-radius Code to Postboxes and Boxes
 * Updated Screenshots
 * FAQ Updated
 
@@ -184,13 +184,13 @@ Their are two way to install Disable Updates Manager.
 * Fixed Readme.txt Spelling Mistakes
 * Works with WordPress 3.8.1
 * Changed Video Tutorial Link
-* Added CSS to Postboxes and Please Note Box (changed width, added padding, moved around) 
+* Added CSS to Postboxes and Please Note Box (changed width, added padding, moved around)
 
 = 3.1.0 =
 * Added "Disable Automatic Background Updates" Setting
 * Removed "Please Note!" Postbox
 * Added "Please Note" Notice in Settings
-* Moved Around Other Settings 
+* Moved Around Other Settings
 * Screenshots Updated
 * Removed Settings (combined into "Disable All Updates" setting)
 * Fixed "Other Settings" Postbox "<span>" Code for Settings
@@ -198,7 +198,7 @@ Their are two way to install Disable Updates Manager.
 
 = 3.0.0 =
 * Updated Readme.txt Description
-* Removed "Other Notes" in Readme.txt 
+* Removed "Other Notes" in Readme.txt
 * Added More Readme.txt Tags
 * Added "Disable Debug E-mails" Setting
 * Added "Disable Update E-mails" Setting
@@ -210,7 +210,7 @@ Their are two way to install Disable Updates Manager.
 * Removed Language Translate <small>(didn't work)</small>
 
 = 2.7.0 =
-* Updated Readme.txt Description 
+* Updated Readme.txt Description
 * Fixed function in settings.
 
 = 2.6.0 =
@@ -228,7 +228,7 @@ Their are two way to install Disable Updates Manager.
 * Added Postboxes
 * Remove Delete Files Setting
 * Added Disable All Updates Setting
-* Renamed Name on Settings Page 
+* Renamed Name on Settings Page
 * HTML Notes Updated
 * Delete Translation .mo File
 * Readme.txt Error Fixed
@@ -238,7 +238,7 @@ Their are two way to install Disable Updates Manager.
 * Tags Updated (Make it easier to find this plugin)
 * Fixed Some HTML
 * Added Translation (Test)
- 
+
 = 2.3.0 =
 * Remove File Setting Added
 * Fixed up Settings Page
@@ -255,7 +255,7 @@ Their are two way to install Disable Updates Manager.
 
 = 2.1.0 =
 * Settings Page Updated (under Dashboard and with more settings)
-* Fixed Disable Plugin, Theme, and Core Disabling Problem 
+* Fixed Disable Plugin, Theme, and Core Disabling Problem
 * Updated Readme.txt
 * Removed Hide Updates Notice Setting
 * Remove Admin Notice <strong>(Thanks conservativeread!)</strong>
@@ -323,7 +323,7 @@ Their are two way to install Disable Updates Manager.
 
 * Published on Wordpress.org
  (September 1, 2013)
- 
+
 = Note =
 Versions 0.2 to 0.9 are not listed in this changelog.
 
