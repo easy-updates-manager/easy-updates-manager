@@ -235,12 +235,17 @@ class Disable_Updates {
 		$plugins = get_site_transient( 'update_plugins' );
 
 		// block action
-		if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
-			$p                           = $plugins->response[ $_GET[ 'block' ] ];
-			$blocked[ $_GET[ 'block' ] ] = array( 'slug' => $p->slug, 'new_version' => $p->new_version );
+		// if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
+		// 	$p                           = $plugins->response[ $_GET[ 'block' ] ];
+		// 	$blocked[ $_GET[ 'block' ] ] = array( 'slug' => $p->slug, 'new_version' => $p->new_version );
+		// }
+		if ( isset( $_GET[ 'block' ] ) ) {
+
+			$blocked[ $_GET[ 'block' ] ] = TRUE;
 		}
 
 		if ( isset( $_GET[ 'unblock' ] ) ) {
+
 			unset( $blocked[ $_GET[ 'unblock' ] ] );
 		}
 
@@ -253,13 +258,21 @@ class Disable_Updates {
 			return $plugins;
 		}
 
-		$to_block = (array) get_option( 'disable_updates_blocked' );
+		$blocked = (array) get_option( 'disable_updates_blocked' );
 
-		foreach ( $to_block as $filename => $plugin ) {
+		// foreach ( $blocked as $filename => $plugin ) {
 
-			if ( isset( $plugins->response[ $filename ] )
-				 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
-			) {
+		// 	if ( isset( $plugins->response[ $filename ] )
+		// 		 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
+		// 	) {
+
+		// 		$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
+		// 		unset( $plugins->response[ $filename ] );
+		// 	}
+		// }
+		foreach ( $blocked as $filename => $plugin ) {
+
+			if ( isset( $plugins->response[ $filename ] ) && $plugin == TRUE ) {
 
 				$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
 				unset( $plugins->response[ $filename ] );
@@ -417,7 +430,7 @@ class Disable_Updates {
 
 		if ( array_key_exists( $plugin_file, $blocked ) ) {
 
-			$actions[] = '<a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $plugin_file . '">Unblock Updates</a>';
+			$actions[] = '<a class="delete" href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $plugin_file . '">Unblock Updates</a>';
 
 		} else {
 
