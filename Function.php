@@ -268,7 +268,7 @@ class Disable_Updates {
 		}
 
 		$blocked = get_option( 'disable_updates_blocked' );
-		$plugins = get_site_transient( 'update_plugins' );
+		// $plugins = get_site_transient( 'update_plugins' );
 
 		// block action
 		// if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
@@ -417,7 +417,7 @@ class Disable_Updates {
 		}
 
 		$plugins  = get_site_transient( 'update_plugins' );
-		$to_block = get_option( 'disable_updates_blocked' );
+		// $to_block = get_option( 'disable_updates_blocked' );
 
 		if ( isset( $plugins->response ) ) {
 
