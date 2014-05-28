@@ -60,8 +60,44 @@ class Disable_Updates {
 		// Add meta links.
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'meta_links' ), 10, 2 );
 
+		// remove blocked plugins from being checked for updates at wordpress.org
+		add_filter( 'http_request_args', array( __CLASS__, 'http_request_args_filter' ), 5, 2 );
+
 		// load the values recorded.
 		$this->load_disable_updates();
+	}
+
+	static function http_request_args_filter( $r, $url ) {
+
+		if ( 0 !== strpos( $url, 'https://api.wordpress.org/plugins/update-check/1.1/' ) ) {
+
+			return $r;
+		}
+
+		$blocked = get_option( 'disable_updates_blocked' );
+		$blocked = (array) array_keys( $blocked );
+
+		if ( 0 === (int) count( $blocked ) ) {
+
+			return $r;
+		}
+
+		if ( ! isset( $r['body']['plugins'] ) ) {
+
+			return $r;
+		}
+
+		$plugins = json_decode( $r['body']['plugins'], TRUE );
+
+		foreach ( $blocked as $p ) {
+
+			if ( isset( $plugins['plugins'][ $p ] ) ) unset( $plugins['plugins'][ $p ] );
+			if ( FALSE !== $key = array_search( $p, $plugins['active'] ) ) unset( $plugins['active'][ $key ] );
+		}
+
+		$r['body']['plugins'] = json_encode( $plugins );
+
+		return $r;
 	}
 
 	static function load_textdomain() {
@@ -232,15 +268,20 @@ class Disable_Updates {
 		}
 
 		$blocked = get_option( 'disable_updates_blocked' );
-		$plugins = get_site_transient( 'update_plugins' );
+		// $plugins = get_site_transient( 'update_plugins' );
 
 		// block action
-		if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
-			$p                           = $plugins->response[ $_GET[ 'block' ] ];
-			$blocked[ $_GET[ 'block' ] ] = array( 'slug' => $p->slug, 'new_version' => $p->new_version );
+		// if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
+		// 	$p                           = $plugins->response[ $_GET[ 'block' ] ];
+		// 	$blocked[ $_GET[ 'block' ] ] = array( 'slug' => $p->slug, 'new_version' => $p->new_version );
+		// }
+		if ( isset( $_GET[ 'block' ] ) ) {
+
+			$blocked[ $_GET[ 'block' ] ] = TRUE;
 		}
 
 		if ( isset( $_GET[ 'unblock' ] ) ) {
+
 			unset( $blocked[ $_GET[ 'unblock' ] ] );
 		}
 
@@ -253,13 +294,21 @@ class Disable_Updates {
 			return $plugins;
 		}
 
-		$to_block = (array) get_option( 'disable_updates_blocked' );
+		$blocked = (array) get_option( 'disable_updates_blocked' );
 
-		foreach ( $to_block as $filename => $plugin ) {
+		// foreach ( $blocked as $filename => $plugin ) {
 
-			if ( isset( $plugins->response[ $filename ] )
-				 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
-			) {
+		// 	if ( isset( $plugins->response[ $filename ] )
+		// 		 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
+		// 	) {
+
+		// 		$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
+		// 		unset( $plugins->response[ $filename ] );
+		// 	}
+		// }
+		foreach ( $blocked as $filename => $plugin ) {
+
+			if ( isset( $plugins->response[ $filename ] ) && $plugin == TRUE ) {
 
 				$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
 				unset( $plugins->response[ $filename ] );
@@ -368,7 +417,7 @@ class Disable_Updates {
 		}
 
 		$plugins  = get_site_transient( 'update_plugins' );
-		$to_block = get_option( 'disable_updates_blocked' );
+		// $to_block = get_option( 'disable_updates_blocked' );
 
 		if ( isset( $plugins->response ) ) {
 
@@ -417,7 +466,7 @@ class Disable_Updates {
 
 		if ( array_key_exists( $plugin_file, $blocked ) ) {
 
-			$actions[] = '<a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $plugin_file . '">Unblock Updates</a>';
+			$actions[] = '<a class="delete" href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $plugin_file . '">Unblock Updates</a>';
 
 		} else {
 
