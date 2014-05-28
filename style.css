@@ -10,10 +10,7 @@
     z-index: 1000;
     border: 1px solid #ffd971;
     background-color: #fffdce;
-    padding-top: 1.5px;
-    padding-bottom: 1.5px;
-    padding-right: 7.5px;
-    padding-left: 7.5px;
+    padding: 2px 8px 2px 8px;
     width: auto;
     height: auto;
     font-size: .85em;
