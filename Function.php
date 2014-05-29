@@ -40,9 +40,6 @@ class Disable_Updates {
 	// Define version.
 	const VERSION = '4.0.3';
 
-	// Set status in array
-	private static $status = array();
-
 	function __construct() {
 
 		// Load our textdomain
@@ -60,44 +57,8 @@ class Disable_Updates {
 		// Add meta links.
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'meta_links' ), 10, 2 );
 
-		// remove blocked plugins from being checked for updates at wordpress.org
-		add_filter( 'http_request_args', array( __CLASS__, 'http_request_args_filter' ), 5, 2 );
-
 		// load the values recorded.
 		$this->load_disable_updates();
-	}
-
-	static function http_request_args_filter( $r, $url ) {
-
-		if ( 0 !== strpos( $url, 'https://api.wordpress.org/plugins/update-check/1.1/' ) ) {
-
-			return $r;
-		}
-
-		$blocked = get_option( 'disable_updates_blocked' );
-		$blocked = (array) array_keys( $blocked );
-
-		if ( 0 === (int) count( $blocked ) ) {
-
-			return $r;
-		}
-
-		if ( ! isset( $r['body']['plugins'] ) ) {
-
-			return $r;
-		}
-
-		$plugins = json_decode( $r['body']['plugins'], TRUE );
-
-		foreach ( $blocked as $p ) {
-
-			if ( isset( $plugins['plugins'][ $p ] ) ) unset( $plugins['plugins'][ $p ] );
-			if ( FALSE !== $key = array_search( $p, $plugins['active'] ) ) unset( $plugins['active'][ $key ] );
-		}
-
-		$r['body']['plugins'] = json_encode( $plugins );
-
-		return $r;
 	}
 
 	static function load_textdomain() {
@@ -161,13 +122,14 @@ class Disable_Updates {
 
 	// Functions for plugin (Change in settings)
 	static function load_disable_updates() {
-		self::$status = get_option( '_disable_updates' );
 
-		if ( ! self::$status ) {
+		$status = get_option( '_disable_updates' );
+
+		if ( ! $status ) {
 			return;
 		}
 
-		foreach ( self::$status as $id => $value ) {
+		foreach ( $status as $id => $value ) {
 
 			switch ( $id ) {
 
@@ -237,8 +199,20 @@ class Disable_Updates {
 
 					add_action( 'init', array( __CLASS__, 'update_plugin_block_status' ) );
 					add_action( 'init', array( __CLASS__, 'plugin_action_links' ) );
-					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_update_notification' ) );
+					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_plugin_update_notification' ) );
 					add_filter( 'plugin_action_links', array( __CLASS__, 'plugin_block_action_link' ), 10, 4 );
+
+					// remove blocked plugins from being checked for updates at wordpress.org
+					add_filter( 'http_request_args', array( __CLASS__, 'http_request_args_plugins_filter' ), 5, 2 );
+
+					break;
+
+				case 'it':
+
+					add_filter( 'site_transient_update_themes', array( __CLASS__, 'remove_theme_update_notification' ) );
+
+					// remove blocked themes from being checked for updates at wordpress.org
+					add_filter( 'http_request_args', array( __CLASS__, 'http_request_args_themes_filter' ), 5, 2 );
 
 					break;
 
@@ -288,9 +262,10 @@ class Disable_Updates {
 		update_option( 'disable_updates_blocked', $blocked );
 	}
 
-	static function remove_update_notification( $plugins ) {
+	static function remove_plugin_update_notification( $plugins ) {
 
 		if ( ! isset( $plugins->response ) || count( $plugins->response ) == 0 ) {
+
 			return $plugins;
 		}
 
@@ -316,6 +291,46 @@ class Disable_Updates {
 		}
 
 		return $plugins;
+	}
+
+	static function remove_theme_update_notification( $themes ) {
+
+		$options = get_option( '_disable_updates' );
+
+		if ( FALSE === $options ) {
+
+			return $themes;
+		}
+
+		if ( isset( $options['themes'] ) ) {
+
+			$blocked = $options['themes'];
+
+		} else {
+
+			return $themes;
+		}
+
+		if ( 0 === (int) count( $blocked ) ) {
+
+			return $themes;
+		}
+
+		if ( ! isset( $themes->response ) || count( $themes->response ) == 0 ) {
+
+			return $themes;
+		}
+
+		foreach ( $blocked as $theme ) {
+
+			if ( isset( $themes->response[ $theme ] ) ) {
+
+				$themes->disable_updates[ $theme ] = $themes->response[ $theme ];
+				unset( $themes->response[ $theme ] );
+			}
+		}
+
+		return $themes;
 	}
 
 	static function last_checked() {
@@ -476,10 +491,88 @@ class Disable_Updates {
 		return $actions;
 	}
 
+	static function http_request_args_plugins_filter( $r, $url ) {
+
+		if ( 0 !== strpos( $url, 'https://api.wordpress.org/plugins/update-check/1.1/' ) ) {
+
+			return $r;
+		}
+
+		$blocked = get_option( 'disable_updates_blocked' );
+		$blocked = (array) array_keys( $blocked );
+
+		if ( 0 === (int) count( $blocked ) ) {
+
+			return $r;
+		}
+
+		if ( ! isset( $r['body']['plugins'] ) ) {
+
+			return $r;
+		}
+
+		$plugins = json_decode( $r['body']['plugins'], TRUE );
+
+		foreach ( $blocked as $p ) {
+
+			if ( isset( $plugins['plugins'][ $p ] ) ) unset( $plugins['plugins'][ $p ] );
+			if ( FALSE !== $key = array_search( $p, $plugins['active'] ) ) unset( $plugins['active'][ $key ] );
+		}
+
+		$r['body']['plugins'] = json_encode( $plugins );
+
+		return $r;
+	}
+
+	static function http_request_args_themes_filter( $r, $url ) {
+
+		if ( 0 !== strpos( $url, 'https://api.wordpress.org/themes/update-check/1.1/' ) ) {
+
+			return $r;
+		}
+
+		$options = get_option( '_disable_updates' );
+
+		if ( FALSE === $options ) {
+
+			return $r;
+		}
+
+		if ( isset( $options['themes'] ) ) {
+
+			$blocked = $options['themes'];
+
+		} else {
+
+			return $r;
+		}
+
+		if ( 0 === (int) count( $blocked ) ) {
+
+			return $r;
+		}
+
+		if ( ! isset( $r['body']['themes'] ) ) {
+
+			return $r;
+		}
+
+		$themes = json_decode( $r['body']['themes'], TRUE );
+
+		foreach ( $blocked as $t ) {
+
+			if ( isset( $themes['themes'][ $t ] ) ) unset( $themes['themes'][ $t ] );
+		}
+
+		$r['body']['themes'] = json_encode( $themes );
+
+		return $r;
+	}
+
 	// Settings page (under dashboard).
 	static function display_page() {
 
-		$status = self::$status;
+		$status = get_option( '_disable_updates' );
 
 		// Don't Allow Users to View Settings
 		if ( ! current_user_can( 'update_core' ) ) {
@@ -577,6 +670,78 @@ class Disable_Updates {
 					</tbody>
 				</table>
 				<br>
+
+				<table class="wp-list-table widefat fixed bookmarks" style="width: 590px; border-radius: 4px;">
+					<thead>
+						<tr>
+							<th>Disable Themes Individually</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="showonhover">
+									<label for="it_notify">
+										<input type="checkbox" <?php checked( 1, ( isset( $status['it'] ) ? (int) $status['it'] : 0 ), TRUE ); ?>
+											   value="1" id="it_notify"
+											   name="_disable_updates[it]"> <?php _e( 'Disable Themes Individually', 'disable-updates-manager' ) ?>
+									</label>
+
+									<span>
+										<a href="#" class="viewdescription">?</a>
+										<span class="hovertext">Enabling this option will show the list of themes to block updates.</span>
+									</span>
+								</div>
+							</td>
+						</tr>
+
+						<?php
+
+						if ( isset( $status['it'] ) ) {
+
+							?>
+
+							<tr>
+								<th>Select themes to disable:</th>
+							</tr>
+
+							<?php
+
+							$themes = wp_get_themes( array( 'allowed' => TRUE ) );
+
+							foreach ( $themes as $slug => $theme ) {
+
+								$key = sanitize_key( $slug );
+
+								?>
+
+								<tr>
+									<td>
+
+										<?php
+
+										printf( '<label for="%1$s"><input type="checkbox" value="%3$s" id="%1$s" name="_disable_updates[themes][%1$s]"%2$s> %4$s</label>',
+											$key,
+											( isset( $status['themes'][ $key ] ) && $status['themes'][ $key ] === $slug ) ? ' checked="checked"' : '',
+											$slug,
+											esc_html( $theme->name )
+										 );
+
+										?>
+
+									</td>
+								</tr>
+
+							<?php
+							}
+
+						}
+						?>
+
+					</tbody>
+				</table>
+				<br>
+
 				<table class="wp-list-table widefat fixed bookmarks" style="width: 590px; border-radius: 4px;">
 					<thead>
 						<tr>
