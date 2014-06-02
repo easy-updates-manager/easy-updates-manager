@@ -2,12 +2,12 @@
 /**
  * @package Disable Updates Manager
  * @author  Websiteguy
- * @version 4.0.3
+ * @version 4.1.0
  */
 /*
 Plugin Name: Disable Updates Manager
 Plugin URI: http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
-Version: 4.0.3
+Version: 4.1.0
 Description: A configurable plugin that disables updates for you. Easy, clean and helpful.
 Author: Websiteguy
 Author URI: http://profiles.wordpress.org/kidsguide/
@@ -34,11 +34,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 Go to the license.txt in the trunk for more information.
 */
 
-
 class Disable_Updates {
 
 	// Define version.
-	const VERSION = '4.0.3';
+	const VERSION = '4.1.0';
 
 	function __construct() {
 
@@ -452,27 +451,6 @@ class Disable_Updates {
 				add_action( "after_plugin_row_$filename", array( __CLASS__, 'plugin_unblock_link'), -1, 1 );
 			}
 		}
-	}
-
-	static function plugin_unblock_link( $filename ) {
-
-		$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
-		$column_count  = $wp_list_table->get_column_count();
-
-		echo '<tr class="plugin-update-tr ' . ( is_plugin_active( $filename ) ? 'active' : 'inactive' ) . '">';
-
-		echo '<th scope="row" class="check-column"></th>';
-
-		echo '<td colspan="' . ( $column_count - 1 ) . '" class="plugin-update colspanchange">';
-
-		echo '<div class="update-message" style="margin: 0">Updates for this plugin are blocked. <a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $filename . '">Unblock updates</a>.</div>';
-
-		echo '</td></tr>';
-	}
-
-	static function plugin_block_link( $plugin_data, $r ) {
-
-		echo '<ul class="block-update-message" style="list-style-type: square; margin-left:20px;"><li><a href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $r->plugin . '">Block updates for this plugin</a>.</li></ul>';
 	}
 
 	static function plugin_block_action_link( $actions, $plugin_file, $plugin_data, $context ) {
