@@ -29,7 +29,7 @@ To see more features view the <a href="http://wordpress.org/plugins/stops-core-t
 = Video Tutorials =
 [youtube http://www.youtube.com/watch?v=ppCxjREhF9g]
 
-[youtube http://www.youtube.com/watch?v=TbqYfkDlhCg]
+[youtube http://www.youtube.com/watch?v=jPHyG2YYeo4]
 
 
 == Frequently Asked Questions ==
@@ -48,7 +48,7 @@ A: Yes, this plugin just disables the update. We has also recently made an unins
 = Q: Is it possible to disable one plugin or theme? =
 A: This plugin can disable plugins and themes individually. Watch the tutorial below for help on how to do it.
 
-[youtube http://www.youtube.com/watch?v=TbqYfkDlhCg]
+[youtube http://www.youtube.com/watch?v=jPHyG2YYeo4]
 
 = Q: Does this plugin work with WordPress Multisite? =
 A: This plugin doesn't yet, but we are working on this.
@@ -66,15 +66,24 @@ Installing Disable Updates Manager.
 3.That's it. You're ready to go!
 
 == Changelog ==
+= 4.1.10 =
+* Uploaded version 4.1.10 on GitHub.
+* Fixed error code "Warning: call_user_func_array() expects parameter 1 to be a valid callback, class 'Disable_Updates' does not have a method 'plugin_unblock_link' in D:\wamp\www\myWpSite\wp-includes\plugin.php on line 470".
+* Updated website address to <a href="www.devwpp.wordpress.com">devwpp.wordpress.com</a>
+* Changed official name to devWPP in all files.
+
 = 4.1.0 =
 * <strong>BIG:</strong> code clean-up (moved code, fixed code, etc.). - Thanks <a href="https://github.com/Websiteguy/disable-updates-manager/pull/4">GitHub Pull Request</a> and other help!!!
 * Added: version 4.1.0 on GitHub (including the lang file).
+* Added: website! http://webguywp.wordpress.com/
 * New Contributor: shazahm1!
+* New: video tutroial.
 * New: disable themes individually.
 * New: wp-cli compatiblity. - Thanks <a href="https://github.com/Websiteguy/disable-updates-manager/issues/2">GitHub Issue</a>!
 * Fixed: changelog footnote star error.
 * Updated: disable plugin updates.
 * Updated: installation section.
+* Updated: screenshots.
 * Renamed: files. - Thanks <a href="https://github.com/Websiteguy/disable-updates-manager/issues/11">GitHub Issue</a>!
 
 = 4.0.3 =
