@@ -1,6 +1,6 @@
 <?php
 
-// uninstall code
+// code to remove files. no data will be left behind!
 if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     exit ();
 } 
