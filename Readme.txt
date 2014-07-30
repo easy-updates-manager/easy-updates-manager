@@ -1,18 +1,20 @@
 === Disable Updates Manager ===
-Contributors: kidsguide
-Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check
+Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com
+Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check, No Browser Nag, MPS Plugins
 Requires at least: 3.0
-Tested up to: 3.9.1
+Tested up to: 4.0 beta
 Stable tag: trunk
 
-A configurable plugin that disables updates for you. Easy, clean and helpful. 
+A configurable plugin that disables updates for you. Easy, clean and helpful + Great Support.  
 
 == Description ==
 The best plugin to disable updates is here!
 
+Please rate this plugin and feel free to give feedback 
+
 This plugin is configurable! Check the updates you would like to disable in the settings page along with other helpful settings. The settings page is located under the settings section in your dashboard (changed in version 4.0). Check the features below or the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a> for more information.
 
-= Features =
+= Features Include =
 <ol>
 <li>Disables plugins and themes individually.</li>
 <li>Disables plugin updates.</li>
@@ -21,16 +23,17 @@ This plugin is configurable! Check the updates you would like to disable in the 
 <li>Removes admin footer version.</li>
 <li>Disables background updates.</li>
 <li>Removes updates menu in admin sidebar.</li>
+<li>No Browser Nag.</li>
 </ol> 
-and many more things!
 
 To see more features view the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a> or the video tutorials below.
 
-= Video Tutorials =
-[youtube http://www.youtube.com/watch?v=ppCxjREhF9g]
+= Blog =
 
-[youtube http://www.youtube.com/watch?v=jPHyG2YYeo4]
+<a href="http://www.mpswp.wordpress.com">Check our blog for beta releases, updates, and other information</a>. You can also check out our <a target="_blank" href="https://github.com/Websiteguy/disable-updates-manager">GitHub Repository</a>.
 
+= Video Tutorial =
+[youtube https://www.youtube.com/watch?v=9vPVis3NZHI]
 
 == Frequently Asked Questions ==
 = Q: How is this plugin different from the other disable updates plugins? =
@@ -42,16 +45,19 @@ A: Their are a couple of differences.
 <li>They do not disable plugins and themes individually.</li>
 </ol>
 
+= Q: How does this plugin work? I can't figure it out for the life of me. =
+A: This video tutorial may help a little.
+
+[youtube https://www.youtube.com/watch?v=9vPVis3NZHI]
+
+= Q: Does this plugins disable WP automatic updates too? Since 3.8, WP update their version automatically which could be a problem too. =
+A: Yes, this plugin will disable the automatic updates too.
+
 = Q: If I remove this plugin from my website will I be able to update my plugins, themes, and WordPress core again? =
 A: Yes, this plugin just disables the update. We has also recently made an uninstall.php for this plugin.
 
-= Q: Is it possible to disable one plugin or theme? =
-A: This plugin can disable plugins and themes individually. Watch the tutorial below for help on how to do it.
-
-[youtube http://www.youtube.com/watch?v=jPHyG2YYeo4]
-
-= Q: Does this plugin work with WordPress Multisite? =
-A: This plugin doesn't yet, but we are working on this.
+= Q: Does this plugin still work? People have said that it is broken. =
+A: As far as I know, this is just some spam. I have not received any complaints about it and there are lots of 5 star ratings for the most recent versions. You can help by ratings the plugin and saying if it is broken or not.  
 
 == Screenshots ==
 1. Settings Page
@@ -61,21 +67,50 @@ A: This plugin doesn't yet, but we are working on this.
 == Installation ==
 Installing Disable Updates Manager.
 
-1.Install Disable Updates Manager either via the WordPress.org plugin directory, or by uploading the files to your server
+1.Install Disable Updates Manager either via the WordPress.org plugin directory, or by uploading the files to your server.
+
 2.After activating Disable Updates Manager by Websiteguy, you will be able to go to the Disable Updates Manager page under the settings.
+
 3.That's it. You're ready to go!
 
 == Changelog ==
+= 4.2.11 =
+* Fixed screenshots.
+* Fixed broken links.
+* Added the language files again (this should fix the language issue).
+
+= 4.2.10 =
+* Changed blog address to <a target="_blank" href="http://mpswp.wordpress.com/">mpswp.wordpress.com</a>
+* Uploaded version 4.2.10 on <a target="_blank" href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>.
+* Added better documentation in readme.txt. 
+* Fixed changelog error in readme.txt.
+* Fixed installation text in readme.txt. 
+* Fixed error code "Warning: array_key_exists() expects parameter 2 to be array, boolean given in .../wp-content/plugins/stops-core-theme-and-plugin-updates/Function.php on line 431". Thanks for the support topics "Warning: array_key_exists() expects parameter 2 to be array..." and "Receive error message when selecting disable individual plugins" along with help from the contributors.
+* Fixed error code "Warning: array_fill_keys() expects parameter 1 to be array, null given in .../wp-content/plugins/stops-core-theme-and-plugin-updates/Function.php on line 126".
+* Fixed error code "Warning: Cannot modify header information - headers already sent by (output started at .../wp-content/plugins/stops-core-theme-and-plugin-updates/Function.php:126) in .../wp-includes/pluggable.php on line 1121".
+* Added chosen to the settings for extra awesomeness
+* Modified the Disable Plugins Individually setting.
+* Added some disable settings values.
+* Added drag and drop metaboxes with screen options.
+* Added a helpful help tab.
+* Changed some tooltips.
+* Updated all languages + made it better.
+* Changed some metaboxes titles.
+* Updated new video tutorial.
+* Works with WordPress version 4.0 beta
+* New feature to disable the browser nag in the WordPress Dashboard.
+* Did some other minor fixes.
+
 = 4.1.10 =
-* Uploaded version 4.1.10 on GitHub.
-* Fixed error code "Warning: call_user_func_array() expects parameter 1 to be a valid callback, class 'Disable_Updates' does not have a method 'plugin_unblock_link' in D:\wamp\www\myWpSite\wp-includes\plugin.php on line 470".
-* Updated website address to <a href="www.devwpp.wordpress.com">devwpp.wordpress.com</a>
+* Uploaded version 4.1.10 on <a target="_blank" href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>.
+* Fixed error code "Warning: call_user_func_array() expects parameter 1 to be a valid callback, class 'Disable_Updates' does not have a method 'plugin_unblock_link' in .../wp-includes/plugin.php on line 470".
+* Updated website address to <a target="_blank" href="http://devwpp.wordpress.com/">devwpp.wordpress.com</a>
 * Changed official name to devWPP in all files.
+* Changed some notes in the code.
 
 = 4.1.0 =
 * <strong>BIG:</strong> code clean-up (moved code, fixed code, etc.). - Thanks <a href="https://github.com/Websiteguy/disable-updates-manager/pull/4">GitHub Pull Request</a> and other help!!!
 * Added: version 4.1.0 on GitHub (including the lang file).
-* Added: website! http://webguywp.wordpress.com/
 * New Contributor: shazahm1!
 * New: video tutroial.
 * New: disable themes individually.
