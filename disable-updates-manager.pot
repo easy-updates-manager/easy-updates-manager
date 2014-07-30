@@ -1,0 +1,110 @@
+# Copyright (C) 2014 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/stops-core-theme-and-plugin-"
+"updates\n"
+"POT-Creation-Date: 2014-07-30 15:30:14+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: Function.php:80
+msgid "Disable Updates Globally"
+msgstr ""
+
+#: Function.php:81
+msgid "Other"
+msgstr ""
+
+#: Function.php:83
+msgid "Disable Themes"
+msgstr ""
+
+#: Function.php:84
+msgid "Disable Plugins"
+msgstr ""
+
+#: Function.php:140 Function.php:901
+msgid "Disable Updates Manager"
+msgstr ""
+
+#: Function.php:160
+msgid "Configure"
+msgstr ""
+
+#: Function.php:677
+msgid "Overview"
+msgstr ""
+
+#: Function.php:683
+msgid "Layout"
+msgstr ""
+
+#: Function.php:689
+msgid "Tutorials"
+msgstr ""
+
+#: Function.php:695
+msgid "Help"
+msgstr ""
+
+#: Function.php:713
+msgid "Disable All Updates"
+msgstr ""
+
+#: Function.php:728
+msgid "Disable All Plugin Updates"
+msgstr ""
+
+#: Function.php:736
+msgid "Disable All Theme Updates"
+msgstr ""
+
+#: Function.php:744
+msgid "Disable WordPress Core Update"
+msgstr ""
+
+#: Function.php:761
+msgid "Remove Updates Page"
+msgstr ""
+
+#: Function.php:773
+msgid "Remove Out of Date Browser Nag"
+msgstr ""
+
+#: Function.php:786
+msgid "Remove WordPress Core Version from Footer"
+msgstr ""
+
+#: Function.php:798
+msgid "Disable Automatic Background Updates"
+msgstr ""
+
+#: Function.php:817
+msgid "Disable Themes Individually"
+msgstr ""
+
+#: Function.php:833
+msgid "Select themes to disable..."
+msgstr ""
+
+#: Function.php:862
+msgid "Disable Plugins Individually"
+msgstr ""
+
+#: Function.php:879
+msgid "Select plugins to disable..."
+msgstr ""
+
+#: Function.php:908
+msgid "You do not have permissions to access this page."
+msgstr ""
+
+#: Function.php:943
+msgid "Update Settings"
+msgstr ""
