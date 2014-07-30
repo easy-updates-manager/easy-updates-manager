@@ -1,4 +1,4 @@
-/* CSS for Tooltips */
+/* Tooltips CSS */
 .showonhover {
     position: relative;
 }
@@ -32,4 +32,15 @@ a.viewdescription {
 a.viewdescription:hover {
     background-color: #999;
     color: #FFF;
+}
+
+/* Chosen CSS */
+select.dum-enhanced-select {
+    width: 100%;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
