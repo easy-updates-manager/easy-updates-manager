@@ -1,8 +1,8 @@
 === Disable Updates Manager ===
-Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com
-Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check, No Browser Nag, MPS Plugins
+Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com, szepe.viktor
+Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check, No Browser Nag, MPS Plugins, Manager, Disable, Updates
 Requires at least: 3.0
-Tested up to: 4.0 beta
+Tested up to: 4.0
 Stable tag: trunk
 
 A configurable plugin that disables updates for you. Easy, clean and helpful + Great Support.  
@@ -20,10 +20,7 @@ This plugin is configurable! Check the updates you would like to disable in the 
 <li>Disables plugin updates.</li>
 <li>Disables theme updates.</li>
 <li>Disable WordPress core updates.</li>
-<li>Removes admin footer version.</li>
-<li>Disables background updates.</li>
-<li>Removes updates menu in admin sidebar.</li>
-<li>No Browser Nag.</li>
+<li>And lots of other settings.</li>
 </ol> 
 
 To see more features view the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a> or the video tutorials below.
@@ -32,7 +29,9 @@ To see more features view the <a href="http://wordpress.org/plugins/stops-core-t
 
 <a href="http://www.mpswp.wordpress.com">Check our blog for beta releases, updates, and other information</a>. You can also check out our <a target="_blank" href="https://github.com/Websiteguy/disable-updates-manager">GitHub Repository</a>.
 
-= Video Tutorial =
+= Video Tutorials =
+[youtube https://www.youtube.com/watch?v=gm03k-Oxt38]
+
 [youtube https://www.youtube.com/watch?v=9vPVis3NZHI]
 
 == Frequently Asked Questions ==
@@ -60,26 +59,91 @@ A: Yes, this plugin just disables the update. We has also recently made an unins
 A: As far as I know, this is just some spam. I have not received any complaints about it and there are lots of 5 star ratings for the most recent versions. You can help by ratings the plugin and saying if it is broken or not.  
 
 == Screenshots ==
-1. Settings Page
-2. Disable Plugin Updates
-3. Disable Plugins Individually
+1. Disable Updates Globally
+2. Other Settings
+3. Disable Plugin Updates
+4. Disable Theme Updates 
+5. Screen Options
+6. Help Tab
 
 == Installation ==
 Installing Disable Updates Manager.
 
-1.Install Disable Updates Manager either via the WordPress.org plugin directory, or by uploading the files to your server.
+1. Install Disable Updates Manager either via the WordPress.org plugin page and uploading the files to your FTP manually, or going to the and new plugins section in your dashboard.
 
-2.After activating Disable Updates Manager by Websiteguy, you will be able to go to the Disable Updates Manager page under the settings.
+2. Activate Disable Updates Manager by MPS Plugins.
 
-3.That's it. You're ready to go!
+3. Click on the configure button next to the plugin or go to the plugin settings page under the settings section in your dashboard.
 
 == Changelog ==
-= 4.2.11 =
+= 4.3.13 =
+* Fixed contributor issue.
+* Updated description in readme.txt.
+* Removed unnecessary versions (0.5 - 1.9.0). 
+
+= 4.3.12.2* =
+* Fixed screenshot 5 showing incorrect information.
+* Search Exclude 1.1.0 fixes capability with Disable Updates Manager.
+
+= 4.3.12 =
+* Updated readme.txt to make it easier to understand.
+
+= 4.3.11* =
+* Added some better screenshots.
+
+= 4.3.10 =
+* WordPress 4.0 capability added.
+* Fixed plugin icon not showing.
+
+= 4.3.0 =
+* Added custom plugin installer icon.
+* Tested with WordPress 4.0RC1 (4.0 to be released September 4, 2014).
+* Modified some help tab content.
+* Added proper CSS for columns in help tab.
+* Modified settings alignment.
+* Changed metaboxes arrangement in screen options.
+* Changed metaboxes titles.
+* Removed some versions in changelog.
+
+= 4.2.24 =
+* New Video Promo!
+* Tested with WordPress 4.0 beta4.
+* Made help tab rate notice display on all tabs.
+* Rearranged the tutorials. 
+
+= 4.2.23* =
+* Fixed debug error
+
+= 4.2.22* =
+* Fixed debug to make true.
+* Moved settings notice into help tab.
+* Added extra content to notice in settings.
+* Added new notice in help tab.
+* Added new tags to readme.txt.
+
+= 4.2.21 =
+* Added capability section to help tab.
+* Added and removed a few minor things.
+
+= 4.2.20* =
+* Removed double style.css (removed the one that was not in assets).
+* Changed License.txt.
+* Added new contributor to help tab.
+* Added capability with WordPress 3.9.2, 4.0 beta, and 4.0.
+* Reformatted tooltips.
+* Added some <code><br></code> and <code><div></code> classes to the settings for better spacing.
+* Updated settings security.
+
+= 4.2.12 =
+* New contributor!
+* Fixed unable to chosen which plugins to disable.
+
+= 4.2.11* =
 * Fixed screenshots.
 * Fixed broken links.
 * Added the language files again (this should fix the language issue).
 
-= 4.2.10 =
+= 4.2.10* =
 * Changed blog address to <a target="_blank" href="http://mpswp.wordpress.com/">mpswp.wordpress.com</a>
 * Uploaded version 4.2.10 on <a target="_blank" href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>.
 * Added better documentation in readme.txt. 
@@ -309,65 +373,11 @@ Installing Disable Updates Manager.
 * Updated Screenshots
 * Updated Readme.txt
 
-= 1.9.0 =
-* Admin Notice Added
-* FAQ Error Fixed
-* HTML Notes and Some HTML Updated
-* Links Added Under Plugin in Dashboard (Support Forum, FAQ, Tutorial)
-* Updated Readme.txt
-
-= 1.8.0 =
-* FAQ Added
-* HTML Notes Edited
-* Updated Readme.txt
-
-= 1.7.1 =
-* Screenshot Error Fixed
-* Installation Error Fixed
-
-= 1.7.0 =
-* New Html Code Added (this code disables WordPress automatic updates)
-* New Version Numbers (now going up by .1.0)
-* Updated Readme.txt (mostly under Installation)
-
-= 1.6.0 =
-* Updated Readme.txt
-* Fixed HTML Error
-* Video Tutorial Added
-
-= 1.5 =
-* Updated Readme.txt
-* Fixed HTML Spacing
-
-= 1.4 =
-* Updated Reame.txt
-* Updated HTML Notes
-
-= 1.3 =
-* Updated Readme.txt
-* Added a Disable Updates Check Feature
-
-= 1.2 =
-* Updated Readme.txt
-* Updated HTML Notes
-* Added Disable Update E-mails HTML (Note: This code will only work for some plugins)
-
-= 1.1 =
-* Screenshots Updated
-* Fixed Error
-
-= 1.0.0 =
-* Fixed Changelog Problem
-* HTML Changed
-* Updated Readme.txt
-* Works with WordPress 3.8
-
 = 0.1* =
-
 * Published on Wordpress.org
  (September 1, 2013)
  
 = Note =
-Versions 0.2 to 0.9 are not listed in this changelog.
+Versions 0.2 to 1.9.0 are not listed in this changelog.
 
 = * versions not available for download. =
