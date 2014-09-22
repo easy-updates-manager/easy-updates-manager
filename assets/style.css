@@ -1,4 +1,4 @@
-/* Tooltips CSS */
+/* Settings Page - Tooltips CSS */
 .showonhover {
     position: relative;
 }
@@ -34,7 +34,20 @@ a.viewdescription:hover {
     color: #FFF;
 }
 
-/* Chosen CSS */
+/* Settings Page - Columns */
+#column1 {
+    width: 40%;
+    padding: 0 5pt 0 0;
+    float: left;
+}
+
+#column2 {
+    width: 40%;
+    padding: 0 5pt 0 0;
+    float: right;
+}
+
+/* Settings Page - Chosen CSS */
 select.dum-enhanced-select {
     width: 100%;
 }
