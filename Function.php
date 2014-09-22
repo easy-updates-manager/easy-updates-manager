@@ -2,22 +2,22 @@
 /**
  * @package Disable Updates Manager
  * @author MPS Plugins
- * @email webguywp@gmail.com
- * @version 4.2.11
+ * @email mpsplugins@gmail.com
+ * @version 4.3.13
  */
 /*
 Plugin Name: Disable Updates Manager
 Plugin URI: http://www.mpswp.wordpress.com
-Version: 4.2.11
+Version: 4.3.13
 Description: A configurable plugin that disables updates for you. Easy, clean and helpful.
 Author: MPS Plugins
 Author URI: http://www.mpswp.wordpress.com
-Author Email: webguywp@gmail.com
+Author Email: mpsplugins@gmail.com
 License: GPL2
 Text Domain: disable-updates-manager
 Domain Path: languages
 
-@Copyright 2013 - 2014 MPS Plugins (email: webguywp@gmail.com)
+@Copyright 2013 - 2014 MPS Plugins (email: mpsplugins@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -38,7 +38,7 @@ Go to the license.txt in the trunk for more information.
 class Disable_Updates {
 
 	// Define version.
-	const VERSION = '4.2.11';
+	const VERSION = '4.3.13';
 
 	private static $page_hook = '';
 
@@ -62,11 +62,11 @@ class Disable_Updates {
 		// load the values recorded.
 		$this->load_disable_updates();
 	}
-	
+			
 	static function load_textdomain() {
 	
 		load_plugin_textdomain( 'disable-updates-manager', FALSE, basename( dirname( __FILE__ ) ) . '/lang' );
-		
+	
 	}
 
 	static function page_actions() {
@@ -78,10 +78,10 @@ class Disable_Updates {
 		add_screen_option('layout_columns', array('max' => 2, 'default' => 2) );
 
 		add_meta_box( 'dum-global', __( 'Disable Updates Globally', 'disable-updates-manager' ), array( __CLASS__, 'metabox_global' ), self::$page_hook, 'left', 'core' );
-		add_meta_box( 'dum-other', __( 'Other', 'disable-updates-manager' ), array( __CLASS__, 'metabox_other' ), self::$page_hook, 'right', 'core' );
-
-		add_meta_box( 'dum-themes', __( 'Disable Themes', 'disable-updates-manager' ), array( __CLASS__, 'metabox_themes' ), self::$page_hook, 'left', 'core' );
-		add_meta_box( 'dum-plugins', __( 'Disable Plugins', 'disable-updates-manager' ), array( __CLASS__, 'metabox_plugins' ), self::$page_hook, 'right', 'core' );
+        add_meta_box( 'dum-themes', __( 'Disable Theme Updates', 'disable-updates-manager' ), array( __CLASS__, 'metabox_themes' ), self::$page_hook, 'right', 'core' );
+		
+		add_meta_box( 'dum-other', __( 'Other Settings', 'disable-updates-manager' ), array( __CLASS__, 'metabox_other' ), self::$page_hook, 'left', 'core' );
+		add_meta_box( 'dum-plugins', __( 'Disable Plugin Updates', 'disable-updates-manager' ), array( __CLASS__, 'metabox_plugins' ), self::$page_hook, 'right', 'core' );
 	}
 
 	static function enqueue_css() {
@@ -103,7 +103,7 @@ class Disable_Updates {
 
 		wp_enqueue_script( 'dum-chosen-js', plugins_url( "vendor/chosen/chosen.jquery$min.js", __FILE__ ), array( 'dum-admin-js' ), '1.1.0' );
 	}
-
+	
 	static function footer_scripts() {
 
 		?>
@@ -117,21 +117,31 @@ class Disable_Updates {
 		register_setting( '_disable_updates', '_disable_updates', array( __CLASS__, 'validate_settings' ) );
 	}
 
-	static function validate_settings( $value ) {
+static function validate_settings( $value ) {
+
 
 		if ( isset( $value['plugins'] ) ) {
 
-		// Since the blocked plugins are stored in a different option, we need to update that option. 
-     	$blocked_plugins = $value['plugins']; 
 
-    } else { 
- 
-			$blocked_plugins = array(); 
-		} 
- 
-		// Update the blocked plugins option. 
-		update_option( 'disable_updates_blocked', $blocked_plugins ); 
- 
+			// Since the blocked plugins are stored in a different option, we need to update that option.
+			$blocked_plugins = $value['plugins'];
+
+
+			// Convert the data to match the way the options are stored.
+			$blocked_plugins = array_fill_keys( $blocked_plugins, TRUE );
+
+
+		} else {
+
+
+			$blocked_plugins = array();
+		}
+
+
+		// Update the blocked plugins option.
+		update_option( 'disable_updates_blocked', $blocked_plugins );
+
+
 		return $value;
 	}
 
@@ -174,7 +184,6 @@ class Disable_Updates {
 				$links,
 				array( '<a href="http://www.wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">Support</a>' ),
 				array( '<a href="http://www.wordpress.org/plugins/stops-core-theme-and-plugin-updates/faq/">FAQ</a>' ),
-				array( '<a href="https://www.youtube.com/watch?v=ppCxjREhF9g">Tutorial</a>' ),
 				array( '<a href="https://github.com/Websiteguy/disable-updates-manager">GitHub</a>' )
 			);
 		}
@@ -596,36 +605,40 @@ add_action( 'admin_init', 'c2c_no_browser_nag' );
 		return $r;
 	}
 	
-	
 	// Help Tab
 	static function help_tab() {
 		global $test_help_page;
 
 		$screen  = get_current_screen();
 		$content1 = <<<CONTENT1
-		
-<p>
-Disable Updates Manager 4.2.10 is the most innovative version yet. With the last few updates, you will notice some new key features mostly in the settings page. The settings page had a major redo with its new metaboxes to make them drag and drop with cool screen options plus in the setting, we used some Chosen integration. Included in all of that is some minor fixes to the grammar and layout. 
-<br>
-<br>
-For the code, it had a fix up. The language files got compressed into on simple file plus the code is now sorted in some more folders making it easier to navigate through.
-<br>
-<br>
-If you are having trouble with any of the new features in Disable Updates Manager, check the other tabs in this help tab. Feel free to contact us any time.
+<p>	
+This is the Disable Updates Manager settings help tab. In here you will find helpful information on what Disable Updates Manager does and how to use it.
 </p>
+
+<div class="updated" id="update">	
+	<p>Please take the time to <a href="https://wordpress.org/support/view/plugin-reviews/stops-core-theme-and-plugin-updates?rate=5#postform">rate this plugin</a> according.</p>
+</div>
+
+<div class="error" id="error">			
+	<p><strong>Please Note! - </strong>If either your WordPress core, theme, or plugins get too out
+	   of date, you may run into compatibility problems. Check the capability tab for more information.</p>
+</div>
 
 CONTENT1;
 
 		$content2 = <<<CONTENT2
-		
-<p>
-<iframe width="280" height="157" src="//www.youtube.com/embed/9vPVis3NZHI?rel=0" frameborder="0" allowfullscreen></iframe>
-</p>
+<div><br></div>
+<div id="column1">
+<iframe width="310" height="174" src="//www.youtube.com/embed/gm03k-Oxt38?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div id="column2">
+<iframe width="310" height="174" src="//www.youtube.com/embed/9vPVis3NZHI?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
 
 CONTENT2;
 
 		$content3 = <<<CONTENT3
-		
 <p>
     <a href="http://mpswp.wordpress.com">Our Website</a>
 	<br>
@@ -639,7 +652,6 @@ CONTENT2;
 CONTENT3;
 
 		$content4 = <<<CONTENT4
-		
 <p>
 You can use the following controls to arrange the settings to suit your workflow. 
 <br>
@@ -654,6 +666,9 @@ You can use the following controls to arrange the settings to suit your workflow
 <br>
 <br>
 <strong>Chosen</strong> - Check the Disable Themes Individually setting and/or the Disable Plugins Individually settings to enable the chosen multiply select box.
+<br>
+<br>
+<strong>Tooltips</strong> - If you are having trouble figuring out how a setting works, just wave over the "?". It will display a little bubble with helpful information.
 </p>
 
 CONTENT4;
@@ -663,13 +678,30 @@ CONTENT4;
 <p style="align: center;">
 <h3>Contributors:</h3>
 <ul>
-<li><a href="http://profiles.wordpress.org/mps-plugins/">MPS Plugins</a></li>
+<h4>Head Contributors</h4>
 <li><a href="http://profiles.wordpress.org/kidsguide/">Matthew</a></li>
+<li><a href="http://profiles.wordpress.org/mps-plugins/">MPS Plugins</a></li>
 <li><a href="http://profiles.wordpress.org/shazahm1hotmailcom/">Shazahm1</a></li>
+<h4>Other Contributors</h4>
+<li><a href="http://profiles.wordpress.org/szepeviktor/">szepe.viktor</a></li>
 </ul>
 </p>
 
 CONTENT5;
+
+		$content6 = <<<CONTENT6
+<p>	
+WordPress encourages you to update your plugins, themes, and core to make sure that there are no bugs. Even though you most likely want to disable all the updates and never update again, you should update every once in a while.
+
+<h3>This plugin is tested so there are no problems.</h3>
+<ul>
+<li>Tested with WordPress 4.0</li>
+<li>Tested with popular plugins for no conflicts</li>
+<li>Tested with popular themes for no conflicts</li>
+</ul>
+</p>
+
+CONTENT6;
 
 		// Add my_help_tab if current screen is My Admin Page
 		$screen->add_help_tab(array(
@@ -691,8 +723,14 @@ CONTENT5;
             ));	
 			
 	    $screen->add_help_tab(array(
+                'id' => 'help_tab_content_6',
+                'title' => __('Capability'),
+                'content' => $content6,
+            ));
+			
+	    $screen->add_help_tab(array(
                 'id' => 'help_tab_content_3',
-                'title' => __('Help'),
+                'title' => __('Troubleshooting'),
                 'content' => $content3,
             ));
 				
@@ -703,9 +741,9 @@ CONTENT5;
 	static function metabox_global( $status ) {
 
 		?>
-
-		<div class="showonhover">
+		<div>
 			<p>
+		    <div class="showonhover">
 				<label for="all_notify">
 					<input
 						type="checkbox" <?php checked( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ), TRUE ); ?>
@@ -716,35 +754,40 @@ CONTENT5;
 					<a href="#" class="viewdescription">?</a>
 					<span class="hovertext">Disables core, theme, and plugin updates.</span>
 				</span>
+		    </div>
 			</p>
 		</div>
 
-		<ul style="padding-left: 12px;">
-			<li>
+		<div style="padding-left: 12px;">
+			<p>
+			<div>
 				<label for="plugins_notify">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['plugin'] ) && ! isset( $status['all'] ) ? (int) $status['plugin'] : 0 ), TRUE ); ?>
 						   value="1" id="plugins_notify"
 						   name="_disable_updates[plugin]"
 						   <?php disabled( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ) ) ?>> <?php _e( 'Disable All Plugin Updates', 'disable-updates-manager' ) ?>
 				</label>
-			</li>
-			<li>
+			</div>
+			<br>
+			<div>
 				<label for="themes_notify">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['theme'] ) && ! isset( $status['all'] ) ? (int) $status['theme'] : 0 ), TRUE ); ?>
 						   value="1" id="themes_notify"
 						   name="_disable_updates[theme]"
 						   <?php disabled( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ) ) ?>> <?php _e( 'Disable All Theme Updates', 'disable-updates-manager' ) ?>
 				</label>
-			</li>
-			<li>
+			</div>
+            <br>
+			<div>
 				<label for="core_notify">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['core'] ) && ! isset( $status['all'] ) ? (int) $status['core'] : 0 ), TRUE ); ?>
 						   value="1" id="core_notify"
 						   name="_disable_updates[core]"
 						   <?php disabled( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ) ) ?>> <?php _e( 'Disable WordPress Core Update', 'disable-updates-manager' ) ?>
 				</label>
-			</li>
-		</ul>
+			</div>
+			</p>
+		</div>
 
 		<?php
 	}
@@ -752,8 +795,9 @@ CONTENT5;
 	static function metabox_other( $status ) {
 
 		?>
-		<ul>
-			<li class="showonhover">
+		<div>
+		    <p>
+			<div class="showonhover">
 				<label for="page_notify">
 					<input
 						type="checkbox" <?php checked( 1, ( isset( $status['page'] ) ? (int) $status['page'] : 0 ), TRUE ); ?>
@@ -764,9 +808,9 @@ CONTENT5;
 					<a href="#" class="viewdescription">?</a></a>
 					<span class="hovertext">The page under the Dashboard tab.</span>
 				</span>
-			</li>
-
-			<li class="showonhover">
+			</div>
+			<br>
+            <div class="showonhover">
 				<label for="bnag_notify">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['bnag'] ) ? (int) $status['bnag'] : 0 ), TRUE ); ?>
 						   value="1" id="bnag_notify"
@@ -776,9 +820,9 @@ CONTENT5;
 					<a href="#" class="viewdescription">?</a>
 					<span class="hovertext">Removes the browsers is out of date notification in you WordPress dashboard.</span>
 				</span>
-			</li>
-			
-			<li class="showonhover">
+			</div>
+			<br>
+			<div class="showonhover">
 				<label for="wpv_notify">
 					<input
 						type="checkbox" <?php checked( 1, ( isset( $status['wpv'] ) ? (int) $status['wpv'] : 0 ), TRUE ); ?>
@@ -789,16 +833,17 @@ CONTENT5;
 					<a href="#" class="viewdescription">?</a>
 					<span class="hovertext">Removes it for all users.</span>
 				</span>
-			</li>
-
-			<li>
+			</div>
+            <br>
+			<div>
 				<label for="abup_notify">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['abup'] ) ? (int) $status['abup'] : 0 ), TRUE ); ?>
 						   value="1" id="abup_notify"
 						   name="_disable_updates[abup]"> <?php _e( 'Disable Automatic Background Updates', 'disable-updates-manager' ) ?>
 				</label>
-			</li>
-		<ul>
+			</p>
+			</div>
+		</div>
 
 		<?php
 	}
@@ -806,9 +851,9 @@ CONTENT5;
 	static function metabox_themes( $status ) {
 
 		?>
-
-		<div class="showonhover">
+		<div>
 			<p>
+		<div class="showonhover">
 				<label for="dum-disable-themes">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['it'] ) && ! isset( $status['all'] ) ? (int) $status['it'] : 0 ), TRUE ); ?>
 						   id="dum-disable-themes"
@@ -816,14 +861,13 @@ CONTENT5;
 						   name="_disable_updates[it]"
 						   <?php disabled( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ) ) ?>> <?php _e( 'Disable Themes Individually', 'disable-updates-manager' ) ?>
 				</label>
-
 				<span>
 					<a href="#" class="viewdescription">?</a>
 					<span class="hovertext">Enabling this option will show the list of themes to disable updates.</span>
 				</span>
 			</p>
 		</div>
-
+        </div>
 		<?php
 
 		$themes = wp_get_themes( array( 'allowed' => TRUE ) );
@@ -851,9 +895,8 @@ CONTENT5;
 	static function metabox_plugins( $status ) {
 
 		?>
-
-		<div class="showonhover">
 			<p>
+		<div class="showonhover">
 				<label for="dum-disable-plugins">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['ip'] ) && ! isset( $status['all'] ) ? (int) $status['ip'] : 0 ), TRUE ); ?>
 						   id="dum-disable-plugins"
@@ -861,7 +904,6 @@ CONTENT5;
 						   name="_disable_updates[ip]"
 						   <?php disabled( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ) ) ?>> <?php _e( 'Disable Plugins Individually', 'disable-updates-manager' ) ?>
 				</label>
-
 				<span>
 					<a href="#" class="viewdescription">?</a>
 					<span class="hovertext">Enabling this option will show the list of plugins to disable updates.</span>
@@ -893,31 +935,27 @@ CONTENT5;
 		}
 
 	}
-
+	
 	// Settings page (under dashboard).
 	static function display_page() {
 	?>
 	
 <h2><?php _e( 'Disable Updates Manager', 'disable-updates-manager' ); ?></h2>
         
-		<?php
-		$status = get_option( '_disable_updates' );
-
-		// Don't Allow Users to View Settings
-		if ( ! current_user_can( 'update_core' ) ) {
-			wp_die( __( 'You do not have permissions to access this page.' ) );
-		}
-		?>
+		<?php 
 		
-		<div class="dashboard-widgets-wrap">
-	
-	    <?php get_settings_errors()?>
-	
-			<div class="error" style="width: auto;">
-				<p><strong>Please Note! - </strong>If either your WordPress core, theme, or plugins get too out
-					of date, you may run into compatibility problems.</p>
-			</div>
+		if ( !current_user_can('manage_options') ) {
+		wp_die('You do not have sufficient permissions to access this page.');
+		}
+		
+		if ( current_user_can('manage_options') ) {
+		
+		$status = get_option( '_disable_updates' );
+ 
+		?>
 
+		<div class="dashboard-widgets-wrap">
+           
 			<div id="dashboard-widgets" class="metabox-holder columns-<?php echo 1 == get_current_screen()->get_columns() ? '1' : '2'; ?>">
 
 				<form name="dum-options" method="post" action="options.php">
@@ -948,9 +986,11 @@ CONTENT5;
 			</div><!-- #dashboard-widgets -->
 
 		</div><!-- .dashboard-widgets-wrap -->
-
+		
 	<?php
 	}
+}
+
 }
 
 global $Disable_Updates;
