@@ -3,12 +3,12 @@
  * @package Disable Updates Manager
  * @author MPS Plugins
  * @email mpsplugins@gmail.com
- * @version 4.3.13
+ * @version 4.4.0
  */
 /*
 Plugin Name: Disable Updates Manager
 Plugin URI: http://www.mpswp.wordpress.com
-Version: 4.3.13
+Version: 4.4.0
 Description: A configurable plugin that disables updates for you. Easy, clean and helpful.
 Author: MPS Plugins
 Author URI: http://www.mpswp.wordpress.com
@@ -38,7 +38,7 @@ Go to the license.txt in the trunk for more information.
 class Disable_Updates {
 
 	// Define version.
-	const VERSION = '4.3.13';
+	const VERSION = '4.4.0';
 
 	private static $page_hook = '';
 
@@ -281,15 +281,13 @@ static function validate_settings( $value ) {
 
                     if ( ! function_exists( 'c2c_no_browser_nag' ) ) :
 
-	function c2c_no_browser_nag() {
-		// This is cribbed from wp_check_browser_version()
-		$key = md5( $_SERVER['HTTP_USER_AGENT'] );
-		add_filter( 'site_transient_browser_' . $key, '__return_null' );
-	}
-
-endif;
-
-add_action( 'admin_init', 'c2c_no_browser_nag' );
+	                function c2c_no_browser_nag() {
+		            // This is cribbed from wp_check_browser_version()
+		            $key = md5( $_SERVER['HTTP_USER_AGENT'] );
+		            add_filter( 'site_transient_browser_' . $key, '__return_null' );
+	                }
+                    endif;
+                    add_action( 'admin_init', 'c2c_no_browser_nag' );
 					
 					break;
 
@@ -306,7 +304,28 @@ add_action( 'admin_init', 'c2c_no_browser_nag' );
 				case 'abup' :
 
 					wp_clear_scheduled_hook( 'wp_maybe_auto_update' );
-					break;
+					
+				    break;
+					
+	                        /* 
+				Version Added: 4.4.0
+				Description: Disables auto translation updates in the Disable Updates Manager settings.
+				*/
+				case 'auto-translation-updates' :
+				
+				    add_filter( 'auto_update_translation', '__return_false' );
+				
+				    break;
+					
+			        /* 
+				Version Added: 4.4.0
+				Description: Disables auto core e-mails in the Disable Updates Manager settings.
+				*/
+				case 'auto-core-emails' :
+				
+				    add_filter( 'auto_core_update_send_email', '__return_false' );
+				
+				    break;
 
 			}
 		}
@@ -352,7 +371,7 @@ add_action( 'admin_init', 'c2c_no_browser_nag' );
 
 		if ( ! isset( $plugins->response ) || count( $plugins->response ) == 0 ) {
 
-			return $plugins;
+			return $plugins;
 		}
 
 		$blocked = (array) get_option( 'disable_updates_blocked' );
@@ -832,6 +851,31 @@ CONTENT6;
 				<span>
 					<a href="#" class="viewdescription">?</a>
 					<span class="hovertext">Removes it for all users.</span>
+				</span>
+			</div>
+            <br>
+            <div class="showonhover">
+				<label for="auto-translation-updates_notify">
+					<input type="checkbox" <?php checked( 1, ( isset( $status['auto-translation-updates'] ) ? (int) $status['auto-translation-updates'] : 0 ), TRUE ); ?>
+						   value="1" id="auto-translation-updates_notify"
+						   name="_disable_updates[auto-translation-updates]"> <?php _e( 'Disable Automatic Translation Updates', 'disable-updates-manager' ) ?>
+				</label>
+				<span>
+					<a href="#" class="viewdescription">?</a>
+					<span class="hovertext">Disables the automatic translation updates for you.</span>
+				</span>
+			</div>
+			<br>
+			<div class="showonhover">
+				<label for="auto-core-emails_notify">
+					<input
+						type="checkbox" <?php checked( 1, ( isset( $status['auto-core-emails'] ) ? (int) $status['auto-core-emails'] : 0 ), TRUE ); ?>
+						value="1" id="auto-core-emails_notify"
+						name="_disable_updates[auto-core-emails]"> <?php _e( 'Disable Core Update E-mails', 'disable-updates-manager' ) ?>
+				</label>
+				<span>
+					<a href="#" class="viewdescription">?</a>
+					<span class="hovertext">Disables the core update e-mails so that they will not be sent to you.</span>
 				</span>
 			</div>
             <br>
