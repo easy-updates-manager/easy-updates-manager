@@ -305,9 +305,29 @@ static function validate_settings( $value ) {
 
 					wp_clear_scheduled_hook( 'wp_maybe_auto_update' );
 					
+					break;
+					
+				/* 
+				Version Added: 4.4.0
+				Description: Disables minor core updates in the Disable Updates Manager settings.
+				*/
+				case 'minor-core-updates' :
+				
+				    add_filter( 'allow_minor_auto_core_updates', '__return_false' );
+				
 				    break;
 					
-	                        /* 
+				/* 
+				Version Added: 4.4.0
+				Description: Disables major core updates in the Disable Updates Manager settings.
+				*/
+				case 'major-core-updates' :
+				
+				    add_filter( 'allow_major_auto_core_updates', '__return_true' );
+				
+				    break;
+					
+	            /* 
 				Version Added: 4.4.0
 				Description: Disables auto translation updates in the Disable Updates Manager settings.
 				*/
@@ -317,7 +337,7 @@ static function validate_settings( $value ) {
 				
 				    break;
 					
-			        /* 
+			    /* 
 				Version Added: 4.4.0
 				Description: Disables auto core e-mails in the Disable Updates Manager settings.
 				*/
@@ -805,7 +825,27 @@ CONTENT6;
 						   <?php disabled( 1, ( isset( $status['all'] ) ? (int) $status['all'] : 0 ) ) ?>> <?php _e( 'Disable WordPress Core Update', 'disable-updates-manager' ) ?>
 				</label>
 			</div>
+		<div style="padding-left:20px;">	
+			<br>
+			<div>
+				<label for="minor-core-updates_notify">
+					<input type="checkbox" <?php checked( 1, ( isset( $status['minor-core-updates'] ) && ! isset( $status['core'] ) ? (int) $status['minor-core-updates'] : 0 ), TRUE ); ?>
+						   value="1" id="minor-core-updates_notify"
+						   name="_disable_updates[minor-core-updates]"
+						   <?php disabled( 1, ( isset( $status['core'] ) ? (int) $status['core'] : 0 ) ) ?>> <?php _e( 'Disable Minor', 'disable-updates-manager' ) ?>
+				</label>
+			</div>
+			<br>
+			<div>
+				<label for="major-core-updates_notify">
+					<input type="checkbox" <?php checked( 1, ( isset( $status['major-core-updates'] ) && ! isset( $status['core'] ) ? (int) $status['major-core-updates'] : 0 ), TRUE ); ?>
+						   value="1" id="major-core-updates_notify"
+						   name="_disable_updates[major-core-updates]"
+						   <?php disabled( 1, ( isset( $status['core'] ) ? (int) $status['core'] : 0 )) ?>> <?php _e( 'Disable Major', 'disable-updates-manager' ) ?>
+				</label>
+			</div>
 			</p>
+		</div>	
 		</div>
 
 		<?php
@@ -821,7 +861,7 @@ CONTENT6;
 					<input
 						type="checkbox" <?php checked( 1, ( isset( $status['page'] ) ? (int) $status['page'] : 0 ), TRUE ); ?>
 						value="1" id="page_notify"
-						name="_disable_updates[page]"> <?php _e( 'Remove Updates Page', 'disable-updates-manager' ) ?>
+						name="_disable_updates[page]"> <?php _e( 'Remove the Updates Page', 'disable-updates-manager' ) ?>
 				</label>
 				<span>
 					<a href="#" class="viewdescription">?</a></a>
@@ -833,7 +873,7 @@ CONTENT6;
 				<label for="bnag_notify">
 					<input type="checkbox" <?php checked( 1, ( isset( $status['bnag'] ) ? (int) $status['bnag'] : 0 ), TRUE ); ?>
 						   value="1" id="bnag_notify"
-						   name="_disable_updates[bnag]"> <?php _e( 'Remove Out of Date Browser Nag', 'disable-updates-manager' ) ?>
+						   name="_disable_updates[bnag]"> <?php _e( 'Disable Out of Date Browser Nag', 'disable-updates-manager' ) ?>
 				</label>
 				<span>
 					<a href="#" class="viewdescription">?</a>
@@ -846,7 +886,7 @@ CONTENT6;
 					<input
 						type="checkbox" <?php checked( 1, ( isset( $status['wpv'] ) ? (int) $status['wpv'] : 0 ), TRUE ); ?>
 						value="1" id="wpv_notify"
-						name="_disable_updates[wpv]"> <?php _e( 'Remove WordPress Core Version from Footer', 'disable-updates-manager' ) ?>
+						name="_disable_updates[wpv]"> <?php _e( 'Disable WordPress Core Version from Footer', 'disable-updates-manager' ) ?>
 				</label>
 				<span>
 					<a href="#" class="viewdescription">?</a>
