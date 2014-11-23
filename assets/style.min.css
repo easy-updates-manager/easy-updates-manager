@@ -1,4 +1,4 @@
 .showonhover{position:relative}.showonhover .hovertext{opacity:0;top:-99999px;position:absolute;z-index:1000;border:1px solid #ffd971;background-color:#fffdce;padding:2px 8px 2px 8px;width:auto;height:auto;font-size:.85em;-webkit-transition:opacity .3s ease;-moz-transition:opacity .3s ease;-o-transition:opacity .3s ease;transition:opacity .3s ease}
 .showonhover:hover .hovertext{opacity:1;top:0}a.viewdescription{color:#999}a.viewdescription:hover{background-color:#999;color:#FFF}select.dum-enhanced-select{width:100%}
 .chosen-container-multi .chosen-choices li.search-field input[type="text"]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box} 
-#column1 {width:40%;padding:0 5pt 0 0;float:left;}#column2 {width:40%;padding:0 5pt 0 0;float:right;}
+#acolumn1{width:40%;padding:0 5pt 0 0;float:left;}#acolumn2{width:40%;padding:0 5pt 0 0;float:right;}
