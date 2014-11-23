@@ -2,61 +2,37 @@
 Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com, szepe.viktor
 Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check, No Browser Nag, MPS Plugins, Manager, Disable, Updates
 Requires at least: 3.0
-Tested up to: 4.0
+Tested up to: 4.0.1 and 4.1beta1
 Stable tag: trunk
 
 A configurable plugin that disables updates for you. Easy, clean and helpful + Great Support.  
 
 == Description ==
-The best plugin to disable updates is here!
-
-Please rate this plugin and feel free to give feedback 
-
-This plugin is configurable! Check the updates you would like to disable in the settings page along with other helpful settings. The settings page is located under the settings section in your dashboard (changed in version 4.0). Check the features below or the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a> for more information.
+This plugin is configurable! Check the type of update(s) you would like to disable in the settings page along with other helpful settings. Watch the video tutorial below for more information.
 
 = Features Include =
 <ol>
 <li>Disables plugins and themes individually.</li>
-<li>Disables plugin updates.</li>
-<li>Disables theme updates.</li>
-<li>Disable WordPress core updates.</li>
+<li>Disables WordPress core updates.</li>
+<li>Disable automatic background updates.</li>
 <li>And lots of other settings.</li>
 </ol> 
 
-To see more features view the <a href="http://wordpress.org/plugins/stops-core-theme-and-plugin-updates/screenshots/">screenshots</a> or the video tutorials below.
-
 = Blog =
+<a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
 
-<a href="http://www.mpswp.wordpress.com">Check our blog for beta releases, updates, and other information</a>. You can also check out our <a target="_blank" href="https://github.com/Websiteguy/disable-updates-manager">GitHub Repository</a>.
-
-= Video Tutorials =
-[youtube https://www.youtube.com/watch?v=gm03k-Oxt38]
-
-[youtube https://www.youtube.com/watch?v=9vPVis3NZHI]
-
-== Frequently Asked Questions ==
-= Q: How is this plugin different from the other disable updates plugins? =
-A: Their are a couple of differences.
+= There are several ways you can get involved to help make Disable Updates Manager better =
 <ol>
-<li>They do not disable WordPress automatic updates.</li>
-<li>They do not have video tutorials and screenshots.</li>
-<li>They do not have settings to make it configurable.</li>
-<li>They do not disable plugins and themes individually.</li>
+<li>Report Bugs: If you find a bug, error or other problem, please report it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or in the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
+<li>Suggest New Features: Have an awesome new feature that you would like to be added? Please share it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
+<li>Issue Pull Requests: The easiest way to get involved is to help out on issues already reported in <a href="https://github.com/Websiteguy/disable-updates-manager/compare">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>.</li>
 </ol>
 
-= Q: How does this plugin work? I can't figure it out for the life of me. =
-A: This video tutorial may help a little.
-
-[youtube https://www.youtube.com/watch?v=9vPVis3NZHI]
-
-= Q: Does this plugins disable WP automatic updates too? Since 3.8, WP update their version automatically which could be a problem too. =
-A: Yes, this plugin will disable the automatic updates too.
-
-= Q: If I remove this plugin from my website will I be able to update my plugins, themes, and WordPress core again? =
-A: Yes, this plugin just disables the update. We has also recently made an uninstall.php for this plugin.
-
-= Q: Does this plugin still work? People have said that it is broken. =
-A: As far as I know, this is just some spam. I have not received any complaints about it and there are lots of 5 star ratings for the most recent versions. You can help by ratings the plugin and saying if it is broken or not.  
+= Video Tutorials =
+[youtube https://www.youtube.com/watch?v=VYEQg-hZd58]
+[youtube https://www.youtube.com/watch?v=mYznDVsbVBk]
+[youtube https://www.youtube.com/watch?v=1R-be48AvrE]
+[youtube https://www.youtube.com/watch?v=Kd4s3EOcUtw]
 
 == Screenshots ==
 1. Disable Updates Globally
@@ -67,7 +43,7 @@ A: As far as I know, this is just some spam. I have not received any complaints 
 6. Help Tab
 
 == Installation ==
-Installing Disable Updates Manager.
+<strong>Installing Disable Updates Manager</strong>
 
 1. Install Disable Updates Manager either via the WordPress.org plugin page and uploading the files to your FTP manually, or going to the and new plugins section in your dashboard.
 
@@ -76,6 +52,58 @@ Installing Disable Updates Manager.
 3. Click on the configure button next to the plugin or go to the plugin settings page under the settings section in your dashboard.
 
 == Changelog ==
+= 4.6.0 =
+* Removed unknown character to fix debug error.
+* Updated screenshots.
+* Works with WordPress 4.0.1 and 4.1beta1.
+* Fixed error that didn't remove rate notice in help tab.
+* Updated some help tab content.
+
+= 4.5.0* =
+* Added rate plugin button.
+* Added Feedback survey button.
+* Removed rate plugin notice in help tab.
+* Edited disable plugins individually text display on plugin page when activated.
+* Removed disable major and minor core feature. It wasn't working but we hope to get it back there in a later version of Disable Updates Manager.
+* Edited plugin description a little.
+* Edited help tab information.
+* Updated screenshots.
+* Removed FAQ link on plugin page.
+
+= 4.4.1.2* =
+* Attempt 3 at fixing the major and minor core updates setting. 
+
+= 4.4.1.1* =
+* Attempt 2 at fixing the major and minor core updates setting.
+* Renamed function.php to main.php.
+* Removed random image in repository.
+
+= 4.4.1* =
+* Fixed disable major and minor settings.
+
+= 4.4.0.1* =
+* Fixed video tutorial typo.
+* Fixed readme.txt typo.
+
+= 4.4.0* =
+* Removed title /* */ from chosen.min.css to make it more compressed.
+* Added disable auto translation updates setting.
+* Added disable auto core update e-mails setting.
+* Added disable minor core updates setting.
+* Added disable major core updates setting.
+* Added better GitHub links to readme.txt.
+* Removed FAQ in readme.txt.
+* Edited description in readme.txt.
+* Fixed typo in the Disable Plugins Individually setting.
+* Fixed typo in the Disable Themes Individually setting.
+* Added Settings Layout video tutorial.
+* Added Disable Update Types video tutorial.
+* Added Disable Plugins and Themes Individually video tutorial.
+* Added Other Settings video tutorial.
+* Removed old tutorials.
+* Edited contributor section in the settings help tab.
+* Few minor note changes in files.
+
 = 4.3.13 =
 * Fixed contributor issue.
 * Updated description in readme.txt.
