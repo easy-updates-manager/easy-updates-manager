@@ -10,6 +10,13 @@ A configurable plugin that disables updates for you. Easy, clean and helpful + G
 == Description ==
 This plugin is configurable! Check the type of update(s) you would like to disable in the settings page along with other helpful settings. Watch the video tutorial below for more information.
 
+= Features Include =
+<ul>
+<ol>Disable Update Manager is the first plugin to offer a feature to both disable plugins and themes individually.</ol>
+<ol>Disable Updates Manager makes disabling all core, theme, and/or plugin updates easy. Just check the checkboxes and save the settings.</ol>
+<ol>Disable Updates Manager includes lots of other settings to disable background updates and lots of other things.</ol>
+</ul> 
+
 = Blog =
 <a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
 
@@ -34,6 +41,13 @@ This plugin is configurable! Check the type of update(s) you would like to disab
 5. Screen Options
 6. Help Tab
 
+== FAQ ==
+<strong>Q: What is a safe way to update the WordPress Core if I ever need to?</strong>
+A: Check out this post on our blog. http://mpswp.wordpress.com/2014/11/26/great-steps-to-follow-before-updating-your-wordpress-core/
+
+<strong>Q: If I have an automatic plugin updating plugin installed at the same time as disabling plugin updates, what will happen?</strong>
+A: Disable Updates Manager disables the parts of the update system depending on which settings update have checked. If you have the Disable All Plugin Updates setting checked at the same time as having a automatic plugin update plugin installed, then Disable Updates Manager overrides it to disable updates no matter what.
+
 == Installation ==
 <strong>Installing Disable Updates Manager</strong>
 
@@ -46,8 +60,9 @@ This plugin is configurable! Check the type of update(s) you would like to disab
 == Changelog ==
 = 4.7.0 =
 * Slight change in metabox order.
-* Minor change in the readme.txt.
+* Change description in the readme.txt.
 * Works with WordPress Version 4.1
+* Added back the FAQ in the readme.txt.
 
 = 4.6.0 =
 * Removed unknown character to fix debug error.
