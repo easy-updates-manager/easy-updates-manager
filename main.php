@@ -3,12 +3,12 @@
  * @package Disable Updates Manager
  * @author MPS Plugins
  * @email mpsplugins@gmail.com
- * @version 4.6.0
+ * @version 4.7.0
  */
 /*
 Plugin Name: Disable Updates Manager
 Plugin URI: http://www.mpswp.wordpress.com
-Version: 4.6.0
+Version: 4.7.0
 Description: A configurable plugin that disables updates for you. Easy, clean and helpful.
 Author: MPS Plugins
 Author URI: http://www.mpswp.wordpress.com
@@ -38,7 +38,7 @@ Go to the license.txt in the trunk for more information.
 class Disable_Updates {
 
 	// Define version.
-	const VERSION = '4.6.0';
+	const VERSION = '4.7.0';
 
 	private static $page_hook = '';
 
@@ -78,9 +78,9 @@ class Disable_Updates {
 		add_screen_option('layout_columns', array('max' => 2, 'default' => 2) );
 
 		add_meta_box( 'dum-global', __( 'Disable Updates Globally', 'disable-updates-manager' ), array( __CLASS__, 'metabox_global' ), self::$page_hook, 'left', 'core' );
-        add_meta_box( 'dum-themes', __( 'Disable Theme Updates', 'disable-updates-manager' ), array( __CLASS__, 'metabox_themes' ), self::$page_hook, 'right', 'core' );
+        add_meta_box( 'dum-themes', __( 'Disable Theme Updates', 'disable-updates-manager' ), array( __CLASS__, 'metabox_themes' ), self::$page_hook, 'left', 'core' );
 		
-		add_meta_box( 'dum-other', __( 'Other Settings', 'disable-updates-manager' ), array( __CLASS__, 'metabox_other' ), self::$page_hook, 'left', 'core' );
+		add_meta_box( 'dum-other', __( 'Other Settings', 'disable-updates-manager' ), array( __CLASS__, 'metabox_other' ), self::$page_hook, 'right', 'core' );
 		add_meta_box( 'dum-plugins', __( 'Disable Plugin Updates', 'disable-updates-manager' ), array( __CLASS__, 'metabox_plugins' ), self::$page_hook, 'right', 'core' );
 	}
 
