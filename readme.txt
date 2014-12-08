@@ -2,7 +2,7 @@
 Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com, szepe.viktor
 Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check, No Browser Nag, MPS Plugins, Manager, Disable, Updates
 Requires at least: 3.0
-Tested up to: 4.0.1 and 4.1beta1
+Tested up to: 4.1
 Stable tag: trunk
 
 A configurable plugin that disables updates for you. Easy, clean and helpful + Great Support.  
@@ -10,22 +10,14 @@ A configurable plugin that disables updates for you. Easy, clean and helpful + G
 == Description ==
 This plugin is configurable! Check the type of update(s) you would like to disable in the settings page along with other helpful settings. Watch the video tutorial below for more information.
 
-= Features Include =
-<ol>
-<li>Disables plugins and themes individually.</li>
-<li>Disables WordPress core updates.</li>
-<li>Disable automatic background updates.</li>
-<li>And lots of other settings.</li>
-</ol> 
-
 = Blog =
 <a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
 
 = There are several ways you can get involved to help make Disable Updates Manager better =
 <ol>
-<li>Report Bugs: If you find a bug, error or other problem, please report it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or in the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
-<li>Suggest New Features: Have an awesome new feature that you would like to be added? Please share it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
-<li>Issue Pull Requests: The easiest way to get involved is to help out on issues already reported in <a href="https://github.com/Websiteguy/disable-updates-manager/compare">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>.</li>
+<li>=Report Bugs:= If you find a bug, error or other problem, please report it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or in the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
+<li>=Suggest New Features:= Have an awesome new feature that you would like to be added? Please share it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
+<li>=Reply to Support:= The easiest way to get involved is to help out on issues already reported in <a href="https://github.com/Websiteguy/disable-updates-manager/compare">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>.</li>
 </ol>
 
 = Video Tutorials =
@@ -52,6 +44,11 @@ This plugin is configurable! Check the type of update(s) you would like to disab
 3. Click on the configure button next to the plugin or go to the plugin settings page under the settings section in your dashboard.
 
 == Changelog ==
+= 4.7.0 =
+* Slight change in metabox order.
+* Minor change in the readme.txt.
+* Works with WordPress Version 4.1
+
 = 4.6.0 =
 * Removed unknown character to fix debug error.
 * Updated screenshots.
