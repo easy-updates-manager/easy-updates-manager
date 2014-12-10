@@ -20,6 +20,9 @@ This plugin is configurable! Check the type of update(s) you would like to disab
 = Blog =
 <a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
 
+= Survey =
+Take the feedback survey to give your feedback on this plugin. <a href="http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck">http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck</a>
+
 = There are several ways you can get involved to help make Disable Updates Manager better =
 <ol>
 <li>=Report Bugs:= If you find a bug, error or other problem, please report it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or in the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
