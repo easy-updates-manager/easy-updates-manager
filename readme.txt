@@ -63,6 +63,8 @@ A: Disable Updates Manager disables the parts of the update system depending on 
 * Change description in the readme.txt.
 * Works with WordPress Version 4.1
 * Added back the FAQ in the readme.txt.
+* Fixed small typo in license.txt.
+* Redid translation files.
 
 = 4.6.0 =
 * Removed unknown character to fix debug error.
