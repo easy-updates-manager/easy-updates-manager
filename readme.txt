@@ -68,6 +68,7 @@ A: Disable Updates Manager disables the parts of the update system depending on 
 * Added back the FAQ in the readme.txt.
 * Fixed small typo in license.txt.
 * Redid translation files.
+* Remove home submenu when removing update submenu.
 
 = 4.6.0 =
 * Removed unknown character to fix debug error.
