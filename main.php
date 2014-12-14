@@ -37,43 +37,29 @@
 
 class Disable_Updates {
 
-	/*
-		Description: Define Version.
-	*/
+	/* Description: Define version. */
 	const VERSION = '4.7.0';
 
 	private static $page_hook = '';
 
 	function __construct() {
 
-		/*
-			Description: Load textdomain.
-		*/
+		/* Description: load textdomain. */
 		add_action( 'init', array( __CLASS__ , 'load_textdomain' ) );
 
-		/*
-			Description: Add menu page.
-		*/
+		/* Description: Add menu page. */
 		add_action( 'admin_menu', array( __CLASS__, 'add_submenu' ) );
 
-		/*
-			Description: Settings API.
-		*/
+		/* Description: Settings API. */
 		add_action( 'admin_init', array( __CLASS__, 'register_setting' ) );
 
-		/*
-			Description: Add action links.
-		*/
+		/* Description: Add action links. */
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( __CLASS__, 'action_links' ) );
 
-		/*
-			Description: Add meta links.
-		*/
+		/* Description: Add meta links. */
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'meta_links' ), 10, 2 );
 
-		/*
-			Description: Load the values recorded.
-		*/
+		/* Description: Load the values recorded. */
 		$this->load_disable_updates();
 		
 	}
@@ -88,7 +74,7 @@ class Disable_Updates {
 		do_action( 'add_meta_boxes_' . self::$page_hook, NULL );
 		do_action( 'add_meta_boxes', self::$page_hook, NULL );
 
-		// User can choose between 1 or 2 columns (default 2)
+		/* Description: Users can choose between 1 or 2 columns (default is 2 columns). */
 		add_screen_option('layout_columns', array('max' => 2, 'default' => 2) );
 
 		add_meta_box( 'dum-global', __( 'Disable Updates Globally', 'disable-updates-manager' ), array( __CLASS__, 'metabox_global' ), self::$page_hook, 'left', 'core' );
@@ -101,7 +87,7 @@ class Disable_Updates {
 
 	static function enqueue_css() {
 
-		// If SCRIPT_DEBUG is set and TRUE load the non-minified files, otherwise, load the minified files.
+		/* Description: If SCRIPT_DEBUG is set and TRUE load the non-minified files, otherwise, load the minified files. */
 		$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_style( 'dum-chosen', plugins_url( "vendor/chosen/chosen$min.css", __FILE__ ), array(), '1.1.0' );
@@ -112,7 +98,7 @@ class Disable_Updates {
 
 	static function enqueue_js() {
 
-		// If SCRIPT_DEBUG is set and TRUE load the non-minified files, otherwise, load the minified files.
+		/* Description: If SCRIPT_DEBUG is set and TRUE load the non-minified files, otherwise, load the minified files. */
 		$min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script( 'dum-admin-js', plugins_url( "assets/admin$min.js", __FILE__ ), array( 'postbox' ), self::VERSION );
@@ -129,7 +115,7 @@ class Disable_Updates {
 		
 	}
 
-	// Register settings.
+	/* Description: Register settings. */
 	static function register_setting() {
 
 		register_setting( '_disable_updates', '_disable_updates', array( __CLASS__, 'validate_settings' ) );
@@ -140,10 +126,10 @@ class Disable_Updates {
 
 		if ( isset( $value['plugins'] ) ) {
 
-			// Since the blocked plugins are stored in a different option, we need to update that option.
+			/* Description: Since the blocked plugins are stored in a different option, we need to update that option. */
 			$blocked_plugins = $value['plugins'];
 
-			// Convert the data to match the way the options are stored.
+			/* Description: Convert the data to match the way the options are stored. */
 			$blocked_plugins = array_fill_keys( $blocked_plugins, TRUE );
 
 		} else {
@@ -152,7 +138,7 @@ class Disable_Updates {
 		
 		}
 
-		// Update the blocked plugins option.
+		/* Description: Update the blocked plugins options. */
 		update_option( 'disable_updates_blocked', $blocked_plugins );
 
 		return $value;
@@ -163,13 +149,13 @@ class Disable_Updates {
 
 		$page_hook = add_submenu_page( 'options-general.php', 'Disable Updates Manager', __( 'Disable Updates Manager', 'disable-updates-manager' ), 'manage_options', 'disable-updates-manager', array( __CLASS__, 'display_page' ) );
 
-		// Enqueue the admin CSS for this page only..
+		/* Description: Enqueue the admin CSS for this page only. */
 		add_action( "load-$page_hook", array( __CLASS__, 'enqueue_css' ) );
 
-		// Enqueue the admin JS for this page only..
+		/* Description: Enqueue the admin JavaScript for this page only. */
 		add_action( "load-$page_hook", array( __CLASS__, 'enqueue_js' ) );
 
-		// Add callbacks for this page only.
+		/* Description: Add callbacks for this page only. */
 		add_action( "load-$page_hook", array( __CLASS__, 'page_actions' ), 9 );
 		add_action( "admin_footer-$page_hook" , array( __CLASS__ , 'footer_scripts' ) );
 		add_action( "load-$page_hook", array( __CLASS__, 'help_tab' ) );
@@ -206,7 +192,7 @@ class Disable_Updates {
 		
 	}
 
-	// Functions for plugin (Change in settings)
+	/* Description: Functions for the plugins settings. */
 	static function load_disable_updates() {
 
 		$status = get_option( '_disable_updates' );
@@ -219,64 +205,67 @@ class Disable_Updates {
 
 			switch ( $id ) {
 
-				// Disable Plugin Updates
+				/* Description: Disable Plugin Updates */
 				case 'plugin' :
 
 					self::disable_plugin_updates();
 					
 				break;
 
-				// Disable Theme Updates
+				/* Description: Disable theme updates. */
 				case 'theme' :
 
 					self::disable_theme_updates();
 
 				break;
 
-				// Disable WordPress Core Updates
+				/* Description: Disable WordPress core updates. */
 				case 'core' :
 
 					self::disable_core_updates();
 
 				break;
 
-				// Remove the Dashboard Updates Menu
+				/* Description: Remove the updates and home submenu. */
 				case 'page' :
 
-					// Remove the Dashboard Updates Menu Code
+					/* Description: Updates submenu. */
 					add_action( 'admin_init', create_function( '', 'remove_submenu_page( \'index.php\', \'update-core.php\' );' ) );
+					
+					/* Description: Home submenu. */
 					add_action( 'admin_init', create_function( '', 'remove_submenu_page( \'index.php\', \'index.php\' );' ) );
 					
 				break;
 
-				// Disable All Updates
+				/* Description: Disable all updates. */
 				case 'all' :
 
-					// Disable Plugin Updates Only
+					/* Description: Disable plugin updates only. */
 					self::disable_plugin_updates();
 
-					// Disable Theme Updates Only
+					/* Description: Disable theme updates only. */
 					self::disable_theme_updates();
 
-					// Disable Core Updates Only
+					/* Description: Disable WordPress core updates only. */
 					self::disable_core_updates();
 
-					// Disable Debug E-mails
+					/* Description: Disable debug e-mails. */
 					add_filter( 'automatic_updates_send_debug_email ', '__return_false', 1 );
 
-					// Disable WordPress Automatic Updates
+					/* Description: Disable WordPress automatic updates. */
 					define( 'AUTOMATIC_UPDATER_DISABLED', TRUE );
 					define( 'WP_AUTO_UPDATE_CORE', FALSE );
 
 				break;
 
-				// Remove WordPress Version Number
+				/* Description: Remove WordPress version number from footer in dashboard. */
 				case 'wpv' :
 
 					add_filter( 'update_footer', '__return_empty_string', 11 );
 
 				break;
 
+				/* Description: Disable plugins individually. */
 				case 'ip' :
 
 					if ( defined( 'disable_updates_loaded' ) ) {
@@ -289,17 +278,17 @@ class Disable_Updates {
 					add_filter( 'site_transient_update_plugins', array( __CLASS__, 'remove_plugin_update_notification' ) );
 					add_filter( 'plugin_action_links', array( __CLASS__, 'plugin_block_action_link' ), 10, 4 );
 
-					// remove blocked plugins from being checked for updates at wordpress.org
+					/* Description: Remove plugins from being checked for updates at wordpress.org. */
 					add_filter( 'http_request_args', array( __CLASS__, 'http_request_args_plugins_filter' ), 5, 2 );
 
 				break;
 					
+				/* Description: Remove browser nag. */
 				case 'bnag' :
 
                     if ( ! function_exists( 'c2c_no_browser_nag' ) ) :
 
 	                function c2c_no_browser_nag() {
-		            // This is cribbed from wp_check_browser_version()
 		            $key = md5( $_SERVER['HTTP_USER_AGENT'] );
 		            add_filter( 'site_transient_browser_' . $key, '__return_null' );
 	                }
@@ -308,58 +297,45 @@ class Disable_Updates {
 					
 				break;
 
+				/* Description: Disable themes individually. */
 				case 'it':
 
 					add_filter( 'site_transient_update_themes', array( __CLASS__, 'remove_theme_update_notification' ) );
 
-					// remove blocked themes from being checked for updates at wordpress.org
+					/* Description: Remove blocked themes from being checked for updates at wordpress.org. */
 					add_filter( 'http_request_args', array( __CLASS__, 'http_request_args_themes_filter' ), 5, 2 );
 
 				break;
 
-				// Disable automatic background updates.
+				/* Description: Disable automatic background updates. */
 				case 'abup' :
 
 					wp_clear_scheduled_hook( 'wp_maybe_auto_update' );
 					
 				break;
 					
-				/* 
-				Version Added: 4.4.0
-				Last Version Edited: 4.5.0
-				Description: Disables minor core updates in the Disable Updates Manager settings.
-				*/
+				/* Description: Disables minor core updates in the Disable Updates Manager settings. */
 				case 'minor-core-updates' :
 				
-				    //TO BE ADDED
+					/* TO BE ADDED */
 				
 				break;
 					
-				/* 
-				Version Added: 4.4.0
-				Last Version Edited: 4.5.0
-				Description: Disables major core updates in the Disable Updates Manager settings.
-				*/
+				/* Description: Disables major core updates in the Disable Updates Manager settings. */
 				case 'major-core-updates' :
 				
-				    //TO BE ADDED
+				    /* TO BE ADDED */
 				
 				break;
 					
-	            /* 
-				Version Added: 4.4.0
-				Description: Disables auto translation updates in the Disable Updates Manager settings.
-				*/
+	            /* Description: Disables auto translation updates in the Disable Updates Manager settings. */
 				case 'auto-translation-updates' :
 				
 				    add_filter( 'auto_update_translation', '__return_false' );
 				
 				break;
 					
-			    /* 
-				Version Added: 4.4.0
-				Description: Disables auto core e-mails in the Disable Updates Manager settings.
-				*/
+			    /* Description: Disables auto core e-mails in the Disable Updates Manager settings. */
 				case 'auto-core-emails' :
 				
 				    add_filter( 'auto_core_update_send_email', '__return_false' );
@@ -376,7 +352,7 @@ class Disable_Updates {
 			return;
 		}
 
-		// see if there are actions to process
+		/* Description: See if there are actions to process. */
 		if ( ! isset( $_GET[ 'disable_updates' ] ) || ! isset( $_GET[ '_wpnonce' ] ) ) {
 			return;
 		}
@@ -386,13 +362,7 @@ class Disable_Updates {
 		}
 
 		$blocked = get_option( 'disable_updates_blocked' );
-		// $plugins = get_site_transient( 'update_plugins' );
 
-		// block action
-		// if ( isset( $_GET[ 'block' ] ) && isset( $plugins->response ) && isset( $plugins->response[ $_GET[ 'block' ] ] ) ) {
-		// 	$p                           = $plugins->response[ $_GET[ 'block' ] ];
-		// 	$blocked[ $_GET[ 'block' ] ] = array( 'slug' => $p->slug, 'new_version' => $p->new_version );
-		// }
 		if ( isset( $_GET[ 'block' ] ) ) {
 
 			$blocked[ $_GET[ 'block' ] ] = TRUE;
@@ -416,16 +386,6 @@ class Disable_Updates {
 
 		$blocked = (array) get_option( 'disable_updates_blocked' );
 
-		// foreach ( $blocked as $filename => $plugin ) {
-
-		// 	if ( isset( $plugins->response[ $filename ] )
-		// 		 && $plugins->response[ $filename ]->new_version == $plugin[ 'new_version' ]
-		// 	) {
-
-		// 		$plugins->disable_updates[ $filename ] = $plugins->response[ $filename ];
-		// 		unset( $plugins->response[ $filename ] );
-		// 	}
-		// }
 		foreach ( $blocked as $filename => $plugin ) {
 
 			if ( isset( $plugins->response[ $filename ] ) && $plugin == TRUE ) {
@@ -491,88 +451,68 @@ class Disable_Updates {
 		
 	}
 
-	// Disable Core Updates
+	/* Description: Disable WordPress core updates. */
 	static function disable_core_updates() {
 
-		# 2.3 to 2.7:
+		/* Description: 2.3 to 2.7. */
 		add_action( 'init', create_function( '', 'remove_action( \'init\', \'wp_version_check\' );' ), 2 );
 		add_filter( 'pre_option_update_core', '__return_null' );
 
-		# 2.8 to 3.0:
+		/* Description: 2.8 to 3.0. */
 		remove_action( 'wp_version_check', 'wp_version_check' );
 		remove_action( 'admin_init', '_maybe_update_core' );
 		add_filter( 'pre_transient_update_core', array( __CLASS__,'last_checked' ) );
 
-		# >3.0:
+		/* Description: >3.0. */
 		remove_action( 'load-update-core.php', 'wp_update_core' );
 		add_filter( 'pre_site_transient_update_core', array( __CLASS__,'last_checked' ) );
 
-		// Hide Update Notices in Admin Dashboard
+		/* Description: Hide update notices in admin dashboard. */
 		add_action( 'admin_menu', create_function( '', 'remove_action( \'admin_notices\', \'update_nag\', 3 );' ) );
 
 		wp_clear_scheduled_hook( 'wp_version_check' );
-
-		// Disable email.
+		
+		/* Description: Disable e-mails. */
 		add_filter( 'auto_core_update_send_email', '__return_false' );
-
-		// This doesn't make sense. Purpose?
-		// apply_filters( 'automatic_core_updates_send_debug_email', TRUE, $type, $core_update, $result );
 		
 	}
 
-	// Disable Plugin Updates
+	/* Description: Disable plugin updates. */
 	static function disable_plugin_updates() {
 
-		# 2.3 to 2.7:
-		// add_action( 'admin_menu', create_function( '$a', "remove_action( 'load-plugins.php', 'wp_update_plugins' );") );
-		// add_action( 'admin_init', create_function( '$a', "remove_action( 'admin_init', 'wp_update_plugins' );"), 2 );
-		// add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_update_plugins' );"), 2 );
+		/* Description: 2.3 to 2.7. */
 		add_filter( 'pre_option_update_plugins', '__return_null' );
 
-		# 2.8 to 3.0:
+		/* Description: 2.8 to 3.0. */
 		remove_action( 'load-plugins.php', 'wp_update_plugins' );
 		remove_action( 'load-update.php', 'wp_update_plugins' );
 		remove_action( 'admin_init', '_maybe_update_plugins' );
 		remove_action( 'wp_update_plugins', 'wp_update_plugins' );
 		add_filter( 'pre_transient_update_plugins', array( __CLASS__,'last_checked' ) );
 
-		# >3.0:
+		/* Description: >3.0. */
 		remove_action( 'load-update-core.php', 'wp_update_plugins' );
 		add_filter( 'pre_site_transient_update_plugins', array( __CLASS__,'last_checked' ) );
 
 		wp_clear_scheduled_hook( 'wp_update_plugins' );
-
-		// Disable Plugin Update E-mails (only works for some plugins)
-		// This doesn't make sense. Purpose?
-		// apply_filters( 'auto_plugin_update_send_email', FALSE, $type, $plugin_update, $result );
-
-		// This doesn't make sense. Purpose?
-		// apply_filters( 'automatic_plugin_updates_send_debug_email', TRUE, $type, $plugin_update, $result );
 	
 	}
 
-	// Disable Theme Updates
+	/* Description: Disable theme updates. */
 	static function disable_theme_updates() {
 
-		# 2.8 to 3.0:
+		/* Description: 2.8 to 3.0. */
 		remove_action( 'load-themes.php', 'wp_update_themes' );
 		remove_action( 'load-update.php', 'wp_update_themes' );
 		remove_action( 'admin_init', '_maybe_update_themes' );
 		remove_action( 'wp_update_themes', 'wp_update_themes' );
 		add_filter( 'pre_transient_update_themes', array( __CLASS__,'last_checked' ) );
 
-		# >3.0:
+		/* Description: >3.0. */
 		remove_action( 'load-update-core.php', 'wp_update_themes' );
 		add_filter( 'pre_site_transient_update_themes', array( __CLASS__,'last_checked' ) );
 
 		wp_clear_scheduled_hook( 'wp_update_themes' );
-
-		// Disable Theme Update E-mails (only works for some plugins)
-		// This doesn't make sense. Purpose?
-		// apply_filters( 'auto_theme_update_send_email', FALSE, $type, $theme_update, $result );
-
-		// This doesn't make sense. Purpose?
-		// apply_filters( 'automatic_theme_updates_send_debug_email', TRUE, $type, $theme_update, $result );
 	
 	}
 
@@ -673,7 +613,7 @@ class Disable_Updates {
 	
 	}
 	
-	// Help Tab
+	/* Description: Help tab. */
 	static function help_tab() {
 		global $test_help_page;
 
@@ -763,7 +703,6 @@ WordPress encourages you to update your plugins, themes, and core to make sure t
 
 CONTENT6;
 
-		// Add my_help_tab if current screen is My Admin Page
 		$screen->add_help_tab(array(
 				'id'      => 'help_tab_content_1',
 				'title'   => __('Overview'),
@@ -1026,7 +965,6 @@ CONTENT6;
 
 	}
 	
-	// Settings page (under dashboard).
 	static function display_page() {
 		?>
 		
@@ -1051,7 +989,7 @@ CONTENT6;
 							<input type="hidden" name="action" value="dum-update-options">
 							<?php wp_nonce_field( 'dum-update-options-nonce' );
 
-							/* Used to save closed metaboxes and their order */
+							/* Description: Used to save closed metaboxes and their order */
 							wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', FALSE );
 							wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', FALSE ); ?>
 
@@ -1061,7 +999,6 @@ CONTENT6;
 		 
 							<div class="postbox-container"> 
 								<?php do_meta_boxes( self::$page_hook, 'right', $status );  ?> 
-								<?php //do_meta_boxes( self::$page_hook, 'advanced', $status ); ?> 
 							</div> 
 
 							<?php settings_fields( '_disable_updates' ); ?>
@@ -1074,9 +1011,9 @@ CONTENT6;
 
 						</form>
 
-					</div><!-- #dashboard-widgets -->
+					</div>
 
-				</div><!-- .dashboard-widgets-wrap -->
+				</div>
 				<?php
 			}
 	}
