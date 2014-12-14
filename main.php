@@ -727,7 +727,7 @@ WordPress encourages you to update your plugins, themes, and core to make sure t
 
 <h3>This plugin is tested so there are no problems.</h3>
 <ul>
-<li>Tested with WordPress 4.0.1 and 4.1beta1.</li>
+<li>Tested with WordPress 4.1.</li>
 <li>Tested with popular plugins to ensure that there are no conflicts.</li>
 <li>Tested with popular themes to ensure that there are no conflicts.</li>
 </ul>
