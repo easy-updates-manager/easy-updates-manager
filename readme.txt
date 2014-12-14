@@ -61,14 +61,17 @@ A: Disable Updates Manager disables the parts of the update system depending on 
 3. Click on the configure button next to the plugin or go to the plugin settings page under the settings section in your dashboard.
 
 == Changelog ==
-= 4.7.0 =
-* Slight change in metabox order.
-* Change description in the readme.txt.
-* Works with WordPress Version 4.1
-* Added back the FAQ in the readme.txt.
-* Fixed small typo in license.txt.
-* Redid translation files.
-* Remove home submenu when removing update submenu.
+= <a href="https://github.com/Websiteguy/disable-updates-manager/pull/37">4.7.0</a> =
+* Slight change in metabox order. https://github.com/Websiteguy/disable-updates-manager/issues/47
+* Change description in the readme.txt. https://github.com/Websiteguy/disable-updates-manager/issues/41
+* Works with WordPress Version 4.1. https://github.com/Websiteguy/disable-updates-manager/issues/35 , https://github.com/Websiteguy/disable-updates-manager/issues/38
+* Added back the FAQ in the readme.txt. https://github.com/Websiteguy/disable-updates-manager/issues/45
+* Fixed small typo in license.txt. https://github.com/Websiteguy/disable-updates-manager/issues/46
+* Redid translation files. https://github.com/Websiteguy/disable-updates-manager/issues/40
+* Remove home submenu when removing update submenu. https://github.com/Websiteguy/disable-updates-manager/issues/42
+* Changed some stuff in the help tab. https://github.com/Websiteguy/disable-updates-manager/issues/43
+* Combine video tutorials into one. https://github.com/Websiteguy/disable-updates-manager/issues/39
+* Added proper file spacing in all files. https://github.com/Websiteguy/disable-updates-manager/issues/44
 
 = 4.6.0 =
 * Removed unknown character to fix debug error.
