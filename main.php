@@ -500,6 +500,9 @@ class Disable_Updates {
 
 	/* Description: Disable theme updates. */
 	static function disable_theme_updates() {
+	
+		/* Description: 2.3 to 2.7. */
+		add_filter( 'pre_option_update_themes', '__return_null' );
 
 		/* Description: 2.8 to 3.0. */
 		remove_action( 'load-themes.php', 'wp_update_themes' );
