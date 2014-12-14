@@ -1,8 +1,6 @@
 <?php
 
-/*
-	Description: Removes all data when deleted.
-*/
+/* Description: Removes all data when deleted. */
 if (!defined( 'WP_UNINSTALL_PLUGIN' )) {
     exit ();
 } 
