@@ -1,7 +1,7 @@
 === Disable Updates Manager ===
 Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com, szepe.viktor
 Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check, No Browser Nag, MPS Plugins, Manager, Disable, Updates
-Requires at least: 3.0
+Requires at least: 2.3
 Tested up to: 4.1
 Stable tag: trunk
 
@@ -72,6 +72,8 @@ A: Disable Updates Manager disables the parts of the update system depending on 
 * Changed some stuff in the help tab. https://github.com/Websiteguy/disable-updates-manager/issues/43
 * Combine video tutorials into one. https://github.com/Websiteguy/disable-updates-manager/issues/39
 * Added proper file spacing in all files. https://github.com/Websiteguy/disable-updates-manager/issues/44
+* Added proper file notes. https://github.com/Websiteguy/disable-updates-manager/issues/48
+* Add 2.3 to 2.7 disable updates to themes. https://github.com/Websiteguy/disable-updates-manager/issues/50
 
 = 4.6.0 =
 * Removed unknown character to fix debug error.
