@@ -1,7 +1,7 @@
 ;jQuery(document).ready( function($) {
 
 	/*
-	 * Add jQuery Chosen to enhance selects.
+	Description: Add jQuery Chosen to enhance selects.
 	 */
 	if ( $.fn.chosen ) {
 
