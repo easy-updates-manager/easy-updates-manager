@@ -1,8 +1,6 @@
 ;jQuery(document).ready( function($) {
 
-	/*
-	Description: Add jQuery Chosen to enhance selects.
-	 */
+	/* Add jQuery Chosen to enhance selects. */
 	if ( $.fn.chosen ) {
 
 		$('.dum-enhanced-select').chosen( { width: '100%' } );
