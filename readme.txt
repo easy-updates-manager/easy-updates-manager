@@ -1,8 +1,7 @@
 === Disable Updates Manager ===
 Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com, szepe.viktor
 Tags: Disable All Updates, Disable Plugin Updates, Disable Theme Updates, Disable WordPress Core Updates, Disable Core Updates, Disable Updates Settings, Disable Updates, Disable All WordPress Updates, Disable All WordPress Updates Settings, Disable Updates Manager, Disable All Updates Manager, Disable Updates Manager Settings, Update Check, No Browser Nag, MPS Plugins, Manager, Disable, Updates
-Requires at least: 3.0
-Tested up to: 4.0.1 and 4.1beta1
+Tested up to: 4.1
 Stable tag: trunk
 
 A configurable plugin that disables updates for you. Easy, clean and helpful + Great Support.  
@@ -11,21 +10,23 @@ A configurable plugin that disables updates for you. Easy, clean and helpful + G
 This plugin is configurable! Check the type of update(s) you would like to disable in the settings page along with other helpful settings. Watch the video tutorial below for more information.
 
 = Features Include =
-<ol>
-<li>Disables plugins and themes individually.</li>
-<li>Disables WordPress core updates.</li>
-<li>Disable automatic background updates.</li>
-<li>And lots of other settings.</li>
-</ol> 
+<ul>
+<ol>Disable Update Manager is the first plugin to offer a feature to both disable plugins and themes individually.</ol>
+<ol>Disable Updates Manager makes disabling all core, theme, and/or plugin updates easy. Just check the checkboxes and save the settings.</ol>
+<ol>Disable Updates Manager includes lots of other settings to disable background updates and lots of other things.</ol>
+</ul> 
 
 = Blog =
 <a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
 
+= Survey =
+Take the feedback survey to give your feedback on this plugin. <a href="http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck">http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck</a>
+
 = There are several ways you can get involved to help make Disable Updates Manager better =
 <ol>
-<li>Report Bugs: If you find a bug, error or other problem, please report it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or in the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
-<li>Suggest New Features: Have an awesome new feature that you would like to be added? Please share it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
-<li>Issue Pull Requests: The easiest way to get involved is to help out on issues already reported in <a href="https://github.com/Websiteguy/disable-updates-manager/compare">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>.</li>
+<li>=Report Bugs:= If you find a bug, error or other problem, please report it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or in the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
+<li>=Suggest New Features:= Have an awesome new feature that you would like to be added? Please share it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
+<li>=Reply to Support:= The easiest way to get involved is to help out on issues already reported in <a href="https://github.com/Websiteguy/disable-updates-manager/compare">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>.</li>
 </ol>
 
 = Video Tutorials =
@@ -42,6 +43,13 @@ This plugin is configurable! Check the type of update(s) you would like to disab
 5. Screen Options
 6. Help Tab
 
+== FAQ ==
+<strong>Q: What is a safe way to update the WordPress Core if I ever need to?</strong>
+A: Check out this post on our blog. http://mpswp.wordpress.com/2014/11/26/great-steps-to-follow-before-updating-your-wordpress-core/
+
+<strong>Q: If I have an automatic plugin updating plugin installed at the same time as disabling plugin updates, what will happen?</strong>
+A: Disable Updates Manager disables the parts of the update system depending on which settings update have checked. If you have the Disable All Plugin Updates setting checked at the same time as having a automatic plugin update plugin installed, then Disable Updates Manager overrides it to disable updates no matter what.
+
 == Installation ==
 <strong>Installing Disable Updates Manager</strong>
 
@@ -52,6 +60,20 @@ This plugin is configurable! Check the type of update(s) you would like to disab
 3. Click on the configure button next to the plugin or go to the plugin settings page under the settings section in your dashboard.
 
 == Changelog ==
+= <a href="https://github.com/Websiteguy/disable-updates-manager/pull/37">4.7.0</a> =
+* Slight change in metabox order. https://github.com/Websiteguy/disable-updates-manager/issues/47
+* Change description in the readme.txt. https://github.com/Websiteguy/disable-updates-manager/issues/41
+* Works with WordPress Version 4.1. https://github.com/Websiteguy/disable-updates-manager/issues/35 , https://github.com/Websiteguy/disable-updates-manager/issues/38
+* Added back the FAQ in the readme.txt. https://github.com/Websiteguy/disable-updates-manager/issues/45
+* Fixed small typo in license.txt. https://github.com/Websiteguy/disable-updates-manager/issues/46
+* Redid translation files. https://github.com/Websiteguy/disable-updates-manager/issues/40
+* Remove home submenu when removing update submenu. https://github.com/Websiteguy/disable-updates-manager/issues/42
+* Changed some stuff in the help tab. https://github.com/Websiteguy/disable-updates-manager/issues/43
+* Combine video tutorials into one. https://github.com/Websiteguy/disable-updates-manager/issues/39
+* Added proper file spacing in all files. https://github.com/Websiteguy/disable-updates-manager/issues/44
+* Added proper file notes. https://github.com/Websiteguy/disable-updates-manager/issues/48
+* Add 2.3 to 2.7 disable updates to themes. https://github.com/Websiteguy/disable-updates-manager/issues/50
+
 = 4.6.0 =
 * Removed unknown character to fix debug error.
 * Updated screenshots.

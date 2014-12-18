@@ -1,4 +1,4 @@
-/* Settings Page - Setting Tooltips */
+/* Description: Setting Tooltips */
 .showonhover {
     position: relative;
 }
@@ -34,7 +34,7 @@ a.viewdescription:hover {
     color: #FFF;
 }
 
-/* Settings Page - Tutorial Columns */
+/* Description: Tutorial Columns */
 #acolumn1 {
     width: 40%;
     padding: 0 5pt 0 0;
@@ -47,7 +47,7 @@ a.viewdescription:hover {
     float: right;
 }
 
-/* Settings Page - Chosen Settings */
+/* Description: Chosen Settings */
 select.dum-enhanced-select {
     width: 100%;
 }
