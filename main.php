@@ -3,12 +3,12 @@
 	@package Disable Updates Manager
 	@author MPS Plugins
 	@email mpsplugins@gmail.com
-	@version 4.7.0
+	@version 4.8.0
 */
 /*
 	Plugin Name: Disable Updates Manager
 	Plugin URI: http://www.mpswp.wordpress.com
-	Version: 4.7.0
+	Version: 4.8.0
 	Description: A configurable plugin that disables updates for you. Easy, clean and helpful.
 	Author: MPS Plugins
 	Author URI: http://www.mpswp.wordpress.com
@@ -38,7 +38,7 @@
 class Disable_Updates {
 
 	/* Description: Define version. */
-	const VERSION = '4.7.0';
+	const VERSION = '4.8.0';
 
 	private static $page_hook = '';
 
