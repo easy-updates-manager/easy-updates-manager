@@ -60,7 +60,7 @@ A: Disable Updates Manager disables the parts of the update system depending on 
 3. Click on the configure button next to the plugin or go to the plugin settings page under the settings section in your dashboard.
 
 == Changelog ==
-= <a href="">4.8.0</a>
+= <a href="https://github.com/Websiteguy/disable-updates-manager/pull/54">4.8.0</a>
 
 = <a href="https://github.com/Websiteguy/disable-updates-manager/pull/37">4.7.0</a> =
 * Slight change in metabox order. https://github.com/Websiteguy/disable-updates-manager/issues/47
