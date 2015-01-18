@@ -61,6 +61,7 @@ A: Disable Updates Manager disables the parts of the update system depending on 
 
 == Changelog ==
 = <a href="https://github.com/Websiteguy/disable-updates-manager/pull/54">4.8.0</a>
+* Modified tags in readme.txt. https://github.com/Websiteguy/disable-updates-manager/issues/52
 
 = <a href="https://github.com/Websiteguy/disable-updates-manager/pull/37">4.7.0</a> =
 * Slight change in metabox order. https://github.com/Websiteguy/disable-updates-manager/issues/47
