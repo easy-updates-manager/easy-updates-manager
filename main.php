@@ -525,11 +525,11 @@ class Disable_Updates {
 
 		if ( $blocked !== FALSE && array_key_exists( $plugin_file, $blocked ) ) {
 
-			$actions[] = '<a class="delete" href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $plugin_file . '"><small>Updates Blocked</a>';
+			$actions[] = '<a class="delete" href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&unblock=' . $plugin_file . '"><small>Blocked</a></small>';
 
 		} else {
 
-			$actions[] = '<a class="delete" href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $plugin_file . '"><small>Updates Allowed</small></a>';
+			$actions[] = '<a class="delete" href="plugins.php?_wpnonce=' . wp_create_nonce( 'disable_updates' ) . '&disable_updates&block=' . $plugin_file . '"><small></small></a>';
 		}
 
 		return $actions;
