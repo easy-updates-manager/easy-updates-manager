@@ -43,7 +43,7 @@ Take the feedback survey to give your feedback on this plugin. <a href="http://s
 5. Screen Options
 6. Help Tab
 
-== FAQ ==
+== Frequently Asked Questions ==
 <strong>Q: What is a safe way to update the WordPress Core if I ever need to?</strong>
 A: Check out this post on our blog. http://mpswp.wordpress.com/2014/11/26/great-steps-to-follow-before-updating-your-wordpress-core/
 
