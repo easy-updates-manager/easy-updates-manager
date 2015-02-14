@@ -1,5 +1,5 @@
 === Disable Updates Manager ===
-Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com, szepe.viktor
+Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com
 Tags: Disable All Updates, Disable Updates, Disable Updates Manager, Updates, Update, Disable Plugins, Disable Plugin Updates, Disable All Plugin Updates, Disable Plugins Individually, Disable Themes, Disable Theme Updates, Disable All Theme Updates, Disable Themes Individually, Disable Core, Disable WordPress Core, Disable Core Updates, Disable WordPress Core Updates, Disable All Core Updates, Disable All WordPress Core Updates, Settings, Disable All WordPress Updates, MPS Plugin, kidsguide, Manager, Disable
 Tested up to: 4.1
 Stable tag: trunk
@@ -11,16 +11,10 @@ This plugin is configurable! Check the type of update(s) you would like to disab
 
 = Features Include =
 <ul>
-<ol>Disable Update Manager is the first plugin to offer a feature to both disable plugins and themes individually.</ol>
-<ol>Disable Updates Manager makes disabling all core, theme, and/or plugin updates easy. Just check the checkboxes and save the settings.</ol>
-<ol>Disable Updates Manager includes lots of other settings to disable background updates and lots of other things.</ol>
+<ol>Disable any plugin or theme individually.</ol>
+<ol>Disable all themes, plugins, or the WordPress core.</ol>
+<ol>Disable background updates, updates e-mails, and lots of other things.</ol>
 </ul> 
-
-= Blog =
-<a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
-
-= Survey =
-Take the feedback survey to give your feedback on this plugin. <a href="http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck">http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck</a>
 
 = There are several ways you can get involved to help make Disable Updates Manager better =
 <ol>
@@ -43,6 +37,13 @@ Take the feedback survey to give your feedback on this plugin. <a href="http://s
 5. Screen Options
 6. Help Tab
 
+== Other Notes ==
+= Blog =
+<a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
+
+= Survey =
+Take the feedback survey to give your feedback on this plugin. <a href="http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck">http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck</a>
+
 == Frequently Asked Questions ==
 <strong>Q: What is a safe way to update the WordPress Core if I ever need to?</strong>
 A: Check out this post on our blog. http://mpswp.wordpress.com/2014/11/26/great-steps-to-follow-before-updating-your-wordpress-core/
@@ -62,6 +63,7 @@ A: Disable Updates Manager disables the parts of the update system depending on 
 == Changelog ==
 = <a href="https://github.com/Websiteguy/disable-updates-manager/pull/54">4.8.0</a>
 * Modified tags in readme.txt. https://github.com/Websiteguy/disable-updates-manager/issues/52
+* Modified descriptions in readmne.txt.
 
 = <a href="https://github.com/Websiteguy/disable-updates-manager/pull/37">4.7.0</a> =
 * Slight change in metabox order. https://github.com/Websiteguy/disable-updates-manager/issues/47
