@@ -1,69 +1,24 @@
 === Disable Updates Manager ===
-Contributors: MPS Plugins, kidsguide, shazahm1@hotmail.com
+Contributors: MPS Plugins, kidsguide, ronalfy
 Tags: Disable All Updates, Disable Updates, Disable Updates Manager, Updates, Update, Disable Plugins, Disable Plugin Updates, Disable All Plugin Updates, Disable Plugins Individually, Disable Themes, Disable Theme Updates, Disable All Theme Updates, Disable Themes Individually, Disable Core, Disable WordPress Core, Disable Core Updates, Disable WordPress Core Updates, Disable All Core Updates, Disable All WordPress Core Updates, Settings, Disable All WordPress Updates, MPS Plugin, kidsguide, Manager, Disable
-Tested up to: 4.1
+Tested up to: 4.1.1
 Stable tag: trunk
 
-A configurable plugin that disables updates for you. Easy, clean and helpful + Great Support.  
-
 == Description ==
-This plugin is configurable! Check the type of update(s) you would like to disable in the settings page along with other helpful settings. Watch the video tutorial below for more information.
-
-= Features Include =
-<ul>
-<ol>Disable any plugin or theme individually.</ol>
-<ol>Disable all themes, plugins, or the WordPress core.</ol>
-<ol>Disable background updates, updates e-mails, and lots of other things.</ol>
-</ul> 
-
-= There are several ways you can get involved to help make Disable Updates Manager better =
-<ol>
-<li>=Report Bugs:= If you find a bug, error or other problem, please report it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or in the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
-<li>=Suggest New Features:= Have an awesome new feature that you would like to be added? Please share it on <a href="https://github.com/Websiteguy/disable-updates-manager/issues/new">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>!</li>
-<li>=Reply to Support:= The easiest way to get involved is to help out on issues already reported in <a href="https://github.com/Websiteguy/disable-updates-manager/compare">GitHub</a> or the <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">WordPress Support Forum</a>.</li>
-</ol>
 
 = Video Tutorials =
-[youtube https://www.youtube.com/watch?v=VYEQg-hZd58]
-[youtube https://www.youtube.com/watch?v=mYznDVsbVBk]
-[youtube https://www.youtube.com/watch?v=1R-be48AvrE]
-[youtube https://www.youtube.com/watch?v=Kd4s3EOcUtw]
 
 == Screenshots ==
-1. Disable Updates Globally
-2. Other Settings
-3. Disable Plugin Updates
-4. Disable Theme Updates 
-5. Screen Options
-6. Help Tab
 
 == Other Notes ==
-= Blog =
-<a href="http://www.mpswp.wordpress.com">Check our blog for more information about Disable Updates Manager</a>.
-
-= Survey =
-Take the feedback survey to give your feedback on this plugin. <a href="http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck">http://sparrowkids2.polldaddy.com/s/disable-updates-manager-feedbeck</a>
 
 == Frequently Asked Questions ==
-<strong>Q: What is a safe way to update the WordPress Core if I ever need to?</strong>
-A: Check out this post on our blog. http://mpswp.wordpress.com/2014/11/26/great-steps-to-follow-before-updating-your-wordpress-core/
-
-<strong>Q: If I have an automatic plugin updating plugin installed at the same time as disabling plugin updates, what will happen?</strong>
-A: Disable Updates Manager disables the parts of the update system depending on which settings update have checked. If you have the Disable All Plugin Updates setting checked at the same time as having a automatic plugin update plugin installed, then Disable Updates Manager overrides it to disable updates no matter what.
 
 == Installation ==
-<strong>Installing Disable Updates Manager</strong>
-
-1. Install Disable Updates Manager either via the WordPress.org plugin page and uploading the files to your FTP manually, or going to the and new plugins section in your dashboard.
-
-2. Activate Disable Updates Manager by MPS Plugins.
-
-3. Click on the configure button next to the plugin or go to the plugin settings page under the settings section in your dashboard.
 
 == Changelog ==
-= <a href="https://github.com/Websiteguy/disable-updates-manager/pull/54">4.8.0</a>
-* Modified tags in readme.txt. https://github.com/Websiteguy/disable-updates-manager/issues/52
-* Modified descriptions in readmne.txt.
+= 5.0 =
+* New contributor!
 
 = <a href="https://github.com/Websiteguy/disable-updates-manager/pull/37">4.7.0</a> =
 * Slight change in metabox order. https://github.com/Websiteguy/disable-updates-manager/issues/47
