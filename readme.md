@@ -1,2 +1,2 @@
-# Updates Manager
+# Easy Updates Manager
 Coming Soon
