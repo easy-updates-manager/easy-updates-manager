@@ -25,6 +25,12 @@ class MPSUM_Disable_Updates {
 			add_action( 'wp_network_dashboard_setup', array( __CLASS__, 'disable_browser_nag' ), 9 );
 		}
 		
+		//Disable All Updates
+		if ( isset( $core_options[ 'all_updates' ] ) && 'off' == $core_options[ 'all_updates' ] ) {
+			new MPSUM_Disable_Updates_All();
+			return;	
+		}
+		
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
 		add_filter( 'site_transient_update_themes', array( $this, 'disable_theme_notifications' ), 50 );
