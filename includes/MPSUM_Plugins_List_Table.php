@@ -8,6 +8,8 @@
  * @access private
  */
 class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
+	
+	private $tab = '';
 
 	/**
 	 * Constructor.
@@ -27,10 +29,13 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 			'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
 		) );
 		
+		$this->tab = isset( $args[ 'tab' ] ) ? $args[ 'tab' ] : '';
+		
 
 		$status = 'all';
-		if ( isset( $_REQUEST['plugin_status'] ) && in_array( $_REQUEST['plugin_status'], array( 'active', 'inactive', 'recently_activated', 'upgrade', 'mustuse', 'dropins', 'search' ) ) )
+		if ( isset( $_REQUEST['plugin_status'] ) && in_array( $_REQUEST['plugin_status'], array( 'update_disabled', 'update_enabled' ) ) ) {
 			$status = $_REQUEST['plugin_status'];
+		}
 
 		if ( isset($_REQUEST['s']) )
 			$_SERVER['REQUEST_URI'] = add_query_arg('s', wp_unslash($_REQUEST['s']) );
@@ -48,8 +53,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 	public function prepare_items() {
 		
-		global $orderby, $order;
-		$status = 'all';
+		global $orderby, $order, $totals, $status;
 		$order = 'DESC';
 		$page = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : 1;
 		$orderby = 'Name';
@@ -64,14 +68,17 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		 * @param array $plugins An array of plugins to display in the list table.
 		 */
 		$plugins = array(
-			'all' => apply_filters( 'all_plugins', get_plugins() )
+			'all' => apply_filters( 'all_plugins', get_plugins() ),
+			'update_enabled' => array(),
+			'update_disabled' => array()
 		);
 
 		$screen = $this->screen;
 
 		
 		$plugin_info = get_site_transient( 'update_plugins' );
-
+		
+		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
 		foreach ( (array) $plugins['all'] as $plugin_file => $plugin_data ) {
 			// Extra info if known. array_merge() ensures $plugin_data has precedence if keys collide.
 			if ( isset( $plugin_info->response[ $plugin_file ] ) ) {
@@ -79,11 +86,19 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 			} elseif ( isset( $plugin_info->no_update[ $plugin_file ] ) ) {
 				$plugins['all'][ $plugin_file ] = $plugin_data = array_merge( (array) $plugin_info->no_update[ $plugin_file ], $plugin_data );
 			}
+			
+			
+			if ( false !== $key = array_search( $plugin_file, $plugin_options ) ) {
+				$plugins[ 'update_disabled' ][ $plugin_file ] = $plugin_data;
+			} else {
+				$plugins[ 'update_enabled' ][ $plugin_file ] = $plugin_data;
+			}
 		}
 
 		$totals = array();
 		foreach ( $plugins as $type => $list )
 			$totals[ $type ] = count( $list );
+			
 
 		$this->items = array();
 		foreach ( $plugins[ $status ] as $plugin_file => $plugin_data ) {
@@ -183,29 +198,22 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 				case 'all':
 					$text = _nx( 'All <span class="count">(%s)</span>', 'All <span class="count">(%s)</span>', $count, 'plugins' );
 					break;
-				case 'active':
-					$text = _n( 'Active <span class="count">(%s)</span>', 'Active <span class="count">(%s)</span>', $count );
+				case 'update_disabled':
+					$text = _n( 'Updates Disabled <span class="count">(%s)</span>', 'Updates Disabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
-				case 'recently_activated':
-					$text = _n( 'Recently Active <span class="count">(%s)</span>', 'Recently Active <span class="count">(%s)</span>', $count );
-					break;
-				case 'inactive':
-					$text = _n( 'Inactive <span class="count">(%s)</span>', 'Inactive <span class="count">(%s)</span>', $count );
-					break;
-				case 'mustuse':
-					$text = _n( 'Must-Use <span class="count">(%s)</span>', 'Must-Use <span class="count">(%s)</span>', $count );
-					break;
-				case 'dropins':
-					$text = _n( 'Drop-ins <span class="count">(%s)</span>', 'Drop-ins <span class="count">(%s)</span>', $count );
-					break;
-				case 'upgrade':
-					$text = _n( 'Update Available <span class="count">(%s)</span>', 'Update Available <span class="count">(%s)</span>', $count );
+				case 'update_enabled':
+					$text = _n( 'Updates Enabled <span class="count">(%s)</span>', 'Updates Enabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
 			}
 
 			if ( 'search' != $type ) {
+				$plugin_url = MPSUM_Admin::get_url();
+				$query_args = array(
+					'tab' => $this->tab,
+					'plugin_status' => $type
+				);
 				$status_links[$type] = sprintf( "<a href='%s' %s>%s</a>",
-					add_query_arg('plugin_status', $type, 'plugins.php'),
+					add_query_arg( $query_args, $plugin_url ),
 					( $type == $status ) ? ' class="current"' : '',
 					sprintf( $text, number_format_i18n( $count ) )
 					);
