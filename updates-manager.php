@@ -1,18 +1,17 @@
 <?php
 /*
 Plugin Name: Updates Manager
-Plugin URI: http://wordpress.org/extend/plugins/updates-manager
+Plugin URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Description: Manage WordPress Updates - Works with Multisite
 Author: MPS Plugins, kidsguide, ronalfy
 Version: 1.0
 Requires at least: 4.0
-Author URI: http://www.ronalfy.com
+Author URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Contributors: MPS Plugins, kidsguide, ronalfy
 Text Domain: stops-core-theme-and-plugin-updates
 Domain Path: /languages
 Updates: true
 Network: true
-Some code from:  https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/, http://www.skyverge.com/blog/add-custom-bulk-action/, https://wordpress.org/plugins/custom-list-table-example/
 */ 
 class MPSUM_Updates_Manager {
 	private static $instance = null;
