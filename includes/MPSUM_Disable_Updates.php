@@ -10,7 +10,6 @@ class MPSUM_Disable_Updates {
 	} //end get_instance	
 	
 	private function __construct() {
-		add_action( 'init', array( $this, 'init' ), 9 );
 				
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		
@@ -85,6 +84,15 @@ class MPSUM_Disable_Updates {
 			add_filter( 'automatic_updates_send_debug_email', '__return_false', 50 );
 		}
 		
+		//Enable Plugin Auto-updates
+		if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'on' == $core_options[ 'automatic_plugin_updates' ] ) {
+			add_filter( 'auto_update_plugin',  array( $this, 'automatic_updates_plugins' ), 10, 2 );
+		}
+		
+		//Enable Theme Auto-updates
+		if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'on' == $core_options[ 'automatic_theme_updates' ] ) {
+			add_filter( 'auto_update_theme',  array( $this, 'automatic_updates_theme' ), 10, 2 );
+		}
 				
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
@@ -98,19 +106,20 @@ class MPSUM_Disable_Updates {
 		remove_meta_box( 'dashboard_browser_nag', 'dashboard', 'normal' );
 	}
 	
-	public function init() {
-		
-		
+	public function automatic_updates_plugins( $update, $item ) {
+		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
+		if ( in_array( $item->plugin, $plugin_options ) ) {
+			return false;
+		}
+		return true;
 	}
 	
-	public function last_checked_now( $transient ) {
-		include_once ABSPATH . WPINC . '/version.php';
-		$current = new stdClass;
-		$current->updates = array();
-		$current->version_checked = $wp_version;
-		$current->last_checked = time();
-		
-		return $current;
+	public function automatic_updates_theme( $update, $item ) {
+		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
+		if ( in_array( $item->theme , $theme_options) ) {
+			return false;
+		}
+		return true;
 	}
 	
 	public function disable_plugin_notifications( $plugins ) {
