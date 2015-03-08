@@ -66,6 +66,14 @@ class MPSUM_Disable_Updates {
 		} elseif( isset( $core_options[ 'automatic_minor_updates' ] ) && 'off' == $core_options[ 'automatic_minor_updates' ] ) {
 			add_filter( 'allow_minor_auto_core_updates', '__return_false', 50 );
 		}
+		
+		//Enable Translation Updates
+		if ( isset( $core_options[ 'automatic_translation_updates' ] ) && 'on' == $core_options[ 'automatic_translation_updates' ] ) {
+			add_filter( 'auto_update_translation', '__return_true', 50 );
+		} elseif( isset( $core_options[ 'automatic_translation_updates' ] ) && 'off' == $core_options[ 'automatic_translation_updates' ] ) {
+			add_filter( 'auto_update_translation', '__return_false', 50 );
+		}
+		
 				
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
