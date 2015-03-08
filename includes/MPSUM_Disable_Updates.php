@@ -74,6 +74,17 @@ class MPSUM_Disable_Updates {
 			add_filter( 'auto_update_translation', '__return_false', 50 );
 		}
 		
+		//Disable the Update Notification
+		if ( isset( $core_options[ 'notification_core_update_emails' ] ) && 'on' == $core_options[ 'notification_core_update_emails' ] ) {
+			add_filter( 'auto_core_update_send_email', '__return_true', 50 );
+			add_filter( 'send_core_update_notification_email', '__return_true', 50 );
+			add_filter( 'automatic_updates_send_debug_email', '__return_true', 50 );
+		} elseif( isset( $core_options[ 'notification_core_update_emails' ] ) && 'off' == $core_options[ 'notification_core_update_emails' ] ) {
+			add_filter( 'auto_core_update_send_email', '__return_false', 50 );
+			add_filter( 'send_core_update_notification_email', '__return_false', 50 );
+			add_filter( 'automatic_updates_send_debug_email', '__return_false', 50 );
+		}
+		
 				
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
