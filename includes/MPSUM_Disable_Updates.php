@@ -20,8 +20,8 @@ class MPSUM_Disable_Updates {
 		
 		//Disable Browser Nag
 		if ( isset( $core_options[ 'misc_browser_nag' ] ) && 'off' === $core_options[ 'misc_browser_nag' ] ) {
-			add_action( 'wp_dashboard_setup', array( __CLASS__, 'disable_browser_nag' ), 9 );
-			add_action( 'wp_network_dashboard_setup', array( __CLASS__, 'disable_browser_nag' ), 9 );
+			add_action( 'wp_dashboard_setup', array( $this, 'disable_browser_nag' ), 9 );
+			add_action( 'wp_network_dashboard_setup', array( $this, 'disable_browser_nag' ), 9 );
 		}
 		
 		//Disable All Updates
@@ -93,7 +93,7 @@ class MPSUM_Disable_Updates {
 		if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'on' == $core_options[ 'automatic_theme_updates' ] ) {
 			add_filter( 'auto_update_theme',  array( $this, 'automatic_updates_theme' ), 10, 2 );
 		}
-				
+						
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
 		add_filter( 'site_transient_update_themes', array( $this, 'disable_theme_notifications' ), 50 );
