@@ -66,7 +66,7 @@ class MPSUM_Admin {
 			array(
 				array(
 					'url' => add_query_arg( array( 'tab' => 'main' ), self::get_url() ), /* URL to the tab */
-					'label' => esc_html__( 'Core Options', 'stops-core-theme-and-plugin-updates' ),
+					'label' => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
 					'get' => 'main' /*$_GET variable*/,
 					'action' => 'mpsum_admin_tab_main' /* action variable in do_action */
 				),
