@@ -1,0 +1,70 @@
+<?php
+class MPSUM_Disable_Updates {
+	private static $instance = null;
+	
+	//Singleton
+	public static function run() {
+		if ( null == self::$instance ) {
+			self::$instance = new self;
+		}
+	} //end get_instance	
+	
+	private function __construct() {
+		add_action( 'init', array( $this, 'init' ), 9 );
+	} //end constructor
+	
+	public function init() {
+		
+		//Prevent updates on themes/plugins
+		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
+		add_filter( 'site_transient_update_themes', array( $this, 'disable_theme_notifications' ), 50 );
+		add_filter( 'http_request_args', array( $this, 'http_request_args_remove_plugins_themes' ), 5, 2 );
+	}
+	
+	public function disable_plugin_notifications( $plugins ) {
+		if ( !isset( $plugins->response ) || empty( $plugins->response ) ) return $plugins;
+		
+		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
+		foreach( $plugin_options as $plugin ) {
+			unset( $plugins->response[ $plugin ] );
+		}
+		return $plugins;
+	}
+	
+	public function disable_theme_notifications( $themes ) {
+		if ( !isset( $themes->response ) || empty( $themes->response ) ) return $themes;
+		
+		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
+		foreach( $theme_options as $theme ) {
+			unset( $themes->response[ $theme ] );
+		}
+		return $themes;
+	}
+	
+	public function http_request_args_remove_plugins_themes( $r, $url ) {
+		if ( 0 !== strpos( $url, 'https://api.wordpress.org/plugins/update-check/1.1/' ) ) return $r;
+		
+		if ( isset( $r[ 'body' ][ 'plugins' ] ) ) {
+			$r_plugins = json_decode( $r[ 'body' ][ 'plugins' ], true );
+			$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
+			foreach( $plugin_options as $plugin ) {
+				unset( $r_plugins[ $plugin ] );
+				if ( false !== $key = array_search( $plugin, $r_plugins[ 'active' ] ) ) {
+					unset( $r_plugins[ 'active' ][ $key ] );
+					$r_plugins[ 'active' ] = array_values( $r_plugins[ 'active' ] );
+				}
+			}
+			$r[ 'body' ][ 'plugins' ] = json_encode( $r_plugins );
+		}
+		if ( isset( $r[ 'body' ][ 'themes' ] ) ) {
+			$r_themes = json_decode( $r[ 'body' ][ 'themes' ], true );
+			$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
+			foreach( $theme_options as $theme ) {
+				unset( $r_themes[ $theme ] );
+			}
+			$r[ 'body' ][ 'themes' ] = json_encode( $r_themes );
+		}
+		return $r;
+	}
+	
+}
