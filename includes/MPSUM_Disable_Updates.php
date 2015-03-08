@@ -31,6 +31,11 @@ class MPSUM_Disable_Updates {
 			return;	
 		}
 		
+		//Disable Plugin Updates
+		if ( isset( $core_options[ 'plugin_updates' ] ) && 'off' == $core_options[ 'plugin_updates' ] ) {
+			new MPSUM_Disable_Updates_Plugins();
+		}
+		
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
 		add_filter( 'site_transient_update_themes', array( $this, 'disable_theme_notifications' ), 50 );
