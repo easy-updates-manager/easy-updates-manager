@@ -43,6 +43,7 @@ class MPSUM_Admin {
 		
 		new MPSUM_Admin_Plugins( self::get_slug() );
 		new MPSUM_Admin_Themes( self::get_slug() );
+		new MPSUM_Admin_Core( self::get_slug() );
 		
 	}	
 	
