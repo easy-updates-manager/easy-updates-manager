@@ -11,14 +11,45 @@ class MPSUM_Disable_Updates {
 	
 	private function __construct() {
 		add_action( 'init', array( $this, 'init' ), 9 );
-	} //end constructor
-	
-	public function init() {
+		
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		
+		//Disable Footer Nag
+		if ( isset( $core_options[ 'misc_wp_footer' ] ) && 'off' === $core_options[ 'misc_wp_footer' ] ) {
+			add_filter( 'update_footer', '__return_empty_string', 11 );
+		}
+		
+		//Disable Browser Nag
+		if ( isset( $core_options[ 'misc_browser_nag' ] ) && 'off' === $core_options[ 'misc_browser_nag' ] ) {
+			add_action( 'wp_dashboard_setup', array( __CLASS__, 'disable_browser_nag' ), 9 );
+			add_action( 'wp_network_dashboard_setup', array( __CLASS__, 'disable_browser_nag' ), 9 );
+		}
 		
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
 		add_filter( 'site_transient_update_themes', array( $this, 'disable_theme_notifications' ), 50 );
 		add_filter( 'http_request_args', array( $this, 'http_request_args_remove_plugins_themes' ), 5, 2 );
+		
+	} //end constructor
+	
+	public function disable_browser_nag() {
+		remove_meta_box( 'dashboard_browser_nag', 'dashboard-network', 'normal' );
+		remove_meta_box( 'dashboard_browser_nag', 'dashboard', 'normal' );
+	}
+	
+	public function init() {
+		
+		
+	}
+	
+	public function last_checked_now( $transient ) {
+		include_once ABSPATH . WPINC . '/version.php';
+		$current = new stdClass;
+		$current->updates = array();
+		$current->version_checked = $wp_version;
+		$current->last_checked = time();
+		
+		return $current;
 	}
 	
 	public function disable_plugin_notifications( $plugins ) {
