@@ -12,6 +12,7 @@ class MPSUM_Admin_Core {
 	private function get_defaults() {
 		return array(
 			'all_updates' => 'on',
+			'core_updates' => 'on',
 			'plugin_updates' => 'on',
 			'theme_updates' => 'on',
 			'automatic_development_updates' => 'off',
@@ -69,7 +70,6 @@ class MPSUM_Admin_Core {
 			<?php
 		}
 		
-		
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Global Settings', 'stops-core-theme-and-plugin-updates' ); ?></h3>
@@ -79,7 +79,15 @@ class MPSUM_Admin_Core {
 				<td>
 					<input type="radio" name="options[all_updates]" value="on" id="all_updates_on" <?php checked( 'on', $options[ 'all_updates' ] ); ?> />&nbsp;<label for="all_updates_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="radio" name="options[all_updates]" value="off" id="all_updates_off" <?php checked( 'off', $options[ 'all_updates' ] ); ?> />&nbsp;<label for="all_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-					<p class="description"><?php esc_html_e( 'If enabled, this will override the plugin and theme options below as well as the automatic update settings.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+					<p class="description"><?php esc_html_e( 'If enabled, this will override all settings.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'WordPress Core Updates', 'stops-core-theme-and-plugin-updates' ); ?></th>
+				<td>
+					<input type="radio" name="options[core_updates]" value="on" id="core_updates_on" <?php checked( 'on', $options[ 'core_updates' ] ); ?> />&nbsp;<label for="core_updates_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="radio" name="options[core_updates]" value="off" id="core_updates_off" <?php checked( 'off', $options[ 'core_updates' ] ); ?> />&nbsp;<label for="core_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Prevents WordPress from showing it needs to be updated.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
 			</tr>
 			<tr>
@@ -103,7 +111,7 @@ class MPSUM_Admin_Core {
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Major Releases', 'stops-core-theme-and-plugin-updates' ); ?></th>
 				<td>
-					<input type="radio" name="options[automatic_major_updates]" value="on" id="automatic_major_on" <?php checked( 'on', $options[ 'major_updates' ] ); ?> />&nbsp;<label for="automatic_automatic_major_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="radio" name="options[automatic_major_updates]" value="on" id="automatic_major_on" <?php checked( 'on', $options[ 'automatic_major_updates' ] ); ?> />&nbsp;<label for="automatic_major_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="radio" name="options[automatic_major_updates]" value="off" id="automatic_major_off" <?php checked( 'off', $options[ 'automatic_major_updates' ] ); ?> />&nbsp;<label for="automatic_major_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
 					<p class="description"><?php esc_html_e( 'Automatically update to major releases (e.g., 4.1, 4.2, 4.3).', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>

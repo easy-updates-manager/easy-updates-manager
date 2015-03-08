@@ -11,7 +11,7 @@ class MPSUM_Disable_Updates {
 	
 	private function __construct() {
 		add_action( 'init', array( $this, 'init' ), 9 );
-		
+				
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		
 		//Disable Footer Nag
@@ -31,11 +31,42 @@ class MPSUM_Disable_Updates {
 			return;	
 		}
 		
+		//Disable WordPress Updates
+		if ( isset( $core_options[ 'core_updates' ] ) && 'off' == $core_options[ 'core_updates' ] ) {
+			new MPSUM_Disable_Updates_WordPress();
+		}
+		
 		//Disable Plugin Updates
 		if ( isset( $core_options[ 'plugin_updates' ] ) && 'off' == $core_options[ 'plugin_updates' ] ) {
 			new MPSUM_Disable_Updates_Plugins();
 		}
 		
+		//Disable Theme Updates
+		if ( isset( $core_options[ 'theme_updates' ] ) && 'off' == $core_options[ 'theme_updates' ] ) {
+			new MPSUM_Disable_Updates_Themes();
+		}
+		
+		//Enable Development Updates
+		if ( isset( $core_options[ 'automatic_development_updates' ] ) && 'on' == $core_options[ 'automatic_development_updates' ] ) {
+			add_filter( 'allow_dev_auto_core_updates', '__return_true', 50 );
+		} elseif( isset( $core_options[ 'automatic_development_updates' ] ) && 'off' == $core_options[ 'automatic_development_updates' ] ) {
+			add_filter( 'allow_dev_auto_core_updates', '__return_false', 50 );
+		}
+		
+		//Enable Core Major Updates
+		if ( isset( $core_options[ 'automatic_major_updates' ] ) && 'on' == $core_options[ 'automatic_major_updates' ] ) {
+			add_filter( 'allow_major_auto_core_updates', '__return_true', 50 );
+		} elseif( isset( $core_options[ 'automatic_major_updates' ] ) && 'off' == $core_options[ 'automatic_major_updates' ] ) {
+			add_filter( 'allow_major_auto_core_updates', '__return_false', 50 );
+		}
+		
+		//Enable Core Minor Updates
+		if ( isset( $core_options[ 'automatic_minor_updates' ] ) && 'on' == $core_options[ 'automatic_minor_updates' ] ) {
+			add_filter( 'allow_minor_auto_core_updates', '__return_true', 50 );
+		} elseif( isset( $core_options[ 'automatic_minor_updates' ] ) && 'off' == $core_options[ 'automatic_minor_updates' ] ) {
+			add_filter( 'allow_minor_auto_core_updates', '__return_false', 50 );
+		}
+				
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
 		add_filter( 'site_transient_update_themes', array( $this, 'disable_theme_notifications' ), 50 );

@@ -9,6 +9,17 @@ class MPSUM_Admin_Themes {
 		add_filter( 'mpsum_theme_action_links', array( $this, 'theme_action_links' ), 11, 2 );
 		add_action( 'admin_init', array( $this, 'maybe_save_theme_options' ) );
 	}
+	
+	private function can_update() {
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( isset( $core_options[ 'all_updates' ] ) && 'off' == $core_options[ 'all_updates' ] ) {
+			return false;
+		}
+		if ( isset( $core_options[ 'theme_updates' ] ) && 'off' == $core_options[ 'theme_updates' ] ) {
+			return false;
+		}
+		return true;
+	}
 		
 	public function maybe_save_theme_options() {
 		if ( !current_user_can( 'update_themes' ) ) return;
@@ -103,11 +114,17 @@ class MPSUM_Admin_Themes {
 		wp_nonce_field( 'mpsum_theme_update', '_mpsum' );
 		?>
         <h2><?php esc_html_e( 'Theme Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h2>
-        <?php 
-	    $theme_table = new MPSUM_Themes_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );
+        <?php
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		
+		if ( false === $this->can_update() ) {
+			printf( '<div class="error"><p><strong>%s</strong></p></div>', esc_html__( 'All theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) );
+		} 
+		$theme_table = new MPSUM_Themes_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );
 		$theme_table->prepare_items();
 		$theme_table->views();
-		$theme_table->display() ?>
+		$theme_table->display();
+		?>
         </form>
     <?php
 	} //end tab_output_plugins

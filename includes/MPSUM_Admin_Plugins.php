@@ -11,6 +11,17 @@ class MPSUM_Admin_Plugins {
 		add_action( 'admin_init', array( $this, 'maybe_save_plugin_options' ) );
 	}
 	
+	private function can_update() {
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( isset( $core_options[ 'all_updates' ] ) && 'off' == $core_options[ 'all_updates' ] ) {
+			return false;
+		}
+		if ( isset( $core_options[ 'plugin_updates' ] ) && 'off' == $core_options[ 'plugin_updates' ] ) {
+			return false;
+		}
+		return true;
+	}
+	
 	public function maybe_save_plugin_options() {
 		if ( !current_user_can( 'update_plugins' ) ) return;
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
@@ -116,7 +127,7 @@ class MPSUM_Admin_Plugins {
         <h3><?php esc_html_e( 'Plugin Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
         <?php
 	    $core_options = MPSUM_Updates_Manager::get_options( 'core' );
-	    if ( isset( $core_options[ 'plugin_updates' ] ) && 'off' == $core_options[ 'plugin_updates' ] ) {
+	    if ( false === $this->can_update() ) {
 			printf( '<div class="error"><p><strong>%s</strong></p></div>', esc_html__( 'All plugin updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) );
 		}
 		$plugin_table = new MPSUM_Plugins_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );
