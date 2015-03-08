@@ -11,6 +11,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 
 	public $site_id;
 	public $is_site_themes;
+	private $tab = '';
 
 	/**
 	 * Constructor.
@@ -29,9 +30,11 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			'plural' => 'themes',
 			'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
 		) );
+		
+		$this->tab = isset( $args[ 'tab' ] ) ? $args[ 'tab' ] : '';
 
 		$status = isset( $_REQUEST['theme_status'] ) ? $_REQUEST['theme_status'] : 'all';
-		if ( !in_array( $status, array( 'all', 'enabled', 'disabled', 'upgrade', 'search', 'broken' ) ) )
+		if ( !in_array( $status, array( 'all', 'update_disabled', 'update_enabled' ) ) )
 			$status = 'all';
 
 		$page = $this->get_pagenum();
@@ -55,6 +58,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 	}
 
 	public function prepare_items() {		
+		global $totals, $status;
 		$order = 'DESC';
 		$page = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : 1;
 		$orderby = 'Name';
@@ -68,19 +72,31 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			 *
 			 * @param array $all An array of WP_Theme objects to display in the list table.
 			 */
-			'all' => apply_filters( 'all_themes', wp_get_themes() )
+			'all' => apply_filters( 'all_themes', wp_get_themes() ),
+			'update_enabled' => array(),
+			'update_disabled' => array()
 			
 		);
 
 
 		$maybe_update = current_user_can( 'update_themes' ) && ! $this->is_site_themes && $current = get_site_transient( 'update_themes' );
-
+		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
+		foreach ( (array) $themes['all'] as $theme => $theme_data ) {
+			if ( false !== $key = array_search( $theme, $theme_options ) ) {
+				$themes[ 'update_disabled' ][ $theme ] = $theme_data;
+			} else {
+				$themes[ 'update_enabled' ][ $theme ] = $theme_data;
+			}
+		}		
+		
 		$totals = array();
-		foreach ( $themes as $type => $list )
+		
+		foreach ( $themes as $type => $list ) 
 			$totals[ $type ] = count( $list );
-
-		$status = 'all';
-
+			
+		if ( empty( $themes[ $status ] ) )
+			$status = 'all';
+			
 		$this->items = $themes[ $status ];
 		WP_Theme::sort_by_name( $this->items );
 
@@ -193,28 +209,23 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 				case 'all':
 					$text = _nx( 'All <span class="count">(%s)</span>', 'All <span class="count">(%s)</span>', $count, 'themes' );
 					break;
-				case 'enabled':
-					$text = _n( 'Enabled <span class="count">(%s)</span>', 'Enabled <span class="count">(%s)</span>', $count );
+				case 'update_disabled':
+					$text = _n( 'Updates Disabled <span class="count">(%s)</span>', 'Updates Disabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
-				case 'disabled':
-					$text = _n( 'Disabled <span class="count">(%s)</span>', 'Disabled <span class="count">(%s)</span>', $count );
-					break;
-				case 'upgrade':
-					$text = _n( 'Update Available <span class="count">(%s)</span>', 'Update Available <span class="count">(%s)</span>', $count );
-					break;
-				case 'broken' :
-					$text = _n( 'Broken <span class="count">(%s)</span>', 'Broken <span class="count">(%s)</span>', $count );
+				case 'update_enabled':
+					$text = _n( 'Updates Enabled <span class="count">(%s)</span>', 'Updates Enabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
 			}
 
-			if ( $this->is_site_themes )
-				$url = 'site-themes.php?id=' . $this->site_id;
-			else
-				$url = 'themes.php';
-
 			if ( 'search' != $type ) {
+				$theme_url = MPSUM_Admin::get_url();
+				$query_args = array(
+					'tab' => $this->tab,
+					'theme_status' => $type
+				);
+
 				$status_links[$type] = sprintf( "<a href='%s' %s>%s</a>",
-					esc_url( add_query_arg('theme_status', $type, $url) ),
+					add_query_arg( $query_args, $theme_url ),
 					( $type == $status ) ? ' class="current"' : '',
 					sprintf( $text, number_format_i18n( $count ) )
 				);

@@ -36,7 +36,7 @@ class MPSUM_Admin_Plugins {
 			$query_args[ 'disabled' ] = 1;
 		}
 		$query_args[ 'tab' ] = $this->tab;
-		$plugin_status = isset( $_GET[ 'plugin_status' ] ) ? $_GET[ 'plugin_status' ] : false;
+		$plugin_status = isset( $_REQUEST[ 'plugin_status' ] ) ? $_REQUEST[ 'plugin_status' ] : false;
 		if ( false !== $plugin_status ) {
 			$query_args[ 'plugin_status' ] = $plugin_status;	
 		}
@@ -107,6 +107,10 @@ class MPSUM_Admin_Plugins {
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 	    <?php
+		$plugin_status = isset( $_GET[ 'plugin_status' ] ) ? $_GET[ 'plugin_status' ] : false;
+		if ( false !== $plugin_status ) {
+			printf( '<input type="hidden" name="plugin_status" value="%s" />', esc_attr( $plugin_status ) );	
+		}
 		wp_nonce_field( 'mpsum_plugin_update', '_mpsum' );
 		?>
         <h3><?php esc_html_e( 'Plugin Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>

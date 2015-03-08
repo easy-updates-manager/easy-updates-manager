@@ -98,7 +98,9 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		$totals = array();
 		foreach ( $plugins as $type => $list )
 			$totals[ $type ] = count( $list );
-			
+		
+		if ( empty( $plugins[ $status ] ) )
+			$status = 'all';
 
 		$this->items = array();
 		foreach ( $plugins[ $status ] as $plugin_file => $plugin_data ) {

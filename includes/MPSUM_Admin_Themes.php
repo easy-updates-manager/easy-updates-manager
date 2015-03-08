@@ -35,6 +35,10 @@ class MPSUM_Admin_Themes {
 			$query_args[ 'disabled' ] = 1;
 		}
 		$query_args[ 'tab' ] = $this->tab;
+		$theme_status = isset( $_REQUEST[ 'theme_status' ] ) ? $_REQUEST[ 'theme_status' ] : false;
+		if ( false !== $theme_status ) {
+			$query_args[ 'theme_status' ] = $theme_status;	
+		}
 		
 		//Save theme options
 		$this->save_theme_update_options( $action );
@@ -88,15 +92,22 @@ class MPSUM_Admin_Themes {
 			<?php
 		}
 		
-		$theme_table = new MPSUM_Themes_List_Table( $args = array( 'screen' => $this->slug ) );
-		$theme_table->prepare_items();
+		
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 	    <?php
+		$theme_status = isset( $_GET[ 'theme_status' ] ) ? $_GET[ 'theme_status' ] : false;
+		if ( false !== $theme_status ) {
+			printf( '<input type="hidden" name="theme_status" value="%s" />', esc_attr( $theme_status ) );	
+		}
 		wp_nonce_field( 'mpsum_theme_update', '_mpsum' );
 		?>
         <h2><?php esc_html_e( 'Theme Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h2>
-            <?php $theme_table->display() ?>
+        <?php 
+	    $theme_table = new MPSUM_Themes_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );
+		$theme_table->prepare_items();
+		$theme_table->views();
+		$theme_table->display() ?>
         </form>
     <?php
 	} //end tab_output_plugins
