@@ -114,12 +114,16 @@ class MPSUM_Admin_Plugins {
 		wp_nonce_field( 'mpsum_plugin_update', '_mpsum' );
 		?>
         <h3><?php esc_html_e( 'Plugin Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
-        	<?php
-			$plugin_table = new MPSUM_Plugins_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );
-			$plugin_table->prepare_items();
-			$plugin_table->views();
-			$plugin_table->display();
-            ?>
+        <?php
+	    $core_options = MPSUM_Updates_Manager::get_options( 'core' );
+	    if ( isset( $core_options[ 'plugin_updates' ] ) && 'off' == $core_options[ 'plugin_updates' ] ) {
+			printf( '<div class="error"><p><strong>%s</strong></p></div>', esc_html__( 'All plugin updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) );
+		}
+		$plugin_table = new MPSUM_Plugins_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );
+		$plugin_table->prepare_items();
+		$plugin_table->views();
+		$plugin_table->display();
+		?>
         </form>
     <?php
 	} //end tab_output_plugins
