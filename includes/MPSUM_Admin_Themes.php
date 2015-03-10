@@ -29,7 +29,7 @@ class MPSUM_Admin_Themes {
 		
 		$action = $_REQUEST[ 'action' ];
 		$theme_disabled = false;
-		if ( 'disallow-update-selected' == $action ) {
+		if ( 'disallow-update-selected' == $action || 'disallow-automatic-selected' == $action ) {
 			$theme_disabled = true;
 		}
 		
@@ -66,11 +66,15 @@ class MPSUM_Admin_Themes {
 		
 		$themes = isset( $_REQUEST[ 'checked' ] ) ? (array) $_REQUEST[ 'checked' ] : array();		
 		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
+		$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
 
 		switch( $action ) {
 			case 'disallow-update-selected':
 				foreach( $themes as $theme ) {
-					$theme_options[] = $theme;	
+					$theme_options[] = $theme;
+					if ( ( $key = array_search( $theme, $theme_automatic_options ) ) !== false ) {
+						unset( $theme_automatic_options[ $key ] );
+					} 	
 				}
 				
 				break;
@@ -78,6 +82,21 @@ class MPSUM_Admin_Themes {
 				foreach( $themes as $theme ) {
 					if ( ( $key = array_search( $theme, $theme_options ) ) !== false ) {
 						unset( $theme_options[ $key ] );
+					}	
+				}
+				break;
+			case 'allow-automatic-selected':
+				foreach( $themes as $theme ) {
+					$theme_automatic_options[] = $theme;
+					if ( ( $key = array_search( $theme, $theme_options ) ) !== false ) {
+						unset( $theme_options[ $key ] );
+					}		
+				}
+				break;
+			case 'disallow-automatic-selected':
+				foreach( $themes as $theme ) {
+					if ( ( $key = array_search( $theme, $theme_automatic_options ) ) !== false ) {
+						unset( $theme_automatic_options[ $key ] );
 					}	
 				}
 				break;
@@ -89,7 +108,11 @@ class MPSUM_Admin_Themes {
 		
 		//Update option
 		$theme_options = array_values( array_unique( $theme_options ) );
-		MPSUM_Updates_Manager::update_options( $theme_options, 'themes' ); 	
+		$theme_automatic_options = array_values( array_unique( $theme_automatic_options ) );
+		$options = MPSUM_Updates_Manager::get_options();
+		$options[ 'themes' ] = $theme_options;
+		$options[ 'themes_automatic' ] = $theme_automatic_options;
+		MPSUM_Updates_Manager::update_options( $options );  	
 	}
 	
 	public function tab_output_themes() {
@@ -137,9 +160,25 @@ class MPSUM_Admin_Themes {
 			$enable_url = remove_query_arg( 'disabled', $enable_url );
 			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_url ), esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' ) );
 		} else {
+			//Disable Link
 			$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
 			$disable_url = remove_query_arg( 'disabled', $disable_url );
 			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_url ), esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ) );
+			
+			//Automatic Link
+			$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
+			$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+			if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' == $core_options[ 'automatic_theme_updates' ] ) {
+				if ( in_array( $stylesheet, $theme_automatic_options ) ) {
+					//Disable Link
+					$disable_automatic_url = add_query_arg( array( 'action' => 'disallow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
+					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_automatic_url ), esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
+				} else {
+					//Enable Link
+					$enable_automatic_url = add_query_arg( array( 'action' => 'allow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
+					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_automatic_url ), esc_html__( 'Enable Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
+				}
+			}
 		}
 		return $settings;	
 	}

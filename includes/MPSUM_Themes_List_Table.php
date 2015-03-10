@@ -34,7 +34,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 		$this->tab = isset( $args[ 'tab' ] ) ? $args[ 'tab' ] : '';
 
 		$status = isset( $_REQUEST['theme_status'] ) ? $_REQUEST['theme_status'] : 'all';
-		if ( !in_array( $status, array( 'all', 'update_disabled', 'update_enabled' ) ) )
+		if ( !in_array( $status, array( 'all', 'update_disabled', 'update_enabled', 'automatic' ) ) )
 			$status = 'all';
 
 		$page = $this->get_pagenum();
@@ -74,18 +74,23 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			 */
 			'all' => apply_filters( 'all_themes', wp_get_themes() ),
 			'update_enabled' => array(),
-			'update_disabled' => array()
+			'update_disabled' => array(),
+			'automatic' => array()
 			
 		);
 
 
 		$maybe_update = current_user_can( 'update_themes' ) && ! $this->is_site_themes && $current = get_site_transient( 'update_themes' );
 		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
+		$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
 		foreach ( (array) $themes['all'] as $theme => $theme_data ) {
 			if ( false !== $key = array_search( $theme, $theme_options ) ) {
 				$themes[ 'update_disabled' ][ $theme ] = $theme_data;
 			} else {
 				$themes[ 'update_enabled' ][ $theme ] = $theme_data;
+				if ( in_array( $theme, $theme_automatic_options ) ) {
+					$themes[ 'automatic' ][ $theme ] = $theme_data;
+				}
 			}
 		}		
 		
@@ -93,6 +98,13 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 		
 		foreach ( $themes as $type => $list ) 
 			$totals[ $type ] = count( $list );
+			
+		//Disable the automatic updates view
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' !== $core_options[ 'automatic_theme_updates' ] ) {
+			unset( $totals[ 'automatic' ] );
+			$themes[ 'automatic' ] = array();
+		}
 			
 		if ( empty( $themes[ $status ] ) )
 			$status = 'all';
@@ -215,6 +227,9 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 				case 'update_enabled':
 					$text = _n( 'Updates Enabled <span class="count">(%s)</span>', 'Updates Enabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
+				case 'automatic':
+					$text = _n( 'Automatic Updates <span class="count">(%s)</span>', 'Automatic Updates <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
+					break;
 			}
 
 			if ( 'search' != $type ) {
@@ -242,6 +257,11 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 		        
 		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'disable-plugin-and-theme-updates' );
 		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'disable-plugin-and-theme-updates' );
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' == $core_options[ 'automatic_theme_updates' ] ) {
+			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'disable-plugin-and-theme-updates' );
+			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'disable-plugin-and-theme-updates' );
+		}
 		
 		return $actions;
 	}
