@@ -45,10 +45,7 @@ class MPSUM_Admin_Core {
 		}
 		$options_to_save = array();
 		foreach( $options as $key => $value ) {
-			$option_value = 'on';
-			if ( 'on' !== $value ) {
-				$option_value = 'off';	
-			}
+			$option_value = sanitize_text_field( $value );
 			$options_to_save[ sanitize_key( $key ) ] = $option_value;
 		}
 		MPSUM_Updates_Manager::update_options( $options_to_save, 'core' );
@@ -136,16 +133,18 @@ class MPSUM_Admin_Core {
 				<th scope="row"><?php esc_html_e( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?></th>
 				<td>
 					<input type="radio" name="options[automatic_plugin_updates]" value="on" id="automatic_plugin_on" <?php checked( 'on', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="radio" name="options[automatic_plugin_updates]" value="off" id="automatic_plugin_off" <?php checked( 'off', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Automatically update your plugins.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+					<input type="radio" name="options[automatic_plugin_updates]" value="off" id="automatic_plugin_off" <?php checked( 'off', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="radio" name="options[automatic_plugin_updates]" value="individual" id="automatic_plugin_individual" <?php checked( 'individual', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_individual"><?php esc_html_e( 'Select Individually', 'stops-core-theme-and-plugin-updates' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Automatically update your plugins.  Select always on, always off, or select plugins individually.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
 			</tr>
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></th>
 				<td>
 					<input type="radio" name="options[automatic_theme_updates]" value="on" id="automatic_theme_on" <?php checked( 'on', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="radio" name="options[automatic_theme_updates]" value="off" id="automatic_theme_off" <?php checked( 'off', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Automatically update your themes.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+					<input type="radio" name="options[automatic_theme_updates]" value="off" id="automatic_theme_off" <?php checked( 'off', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="radio" name="options[automatic_theme_updates]" value="individual" id="automatic_theme_individual" <?php checked( 'individual', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_individual"><?php esc_html_e( 'Select Individually', 'stops-core-theme-and-plugin-updates' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Automatically update your themes. Select always on, always off, or select themes individually.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
 			</tr>
 			<tr>

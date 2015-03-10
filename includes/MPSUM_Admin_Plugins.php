@@ -30,7 +30,7 @@ class MPSUM_Admin_Plugins {
 		
 		$action = $_REQUEST[ 'action' ];
 		$plugin_disabled = false;
-		if ( 'disallow-update-selected' == $action ) {
+		if ( 'disallow-update-selected' == $action || 'disallow-automatic-selected' == $action ) {
 			$plugin_disabled = true;
 		}
 		
@@ -66,8 +66,24 @@ class MPSUM_Admin_Plugins {
 			$enable_url = add_query_arg( array( 'action' => 'allow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
 			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_url ), esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' ) );
 		} else {
+			//Disable Link
 			$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
 			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_url ), esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ) );
+			
+			//Automatic Link
+			$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
+			$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+			if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] ) {
+				if ( in_array( $plugin, $plugin_automatic_options ) ) {
+					//Disable Link
+					$disable_automatic_url = add_query_arg( array( 'action' => 'disallow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
+					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_automatic_url ), esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
+				} else {
+					//Enable Link
+					$enable_automatic_url = add_query_arg( array( 'action' => 'allow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
+					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_automatic_url ), esc_html__( 'Enable Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
+				}
+			}
 		}
 		return $settings;	
 	}
@@ -79,10 +95,14 @@ class MPSUM_Admin_Plugins {
 		
 		$plugins = isset( $_REQUEST[ 'checked' ] ) ? (array) $_REQUEST[ 'checked' ] : array();
 		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
+		$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
 		switch( $action ) {
 			case 'disallow-update-selected':
 				foreach( $plugins as $plugin ) {
 					$plugin_options[] = $plugin;	
+					if ( ( $key = array_search( $plugin, $plugin_automatic_options ) ) !== false ) {
+						unset( $plugin_automatic_options[ $key ] );
+					} 
 				}
 				
 				break;
@@ -90,6 +110,21 @@ class MPSUM_Admin_Plugins {
 				foreach( $plugins as $plugin ) {
 					if ( ( $key = array_search( $plugin, $plugin_options ) ) !== false ) {
 						unset( $plugin_options[ $key ] );
+					}	
+				}
+				break;
+			case 'allow-automatic-selected':
+				foreach( $plugins as $plugin ) {
+					$plugin_automatic_options[] = $plugin;
+					if ( ( $key = array_search( $plugin, $plugin_options ) ) !== false ) {
+						unset( $plugin_options[ $key ] );
+					}		
+				}
+				break;
+			case 'disallow-automatic-selected':
+				foreach( $plugins as $plugin ) {
+					if ( ( $key = array_search( $plugin, $plugin_automatic_options ) ) !== false ) {
+						unset( $plugin_automatic_options[ $key ] );
 					}	
 				}
 				break;
@@ -101,7 +136,11 @@ class MPSUM_Admin_Plugins {
 				
 		//Update option
 		$plugin_options = array_values( array_unique( $plugin_options ) );
-		MPSUM_Updates_Manager::update_options( $plugin_options, 'plugins' ); 
+		$plugin_automatic_options = array_values( array_unique( $plugin_automatic_options ) );
+		$options = MPSUM_Updates_Manager::get_options();
+		$options[ 'plugins' ] = $plugin_options;
+		$options[ 'plugins_automatic' ] = $plugin_automatic_options;
+		MPSUM_Updates_Manager::update_options( $options ); 
 	}
 	
 	public function tab_output_plugins() {

@@ -85,14 +85,28 @@ class MPSUM_Disable_Updates {
 		}
 		
 		//Enable Plugin Auto-updates
-		if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'on' == $core_options[ 'automatic_plugin_updates' ] ) {
-			add_filter( 'auto_update_plugin',  array( $this, 'automatic_updates_plugins' ), 10, 2 );
+		if ( isset( $core_options[ 'plugin_updates' ] ) && 'on' == $core_options[ 'plugin_updates' ] ) {
+			if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'on' == $core_options[ 'automatic_plugin_updates' ] ) {
+				add_filter( 'auto_update_plugin',  '__return_true', 10, 2 );
+			} elseif( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'off' == $core_options[ 'automatic_plugin_updates' ] ) {
+				add_filter( 'auto_update_plugin',  '__return_false', 10, 2 );
+			} elseif( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] ) {
+				add_filter( 'auto_update_plugin',  array( $this, 'automatic_updates_plugins' ), 10, 2 );
+			}
 		}
 		
+		
 		//Enable Theme Auto-updates
-		if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'on' == $core_options[ 'automatic_theme_updates' ] ) {
-			add_filter( 'auto_update_theme',  array( $this, 'automatic_updates_theme' ), 10, 2 );
+		if ( isset( $core_options[ 'theme_updates' ] ) && 'off' == $core_options[ 'theme_updates' ] ) {
+			if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'on' == $core_options[ 'automatic_theme_updates' ] ) {
+				add_filter( 'auto_update_theme',  '__return_true', 10, 2 );
+			} elseif( isset( $core_options[ 'automatic_theme_updates' ] ) && 'off' == $core_options[ 'automatic_theme_updates' ] ) {
+				add_filter( 'auto_update_theme',  '__return_false', 10, 2 );
+			} elseif( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' == $core_options[ 'automatic_theme_updates' ] ) {
+				add_filter( 'auto_update_theme',  array( $this, 'automatic_updates_theme' ), 10, 2 );
+			}
 		}
+		
 						
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
@@ -107,19 +121,19 @@ class MPSUM_Disable_Updates {
 	}
 	
 	public function automatic_updates_plugins( $update, $item ) {
-		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
-		if ( in_array( $item->plugin, $plugin_options ) ) {
-			return false;
+		$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
+		if ( in_array( $item->plugin, $plugin_automatic_options ) ) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public function automatic_updates_theme( $update, $item ) {
-		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
-		if ( in_array( $item->theme , $theme_options) ) {
-			return false;
+		$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
+		if ( in_array( $item->theme , $theme_automatic_options) ) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public function disable_plugin_notifications( $plugins ) {

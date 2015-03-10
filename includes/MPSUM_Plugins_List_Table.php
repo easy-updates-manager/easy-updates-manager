@@ -33,7 +33,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		
 
 		$status = 'all';
-		if ( isset( $_REQUEST['plugin_status'] ) && in_array( $_REQUEST['plugin_status'], array( 'update_disabled', 'update_enabled' ) ) ) {
+		if ( isset( $_REQUEST['plugin_status'] ) && in_array( $_REQUEST['plugin_status'], array( 'update_disabled', 'update_enabled', 'automatic' ) ) ) {
 			$status = $_REQUEST['plugin_status'];
 		}
 
@@ -70,7 +70,8 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		$plugins = array(
 			'all' => apply_filters( 'all_plugins', get_plugins() ),
 			'update_enabled' => array(),
-			'update_disabled' => array()
+			'update_disabled' => array(),
+			'automatic' => array()
 		);
 
 		$screen = $this->screen;
@@ -79,6 +80,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		$plugin_info = get_site_transient( 'update_plugins' );
 		
 		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
+		$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
 		foreach ( (array) $plugins['all'] as $plugin_file => $plugin_data ) {
 			// Extra info if known. array_merge() ensures $plugin_data has precedence if keys collide.
 			if ( isset( $plugin_info->response[ $plugin_file ] ) ) {
@@ -92,12 +94,22 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 				$plugins[ 'update_disabled' ][ $plugin_file ] = $plugin_data;
 			} else {
 				$plugins[ 'update_enabled' ][ $plugin_file ] = $plugin_data;
+				if ( in_array( $plugin_file, $plugin_automatic_options ) ) {
+					$plugins[ 'automatic' ][ $plugin_file ] = $plugin_data;
+				}
 			}
 		}
 
 		$totals = array();
 		foreach ( $plugins as $type => $list )
 			$totals[ $type ] = count( $list );
+			
+		//Disable the automatic updates view
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' !== $core_options[ 'automatic_plugin_updates' ] ) {
+			unset( $totals[ 'automatic' ] );
+			$plugins[ 'automatic' ] = array();
+		}
 		
 		if ( empty( $plugins[ $status ] ) )
 			$status = 'all';
@@ -203,8 +215,8 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 				case 'update_disabled':
 					$text = _n( 'Updates Disabled <span class="count">(%s)</span>', 'Updates Disabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
-				case 'update_enabled':
-					$text = _n( 'Updates Enabled <span class="count">(%s)</span>', 'Updates Enabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
+				case 'automatic':
+					$text = _n( 'Automatic Updates <span class="count">(%s)</span>', 'Automatic Updates <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
 			}
 
@@ -232,6 +244,11 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		        
 		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'disable-plugin-and-theme-updates' );
 		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'disable-plugin-and-theme-updates' );
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] ) {
+			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'disable-plugin-and-theme-updates' );
+			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'disable-plugin-and-theme-updates' );
+		}
 		
 		return $actions;
 	}
