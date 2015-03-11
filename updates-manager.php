@@ -31,11 +31,27 @@ class MPSUM_Updates_Manager {
 		
 		spl_autoload_register( array( $this, 'loader' ) );
 		
-		//todo - in the run method, determine if there is a skipped user	
-		MPSUM_Disable_Updates::run();
+		//Skip disable updates if a user is excluded
+		$disable_updates_skip = false;
+		if ( current_user_can( 'update_core' ) ) {
+			$current_user = wp_get_current_user();
+			$current_user_id = $current_user->ID;
+			$excluded_users = MPSUM_Updates_Manager::get_options( 'excluded_users' );
+			if ( in_array( $current_user_id, $excluded_users ) ) {
+				$disable_updates_skip = true;
+			}
+		}
+		if ( false === $disable_updates_skip ) {
+			MPSUM_Disable_Updates::run();
+		}
+		
+		
 		
 		if ( is_admin() && !defined( 'DOING_AJAX' ) ) {
-			MPSUM_Admin::run();	
+			$skip_admin = defined( 'MPSUM_DISABLE_ADMIN' ) ? (bool)MPSUM_DISABLE_ADMIN : false;
+			if ( false === $skip_admin ) {
+				MPSUM_Admin::run();	
+			}
 		}
 	} //end constructor
 
