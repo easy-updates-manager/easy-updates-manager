@@ -79,7 +79,72 @@ class MPSUM_Updates_Manager {
 		}
 		
 		if ( false === $options ) {
-			//todo - do migration script from original plugin	
+			//Migrate options from older version of the plugin
+			$original_options = get_option( '_disable_updates', false );
+			
+			if ( false !== $original_options && is_array( $original_options ) ) {
+				$options = array(
+					'core' => array(),
+					'plugins' => array(),
+					'themes' => array()
+				);
+				//Global WP Updates
+				if ( isset( $original_options[ 'all' ] ) && "1" === $original_options[ 'all' ] ) {
+					$options[ 'core' ][ 'all_updates' ] = 'off';
+				}
+				//Global Plugin Updates
+				if ( isset( $original_options[ 'plugin' ] ) && "1" === $original_options[ 'plugin' ] ) {
+					$options[ 'core' ][ 'plugin_updates' ] = 'off';
+				}
+				//Global Theme Updates
+				if ( isset( $original_options[ 'theme' ] ) && "1" === $original_options[ 'theme' ] ) {
+					$options[ 'core' ][ 'theme_updates' ] = 'off';
+				}
+				//Global Core Updates
+				if ( isset( $original_options[ 'core' ] ) && "1" === $original_options[ 'core' ] ) {
+					$options[ 'core' ][ 'core_updates' ] = 'off';
+				}
+				//Global Individual Theme Updates
+				if ( isset( $original_options[ 'it' ] ) && "1" === $original_options[ 'it' ] ) {
+					if ( isset( $original_options[ 'themes' ] ) && is_array( $original_options[ 'themes' ] ) ) {
+						$options[ 'themes' ] = 	$original_options[ 'themes' ];
+					}
+				}
+				//Global Individual Plugin Updates
+				if ( isset( $original_options[ 'ip' ] ) && "1" === $original_options[ 'ip' ] ) {
+					if ( isset( $original_options[ 'plugins' ] ) && is_array( $original_options[ 'plugins' ] ) ) {
+						$options[ 'plugins' ] = 	$original_options[ 'plugins' ];
+					}
+				}
+				//Browser Nag
+				if ( isset( $original_options[ 'bnag' ] ) && "1" === $original_options[ 'bnag' ] ) {
+					$options[ 'core' ][ 'misc_browser_nag' ] = 'off';
+				}
+				//WordPress Version
+				if ( isset( $original_options[ 'wpv' ] ) && "1" === $original_options[ 'wpv' ] ) {
+					$options[ 'core' ][ 'misc_wp_footer' ] = 'off';
+				}
+				//Translation Updates
+				if ( isset( $original_options[ 'auto-translation-updates' ] ) && "1" === $original_options[ 'auto-translation-updates' ] ) {
+					$options[ 'core' ][ 'automatic_translation_updates' ] = 'off';
+				}
+				//Translation Updates
+				if ( isset( $original_options[ 'auto-core-emails' ] ) && "1" === $original_options[ 'auto-core-emails' ] ) {
+					$options[ 'core' ][ 'notification_core_update_emails' ] = 'off';
+				}
+				//Automatic Updates
+				if ( isset( $original_options[ 'abup' ] ) && "1" === $original_options[ 'abup' ] ) {
+					$options[ 'core' ][ 'automatic_major_updates' ] = 'off';
+					$options[ 'core' ][ 'automatic_minor_updates' ] = 'off';
+					$options[ 'core' ][ 'automatic_plugin_updates' ] = 'off';
+					$options[ 'core' ][ 'automatic_theme_updates' ] = 'off';
+				}
+				
+				delete_option( '_disable_updates' );
+				delete_site_option( '_disable_updates' );
+				update_site_option( 'MPSUM', $options );
+				
+			}			
 		}
 		
 		//Store options
