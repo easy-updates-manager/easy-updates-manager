@@ -97,7 +97,7 @@ class MPSUM_Disable_Updates {
 		
 		
 		//Enable Theme Auto-updates
-		if ( isset( $core_options[ 'theme_updates' ] ) && 'off' == $core_options[ 'theme_updates' ] ) {
+		if ( isset( $core_options[ 'theme_updates' ] ) && 'on' == $core_options[ 'theme_updates' ] ) {
 			if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'on' == $core_options[ 'automatic_theme_updates' ] ) {
 				add_filter( 'auto_update_theme',  '__return_true', 10, 2 );
 			} elseif( isset( $core_options[ 'automatic_theme_updates' ] ) && 'off' == $core_options[ 'automatic_theme_updates' ] ) {
