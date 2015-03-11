@@ -4,7 +4,7 @@ Plugin Name: Updates Manager
 Plugin URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Description: Manage WordPress Updates - Works with Multisite
 Author: MPS Plugins, kidsguide, ronalfy
-Version: 1.0
+Version: 5.0
 Requires at least: 4.0
 Author URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Contributors: MPS Plugins, kidsguide, ronalfy
