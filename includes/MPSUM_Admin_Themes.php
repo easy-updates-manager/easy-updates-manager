@@ -136,7 +136,7 @@ class MPSUM_Admin_Themes {
 		}
 		wp_nonce_field( 'mpsum_theme_update', '_mpsum' );
 		?>
-        <h2><?php esc_html_e( 'Theme Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h2>
+        <h3><?php esc_html_e( 'Theme Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
         <?php
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		
