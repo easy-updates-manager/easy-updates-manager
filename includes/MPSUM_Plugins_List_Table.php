@@ -99,7 +99,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 				}
 			}
 		}
-
+		
 		$totals = array();
 		foreach ( $plugins as $type => $list )
 			$totals[ $type ] = count( $list );
@@ -211,6 +211,9 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 			switch ( $type ) {
 				case 'all':
 					$text = _nx( 'All <span class="count">(%s)</span>', 'All <span class="count">(%s)</span>', $count, 'plugins' );
+					break;
+				case 'update_enabled':
+					$text = _n( 'Updates Enabled <span class="count">(%s)</span>', 'Updates Enabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );
 					break;
 				case 'update_disabled':
 					$text = _n( 'Updates Disabled <span class="count">(%s)</span>', 'Updates Disabled <span class="count">(%s)</span>', $count, 'stops-core-theme-and-plugin-updates' );

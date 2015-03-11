@@ -33,6 +33,10 @@ class MPSUM_Admin_Advanced {
 				}
 				MPSUM_Updates_Manager::update_options( $users_to_save, 'excluded_users' );
 				break;
+			case 'mpsum_reset_options':
+				check_admin_referer( 'mpsum_reset_options', '_mpsum' );
+				MPSUM_Updates_Manager::update_options( array() );
+				break;
 			default:
 				return;	
 		}
@@ -95,6 +99,17 @@ class MPSUM_Admin_Advanced {
 		wp_nonce_field( 'mpsum_exclude_users', '_mpsum' );
 		echo '<p class="submit">';
 		submit_button( __( 'Save Users', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
+		echo '</p>';
+		?>
+        </form>
+         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		<h3><?php esc_html_e( 'Reset Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
+		<p><?php esc_html_e( 'This will reset all options to as if you have just installed the plugin.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+		<input type="hidden" name="action" value='mpsum_reset_options' />
+	    <?php
+		wp_nonce_field( 'mpsum_reset_options', '_mpsum' );
+		echo '<p class="submit">';
+		submit_button( __( 'Reset All Options', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
 		echo '</p>';
 		?>
         </form>
