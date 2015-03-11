@@ -41,9 +41,11 @@ class MPSUM_Admin {
 			add_action( 'admin_menu', array( $this, 'init_single_site_admin_menus' ) );
 		}
 		
+		//todo - maybe load these conditionally based on $_REQUEST[ 'tab' ] param
 		new MPSUM_Admin_Plugins( self::get_slug() );
 		new MPSUM_Admin_Themes( self::get_slug() );
 		new MPSUM_Admin_Core( self::get_slug() );
+		new MPSUM_Admin_Advanced( self::get_slug() );
 		
 	}	
 	
