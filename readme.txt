@@ -1,20 +1,21 @@
 === Updates Manager ===
-Contributors: MPS Plugins, kidsguide, ronalfy
-Tags: 
+Contributors: kidsguide, ronalfy, MPS Plugins
+Tags: Updates Manager, Easy Updates Manager, Disable Updates, Disable Updates Manager, Update Control
 Tested up to: 4.1.1
 Stable tag: trunk
 
 == Description ==
 
-= Video Tutorials =
-
 == Screenshots ==
 
-== Other Notes ==
+== Installation == 
+<strong>Installing Easy Updates Manager</strong> 
 
-== Frequently Asked Questions ==
-
-== Installation ==
+1. Upload the Easy Updates Manager folder to the /wp-content/plugins/ directory
+2. Activate the Easy Updates Manager plugin through the 'Plugins' menu in WordPress
+3. Configure the plugin by going to the 'Update Options' section in your admin area under Dashboard
 
 == Changelog ==
 = 5.0 =
+* Complete redo of Disable Updates Manager. You will notice that everything has changed including the name. This plugin is now called Easy Updates Manager.
+* We also have a new contributor! ronalfy
