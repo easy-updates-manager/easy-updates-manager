@@ -46,12 +46,10 @@ class MPSUM_Updates_Manager {
 		}
 		
 		
-		
-		if ( is_admin() && !defined( 'DOING_AJAX' ) ) {
-			$skip_admin = defined( 'MPSUM_DISABLE_ADMIN' ) ? (bool)MPSUM_DISABLE_ADMIN : false;
-			if ( false === $skip_admin ) {
-				MPSUM_Admin::run();	
-			}
+		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
+		$not_admin_disabled = ( !defined( 'MPSUM_DISABLE_ADMIN' ) || !MPSUM_DISABLE_ADMIN );
+		if ( is_admin() && $not_doing_ajax && $not_admin_disabled ) {
+			MPSUM_Admin::run();	
 		}
 	} //end constructor
 
