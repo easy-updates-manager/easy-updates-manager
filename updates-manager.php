@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Updates Manager
+Plugin Name: Easy Updates Manager
 Plugin URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
-Description: Manage WordPress Updates - Works with Multisite
+Description: Manage and disable WordPress updates, including core, plugin, theme, and automatic updates - Works with Multisite
 Author: MPS Plugins, kidsguide, ronalfy
 Version: 5.0
 Requires at least: 4.0
