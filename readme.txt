@@ -6,7 +6,7 @@ Stable tag: trunk
 
 Manage all of your WordPress update settings, including individual plugin/theme updaes, automatic updates, and much more. Also works with WordPress multisite.
 == Description ==
-
+For more information on how to use Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 == Screenshots ==
 
 == Installation == 
