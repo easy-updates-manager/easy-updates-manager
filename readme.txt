@@ -1,6 +1,6 @@
 === Updates Manager ===
 Contributors: kidsguide, ronalfy, MPS Plugins
-Tags: Updates Manager, Easy Updates Manager, Disable Updates, Disable Updates Manager, Update Control, disable
+Tags: Updates Manager, Easy Updates Manager, Disable Updates, Disable Updates Manager, Update Control
 Tested up to: 4.1.1
 Stable tag: trunk
 
