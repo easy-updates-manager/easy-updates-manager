@@ -2,7 +2,7 @@
 Contributors: kidsguide, ronalfy, MPS Plugins
 Tags: Updates Manager, Easy Updates Manager, Disable Updates, Disable Updates Manager, Update Control, automatic updates, core updates
 Tested up to: 4.1.1
-Stable tag: trunk
+Stable tag: 5.0.0
 
 Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates, and much more. Also works with WordPress multisite.
 

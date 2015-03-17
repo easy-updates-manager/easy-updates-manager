@@ -4,7 +4,7 @@ Plugin Name: Easy Updates Manager
 Plugin URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Description: Manage and disable WordPress updates, including core, plugin, theme, and automatic updates - Works with Multisite
 Author: MPS Plugins, kidsguide, ronalfy
-Version: 5.0
+Version: 5.0.0
 Requires at least: 4.0
 Author URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Contributors: MPS Plugins, kidsguide, ronalfy
@@ -26,31 +26,12 @@ class MPSUM_Updates_Manager {
 	} //end get_instance
 	
 	private function __construct() {
-		//* Localization Code */
+		/* Localization Code */
 		load_plugin_textdomain( 'stops-core-theme-and-plugin-updates', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		
 		spl_autoload_register( array( $this, 'loader' ) );
 		
-		//Skip disable updates if a user is excluded
-		$disable_updates_skip = false;
-		if ( current_user_can( 'update_core' ) ) {
-			$current_user = wp_get_current_user();
-			$current_user_id = $current_user->ID;
-			$excluded_users = MPSUM_Updates_Manager::get_options( 'excluded_users' );
-			if ( in_array( $current_user_id, $excluded_users ) ) {
-				$disable_updates_skip = true;
-			}
-		}
-		if ( false === $disable_updates_skip ) {
-			MPSUM_Disable_Updates::run();
-		}
-		
-		
-		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
-		$not_admin_disabled = ( !defined( 'MPSUM_DISABLE_ADMIN' ) || !MPSUM_DISABLE_ADMIN );
-		if ( is_admin() && $not_doing_ajax && $not_admin_disabled ) {
-			MPSUM_Admin::run();	
-		}
+		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 	} //end constructor
 
 	
@@ -174,6 +155,29 @@ class MPSUM_Updates_Manager {
 		}	
 	}
 	
+	public function plugins_loaded() {
+		//Skip disable updates if a user is excluded
+		$disable_updates_skip = false;
+		if ( current_user_can( 'update_core' ) ) {
+			$current_user = wp_get_current_user();
+			$current_user_id = $current_user->ID;
+			$excluded_users = MPSUM_Updates_Manager::get_options( 'excluded_users' );
+			if ( in_array( $current_user_id, $excluded_users ) ) {
+				$disable_updates_skip = true;
+			}
+		}
+		if ( false === $disable_updates_skip ) {
+			MPSUM_Disable_Updates::run();
+		}
+		
+		
+		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
+		$not_admin_disabled = ( !defined( 'MPSUM_DISABLE_ADMIN' ) || !MPSUM_DISABLE_ADMIN );
+		if ( is_admin() && $not_doing_ajax && $not_admin_disabled ) {
+			MPSUM_Admin::run();	
+		}	
+	}
+	
 	public static function update_options( $options = array(), $context = '' ) {
 		$options_to_save = self::get_options();
 		
@@ -189,7 +193,4 @@ class MPSUM_Updates_Manager {
 		
 } //end class MPSUM_Updates_Manager
 
-add_action( 'plugins_loaded', 'mpsum_instantiate' );
-function mpsum_instantiate() {
-	MPSUM_Updates_Manager::get_instance();
-} //end sce_instantiate
+MPSUM_Updates_Manager::get_instance();
