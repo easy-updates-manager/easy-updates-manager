@@ -60,6 +60,20 @@ class MPSUM_Updates_Manager {
 	} //end get_instance
 	
 	/**
+	* Retrieve the plugin basename.
+	*
+	* Retrieve the plugin basename.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	* @return string plugin basename
+	*/
+	public static function get_plugin_basename() {
+		return plugin_basename( __FILE__ );	
+	}
+	
+	/**
 	* Class constructor.
 	*
 	* Set up internationalization, auto-loader, and plugin initialization.

@@ -122,6 +122,10 @@ class MPSUM_Admin {
 			add_action( 'admin_menu', array( $this, 'init_single_site_admin_menus' ) );
 		}
 		
+		//Add settings link to plugins screen
+		$prefix = is_multisite() ? 'network_admin_' : '';
+		add_action( $prefix . 'plugin_action_links_' . MPSUM_Updates_Manager::get_plugin_basename(), array( $this, 'plugin_settings_link' ) );
+		
 		//todo - maybe load these conditionally based on $_REQUEST[ 'tab' ] param
 		new MPSUM_Admin_Plugins( self::get_slug() );
 		new MPSUM_Admin_Themes( self::get_slug() );
@@ -242,4 +246,20 @@ class MPSUM_Admin {
 		</div><!-- .wrap -->
 		<?php
 	} //end output_admin_interface
+	
+	/**
+	* Outputs admin interface for sub-menu.
+	*
+	* Outputs admin interface for sub-menu.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal Uses $prefix . "plugin_action_links_$plugin_file" action
+	* @return array Array of settings
+	*/
+	public function plugin_settings_link( $settings ) {
+		$admin_anchor = sprintf( '<a href="%s">%s</a>', esc_url( $this->get_url() ), esc_html__( 'Configure', 'stops-core-theme-and-plugin-updates' ) );
+		return array_merge( array( $admin_anchor ), $settings ); 
+	}
 }
