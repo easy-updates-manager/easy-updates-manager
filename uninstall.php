@@ -1,6 +1,13 @@
 <?php
-
-/* Description: Removes all data when deleted. */
+/**
+* Uninstall script
+*
+* Uninstall script for Easy Updates Manager.
+*
+* @since 5.0.0
+*
+* @package WordPress
+*/
 if (!defined( 'WP_UNINSTALL_PLUGIN' )) {
     exit ();
 } 
