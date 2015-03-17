@@ -1,8 +1,42 @@
 <?php
+/**
+ * Controls the plugins tab
+ *
+ * Controls the plugins tab and handles the saving of its options.
+ *
+ * @since 5.0.0
+ *
+ * @package WordPress
+ */
 class MPSUM_Admin_Plugins {
+	/**
+	* Holds the slug to the admin panel page
+	*
+	* @since 5.0.0
+	* @access private
+	* @var string $slug
+	*/
 	private $slug = '';
+	
+	/**
+	* Holds the tab name
+	*
+	* @since 5.0.0
+	* @access static
+	* @var string $tab
+	*/
 	private $tab = 'plugins';
 	
+	/**
+	* Class constructor.
+	*
+	* Initialize the class
+	*
+	* @since 5.0.0
+	* @access public
+	*
+	* @param string $slug Slug to the admin panel page
+	*/
 	public function __construct( $slug = '' ) {
 		$this->slug = $slug;
 		//Admin Tab Actions
@@ -11,6 +45,16 @@ class MPSUM_Admin_Plugins {
 		add_action( 'admin_init', array( $this, 'maybe_save_plugin_options' ) );
 	}
 	
+	/**
+	* Determine whether the plugins can be updated or not.
+	*
+	* Determine whether the plugins can be updated or not.
+	*
+	* @since 5.0.0 
+	* @access private
+	*
+	* @return bool True if the plugins can be updated, false if not.
+	*/
 	private function can_update() {
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( isset( $core_options[ 'all_updates' ] ) && 'off' == $core_options[ 'all_updates' ] ) {
@@ -22,6 +66,17 @@ class MPSUM_Admin_Plugins {
 		return true;
 	}
 	
+	/**
+	* Determine whether the save the plugin options or not.
+	*
+	* Determine whether the save the plugin options or not.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal Uses admin_init action
+	*
+	*/
 	public function maybe_save_plugin_options() {
 		if ( !current_user_can( 'update_plugins' ) ) return;
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
@@ -60,6 +115,19 @@ class MPSUM_Admin_Plugins {
 		exit;
 	}
 	
+	/**
+	* Outputs the plugin action links beneath each plugin row.
+	*
+	* Outputs the plugin action links beneath each plugin row.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal uses mpsum_plugin_action_links filter
+	*
+	* @param array  $settings Array of settings to output.
+	* @param string $plugin The relative plugin path.
+	*/
 	public function plugin_action_links( $settings, $plugin ) {
 		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
 		if ( false !== $key = array_search( $plugin, $plugin_options ) ) {
@@ -88,6 +156,17 @@ class MPSUM_Admin_Plugins {
 		return $settings;	
 	}
 	
+	/**
+	* Save the plugin options based on the passed action.
+	*
+	* Save the plugin options based on the passed action.
+	*
+	* @since 5.0.0 
+	* @access private
+	* @see maybe_save_plugin_options
+	* @param string $action Action to take action on
+	*
+	*/
 	private function save_plugin_update_options( $action ) {
 		//Check capability
 		$capability = 'update_plugins'; //On single site, admins can use this, on multisite, only network admins can
@@ -143,6 +222,16 @@ class MPSUM_Admin_Plugins {
 		MPSUM_Updates_Manager::update_options( $options ); 
 	}
 	
+	/**
+	* Output the HTML interface for the plugins tab.
+	*
+	* Output the HTML interface for the plugins tab.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal Uses the mpsum_admin_tab_plugins action
+	*/
 	public function tab_output_plugins() {
 		if ( isset( $_GET[ 'disabled' ] ) ) {
 			$message = __( 'The selected plugins have had their upgrades enabled.', 'stops-core-theme-and-plugin-updates' );

@@ -54,7 +54,7 @@ class MPSUM_Admin_Themes {
 	* @since 5.0.0 
 	* @access private
 	*
-	* @return bool True of the themes can be updated, false if not.
+	* @return bool True if the themes can be updated, false if not.
 	*/
 	private function can_update() {
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
@@ -74,6 +74,8 @@ class MPSUM_Admin_Themes {
 	*
 	* @since 5.0.0 
 	* @access public
+	* @see __construct
+	* @internal Uses admin_init action
 	*
 	*/
 	public function maybe_save_theme_options() {
@@ -235,10 +237,11 @@ class MPSUM_Admin_Themes {
 	*
 	* @since 5.0.0 
 	* @access public
+	* @see __construct
+	* @internal uses mpsum_theme_action_links filter
 	*
 	* @param array  $settings Array of settings to output.
 	* @param WP_Theme $theme The theme object to take action on.
-	* @return string Web path to the relative asset.
 	*/
 	public function theme_action_links( $settings, $theme ) {
 		$stylesheet = $theme->get_stylesheet();
