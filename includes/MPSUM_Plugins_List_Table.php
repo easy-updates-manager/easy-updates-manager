@@ -1,6 +1,6 @@
 <?php
 /**
- * Easy Updats Manager Plugins List Table class.
+ * Easy Updates Manager Plugins List Table class.
  *
  * @package WordPress
  * @subpackage MPSUM_List_Table
