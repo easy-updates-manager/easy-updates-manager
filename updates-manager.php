@@ -13,11 +13,45 @@ Domain Path: /languages
 Updates: true
 Network: true
 */ 
+/**
+ * Main plugin class
+ *
+ * Initializes auto-loader, internationalization, and plugin dependencies.
+ *
+ * @since 5.0.0
+ *
+ * @package WordPress
+ */
 class MPSUM_Updates_Manager {
+	
+	/**
+	* Holds the class instance.
+	*
+	* @since 5.0.0
+	* @access static
+	* @var MPSUM_Updates_Manager $instance
+	*/
 	private static $instance = null;
+	
+	/**
+	* Stores the plugin's options
+	*
+	* @since 5.0.0
+	* @access static
+	* @var array $options
+	*/
 	private static $options = false;
 	
-	//Singleton
+	/**
+	* Retrieve a class instance.
+	*
+	* Retrieve a class instance.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	* @return MPSUM_Updates_Manager Instance of the class.
+	*/
 	public static function get_instance() {
 		if ( null == self::$instance ) {
 			self::$instance = new self;
@@ -25,6 +59,15 @@ class MPSUM_Updates_Manager {
 		return self::$instance;
 	} //end get_instance
 	
+	/**
+	* Class constructor.
+	*
+	* Set up internationalization, auto-loader, and plugin initialization.
+	*
+	* @since 5.0.0
+	* @access private
+	*
+	*/
 	private function __construct() {
 		/* Localization Code */
 		load_plugin_textdomain( 'stops-core-theme-and-plugin-updates', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
@@ -34,7 +77,17 @@ class MPSUM_Updates_Manager {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 	} //end constructor
 
-	
+	/**
+	* Return the absolute path to an asset.
+	*
+	* Return the absolute path to an asset based on a relative argument.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	* @param string  $path Relative path to the asset.
+	* @return string Absolute path to the relative asset.
+	*/
 	public static function get_plugin_dir( $path = '' ) {
 		$dir = rtrim( plugin_dir_path(__FILE__), '/' );
 		if ( !empty( $path ) && is_string( $path) )
@@ -42,7 +95,17 @@ class MPSUM_Updates_Manager {
 		return $dir;		
 	}
 	
-	//Returns the plugin url
+	/**
+	* Return the web path to an asset.
+	*
+	* Return the web path to an asset based on a relative argument.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	* @param string  $path Relative path to the asset.
+	* @return string Web path to the relative asset.
+	*/
 	public static function get_plugin_url( $path = '' ) {
 		$dir = rtrim( plugin_dir_url(__FILE__), '/' );
 		if ( !empty( $path ) && is_string( $path) )
@@ -50,6 +113,18 @@ class MPSUM_Updates_Manager {
 		return $dir;	
 	}
 	
+	/**
+	* Retrieve the plugin's options
+	*
+	* Retrieve the plugin's options based on context
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	* @param string  $context Context to retrieve options for.  This is used as an array key.
+	* @param bool  $force_reload Whether to retrieve cached options or forcefully retrieve from the database.
+	* @return array All options if no context, or associative array if context is set.  Empty array if no options.
+	*/
 	public static function get_options( $context = '', $force_reload = false ) {
 		//Try to get cached options
 		$options = self::$options;
@@ -145,6 +220,16 @@ class MPSUM_Updates_Manager {
 		return $options;
 	} //get_options
 	
+	/**
+	* Auto-loads classes.
+	*
+	* Auto-load classes that belong to this plugin.
+	*
+	* @since 5.0.0 
+	* @access private
+	*
+	* @param string  $class_name The name of the class.
+	*/
 	private function loader( $class_name ) {
 		if ( class_exists( $class_name, false ) || false === strpos( $class_name, 'MPSUM' ) ) {
 			return;
@@ -155,6 +240,17 @@ class MPSUM_Updates_Manager {
 		}	
 	}
 	
+	/**
+	* Initialize the plugin and its dependencies.
+	*
+	* Initialize the plugin and its dependencies.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal Uses plugins_loaded action
+	*
+	*/
 	public function plugins_loaded() {
 		//Skip disable updates if a user is excluded
 		$disable_updates_skip = false;
@@ -178,6 +274,17 @@ class MPSUM_Updates_Manager {
 		}	
 	}
 	
+	/**
+	* Save plugin options.
+	*
+	* Saves the plugin options based on context.  If no context is provided, updates all options.
+	*
+	* @since 5.0.0
+	* @access static
+	*
+	* @param array  $options Associative array of plugin options.
+	* @param string $context Array key of which options to update
+	*/
 	public static function update_options( $options = array(), $context = '' ) {
 		$options_to_save = self::get_options();
 		
