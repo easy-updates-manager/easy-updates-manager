@@ -3,11 +3,11 @@
  * Base class for displaying a list of items in an ajaxified HTML table.
  * Copied from wp-admin/includes as per http://codex.wordpress.org/Class_Reference/WP_List_Table
  *
- * @since 3.1.0
+ * @since 5.0.0
  * @access private
  *
  * @package WordPress
- * @subpackage List_Table
+ * @subpackage MPSUM_List_Table
  */
 class MPSUM_List_Table {
 
