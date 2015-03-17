@@ -135,6 +135,21 @@ class MPSUM_Admin {
 	}	
 	
 	/**
+	* Initializes the help screen.
+	*
+	* Initializes the help screen.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see init
+	* @internal Uses load_{$hook} action
+	*
+	*/
+	public function init_help_screen() {
+		new MPSUM_Admin_Help();
+	}
+	
+	/**
 	* Adds a sub-menu page for multisite.
 	*
 	* Adds a sub-menu page for multisite.
@@ -146,7 +161,8 @@ class MPSUM_Admin {
 	*
 	*/
 	public function init_network_admin_menus() {
-		add_submenu_page( 'update-core.php', __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		$hook = add_submenu_page( 'update-core.php', __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		add_action( "load-$hook", array( $this, 'init_help_screen' ) );
 	}
 	
 	/**
@@ -161,7 +177,8 @@ class MPSUM_Admin {
 	*
 	*/
 	public function init_single_site_admin_menus() {
-		add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );	
+		$hook = add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		add_action( "load-$hook", array( $this, 'init_help_screen' ) );	
 	}
 	
 	/**
