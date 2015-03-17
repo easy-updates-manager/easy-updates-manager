@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugins List Table class.
+ * Easy Updats Manager Plugins List Table class.
  *
  * @package WordPress
- * @subpackage List_Table
- * @since 3.1.0
+ * @subpackage MPSUM_List_Table
+ * @since 5.0.0
  * @access private
  */
 class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
@@ -324,7 +324,16 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		$context = 'all';
 		$screen = $this->screen;
 		
-		$actions = apply_filters( 'mpsum_plugin_action_links', array(), $plugin_file, $plugin_data, 'all' );
+		/**
+		* Filter the action links that show up under each plugin row.
+		*
+		* @since 5.0.0
+		*
+		* @param string    Relative plugin file path
+		* @param array  $plugin_data An array of plugin data.
+		* @param string   $status     Status of the plugin.
+		*/
+		$actions = apply_filters( 'mpsum_plugin_action_links', array(), $plugin_file, $plugin_data, $status );
 
 		$class = 'active';
 		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );

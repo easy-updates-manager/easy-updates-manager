@@ -1,8 +1,8 @@
 <?php
 /**
- * MS Themes List Table class.
+ * Easy Updates Manager Themes List Table class.
  *
- * @package WordPress
+ * @package Easy Updates Manager
  * @subpackage MPSUM_List_Table
  * @since 5.0.0
  * @access private
@@ -286,7 +286,6 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 
 		/**
 		* Filter the action links that show up under each theme row.
-		* list table.
 		*
 		* @since 5.0.0
 		*
