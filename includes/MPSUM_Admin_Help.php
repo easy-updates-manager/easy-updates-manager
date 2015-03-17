@@ -45,32 +45,43 @@ class MPSUM_Admin_Help {
     </p>
 
 CONTENT3;
-
+		
+		$content4_strings = array(
+			'intro' => esc_html__( 'You will see four tabs where you can configure the update options.', 'stops-core-theme-and-plugin-updates' ),
+			'general' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'Use this screen to finely tune which updates and automatic updates you would like to see.', 'stops-core-theme-and-plugin-updates' ) ),
+			'plugins' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Plugins', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If plugin updates are enabled and/or automatic updates for plugins are enabled, you can configure which plugins will receive updates and/or automatic updates.', 'stops-core-theme-and-plugin-updates' ) ),
+			'themes' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Themes', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If theme updates are enabled and/or automatic updates for themes are enabled, you can configure which themes will receive updates and/or automatic updates.', 'stops-core-theme-and-plugin-updates' ) ),
+			'advanced' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Advanced', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'Reset all options or allow certain users to see all updates regardless of what settings you have set.', 'stops-core-theme-and-plugin-updates' ) ),
+			
+		);
 		$content4 = <<<CONTENT4
 <p>
-You'll see four tabs where you can configure the update options.
+{$content4_strings['intro']}
 <br>
 <br>
-<strong>General</strong> - Use this screen to finely tune which updates and automatic updates you would like to see.
+{$content4_strings['general']}
 <br>
 <br>
-<strong>Plugins</strong> - If plugin updates are enabled and/or automatic updates for plugins are enabled, you can configure which plugins will receive updates and/or automatic updates.
+{$content4_strings['plugins']}
 <br>
 <br>
-<strong>Themes</strong> - If theme updates are enabled and/or automatic updates for themes are enabled, you can configure which themes will receive updates and/or automatic updates.
+{$content4_strings['themes']}
 <br>
 <br>
-<strong>Advanced</strong> - Reset all options or allow certain users to see all updates regardless of what settings you have set.
+{$content4_strings['advanced']}
 <br>
 <br>
 </p>
 
 CONTENT4;
-
+		
+		$content5_strings = array(
+			'contributors' => esc_html__( 'Contributors:', 'stops-core-theme-and-plugin-updates' )
+		);
 		$content5 = <<<CONTENT5
 		
 <p style="align: center;">
-<h3>Contributors:</h3>
+<h3>{$content5_strings[ 'contributors' ]}</h3>
 <ul>
 <li><a href="http://profiles.wordpress.org/kidsguide/">Matthew</a></li>
 <li><a href="http://profiles.wordpress.org/mps-plugins/">MPS Plugins</a></li>
@@ -82,47 +93,43 @@ CONTENT4;
 
 CONTENT5;
 
-		$content6 = <<<CONTENT6
-<p>	
-WordPress encourages you to update your plugins, themes, and core to make sure that there are no bugs. Even though you most likely want to disable all the updates and never think about updating again, you should still consider updating every once in a while to avoid major bugs and errors on your WordPress website.
-
-<h3>This plugin is tested so there are no problems.</h3>
-<ul>
-<li>Tested with WordPress 4.1.1.</li>
-<li>Tested with popular plugins to ensure that there are no conflicts.</li>
-<li>Tested with popular themes to ensure that there are no conflicts.</li>
-</ul>
-</p>
-
-CONTENT6;
+		$content6 = '<p>';
+		$content6 .= esc_html__( 'WordPress encourages you to update your plugins, themes, and core to make sure that there are no bugs. Even though you most likely want to disable all the updates and never think about updating again, you should still consider updating every once in a while to avoid major bugs and errors on your WordPress website.', 'stops-core-theme-and-plugin-updates' );
+		$content6 .= sprintf( '<h3>%s</h3>', esc_html__( 'This plugin is tested so there are no known major issues.', 'stops-core-theme-and-plugin-updates' ) );
+		$content6 .= '<ul>';
+		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with WordPress 4.1.1.',  'stops-core-theme-and-plugin-updates' ) );
+		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with popular plugins to ensure that there are no conflicts.',  'stops-core-theme-and-plugin-updates' ) );
+		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with popular themes to ensure that there are no conflicts.',  'stops-core-theme-and-plugin-updates' ) );
+		$content6 .= '</ul>';
+		$content6 .= '</p>';
 
 		$screen->add_help_tab(array(
 				'id'      => 'help_tab_content_1',
-				'title'   => __('Overview'),
+				'title'   => __( 'Overview',  'stops-core-theme-and-plugin-updates' ),
 				'content' => $content1,
 			));
 			
 	    $screen->add_help_tab(array(
                 'id' => 'help_tab_content_4',
-                'title' => __('Tabs'),
+                'title' => __( 'Tabs',  'stops-core-theme-and-plugin-updates' ),
                 'content' => $content4,
             ));
 			
 	    $screen->add_help_tab(array(
                 'id' => 'help_tab_content_2',
-                'title' => __('Documentation'),
+                'title' => __( 'Documentation',  'stops-core-theme-and-plugin-updates' ),
                 'content' => $content2,
             ));	
 			
 	    $screen->add_help_tab(array(
                 'id' => 'help_tab_content_6',
-                'title' => __('Capability'),
+                'title' => __( 'Capability',  'stops-core-theme-and-plugin-updates' ),
                 'content' => $content6,
             ));
 			
 	    $screen->add_help_tab(array(
                 'id' => 'help_tab_content_3',
-                'title' => __('Troubleshooting'),
+                'title' => __( 'Troubleshooting',  'stops-core-theme-and-plugin-updates' ),
                 'content' => $content3,
             ));
 				
