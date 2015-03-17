@@ -127,7 +127,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			}
 		}
 		$total_this_page = count( $themes[ 'all' ] );
-		$themes_per_page = 20;
+		$themes_per_page = 999;
 		
 		$start = ( $page - 1 ) * $themes_per_page;
 

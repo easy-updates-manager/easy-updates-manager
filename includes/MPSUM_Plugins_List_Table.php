@@ -123,7 +123,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 		$total_this_page = $totals[ $status ];
 
-		$plugins_per_page = 50;
+		$plugins_per_page = 999;
 		
 		$start = ( $page - 1 ) * $plugins_per_page;
 
