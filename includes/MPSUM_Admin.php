@@ -1,20 +1,80 @@
 <?php
+/**
+ * Easy Updates Manager admin controller.
+ *
+ * Initializes the admin panel options and load the admin dependencies
+ *
+ * @since 5.0.0
+ *
+ * @package WordPress
+ */
 class MPSUM_Admin {
+	
+	/**
+	* Holds the class instance.
+	*
+	* @since 5.0.0
+	* @access static
+	* @var MPSUM_Admin $instance
+	*/
 	private static $instance = null;
+	
+	/**
+	* Holds the URL to the admin panel page
+	*
+	* @since 5.0.0
+	* @access static
+	* @var string $url
+	*/
 	private static $url = '';
+	
+	/**
+	* Holds the slug to the admin panel page
+	*
+	* @since 5.0.0
+	* @access static
+	* @var string $slug
+	*/
 	private static $slug = 'mpsum-update-options';
 	
-	//Singleton
+	/**
+	* Set a class instance.
+	*
+	* Set a class instance.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	*/
 	public static function run() {
 		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
 	} //end get_instance	
 	
+	/**
+	* Class constructor.
+	*
+	* Initialize the class
+	*
+	* @since 5.0.0
+	* @access private
+	*
+	*/
 	private function __construct() {
 		add_action( 'init', array( $this, 'init' ), 9 );
 	} //end constructor
 	
+	/**
+	* Return the URL to the admin panel page.
+	*
+	* Return the URL to the admin panel page.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	* @return string URL to the admin panel page.
+	*/
 	public static function get_url() {
 		$url = self::$url;
 		if ( empty( $url ) ) {
@@ -28,10 +88,31 @@ class MPSUM_Admin {
 		return $url;
 	}
 	
+	/**
+	* Return the slug for the admin panel page.
+	*
+	* Return the slug for the admin panel page.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	* @return string slug to the admin panel page.
+	*/
 	public static function get_slug() {
 		return self::$slug;
 	}
 	
+	/**
+	* Initialize the admin menu.
+	*
+	* Initialize the admin menu.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal Uses init action
+	*
+	*/
 	public function init() {
 		
 		//Plugin and Theme actions
@@ -49,14 +130,46 @@ class MPSUM_Admin {
 		
 	}	
 	
+	/**
+	* Adds a sub-menu page for multisite.
+	*
+	* Adds a sub-menu page for multisite.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see init
+	* @internal Uses network_admin_menu action
+	*
+	*/
 	public function init_network_admin_menus() {
 		add_submenu_page( 'update-core.php', __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
 	}
 	
+	/**
+	* Adds a sub-menu page for single-site.
+	*
+	* Adds a sub-menu page for single-site.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see init
+	* @internal Uses admin_menu action
+	*
+	*/
 	public function init_single_site_admin_menus() {
 		add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );	
 	}
 	
+	/**
+	* Outputs admin interface for sub-menu.
+	*
+	* Outputs admin interface for sub-menu.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see init_network_admin_menus, init_single_site_admin_menus
+	*
+	*/
 	public function output_admin_interface() {
 		?>
 		<div class="wrap">
@@ -112,6 +225,15 @@ class MPSUM_Admin {
 					echo $tab_html;	
 				}
 				if ( $do_action ) {
+					/**
+					* Perform a tab action.
+					*
+					* Perform a tab action.
+					*
+					* @since 5.0.0
+					*
+					* @param string $action Can be mpsum_admin_tab_main, mpsum_admin_tab_plugins, mpsum_admin_tab_themes, and mpsum_admin_tab_advanced.
+					*/
 					do_action( $do_action );	
 				}
 			}	
