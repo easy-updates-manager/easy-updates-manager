@@ -1,13 +1,13 @@
-=== Updates Manager ===
+=== Easy Updates Manager ===
 Contributors: kidsguide, ronalfy, MPS Plugins
-Tags: Updates Manager, Easy Updates Manager, Disable Updates, Disable Updates Manager, Update Control
+Tags: Updates Manager, Easy Updates Manager, Disable Updates, Disable Updates Manager, Update Control, automatic updates, core updates
 Tested up to: 4.1.1
 Stable tag: trunk
 
-Manage all of your WordPress update settings, including individual plugin/theme updaes, automatic updates, and much more. Also works with WordPress multisite.
+Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates, and much more. Also works with WordPress multisite.
 
 == Description ==
-Easy Updates Manager is a lite yet powerful plugin which enables you to manager all types of updates on your single site install or in using multisite.
+Easy Updates Manager is a lite yet powerful plugin which enables you to manage all types of updates on your single site install or in multisite.
 
 For more information on how to use Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
