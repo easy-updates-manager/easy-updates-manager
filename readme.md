@@ -1,7 +1,7 @@
 # Easy Updates Manager
 Ready for Testing (Coming Soon)
 
-Brief Summary:  Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates (can configure per plugin and theme), and much more.
+Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates (can configure per plugin and theme), and much more.
 
 Bonus:  Designed for multisite, but works with single-site as well.
 
