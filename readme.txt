@@ -1,14 +1,35 @@
 === Easy Updates Manager ===
 Contributors: kidsguide, ronalfy, MPS Plugins
-Tags: Updates Manager, Easy Updates Manager, Disable Updates, Disable Updates Manager, Update Control, automatic updates, core updates
+Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates
 Tested up to: 4.1.1
 Stable tag: 5.0.0
 
-Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates, and much more. Also works with WordPress multisite.
+Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates, and much more. Also works with WordPress MU.
 
 == Description ==
-Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in multisite.
+Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress MU.
 
+= Features Include =
+<ul>
+<li>All Updates - This setting quite easily just overrides all other settings and disables everything.</li>
+<li>WordPress Core Updates- This setting is used to toggle on and off the WordPress core updates.</li>
+<li>Plugin Updates - This setting is used to disable all plugin updates on your website.</li>
+<li>Theme Updates - This setting is used to disable all theme updates on your website.</li>
+<li>Major Releases - This setting toggles whether or not you want the major WordPress core versions to automatically update themselves.</li>
+<li>Minor Releases - This setting toggles whether or not you want the minor WordPress core versions to automatically update themselves.</li>
+<li>Development Updates - This setting toggles whether or not you want the bleeding edge version of WordPress to automatically update itself.</li>
+<li>Plugin Updates - This setting can either automatically update all your plugins, or automatically update any select plugins you want.</li>
+<li>Theme Updates - This setting can either automatically update all your themes, or automatically update any select themes you want.</li>
+<li>Translation Updates - This setting can unable automatic updating or translation updates.</li>
+<li>Core Update E-mails - This setting disables the core update e-mails.</li>
+<li>Browser Nag - This setting removes the WordPress browser nag which appears when you are using an older browser.</li>
+<li>WordPress Version in Footer - This setting will remove the WordPress version in the admin footer on your website.</li>
+<li>Disable plugin updates and automatic updates individually by selecting which plugins on a table. Also able to bulk select plugins.</li>
+<li>Disable theme updates and automatic updates individually by selecting which themes on a table. Also able to bulk select themes.</li>
+<li>Also have the ability to block users from configuring the settings.</li>
+</ul>
+
+= Wiki =
 For more information on how to use Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Screenshots ==
@@ -19,7 +40,7 @@ For more information on how to use Easy Updates Manager check out our <a href="h
 
 == Installation == 
 <strong>Installing Easy Updates Manager through FTP</strong> 
-1. Upload the Easy Updates Manager folder to the /wp-content/plugins/ directory (make sure it is unzipped)
+1. Upload the Easy Updates Manager folder to the '/wp-content/plugins/' directory (make sure it is unzipped)
 2. Activate the Easy Updates Manager plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin by going to the 'Update Options' section in your admin area under the Dashboard
 
@@ -30,6 +51,6 @@ For more information on how to use Easy Updates Manager check out our <a href="h
 4. Configure the plugin by going to the 'Update Options' section in your admin area under the Dashboard
 
 == Changelog ==
-= 5.0 =
+= 5.0.0 =
 * Complete redo of Disable Updates Manager. You will notice that everything has changed including the name. This plugin is now called Easy Updates Manager.
-* We also have a new contributor! ronalfy
+* We also have a new contributor! <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
