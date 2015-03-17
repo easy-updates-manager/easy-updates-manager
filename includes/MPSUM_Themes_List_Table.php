@@ -3,8 +3,8 @@
  * MS Themes List Table class.
  *
  * @package WordPress
- * @subpackage List_Table
- * @since 3.1.0
+ * @subpackage MPSUM_List_Table
+ * @since 5.0.0
  * @access private
  */
 class MPSUM_Themes_List_Table extends MPSUM_List_Table {
@@ -284,7 +284,16 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 		remove_action( "after_theme_row_$stylesheet", 'wp_theme_update_row', 10, 2 );
 		$theme_key = urlencode( $stylesheet );
 
-		
+		/**
+		* Filter the action links that show up under each theme row.
+		* list table.
+		*
+		* @since 5.0.0
+		*
+		* @param array    Array of action links
+		* @param WP_Theme   $theme WP_Theme object
+		* @param string   $status     Status of the theme.
+		*/
 		$actions = apply_filters( 'mpsum_theme_action_links', array(), $theme, 'all' );
 
 		$checkbox_id = "checkbox_" . md5( $theme->get('Name') );
