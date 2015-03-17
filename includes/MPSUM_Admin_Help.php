@@ -23,17 +23,10 @@ class MPSUM_Admin_Help {
 		$screen = get_current_screen();
 
 		$screen  = get_current_screen();
-		$content1 = <<<CONTENT1
-<p>	
-This is the Easy Updates Manager settings help tab. In here you will find helpful information on what Easy Updates Manager does and how to use it.
-</p>
-
-<div>			
-	<p><strong>Please Note! - </strong>If either your WordPress core, theme, or plugins get too out
-	   of date, you may run into compatibility problems. Check the capability tab for more information.</p>
-</div>
-
-CONTENT1;
+		$content1 = '<p>';
+		$content1 .= esc_html__( 'This is the Easy Updates Manager settings help tab. In here you will find helpful information on what Easy Updates Manager does and how to use it.', 'stops-core-theme-and-plugin-updates' );
+		$content1 .= '</p>';
+		$content1 .= sprintf( '<div><p><strong>%s - </strong>%s</p></div>', esc_html__( 'Please Note!', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If either your WordPress core, theme, or plugins get too out of date, you may run into compatibility problems. Check the capability tab for more information.', 'stops-core-theme-and-plugin-updates' ) );
 
 		$content2 = <<<CONTENT2
 <div><br /><br /><a target="_blank"><a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">Please see our Wiki for documentation and videos</a>.</div>
