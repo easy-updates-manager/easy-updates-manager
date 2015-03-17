@@ -147,7 +147,7 @@ class MPSUM_Updates_Manager {
 		}
 		
 		if ( false === $options ) {
-			$options = $this->maybe_migrate_options();		
+			$options = self::maybe_migrate_options();		
 		}
 		
 		//Store options
@@ -199,7 +199,7 @@ class MPSUM_Updates_Manager {
 	*
 	* @return bool|array  false if no migration, associative array of options if migration successful
 	*/
-	private function maybe_migrate_options() {
+	public static  function maybe_migrate_options() {
 		$options = false;
 		$original_options = get_option( '_disable_updates', false );
 		
