@@ -1,7 +1,43 @@
 <?php
+/**
+ * Controls the themes tab
+ *
+ * Controls the themes tab and handles the saving of its options.
+ *
+ * @since 5.0.0
+ *
+ * @package WordPress
+ */
 class MPSUM_Admin_Themes {
+	
+	/**
+	* Holds the slug to the admin panel page
+	*
+	* @since 5.0.0
+	* @access private
+	* @var string $slug
+	*/
 	private $slug = '';
+	
+	/**
+	* Holds the tab name
+	*
+	* @since 5.0.0
+	* @access static
+	* @var string $tab
+	*/
 	private $tab = 'themes';
+	
+	/**
+	* Class constructor.
+	*
+	* Initialize the class
+	*
+	* @since 5.0.0
+	* @access public
+	*
+	* @param string $slug Slug to the admin panel page
+	*/
 	public function __construct( $slug = '' ) {
 		$this->slug = $slug;
 		//Admin Tab Actions
@@ -10,6 +46,16 @@ class MPSUM_Admin_Themes {
 		add_action( 'admin_init', array( $this, 'maybe_save_theme_options' ) );
 	}
 	
+	/**
+	* Determine whether the themes can be updated or not.
+	*
+	* Determine whether the themes can be updated or not.
+	*
+	* @since 5.0.0 
+	* @access private
+	*
+	* @return bool True of the themes can be updated, false if not.
+	*/
 	private function can_update() {
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( isset( $core_options[ 'all_updates' ] ) && 'off' == $core_options[ 'all_updates' ] ) {
@@ -20,7 +66,16 @@ class MPSUM_Admin_Themes {
 		}
 		return true;
 	}
-		
+	
+	/**
+	* Determine whether the save the theme options or not.
+	*
+	* Determine whether the save the theme options or not.
+	*
+	* @since 5.0.0 
+	* @access public
+	*
+	*/
 	public function maybe_save_theme_options() {
 		if ( !current_user_can( 'update_themes' ) ) return;
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
@@ -59,6 +114,17 @@ class MPSUM_Admin_Themes {
 		exit;
 	}
 	
+	/**
+	* Save the theme options based on the passed action.
+	*
+	* Save the theme options based on the passed action.
+	*
+	* @since 5.0.0 
+	* @access private
+	* @see maybe_save_theme_options
+	* @param string $action Action to take action on
+	*
+	*/
 	private function save_theme_update_options( $action ) {
 		//Check capability
 		$capability = 'update_themes'; //On single site, admins can use this, on multisite, only network admins can
@@ -115,6 +181,16 @@ class MPSUM_Admin_Themes {
 		MPSUM_Updates_Manager::update_options( $options );  	
 	}
 	
+	/**
+	* Output the HTML interface for the themes tab.
+	*
+	* Output the HTML interface for the themes tab.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal Uses the mpsum_admin_tab_themes action
+	*/
 	public function tab_output_themes() {
 		if ( isset( $_GET[ 'disabled' ] ) ) {
 			$message = __( 'The selected themes have had their upgrades enabled.', 'stops-core-theme-and-plugin-updates' );
@@ -152,6 +228,18 @@ class MPSUM_Admin_Themes {
     <?php
 	} //end tab_output_plugins
 	
+	/**
+	* Outputs the theme action links beneath each theme row.
+	*
+	* Outputs the theme action links beneath each theme row.
+	*
+	* @since 5.0.0 
+	* @access public
+	*
+	* @param array  $settings Array of settings to output.
+	* @param WP_Theme $theme The theme object to take action on.
+	* @return string Web path to the relative asset.
+	*/
 	public function theme_action_links( $settings, $theme ) {
 		$stylesheet = $theme->get_stylesheet();
 		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
