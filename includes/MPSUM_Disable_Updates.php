@@ -1,14 +1,48 @@
 <?php
+/**
+ * Controller class for disabling updates throughout WordPress
+ *
+ * Controller class for disabling updates throughout WordPress.
+ *
+ * @since 5.0.0
+ *
+ * @package WordPress
+ */
 class MPSUM_Disable_Updates {
+	
+	/**
+	* Holds the class instance.
+	*
+	* @since 5.0.0
+	* @access static
+	* @var MPSUM_Disable_Updates $instance
+	*/
 	private static $instance = null;
 	
-	//Singleton
+	/**
+	* Set a class instance.
+	*
+	* Set a class instance.
+	*
+	* @since 5.0.0 
+	* @access static
+	*
+	*/
 	public static function run() {
 		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
 	} //end get_instance	
 	
+	/**
+	* Class constructor.
+	*
+	* Read in the plugin options and determine which updates are disabled.
+	*
+	* @since 5.0.0
+	* @access private
+	*
+	*/
 	private function __construct() {
 				
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
@@ -115,11 +149,36 @@ class MPSUM_Disable_Updates {
 		
 	} //end constructor
 	
+	/**
+	* Disable the out-of-date browser nag on the WordPress Dashboard.
+	*
+	* Disable the out-of-date browser nag on the WordPress Dashboard.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal uses wp_dashboard_setup action on single-site, wp_network_dashboard_setup action on multisite
+	*
+	*/
 	public function disable_browser_nag() {
 		remove_meta_box( 'dashboard_browser_nag', 'dashboard-network', 'normal' );
 		remove_meta_box( 'dashboard_browser_nag', 'dashboard', 'normal' );
 	}
 	
+	/**
+	* Enables plugin automatic updates on an individual basis.
+	*
+	* Enables plugin automatic updates on an individual basis.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal uses auto_update_plugin filter
+	*
+	* @param bool $update Whether the item has automatic updates enabled
+	* @param object $item Object holding the asset to be updated
+	* @return bool True of automatic updates enabled, false if not
+	*/
 	public function automatic_updates_plugins( $update, $item ) {
 		$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
 		if ( in_array( $item->plugin, $plugin_automatic_options ) ) {
@@ -128,6 +187,20 @@ class MPSUM_Disable_Updates {
 		return false;
 	}
 	
+	/**
+	* Enables theme automatic updates on an individual basis.
+	*
+	* Enables theme automatic updates on an individual basis.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal uses auto_update_theme filter
+	*
+	* @param bool $update Whether the item has automatic updates enabled
+	* @param object $item Object holding the asset to be updated
+	* @return bool True of automatic updates enabled, false if not
+	*/
 	public function automatic_updates_theme( $update, $item ) {
 		$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
 		if ( in_array( $item->theme , $theme_automatic_options) ) {
@@ -136,6 +209,19 @@ class MPSUM_Disable_Updates {
 		return false;
 	}
 	
+	/**
+	* Disables plugin updates on an individual basis.
+	*
+	* Disables plugin updates on an individual basis.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal uses site_transient_update_plugins filter
+	*
+	* @param object $plugins Plugins that may have update notifications
+	* @return object Updated plugins list with updates
+	*/
 	public function disable_plugin_notifications( $plugins ) {
 		if ( !isset( $plugins->response ) || empty( $plugins->response ) ) return $plugins;
 		
@@ -146,6 +232,19 @@ class MPSUM_Disable_Updates {
 		return $plugins;
 	}
 	
+	/**
+	* Disables theme updates on an individual basis.
+	*
+	* Disables theme updates on an individual basis.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal uses site_transient_update_themes filter
+	*
+	* @param object $themes Themes that may have update notifications
+	* @return object Updated themes list with updates
+	*/
 	public function disable_theme_notifications( $themes ) {
 		if ( !isset( $themes->response ) || empty( $themes->response ) ) return $themes;
 		
@@ -156,6 +255,20 @@ class MPSUM_Disable_Updates {
 		return $themes;
 	}
 	
+	/**
+	* Disables theme and plugin http requests on an individual basis.
+	*
+	* Disables theme and plugin http requests on an individual basis.
+	*
+	* @since 5.0.0 
+	* @access public
+	* @see __construct
+	* @internal uses http_request_args filter
+	*
+	* @param array $r Request array
+	* @param string $url URL requested
+	* @return array Updated Request array
+	*/
 	public function http_request_args_remove_plugins_themes( $r, $url ) {
 		if ( 0 !== strpos( $url, 'https://api.wordpress.org/plugins/update-check/1.1/' ) ) return $r;
 		
