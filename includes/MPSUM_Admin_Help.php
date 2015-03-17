@@ -86,8 +86,6 @@ CONTENT4;
 <li><a href="http://profiles.wordpress.org/kidsguide/">Matthew</a></li>
 <li><a href="http://profiles.wordpress.org/mps-plugins/">MPS Plugins</a></li>
 <li><a href="http://profiles.wordpress.org/ronalfy/">Ronalfy</a></li>
-<li><a href="http://profiles.wordpress.org/shazahm1hotmailcom/">Shazahm1</a></li>
-<li><a href="http://profiles.wordpress.org/szepeviktor/">szepe.viktor</a></li>
 </ul>
 </p>
 
