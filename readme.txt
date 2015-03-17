@@ -7,7 +7,7 @@ Stable tag: 5.0.0
 Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates, and much more. Also works with WordPress MU.
 
 == Description ==
-Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress MU.
+Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress MU. With loads of settings and endless possibilities, Easy Updates Manager is an easy choice for anyone wanting to control there updates.
 
 = Features Include =
 <ul>
