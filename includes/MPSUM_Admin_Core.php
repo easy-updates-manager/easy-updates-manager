@@ -142,7 +142,7 @@ class MPSUM_Admin_Core {
 				<td>
 					<input type="radio" name="options[all_updates]" value="on" id="all_updates_on" <?php checked( 'on', $options[ 'all_updates' ] ); ?> />&nbsp;<label for="all_updates_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="radio" name="options[all_updates]" value="off" id="all_updates_off" <?php checked( 'off', $options[ 'all_updates' ] ); ?> />&nbsp;<label for="all_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-					<p class="description"><?php esc_html_e( 'If enabled, this will override all settings.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+					<p class="description"><?php esc_html_e( 'If this option is disabled, this will override all settings.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
 			</tr>
 			<tr>
