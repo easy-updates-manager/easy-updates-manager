@@ -28,17 +28,20 @@ class MPSUM_Admin_Help {
 		$content1 .= '</p>';
 		$content1 .= sprintf( '<div><p><strong>%s - </strong>%s</p></div>', esc_html__( 'Please Note!', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If either your WordPress core, theme, or plugins get too out of date, you may run into compatibility problems. Check the capability tab for more information.', 'stops-core-theme-and-plugin-updates' ) );
 
-		$content2 = <<<CONTENT2
-<div><br /><br /><a target="_blank"><a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">Please see our Wiki for documentation and videos</a>.</div>
-
-CONTENT2;
-
+		$content2 = sprintf( '<div><p><a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">%s</a></p></div>', esc_html__( 'Please see our Wiki for documentation and videos.', 'stops-core-theme-and-plugin-updates' ) );
+		
+		$content3_strings = array(
+			'website' => esc_html__( 'Our Website', 'stops-core-theme-and-plugin-updates' ),
+			'support' => esc_html__( 'Support on WordPress', 'stops-core-theme-and-plugin-updates' ),
+			'github' => esc_html__( 'GitHub Repository', 'stops-core-theme-and-plugin-updates' ),
+			'official' => esc_html__( 'Official Documentation', 'stops-core-theme-and-plugin-updates' ),
+		);
 		$content3 = <<<CONTENT3
 	<p>
-        <a href="http://mpswp.wordpress.com" class="button">Our Website</a>
-	    <a href="http://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates" class="button">Support on WordPress</a>
-	    <a href="https://github.com/easy-updates-manager/easy-updates-manager" class="button">GitHub Repository</a>
-	     <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki" class="button">Official Documentation</a>
+        <a href="http://mpswp.wordpress.com" class="button">{$content3_strings['website']}</a>
+	    <a href="http://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates" class="button">{$content3_strings['support']}</a>
+	    <a href="https://github.com/easy-updates-manager/easy-updates-manager" class="button">{$content3_strings['github']}</a>
+	     <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki" class="button">{$content3_strings['official']}</a>
     </p>
 
 CONTENT3;
