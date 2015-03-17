@@ -1,4 +1,13 @@
 <?php
+/**
+ * Disables all WordPress plugin updates.
+ *
+ * Disables all WordPress plugin updates.
+ *
+ * @since 5.0.0
+ *
+ * @package WordPress
+ */
 //Credit - From https://wordpress.org/plugins/disable-wordpress-updates/
 class MPSUM_Disable_Updates_Plugins {
 	
