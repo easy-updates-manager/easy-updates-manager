@@ -135,6 +135,15 @@ class MPSUM_Admin_Advanced {
 							$users = $wpdb->get_col( "SELECT ID FROM $wpdb->users WHERE user_login IN ('$logins')" );
 						
 						} else {
+							/**
+							* Determine which role gets queried for admin users.
+							*
+							* Determine which role gets queried for admin users.
+							*
+							* @since 5.0.0
+							*
+							* @param string  $var administrator.
+							*/
 							$role = apply_filters( 'mpsum_admin_role', 'administrator' );
 							$users = get_users( array( 'role' => $role, 'orderby' => 'display_name', 'order' => 'ASC', 'fields' => 'ID' ) );	
 						}
