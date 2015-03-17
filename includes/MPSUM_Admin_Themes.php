@@ -195,9 +195,9 @@ class MPSUM_Admin_Themes {
 	*/
 	public function tab_output_themes() {
 		if ( isset( $_GET[ 'disabled' ] ) ) {
-			$message = __( 'The selected themes have had their upgrades enabled.', 'stops-core-theme-and-plugin-updates' );
+			$message = __( 'The selected theme updates have been enabled.', 'stops-core-theme-and-plugin-updates' );
 			if ( $_GET[ 'disabled' ] == 1 ) {
-				$message = __( 'The selected themes have had their upgrades disabled.', 'stops-core-theme-and-plugin-updates' );
+				$message = __( 'The selected theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' );
 			}	
 			?>
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>

@@ -234,9 +234,9 @@ class MPSUM_Admin_Plugins {
 	*/
 	public function tab_output_plugins() {
 		if ( isset( $_GET[ 'disabled' ] ) ) {
-			$message = __( 'The selected plugins have had their upgrades enabled.', 'stops-core-theme-and-plugin-updates' );
+			$message = __( 'The selected plugin updates have been enabled.', 'stops-core-theme-and-plugin-updates' );
 			if ( $_GET[ 'disabled' ] == 1 ) {
-				$message = __( 'The selected plugins have had their upgrades disabled.', 'stops-core-theme-and-plugin-updates' );
+				$message = __( 'The selected plugin updates have been disabled.', 'stops-core-theme-and-plugin-updates' );
 			}	
 			?>
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
