@@ -6,10 +6,10 @@ Tested up to: 4.1.1
 Stable tag: 5.0.0
 License: GPLv2 or later
 
-Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates, and much more. Also works with WP MU.
+Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates, and much more. Also works with WordPress Multisite.
 
 == Description ==
-Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress MU. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to control updates.
+Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to control updates.
 
 = Features Include =
 <ul>
@@ -28,7 +28,9 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>WordPress Version in Footer - This setting will remove the WordPress version in the admin footer on your website.</li>
 <li>Disable plugin updates and automatic updates individually by selecting which plugins on a table. Also able to bulk select plugins.</li>
 <li>Disable theme updates and automatic updates individually by selecting which themes on a table. Also able to bulk select themes.</li>
-<li>Also have the ability to block users from configuring the settings.</li>
+<li>The ability to block users from configuring the settings.</li>
+<li>The ability to select which users can still see and perform updates.</li>
+
 </ul>
 
 = Wiki =
