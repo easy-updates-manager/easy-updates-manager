@@ -121,6 +121,7 @@ class MPSUM_Admin_Advanced {
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Exclude Users', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<p><?php esc_html_e( 'Select which users to be excluded from the settings of this plugin.  Default WordPress behavior will be used.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+		<p><?php esc_html_e( 'This option is useful if, for example, you would like to disable updates, but have a user account that can still update WordPress.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<table class="form-table">
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Users to be Excluded', 'stops-core-theme-and-plugin-updates' ); ?></th>
