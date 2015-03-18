@@ -79,6 +79,11 @@ class MPSUM_Disable_Updates {
 			new MPSUM_Disable_Updates_Themes();
 		}
 		
+		//Disable Translation Updates
+		if ( isset( $core_options[ 'translation_updates' ] ) && 'off' == $core_options[ 'translation_updates' ] ) {
+			new MPSUM_Disable_Updates_Translations();
+		}
+		
 		//Enable Development Updates
 		if ( isset( $core_options[ 'automatic_development_updates' ] ) && 'on' == $core_options[ 'automatic_development_updates' ] ) {
 			add_filter( 'allow_dev_auto_core_updates', '__return_true', 50 );

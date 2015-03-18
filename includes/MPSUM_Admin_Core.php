@@ -60,6 +60,7 @@ class MPSUM_Admin_Core {
 			'core_updates' => 'on',
 			'plugin_updates' => 'on',
 			'theme_updates' => 'on',
+			'translation_updates' => 'on',
 			'automatic_development_updates' => 'off',
 			'automatic_major_updates' => 'off',
 			'automatic_minor_updates' => 'on',
@@ -165,6 +166,13 @@ class MPSUM_Admin_Core {
 				<td>
 					<input type="radio" name="options[theme_updates]" value="on" id="theme_updates_on" <?php checked( 'on', $options[ 'theme_updates' ] ); ?> />&nbsp;<label for="theme_updates_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="radio" name="options[theme_updates]" value="off" id="theme_updates_off" <?php checked( 'off', $options[ 'theme_updates' ] ); ?> />&nbsp;<label for="theme_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'All Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?></th>
+				<td>
+					<input type="radio" name="options[translation_updates]" value="on" id="translation_updates_on" <?php checked( 'on', $options[ 'translation_updates' ] ); ?> />&nbsp;<label for="translation_updates_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="radio" name="options[translation_updates]" value="off" id="translation_updates_off" <?php checked( 'off', $options[ 'translation_updates' ] ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
 				</td>
 			</tr>
 		</table>
