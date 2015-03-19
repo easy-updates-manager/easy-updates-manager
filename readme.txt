@@ -44,7 +44,7 @@ For more information on how to use Easy Updates Manager check out our <a href="h
 5. General Options Allow You to Enable or Disable Updates
 6. Plugin Options Allow You to Enable or Disable Updates Per Plugin
 7. Theme Options Allow You to Enable or Disable Updates Per Theme
-8. Advanced Options Allow You to Exclude Users or Reset Options
+8. Advanced Options Allow You to Exclude Users or Reset All Options
 9. Help Screen Provides Helpful Links
 
 == Installation == 
