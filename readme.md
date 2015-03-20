@@ -1,5 +1,5 @@
 # Easy Updates Manager
-Ready for Testing (Coming Soon)
+Ready for Testing
 
 Manage all of your WordPress update settings, including individual plugin/theme updates, automatic updates (can configure per plugin and theme), and much more.
 
