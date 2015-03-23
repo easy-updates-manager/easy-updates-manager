@@ -9,7 +9,7 @@ License: GPLv2 or later
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
 
 == Description ==
-Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to control updates.
+Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to take control of there websites updates.
 
 = Features Include =
 <ul>
@@ -30,11 +30,9 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>Disable theme updates and automatic updates individually by selecting which themes on a table. Also able to bulk select themes.</li>
 <li>The ability to block users from configuring the settings.</li>
 <li>The ability to select which users can still see and perform updates.</li>
-
 </ul>
 
-= Wiki =
-For more information on how to use Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
+For more information on how to use this plugin and where to get support, check out our new <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Screenshots ==
 1. Easy Updates Manager on Single-Site Plugins Screen with Shortcut Configure Option
@@ -63,5 +61,7 @@ Activate the plugin after installation.  If you are on Multisite, the plugin mus
 
 == Changelog ==
 = 5.0.0 =
-* Complete re-write of Disable Updates Manager. You will notice that everything has changed including the name. This plugin is now called Easy Updates Manager.
-* We also have a new contributor! <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
+In version 5.0.0 we focused completely re-wrote the plugin to offer a faster and more secure experiance. You will also notice that we added lots more settings to cover all angles of updates.
+* Complete re-write of Disable Updates Manager.
+* New name: Easy Updates Manager
+* New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
