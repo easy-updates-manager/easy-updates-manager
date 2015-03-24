@@ -84,7 +84,6 @@ CONTENT4;
 <h3>{$content5_strings[ 'contributors' ]}</h3>
 <ul>
 <li><a href="http://profiles.wordpress.org/kidsguide/">Matthew</a></li>
-<li><a href="http://profiles.wordpress.org/mps-plugins/">MPS Plugins</a></li>
 <li><a href="http://profiles.wordpress.org/ronalfy/">Ronalfy</a></li>
 </ul>
 </p>
