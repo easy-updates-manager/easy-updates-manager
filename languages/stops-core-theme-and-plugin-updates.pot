@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager v1.0.0\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-03-18 18:12-0600\n"
+"POT-Creation-Date: 2015-03-24 16:55-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ronald Huereca <ron@ronalfy.com>\n"
 "Language-Team: Ronald Huereca <ronalfy@gmail.com>\n"
@@ -24,8 +24,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: includes/MPSUM_Admin.php:164 includes/MPSUM_Admin.php:180
-#: includes/MPSUM_Admin.php:198
 msgid "Update Options"
+msgstr ""
+
+#: includes/MPSUM_Admin.php:198
+msgid "Manage Updates"
 msgstr ""
 
 #: includes/MPSUM_Admin.php:205 includes/MPSUM_Admin_Help.php:51
@@ -319,7 +322,7 @@ msgstr ""
 msgid "Contributors:"
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:95
+#: includes/MPSUM_Admin_Help.php:94
 msgid ""
 "WordPress encourages you to update your plugins, themes, and core to make "
 "sure that there are no bugs. Even though you most likely want to disable all "
@@ -328,39 +331,39 @@ msgid ""
 "WordPress website."
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:96
+#: includes/MPSUM_Admin_Help.php:95
 msgid "This plugin is tested so there are no known major issues."
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:98
+#: includes/MPSUM_Admin_Help.php:97
 msgid "Tested with WordPress 4.1.1."
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:99
+#: includes/MPSUM_Admin_Help.php:98
 msgid "Tested with popular plugins to ensure that there are no conflicts."
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:100
+#: includes/MPSUM_Admin_Help.php:99
 msgid "Tested with popular themes to ensure that there are no conflicts."
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:106
+#: includes/MPSUM_Admin_Help.php:105
 msgid "Overview"
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:112
+#: includes/MPSUM_Admin_Help.php:111
 msgid "Tabs"
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:118
+#: includes/MPSUM_Admin_Help.php:117
 msgid "Documentation"
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:124
+#: includes/MPSUM_Admin_Help.php:123
 msgid "Capability"
 msgstr ""
 
-#: includes/MPSUM_Admin_Help.php:130
+#: includes/MPSUM_Admin_Help.php:129
 msgid "Troubleshooting"
 msgstr ""
 

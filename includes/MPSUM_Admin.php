@@ -195,7 +195,7 @@ class MPSUM_Admin {
 		?>
 		<div class="wrap">
 			<h2>
-				<?php echo esc_html_e( 'Update Options', 'stops-core-theme-and-plugin-updates' ); ?>
+				<?php echo esc_html_e( 'Manage Updates', 'stops-core-theme-and-plugin-updates' ); ?>
 			</h2>
 			<?php
 			$tabs = 
