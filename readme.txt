@@ -1,5 +1,5 @@
 === Easy Updates Manager ===
-Contributors: kidsguide, ronalfy, MPS Plugins
+Contributors: kidsguide, ronalfy
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates
 Requires at least: 4.0
 Tested up to: 4.1.1
