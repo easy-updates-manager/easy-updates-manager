@@ -49,11 +49,13 @@ For more information on how to use this plugin and where to get support, check o
 
 == Installation == 
 <strong>Installing Easy Updates Manager through FTP</strong> 
+
 1. Upload the Easy Updates Manager folder to the '/wp-content/plugins/' directory (make sure it is unzipped)
 2. Activate the Easy Updates Manager plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin by going to the 'Update Options' section in your admin area under the Dashboard
 
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
+
 1. You can also upload it by going into your 'Plugins' section and selecting add a new plugin
 2. Search for the plugin by typing 'Easy Updates Manager' into the search bar
 3. Install and activate the plugin by pushing the 'Install' button and then the 'activate plugin' link
@@ -63,8 +65,12 @@ Activate the plugin after installation.  If you are on Multisite, the plugin mus
 
 == Changelog ==
 = 5.0.0 =
-In version 5.0.0 we completely re-wrote the plugin to offer a faster and more secure experiance. You will also notice that we added lots more settings to cover almost every aspect of updates.
-* Complete re-write of Disable Updates Manager.
+Released 2015-03-24
+
+In version 5.0.0 we completely re-wrote the plugin to offer a faster and more secure experience. You will also notice that we added lots more settings to cover almost every aspect of managing updates.
+
+* Complete re-write of Disable Updates Manager with new user interface.
+* Now compatible with WordPress Multisite installations.
 * New name: Easy Updates Manager
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
