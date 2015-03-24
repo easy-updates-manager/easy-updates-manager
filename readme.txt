@@ -11,6 +11,8 @@ Manage all your WordPress updates, including individual plugin/theme updates, au
 == Description ==
 Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to take control of their websites updates.
 
+[youtube https://www.youtube.com/watch?v=MmNrNAkCI0g]
+
 = Features Include =
 <ul>
 <li>All Updates - This setting quite easily just overrides all other settings and disables everything.</li>
@@ -61,7 +63,12 @@ Activate the plugin after installation.  If you are on Multisite, the plugin mus
 
 == Changelog ==
 = 5.0.0 =
-In version 5.0.0 we focused completely re-wrote the plugin to offer a faster and more secure experiance. You will also notice that we added lots more settings to cover all angles of updates.
+In version 5.0.0 we completely re-wrote the plugin to offer a faster and more secure experiance. You will also notice that we added lots more settings to cover almost every aspect of updates.
 * Complete re-write of Disable Updates Manager.
 * New name: Easy Updates Manager
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
+
+== Upgrade Notice ==
+
+= 5.0.0 =
+Major plugin rewrite and update.  Updating will port over your old options.  We recommend you perform a backup of your site before updating.  Now you can configure just about any aspect of WordPress updates.
