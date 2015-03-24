@@ -9,7 +9,7 @@ License: GPLv2 or later
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
 
 == Description ==
-Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to take control of there websites updates.
+Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to take control of their websites updates.
 
 = Features Include =
 <ul>
