@@ -34,7 +34,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>The ability to select which users can still see and perform updates.</li>
 </ul>
 
-For more information on how to use this plugin and where to get support, check out our new <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
+For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Screenshots ==
 1. Easy Updates Manager on Single-Site Plugins Screen with Shortcut Configure Option
