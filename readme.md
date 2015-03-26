@@ -10,4 +10,4 @@ For a better understanding of what Easy Updates Manager does, check out the <a h
 
 See <a href="https://github.com/disableupdatespluginproject/Easy-Updates-Manager/issues">outstanding issues.</a>
 
-Developers, please use the dev branch for any pull requests.
+##### Developers, please use the dev branch for any pull requests.
