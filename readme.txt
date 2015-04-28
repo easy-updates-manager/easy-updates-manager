@@ -2,7 +2,7 @@
 Contributors: kidsguide, ronalfy
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates
 Requires at least: 4.0
-Tested up to: 4.2 beta 2
+Tested up to: 4.2.1
 Stable tag: 5.0.0
 License: GPLv2 or later
 
@@ -75,6 +75,5 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
-
 = 5.0.0 =
-Major plugin rewrite and update.  Updating will port over your old options.  We recommend you perform a backup of your site before updating.  Now you can configure just about any aspect of WordPress updates.
+Major plugin rewrite and update. Updating will port over your old options. We recommend you perform a backup of your site before updating. Now you can configure just about any aspect of WordPress updates.
