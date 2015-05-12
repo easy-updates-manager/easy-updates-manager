@@ -63,6 +63,14 @@ For more information on how to use Easy Updates Manager, check out our <a href="
 
 Activate the plugin after installation.  If you are on Multisite, the plugin must be network-activated.
 
+== Frequently Asked Questions == 
+= How do I change the WordPress update notification e-mail? =
+
+There's some documentation about changing the notification e-mail here: http://www.iwebcontrol.co.uk/2013/10/change-wordpress-auto-update-email-address/
+
+A plugin was also created to change the background updates email address: https://wordpress.org/plugins/background-update-notification-email-address/ 
+
+
 == Changelog ==
 = 5.0.0 =
 Updated 2015-04-23 to ensure WordPress 4.2 compatibility Released 2015-03-24
