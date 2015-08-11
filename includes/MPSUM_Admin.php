@@ -194,9 +194,9 @@ class MPSUM_Admin {
 	public function output_admin_interface() {
 		?>
 		<div class="wrap">
-			<h2>
+			<h1>
 				<?php echo esc_html_e( 'Manage Updates', 'stops-core-theme-and-plugin-updates' ); ?>
-			</h2>
+			</h1>
 			<?php
 			$tabs = 
 			array(
