@@ -79,7 +79,7 @@ class MPSUM_Admin {
 		$url = self::$url;
 		if ( empty( $url ) ) {
 			if ( is_multisite() ) {
-				$url = add_query_arg( array( 'page' => self::get_slug() ), network_admin_url( 'update-core.php' ) );	
+				$url = add_query_arg( array( 'page' => self::get_slug() ), network_admin_url( 'index.php' ) );	
 			} else {
 				$url = add_query_arg( array( 'page' => self::get_slug() ), admin_url( 'index.php' ) );
 			}
@@ -161,7 +161,7 @@ class MPSUM_Admin {
 	*
 	*/
 	public function init_network_admin_menus() {
-		$hook = add_submenu_page( 'update-core.php', __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		$hook = add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
 		add_action( "load-$hook", array( $this, 'init_help_screen' ) );
 	}
 	
