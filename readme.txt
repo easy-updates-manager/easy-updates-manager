@@ -74,6 +74,15 @@ A plugin was also created to change the background updates email address: https:
 Check out our GitHub wiki for additional information. https://github.com/easy-updates-manager/easy-updates-manager/wiki or, if you don't find an answer then let us know by posting a support topic or GitHub issue.
 
 == Changelog ==
+
+= 5.1.0 =
+* Released 2015-08-11
+* WordPress 4.3 tested and is now the minimum supported version.
+* Added default option to plugin/theme automatic updates.
+* Updated internal HTML to be WordPress 4.3 compatible. 
+* Updated internal list tables to be WordPress 4.3 compatible.
+* Moved menus in multisite to Dashboard for WordPress 4.3 compatibility.
+
 = 5.0.0 =
 Updated 2015-04-23 to ensure WordPress 4.2 compatibility Released 2015-03-24
 
@@ -85,5 +94,8 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+= 5.1.0 =
+Many changes to ensure WordPress 4.3 compatibility. 
+
 = 5.0.0 =
 Major plugin rewrite and update. Updating will port over your old options. We recommend you perform a backup of your site before updating. Now you can configure just about any aspect of WordPress updates.
