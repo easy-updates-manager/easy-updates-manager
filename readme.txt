@@ -1,9 +1,9 @@
 === Easy Updates Manager ===
 Contributors: kidsguide, ronalfy
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates
-Requires at least: 4.0
+Requires at least: 4.3
 Tested up to: 4.3
-Stable tag: 5.0.0
+Stable tag: 5.1.0
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
