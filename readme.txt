@@ -70,13 +70,19 @@ There's some documentation about changing the notification e-mail here: http://w
 
 A plugin was also created to change the background updates email address: https://wordpress.org/plugins/background-update-notification-email-address/ 
 
-= Additional Information =
-Check out our GitHub wiki for additional information. https://github.com/easy-updates-manager/easy-updates-manager/wiki or, if you don't find an answer then let us know by posting a support topic or GitHub issue.
+= Automatic Updates =
+
+Check out our video on how the automatic updating works in WordPress.
+[youtube https://www.youtube.com/watch?v=VBAfoK1PP0o]
+
+= Additional Information and FAQ =
+
+For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Changelog ==
 
 = 5.1.0 =
-* Released 2015-08-11
+Updated: 2015-08-11
 * WordPress 4.3 tested and is now the minimum supported version.
 * Added default option to plugin/theme automatic updates.
 * Updated internal HTML to be WordPress 4.3 compatible. 
