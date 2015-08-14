@@ -90,7 +90,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 == Changelog ==
 
 = 5.1.0 =
-Updated: 2015-08-11
+Updated: 2015-08-13
 
 * WordPress 4.3 tested and is now the minimum supported version.
 * Added default option to plugin/theme automatic updates.
