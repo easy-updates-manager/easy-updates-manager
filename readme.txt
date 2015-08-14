@@ -64,6 +64,14 @@ For more information on how to use Easy Updates Manager, check out our <a href="
 Activate the plugin after installation.  If you are on Multisite, the plugin must be network-activated.
 
 == Frequently Asked Questions == 
+= Do you support older WordPress versions? =
+
+Version 5.0.x should support WP versions 4.0 - 4.2.x. Version 4.7.0 should support WP versions 2.3 - 4.0.
+
+Since WordPress is constantly changing, this plugin will always strive to support the latest version of WordPress. As there are many security vulnerabilities reported, please always keep WordPress as up-to-date as possible.
+
+Unfortunately, we do not support older versions of WordPress or the non-current release of this plugin.
+
 = How do I change the WordPress update notification e-mail? =
 
 There's some documentation about changing the notification e-mail here: http://www.iwebcontrol.co.uk/2013/10/change-wordpress-auto-update-email-address/
