@@ -83,6 +83,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 = 5.1.0 =
 Updated: 2015-08-11
+
 * WordPress 4.3 tested and is now the minimum supported version.
 * Added default option to plugin/theme automatic updates.
 * Updated internal HTML to be WordPress 4.3 compatible. 
@@ -101,7 +102,7 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 
 == Upgrade Notice ==
 = 5.1.0 =
-Many changes to ensure WordPress 4.3 compatibility. 
+Only upgrade if using WordPress 4.3. Many changes to ensure WordPress 4.3 compatibility. 
 
 = 5.0.0 =
 Major plugin rewrite and update. Updating will port over your old options. We recommend you perform a backup of your site before updating. Now you can configure just about any aspect of WordPress updates.
