@@ -59,16 +59,17 @@ msgid ""
 "Select which users to be excluded from the settings of this plugin.  Default "
 "WordPress behavior will be used."
 msgstr ""
-"Wähle, welche Anwender von den Einstellungen dieses Plugins ausgeschlossen "
-"werden sollen.  Das normale Verhalten von WordPress wird dann verwendet."
+"Wählen Sie, welche Anwender von den Einstellungen dieses Plugins "
+"ausgeschlossen werden sollen.  Das normale Verhalten von WordPress wird dann "
+"verwendet."
 
 #: includes/MPSUM_Admin_Advanced.php:124
 msgid ""
 "This option is useful if, for example, you would like to disable updates, "
 "but have a user account that can still update WordPress."
 msgstr ""
-"Diese Option ist zum Beispiel sinnvoll, wenn du Aktualisierungen abschalten "
-"möchtest, aber gleichzeitig ein Anwender weiterhin WordPress aktualisieren "
+"Diese Option ist zum Beispiel sinnvoll, wenn Sie Aktualisierungen abschalten "
+"möchten, aber gleichzeitig ein Anwender weiterhin WordPress aktualisieren "
 "können soll."
 
 #: includes/MPSUM_Admin_Advanced.php:127
@@ -87,7 +88,7 @@ msgstr "Einstellungen zurücksetzen"
 msgid ""
 "This will reset all options to as if you have just installed the plugin."
 msgstr ""
-"Hiermit werden alle Einstellungen so zurückgesetzt, als hättest du das "
+"Hiermit werden alle Einstellungen so zurückgesetzt, als hätten Sie das "
 "Plugin gerade erst installiert."
 
 #: includes/MPSUM_Admin_Advanced.php:177
@@ -201,8 +202,8 @@ msgid ""
 "Automatically update your plugins.  Select always on, always off, the "
 "WordPress default, or select plugins individually."
 msgstr ""
-"Aktualisiere deine Plugins automatisch. Wähle aus immer an, immer aus, "
-"WordPress-Standard oder wähle Plugins individuell."
+"Aktualisieren Sie ihre Plugins automatisch. Wählen Sie aus immer an, immer "
+"aus, WordPress-Standard oder wählen Sie Plugins individuell."
 
 #: includes/MPSUM_Admin_Core.php:217
 msgid "Automatic Theme Updates"
@@ -213,8 +214,8 @@ msgid ""
 "Automatically update your themes. Select always on, always off, the "
 "WordPress default, or select themes individually."
 msgstr ""
-"Aktualisiere deine Plugins automatisch. Wähle immer an, immer aus, WordPress-"
-"Standard oder wähle Themes individuell."
+"Aktualisieren Sie ihre Plugins automatisch. Wählen Sie immer an, immer aus, "
+"WordPress-Standard oder wählen Sie Themes individuell."
 
 #: includes/MPSUM_Admin_Core.php:227
 msgid "Translation Updates"
@@ -222,7 +223,7 @@ msgstr "Aktualisierung der Übersetzungen"
 
 #: includes/MPSUM_Admin_Core.php:231
 msgid "Automatically update your translations."
-msgstr "Aktualisiere deine Übersetzungen automatisch."
+msgstr "Aktualisieren Sie ihre Übersetzungen automatisch."
 
 #: includes/MPSUM_Admin_Core.php:235
 msgid "Notifications"
@@ -236,7 +237,7 @@ msgstr "E-Mails für Core-Aktualisierungen"
 msgid ""
 "Disable e-mails that are sent when your site has been upgraded automatically."
 msgstr ""
-"Deaktiviere den Erhalt von E-Mails, nachdem deine Website automatisch "
+"Deaktivieren Sie den Erhalt von E-Mails, nachdem ihre Website automatisch "
 "aktualisiert wurde."
 
 #: includes/MPSUM_Admin_Core.php:246
@@ -273,7 +274,7 @@ msgid ""
 "helpful information on what Easy Updates Manager does and how to use it."
 msgstr ""
 "Dies ist der Hilfe-Tab zu den Einstellungen des Easy Updates Manager. Hier "
-"findest du hilfreiche Informationen darüber, was der Easy Updates Manager "
+"finden Sie hilfreiche Informationen darüber, was der Easy Updates Manager "
 "tut und wie er verwendet wird."
 
 #: includes/MPSUM_Admin_Help.php:29
@@ -286,13 +287,13 @@ msgid ""
 "may run into compatibility problems. Check the capability tab for more "
 "information."
 msgstr ""
-"Wenn deine WordPress-Coredateien, Theme oder Plugins zu veraltet sind, "
-"können Kompatibilitätsprobleme entstehen. Sieh im Tab Kompatibilität nach, "
-"um mehr zu erfahren."
+"Wenn ihre WordPress-Coredateien, Theme oder Plugins zu veraltet sind, können "
+"Kompatibilitätsprobleme entstehen. Sehen Sie im Tab Kompatibilität nach, um "
+"mehr zu erfahren."
 
 #: includes/MPSUM_Admin_Help.php:31
 msgid "Please see our Wiki for documentation and videos."
-msgstr "Dokumentation und Videos findest du in unserem Wiki."
+msgstr "Dokumentation und Videos finden Sie in unserem Wiki."
 
 #: includes/MPSUM_Admin_Help.php:34
 msgid "Our Website"
@@ -313,15 +314,15 @@ msgstr "Offizielle Dokumentation"
 #: includes/MPSUM_Admin_Help.php:50
 msgid "You will see four tabs where you can configure the update options."
 msgstr ""
-"Du siehst vier Tabs, in denen du die Aktualisierung-Einstellungen "
-"konfigurieren kannst."
+"Sie sehen vier Tabs, in denen Sie die Aktualisierung-Einstellungen "
+"konfigurieren können."
 
 #: includes/MPSUM_Admin_Help.php:51
 msgid ""
 "Use this screen to finely tune which updates and automatic updates you would "
 "like to see."
 msgstr ""
-"Benutze diesen Bildschirm für detaillierte Einstellungen zu gewünschten "
+"Benutzen Sie diesen Bildschirm für detaillierte Einstellungen zu gewünschten "
 "Aktualisierungen und automatischen Aktualisierungen."
 
 #: includes/MPSUM_Admin_Help.php:52
@@ -331,8 +332,8 @@ msgid ""
 "automatic updates."
 msgstr ""
 "Wenn Plugin-Aktualisierungen und/oder automatische Plugin-Aktualisierungen "
-"aktiviert wurden, kannst du einstellen, welche Plugins aktualisiert und/oder "
-"automatisch aktualisiert werden."
+"aktiviert wurden, können Sie einstellen, welche Plugins aktualisiert und/"
+"oder automatisch aktualisiert werden."
 
 #: includes/MPSUM_Admin_Help.php:53
 msgid ""
@@ -341,7 +342,7 @@ msgid ""
 "automatic updates."
 msgstr ""
 "Wenn Theme-Aktualisierungen und/oder automatische Theme-Aktualisierungen "
-"aktiviert wurden, kannst du einstellen, welche Themes aktualisiert und/oder "
+"aktiviert wurden, können Sie einstellen, welche Themes aktualisiert und/oder "
 "automatisch aktualisiert werden."
 
 #: includes/MPSUM_Admin_Help.php:54
@@ -349,8 +350,8 @@ msgid ""
 "Reset all options or allow certain users to see all updates regardless of "
 "what settings you have set."
 msgstr ""
-"Setze alle Einstellungen zurück oder erlaube bestimmten Anwendern, "
-"unabhängig von deinen Einstellungen Aktualisierungen zu sehen."
+"Setzen Sie alle Einstellungen zurück oder erlauben Sie bestimmten Anwendern, "
+"unabhängig von ihren Einstellungen Aktualisierungen zu sehen."
 
 #: includes/MPSUM_Admin_Help.php:79
 msgid "Contributors:"
@@ -364,12 +365,11 @@ msgid ""
 "updating every once in a while to avoid major bugs and errors on your "
 "WordPress website."
 msgstr ""
-"WordPress empfiehlt, dass du deine Plugins, Themes und Core-Dateien immer "
-"aktuell hältst, um Programmfehler auszuschließen. Auch wenn du am liebsten "
-"alle Aktualisierungen abschalten und dich nie wieder damit beschäftigen "
-"möchtest, solltest du hin und wieder über eine Aktualisierung nachdenken, um "
-"gravierende Fehler und Software-Bugs in deiner WordPress-Website zu "
-"vermeiden. "
+"WordPress empfiehlt, dass Sie ihre Plugins, Themes und Core-Dateien immer "
+"aktuell halten, um Programmfehler auszuschließen. Auch wenn Sie am liebsten "
+"alle Aktualisierungen abschalten und sich nie wieder damit beschäftigen "
+"möchten, sollten Sie hin und wieder über eine Aktualisierung nachdenken, um "
+"gravierende Fehler und Software-Bugs in ihrer WordPress-Website zu vermeiden."
 
 #: includes/MPSUM_Admin_Help.php:95
 msgid "This plugin is tested so there are no known major issues."
@@ -578,7 +578,7 @@ msgstr "Keine Plugins gefunden."
 #: includes/MPSUM_Plugins_List_Table.php:186
 msgid "You do not appear to have any plugins available at this time."
 msgstr ""
-"Es sieht nicht so aus, als stünden dir im Moment Plugins zur Verfügung."
+"Es sieht nicht so aus, als stünden Ihnen im Moment Plugins zur Verfügung."
 
 #: includes/MPSUM_Plugins_List_Table.php:194
 msgid "Plugin"
@@ -647,7 +647,7 @@ msgstr ""
 #: includes/MPSUM_Plugins_List_Table.php:344
 #, php-format
 msgid "Select %s"
-msgstr "Wähle %s"
+msgstr "Wählen Sie %s"
 
 #: includes/MPSUM_Plugins_List_Table.php:376
 #: includes/MPSUM_Themes_List_Table.php:337
@@ -672,7 +672,7 @@ msgstr "Details ansehen"
 
 #: includes/MPSUM_Plugins_List_Table.php:396
 msgid "Visit plugin site"
-msgstr "Besuche die Plugin-Website"
+msgstr "Besuchen Sie die Plugin-Website"
 
 #: includes/MPSUM_Themes_List_Table.php:193
 msgid "No themes found."
@@ -680,7 +680,8 @@ msgstr "Keine Themes gefunden."
 
 #: includes/MPSUM_Themes_List_Table.php:195
 msgid "You do not appear to have any themes available at this time."
-msgstr "Es sieht nicht so aus, als stünden dir im Moment Themes zur Verfügung."
+msgstr ""
+"Es sieht nicht so aus, als stünden ihnen im Moment Themes zur Verfügung."
 
 #: includes/MPSUM_Themes_List_Table.php:203
 msgid "Theme"
@@ -704,8 +705,8 @@ msgstr "Defektes Theme:"
 
 #: includes/MPSUM_Themes_List_Table.php:342
 msgid "Visit theme homepage"
-msgstr "Besuche die Theme-Homepage"
+msgstr "Besuchen Sie die Theme-Homepage"
 
 #: includes/MPSUM_Themes_List_Table.php:342
 msgid "Visit Theme Site"
-msgstr "Besuche die Theme-Website"
+msgstr "Besuchen Sie die Theme-Website"
