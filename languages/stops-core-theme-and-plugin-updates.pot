@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager v1.0.0\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-03-24 16:55-0600\n"
+"POT-Creation-Date: 2015-08-18 02:54-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ronald Huereca <ron@ronalfy.com>\n"
 "Language-Team: Ronald Huereca <ronalfy@gmail.com>\n"
@@ -104,9 +104,9 @@ msgstr ""
 #: includes/MPSUM_Admin_Core.php:160 includes/MPSUM_Admin_Core.php:167
 #: includes/MPSUM_Admin_Core.php:174 includes/MPSUM_Admin_Core.php:185
 #: includes/MPSUM_Admin_Core.php:193 includes/MPSUM_Admin_Core.php:201
-#: includes/MPSUM_Admin_Core.php:209 includes/MPSUM_Admin_Core.php:218
-#: includes/MPSUM_Admin_Core.php:227 includes/MPSUM_Admin_Core.php:238
-#: includes/MPSUM_Admin_Core.php:249 includes/MPSUM_Admin_Core.php:257
+#: includes/MPSUM_Admin_Core.php:209 includes/MPSUM_Admin_Core.php:219
+#: includes/MPSUM_Admin_Core.php:229 includes/MPSUM_Admin_Core.php:240
+#: includes/MPSUM_Admin_Core.php:251 includes/MPSUM_Admin_Core.php:259
 msgid "Enabled"
 msgstr ""
 
@@ -114,9 +114,9 @@ msgstr ""
 #: includes/MPSUM_Admin_Core.php:161 includes/MPSUM_Admin_Core.php:168
 #: includes/MPSUM_Admin_Core.php:175 includes/MPSUM_Admin_Core.php:186
 #: includes/MPSUM_Admin_Core.php:194 includes/MPSUM_Admin_Core.php:202
-#: includes/MPSUM_Admin_Core.php:210 includes/MPSUM_Admin_Core.php:219
-#: includes/MPSUM_Admin_Core.php:228 includes/MPSUM_Admin_Core.php:239
-#: includes/MPSUM_Admin_Core.php:250 includes/MPSUM_Admin_Core.php:258
+#: includes/MPSUM_Admin_Core.php:210 includes/MPSUM_Admin_Core.php:220
+#: includes/MPSUM_Admin_Core.php:230 includes/MPSUM_Admin_Core.php:241
+#: includes/MPSUM_Admin_Core.php:252 includes/MPSUM_Admin_Core.php:260
 msgid "Disabled"
 msgstr ""
 
@@ -182,72 +182,76 @@ msgstr ""
 msgid "Automatic Plugin Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:211 includes/MPSUM_Admin_Core.php:220
+#: includes/MPSUM_Admin_Core.php:211 includes/MPSUM_Admin_Core.php:221
+msgid "Default"
+msgstr ""
+
+#: includes/MPSUM_Admin_Core.php:212 includes/MPSUM_Admin_Core.php:222
 msgid "Select Individually"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:212
+#: includes/MPSUM_Admin_Core.php:213
 msgid ""
-"Automatically update your plugins.  Select always on, always off, or select "
-"plugins individually."
+"Automatically update your plugins.  Select always on, always off, the "
+"WordPress default, or select plugins individually."
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:216
+#: includes/MPSUM_Admin_Core.php:217
 msgid "Automatic Theme Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:221
+#: includes/MPSUM_Admin_Core.php:223
 msgid ""
-"Automatically update your themes. Select always on, always off, or select "
-"themes individually."
+"Automatically update your themes. Select always on, always off, the "
+"WordPress default, or select themes individually."
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:225
+#: includes/MPSUM_Admin_Core.php:227
 msgid "Translation Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:229
+#: includes/MPSUM_Admin_Core.php:231
 msgid "Automatically update your translations."
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:233
+#: includes/MPSUM_Admin_Core.php:235
 msgid "Notifications"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:236
+#: includes/MPSUM_Admin_Core.php:238
 msgid "Core Update E-mails"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:240
+#: includes/MPSUM_Admin_Core.php:242
 msgid ""
 "Disable e-mails that are sent when your site has been upgraded automatically."
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:244
+#: includes/MPSUM_Admin_Core.php:246
 msgid "Miscellaneous"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:247
+#: includes/MPSUM_Admin_Core.php:249
 msgid "Browser Nag"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:251
+#: includes/MPSUM_Admin_Core.php:253
 msgid "Removes the browser nag for people using older browsers."
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:255
+#: includes/MPSUM_Admin_Core.php:257
 msgid "WordPress Version in Footer"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:259
+#: includes/MPSUM_Admin_Core.php:261
 msgid "Removes the WordPress version in the footer."
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:267
+#: includes/MPSUM_Admin_Core.php:269
 msgid "Save Changes"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:269
+#: includes/MPSUM_Admin_Core.php:271
 msgid "Reset to Defaults"
 msgstr ""
 
@@ -421,86 +425,110 @@ msgstr ""
 msgid "All theme updates have been disabled."
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:130
+#: includes/MPSUM_List_Table.php:143
 msgid "List View"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:131
+#: includes/MPSUM_List_Table.php:144
 msgid "Excerpt View"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:287
+#: includes/MPSUM_List_Table.php:313
 msgid "No items found."
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:413
+#: includes/MPSUM_List_Table.php:439
 msgid "Select bulk action"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:415
+#: includes/MPSUM_List_Table.php:441
 msgid "Bulk Actions"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:425
+#: includes/MPSUM_List_Table.php:451
 msgid "Apply"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:513
+#: includes/MPSUM_List_Table.php:501
+msgid "Show more details"
+msgstr ""
+
+#: includes/MPSUM_List_Table.php:556
 msgid "Filter by date"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:515
+#: includes/MPSUM_List_Table.php:558
 msgid "All dates"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:528
+#: includes/MPSUM_List_Table.php:571
 #, php-format
 msgid "%1$s %2$d"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:575
+#: includes/MPSUM_List_Table.php:623
 #, php-format
-msgid "%s pending"
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/MPSUM_List_Table.php:624
+#, php-format
+msgid "%s approved comment"
+msgid_plural "%s approved comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/MPSUM_List_Table.php:625
+#, php-format
+msgid "%s pending comment"
+msgid_plural "%s pending comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/MPSUM_List_Table.php:630 includes/MPSUM_List_Table.php:642
+msgid "No comments"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:654 includes/MPSUM_List_Table.php:1076
+#: includes/MPSUM_List_Table.php:642
+msgid "No approved comments"
+msgstr ""
+
+#: includes/MPSUM_List_Table.php:723 includes/MPSUM_List_Table.php:1287
 #, php-format
-msgid "1 item"
+msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/MPSUM_List_Table.php:673
-msgid "Go to the first page"
+#: includes/MPSUM_List_Table.php:758
+msgid "First page"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:680
-msgid "Go to the previous page"
+#: includes/MPSUM_List_Table.php:768
+msgid "Previous page"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:689
-msgid "Select Page"
+#: includes/MPSUM_List_Table.php:775 includes/MPSUM_List_Table.php:778
+msgid "Current Page"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:690
-msgid "Current page"
-msgstr ""
-
-#: includes/MPSUM_List_Table.php:696
+#: includes/MPSUM_List_Table.php:784
 #, php-format
 msgctxt "paging"
 msgid "%1$s of %2$s"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:700
-msgid "Go to the next page"
+#: includes/MPSUM_List_Table.php:791
+msgid "Next page"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:707
-msgid "Go to the last page"
+#: includes/MPSUM_List_Table.php:801
+msgid "Last page"
 msgstr ""
 
-#: includes/MPSUM_List_Table.php:844
+#: includes/MPSUM_List_Table.php:1011
 msgid "Select All"
 msgstr ""
 
