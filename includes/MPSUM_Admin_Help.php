@@ -92,12 +92,7 @@ CONTENT5;
 
 		$content6 = '<p>';
 		$content6 .= esc_html__( 'WordPress encourages you to update your plugins, themes, and core to make sure that there are no bugs. Even though you most likely want to disable all the updates and never think about updating again, you should still consider updating every once in a while to avoid major bugs and errors on your WordPress website.', 'stops-core-theme-and-plugin-updates' );
-		$content6 .= sprintf( '<h3>%s</h3>', esc_html__( 'This plugin is tested so there are no known major issues.', 'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= '<ul>';
-		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with WordPress 4.1.1.',  'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with popular plugins to ensure that there are no conflicts.',  'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with popular themes to ensure that there are no conflicts.',  'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= '</ul>';
+		$content6 .= sprintf( '<h4>%s</h4>', esc_html__( 'This plugin is tested with the most recent versions of WordPress to ensure that there are no major issues.', 'stops-core-theme-and-plugin-updates' ) );
 		$content6 .= '</p>';
 
 		$screen->add_help_tab(array(
@@ -108,7 +103,7 @@ CONTENT5;
 			
 	    $screen->add_help_tab(array(
                 'id' => 'help_tab_content_4',
-                'title' => __( 'Tabs',  'stops-core-theme-and-plugin-updates' ),
+                'title' => __( 'Navigation',  'stops-core-theme-and-plugin-updates' ),
                 'content' => $content4,
             ));
 			
@@ -131,7 +126,7 @@ CONTENT5;
             ));
 				
 		$screen->set_help_sidebar($content5);
-	
+			
 	} //end constructor
 	
 }
