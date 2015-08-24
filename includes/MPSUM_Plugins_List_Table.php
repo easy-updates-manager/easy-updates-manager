@@ -245,12 +245,12 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 		$actions = array();
 		        
-		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'disable-plugin-and-theme-updates' );
-		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'disable-plugin-and-theme-updates' );
+		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' );
+		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' );
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] ) {
-			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'disable-plugin-and-theme-updates' );
-			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'disable-plugin-and-theme-updates' );
+			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
+			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
 		}
 		
 		return $actions;
