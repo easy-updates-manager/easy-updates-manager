@@ -97,6 +97,13 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 5.1.1 =
+Updated: 2015-08-24
+
+* Fixed internationalization in plugin files.
+* Added German translation
+* Updated internal plugin documentation
+
 = 5.1.0 =
 Updated: 2015-08-13
 
@@ -117,6 +124,10 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 5.1.1 =
+Fixing internationalization issues and adding German translation.
+
 = 5.1.0 =
 Only upgrade if using WordPress 4.3. Many changes to ensure WordPress 4.3 compatibility. 
 
