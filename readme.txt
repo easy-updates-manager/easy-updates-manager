@@ -36,6 +36,14 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 
 For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
+<h3>Translations</h3>
+
+<ul>
+<li>German - Props <a href="https://github.com/pixolin">Bego Mario Garde</a></li>
+</ul>
+
+If you are interested in translating our plugin, please create a new support request with a link to your translation or <a href="https://github.com/easy-updates-manager/easy-updates-manager">submit a pull request</a>.
+
 == Screenshots ==
 1. Single site install settings page location
 2. Multisite install settings page location
