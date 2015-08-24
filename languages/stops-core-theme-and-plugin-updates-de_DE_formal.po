@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-08-24 10:41-0600\n"
-"PO-Revision-Date: 2015-08-24 10:42-0600\n"
+"POT-Creation-Date: 2015-08-24 13:10-0600\n"
+"PO-Revision-Date: 2015-08-24 13:11-0600\n"
 "Last-Translator: Pixolin <pixolin@gmx.com>\n"
 "Language-Team: pixolin <pixolin@gmx.com>\n"
 "Language: de_DE\n"
@@ -400,57 +400,77 @@ msgstr "Kompatibilität"
 msgid "Troubleshooting"
 msgstr "Fehlerbehebung"
 
-#: includes/MPSUM_Admin_Plugins.php:135 includes/MPSUM_Admin_Themes.php:252
+#: includes/MPSUM_Admin_Plugins.php:128 includes/MPSUM_Admin_Themes.php:251
 #: includes/MPSUM_Plugins_List_Table.php:248
 #: includes/MPSUM_Themes_List_Table.php:258
 msgid "Allow Updates"
 msgstr "Aktualisierungen erlauben"
 
-#: includes/MPSUM_Admin_Plugins.php:139 includes/MPSUM_Admin_Themes.php:257
+#: includes/MPSUM_Admin_Plugins.php:132 includes/MPSUM_Admin_Themes.php:256
 #: includes/MPSUM_Plugins_List_Table.php:249
 #: includes/MPSUM_Themes_List_Table.php:259
 msgid "Disallow Updates"
 msgstr "Aktualisierungen verbieten"
 
-#: includes/MPSUM_Admin_Plugins.php:148 includes/MPSUM_Admin_Themes.php:266
+#: includes/MPSUM_Admin_Plugins.php:141 includes/MPSUM_Admin_Themes.php:265
 #: includes/MPSUM_Plugins_List_Table.php:253
 #: includes/MPSUM_Themes_List_Table.php:263
 msgid "Disallow Automatic Updates"
 msgstr "Automatische Aktualisierungen verbieten"
 
-#: includes/MPSUM_Admin_Plugins.php:152 includes/MPSUM_Admin_Themes.php:270
+#: includes/MPSUM_Admin_Plugins.php:145 includes/MPSUM_Admin_Themes.php:269
 msgid "Enable Automatic Updates"
 msgstr "Automatische Aktualisierungen aktivieren"
 
-#: includes/MPSUM_Admin_Plugins.php:237
-msgid "The selected plugin updates have been enabled."
-msgstr "Die Aktualisierung ausgewählter Plugins wurde aktiviert."
+#: includes/MPSUM_Admin_Plugins.php:231 includes/MPSUM_Admin_Themes.php:191
+msgid "Settings have been updated."
+msgstr ""
 
-#: includes/MPSUM_Admin_Plugins.php:239
+#: includes/MPSUM_Admin_Plugins.php:234
+msgid "The selected plugins have had automatic updates enabled."
+msgstr ""
+
+#: includes/MPSUM_Admin_Plugins.php:236
+msgid "The selected plugins have had automatic updates disabled."
+msgstr ""
+
+#: includes/MPSUM_Admin_Plugins.php:238
 msgid "The selected plugin updates have been disabled."
 msgstr "Die Aktivierung ausgewählter Plugins wurde deaktiviert."
 
-#: includes/MPSUM_Admin_Plugins.php:255
+#: includes/MPSUM_Admin_Plugins.php:240
+msgid "The selected plugin updates have been enabled."
+msgstr "Die Aktualisierung ausgewählter Plugins wurde aktiviert."
+
+#: includes/MPSUM_Admin_Plugins.php:256
 msgid "Plugin Update Options"
 msgstr "Optionen zur Plugin-Aktualisierung"
 
-#: includes/MPSUM_Admin_Plugins.php:259
+#: includes/MPSUM_Admin_Plugins.php:260
 msgid "All plugin updates have been disabled."
 msgstr "Alle Plugin-Aktualisierungen wurden deaktiviert."
 
-#: includes/MPSUM_Admin_Themes.php:198
-msgid "The selected theme updates have been enabled."
-msgstr "Die Aktualisierung ausgewählter Themes wurde aktiviert."
+#: includes/MPSUM_Admin_Themes.php:193
+msgid "The selected themes have had automatic updates enabled."
+msgstr ""
 
-#: includes/MPSUM_Admin_Themes.php:200
+#: includes/MPSUM_Admin_Themes.php:195
+msgid "The selected themes have had automatic updates disabled."
+msgstr ""
+
+#: includes/MPSUM_Admin_Themes.php:197
 msgid "The selected theme updates have been disabled."
 msgstr "Die Aktualisierung ausgewählter Themes wurde deaktiviert."
 
-#: includes/MPSUM_Admin_Themes.php:217
+#: includes/MPSUM_Admin_Themes.php:199
+msgid "The selected theme updates have been enabled."
+msgstr "Die Aktualisierung ausgewählter Themes wurde aktiviert."
+
+#: includes/MPSUM_Admin_Themes.php:216
 msgid "Theme Update Options"
 msgstr "Optionen zur Theme-Aktualisierung"
 
-#: includes/MPSUM_Admin_Themes.php:222
+#: includes/MPSUM_Admin_Themes.php:221
 msgid "All theme updates have been disabled."
 msgstr "Alle Theme-Aktualisierungen wurden deaktiviert."
 
