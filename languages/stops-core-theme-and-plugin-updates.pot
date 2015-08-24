@@ -1,12 +1,11 @@
 # WordPress Blank Pot
 # Copyright (C) 2014 ...
 # This file is distributed under the GNU General Public License v2 or later.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager v1.0.0\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-08-24 08:42-0400\n"
+"POT-Creation-Date: 2015-08-24 10:41-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pixolin <pixolin@gmx.com>\n"
 "Language-Team: Ronald Huereca <ronalfy@gmail.com>\n"
@@ -17,11 +16,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;"
-"_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,"
-"_nc:4c,1,2\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: includes/MPSUM_Admin.php:164 includes/MPSUM_Admin.php:180
@@ -62,13 +61,14 @@ msgstr ""
 
 #: includes/MPSUM_Admin_Advanced.php:123
 msgid ""
-"Select which users to be excluded from the settings of this plugin.  Default WordPress behavior will be used."
+"Select which users to be excluded from the settings of this plugin.  Default "
+"WordPress behavior will be used."
 msgstr ""
 
 #: includes/MPSUM_Admin_Advanced.php:124
 msgid ""
-"This option is useful if, for example, you would like to disable updates, but have a user account that can "
-"still update WordPress."
+"This option is useful if, for example, you would like to disable updates, "
+"but have a user account that can still update WordPress."
 msgstr ""
 
 #: includes/MPSUM_Admin_Advanced.php:127
@@ -84,7 +84,8 @@ msgid "Reset Options"
 msgstr ""
 
 #: includes/MPSUM_Admin_Advanced.php:172
-msgid "This will reset all options to as if you have just installed the plugin."
+msgid ""
+"This will reset all options to as if you have just installed the plugin."
 msgstr ""
 
 #: includes/MPSUM_Admin_Advanced.php:177
@@ -99,18 +100,22 @@ msgstr ""
 msgid "All Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:144 includes/MPSUM_Admin_Core.php:152 includes/MPSUM_Admin_Core.php:160
-#: includes/MPSUM_Admin_Core.php:167 includes/MPSUM_Admin_Core.php:174 includes/MPSUM_Admin_Core.php:185
-#: includes/MPSUM_Admin_Core.php:193 includes/MPSUM_Admin_Core.php:201 includes/MPSUM_Admin_Core.php:209
-#: includes/MPSUM_Admin_Core.php:219 includes/MPSUM_Admin_Core.php:229 includes/MPSUM_Admin_Core.php:240
+#: includes/MPSUM_Admin_Core.php:144 includes/MPSUM_Admin_Core.php:152
+#: includes/MPSUM_Admin_Core.php:160 includes/MPSUM_Admin_Core.php:167
+#: includes/MPSUM_Admin_Core.php:174 includes/MPSUM_Admin_Core.php:185
+#: includes/MPSUM_Admin_Core.php:193 includes/MPSUM_Admin_Core.php:201
+#: includes/MPSUM_Admin_Core.php:209 includes/MPSUM_Admin_Core.php:219
+#: includes/MPSUM_Admin_Core.php:229 includes/MPSUM_Admin_Core.php:240
 #: includes/MPSUM_Admin_Core.php:251 includes/MPSUM_Admin_Core.php:259
 msgid "Enabled"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:145 includes/MPSUM_Admin_Core.php:153 includes/MPSUM_Admin_Core.php:161
-#: includes/MPSUM_Admin_Core.php:168 includes/MPSUM_Admin_Core.php:175 includes/MPSUM_Admin_Core.php:186
-#: includes/MPSUM_Admin_Core.php:194 includes/MPSUM_Admin_Core.php:202 includes/MPSUM_Admin_Core.php:210
-#: includes/MPSUM_Admin_Core.php:220 includes/MPSUM_Admin_Core.php:230 includes/MPSUM_Admin_Core.php:241
+#: includes/MPSUM_Admin_Core.php:145 includes/MPSUM_Admin_Core.php:153
+#: includes/MPSUM_Admin_Core.php:161 includes/MPSUM_Admin_Core.php:168
+#: includes/MPSUM_Admin_Core.php:175 includes/MPSUM_Admin_Core.php:186
+#: includes/MPSUM_Admin_Core.php:194 includes/MPSUM_Admin_Core.php:202
+#: includes/MPSUM_Admin_Core.php:210 includes/MPSUM_Admin_Core.php:220
+#: includes/MPSUM_Admin_Core.php:230 includes/MPSUM_Admin_Core.php:241
 #: includes/MPSUM_Admin_Core.php:252 includes/MPSUM_Admin_Core.php:260
 msgid "Disabled"
 msgstr ""
@@ -144,7 +149,9 @@ msgid "Automatic Updates"
 msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:180
-msgid "These options will enable or disable automatic updates (background updates) of certain parts of WordPress."
+msgid ""
+"These options will enable or disable automatic updates (background updates) "
+"of certain parts of WordPress."
 msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:183
@@ -185,8 +192,8 @@ msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:213
 msgid ""
-"Automatically update your plugins.  Select always on, always off, the WordPress default, or select plugins "
-"individually."
+"Automatically update your plugins.  Select always on, always off, the "
+"WordPress default, or select plugins individually."
 msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:217
@@ -195,8 +202,8 @@ msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:223
 msgid ""
-"Automatically update your themes. Select always on, always off, the WordPress default, or select themes "
-"individually."
+"Automatically update your themes. Select always on, always off, the "
+"WordPress default, or select themes individually."
 msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:227
@@ -216,7 +223,8 @@ msgid "Core Update E-mails"
 msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:242
-msgid "Disable e-mails that are sent when your site has been upgraded automatically."
+msgid ""
+"Disable e-mails that are sent when your site has been upgraded automatically."
 msgstr ""
 
 #: includes/MPSUM_Admin_Core.php:246
@@ -249,8 +257,8 @@ msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:27
 msgid ""
-"This is the Easy Updates Manager settings help tab. In here you will find helpful information on what Easy "
-"Updates Manager does and how to use it."
+"This is the Easy Updates Manager settings help tab. In here you will find "
+"helpful information on what Easy Updates Manager does and how to use it."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:29
@@ -259,8 +267,9 @@ msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:29
 msgid ""
-"If either your WordPress core, theme, or plugins get too out of date, you may run into compatibility problems. "
-"Check the capability tab for more information."
+"If either your WordPress core, theme, or plugins get too out of date, you "
+"may run into compatibility problems. Check the capability tab for more "
+"information."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:31
@@ -288,23 +297,29 @@ msgid "You will see four tabs where you can configure the update options."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:51
-msgid "Use this screen to finely tune which updates and automatic updates you would like to see."
+msgid ""
+"Use this screen to finely tune which updates and automatic updates you would "
+"like to see."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:52
 msgid ""
-"If plugin updates are enabled and/or automatic updates for plugins are enabled, you can configure which plugins "
-"will receive updates and/or automatic updates."
+"If plugin updates are enabled and/or automatic updates for plugins are "
+"enabled, you can configure which plugins will receive updates and/or "
+"automatic updates."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:53
 msgid ""
-"If theme updates are enabled and/or automatic updates for themes are enabled, you can configure which themes "
-"will receive updates and/or automatic updates."
+"If theme updates are enabled and/or automatic updates for themes are "
+"enabled, you can configure which themes will receive updates and/or "
+"automatic updates."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:54
-msgid "Reset all options or allow certain users to see all updates regardless of what settings you have set."
+msgid ""
+"Reset all options or allow certain users to see all updates regardless of "
+"what settings you have set."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:79
@@ -313,13 +328,17 @@ msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:94
 msgid ""
-"WordPress encourages you to update your plugins, themes, and core to make sure that there are no bugs. Even "
-"though you most likely want to disable all the updates and never think about updating again, you should still "
-"consider updating every once in a while to avoid major bugs and errors on your WordPress website."
+"WordPress encourages you to update your plugins, themes, and core to make "
+"sure that there are no bugs. Even though you most likely want to disable all "
+"the updates and never think about updating again, you should still consider "
+"updating every once in a while to avoid major bugs and errors on your "
+"WordPress website."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:95
-msgid "This plugin is tested with the most recent versions of WordPress to ensure that there are no major issues."
+msgid ""
+"This plugin is tested with the most recent versions of WordPress to ensure "
+"that there are no major issues."
 msgstr ""
 
 #: includes/MPSUM_Admin_Help.php:100
@@ -343,17 +362,20 @@ msgid "Troubleshooting"
 msgstr ""
 
 #: includes/MPSUM_Admin_Plugins.php:135 includes/MPSUM_Admin_Themes.php:252
-#: includes/MPSUM_Plugins_List_Table.php:248 includes/MPSUM_Themes_List_Table.php:258
+#: includes/MPSUM_Plugins_List_Table.php:248
+#: includes/MPSUM_Themes_List_Table.php:258
 msgid "Allow Updates"
 msgstr ""
 
 #: includes/MPSUM_Admin_Plugins.php:139 includes/MPSUM_Admin_Themes.php:257
-#: includes/MPSUM_Plugins_List_Table.php:249 includes/MPSUM_Themes_List_Table.php:259
+#: includes/MPSUM_Plugins_List_Table.php:249
+#: includes/MPSUM_Themes_List_Table.php:259
 msgid "Disallow Updates"
 msgstr ""
 
 #: includes/MPSUM_Admin_Plugins.php:148 includes/MPSUM_Admin_Themes.php:266
-#: includes/MPSUM_Plugins_List_Table.php:253 includes/MPSUM_Themes_List_Table.php:263
+#: includes/MPSUM_Plugins_List_Table.php:253
+#: includes/MPSUM_Themes_List_Table.php:263
 msgid "Disallow Automatic Updates"
 msgstr ""
 
@@ -512,7 +534,8 @@ msgstr ""
 msgid "Plugin"
 msgstr ""
 
-#: includes/MPSUM_Plugins_List_Table.php:195 includes/MPSUM_Themes_List_Table.php:204
+#: includes/MPSUM_Plugins_List_Table.php:195
+#: includes/MPSUM_Themes_List_Table.php:204
 msgid "Description"
 msgstr ""
 
@@ -524,28 +547,32 @@ msgid_plural "All <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/MPSUM_Plugins_List_Table.php:216 includes/MPSUM_Themes_List_Table.php:228
+#: includes/MPSUM_Plugins_List_Table.php:216
+#: includes/MPSUM_Themes_List_Table.php:228
 #, php-format
 msgid "Updates Enabled <span class=\"count\">(%s)</span>"
 msgid_plural "Updates Enabled <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/MPSUM_Plugins_List_Table.php:219 includes/MPSUM_Themes_List_Table.php:225
+#: includes/MPSUM_Plugins_List_Table.php:219
+#: includes/MPSUM_Themes_List_Table.php:225
 #, php-format
 msgid "Updates Disabled <span class=\"count\">(%s)</span>"
 msgid_plural "Updates Disabled <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/MPSUM_Plugins_List_Table.php:222 includes/MPSUM_Themes_List_Table.php:231
+#: includes/MPSUM_Plugins_List_Table.php:222
+#: includes/MPSUM_Themes_List_Table.php:231
 #, php-format
 msgid "Automatic Updates <span class=\"count\">(%s)</span>"
 msgid_plural "Automatic Updates <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/MPSUM_Plugins_List_Table.php:252 includes/MPSUM_Themes_List_Table.php:262
+#: includes/MPSUM_Plugins_List_Table.php:252
+#: includes/MPSUM_Themes_List_Table.php:262
 msgid "Allow Automatic Updates"
 msgstr ""
 
@@ -561,8 +588,8 @@ msgstr ""
 #: includes/MPSUM_Plugins_List_Table.php:291
 #, php-format
 msgid ""
-"Drop-ins are advanced plugins in the <code>%s</code> directory that replace WordPress functionality when "
-"present."
+"Drop-ins are advanced plugins in the <code>%s</code> directory that replace "
+"WordPress functionality when present."
 msgstr ""
 
 #: includes/MPSUM_Plugins_List_Table.php:344
@@ -570,12 +597,14 @@ msgstr ""
 msgid "Select %s"
 msgstr ""
 
-#: includes/MPSUM_Plugins_List_Table.php:376 includes/MPSUM_Themes_List_Table.php:337
+#: includes/MPSUM_Plugins_List_Table.php:376
+#: includes/MPSUM_Themes_List_Table.php:337
 #, php-format
 msgid "Version %s"
 msgstr ""
 
-#: includes/MPSUM_Plugins_List_Table.php:381 includes/MPSUM_Themes_List_Table.php:339
+#: includes/MPSUM_Plugins_List_Table.php:381
+#: includes/MPSUM_Themes_List_Table.php:339
 #, php-format
 msgid "By %s"
 msgstr ""
@@ -627,10 +656,4 @@ msgstr ""
 
 #: includes/MPSUM_Themes_List_Table.php:342
 msgid "Visit Theme Site"
-msgstr ""
-
-#: main.php:335
-msgid ""
-"Manage and disable WordPress updates, including core, plugin, theme, and automatic updates - Works with "
-"Multisite."
 msgstr ""
