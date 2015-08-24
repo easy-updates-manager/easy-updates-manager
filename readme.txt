@@ -37,15 +37,15 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Screenshots ==
-1. Easy Updates Manager on Single-Site Plugins Screen with Shortcut Configure Option
-2. Easy Updates Manager Options are Under Dashboard on Single-Site
-3. Easy Updates Manager on Multisite Plugins Screen with Shortcut Configure Option
-4. Easy Updates Manager Options are Under Updates on Multisite
-5. General Options Allow You to Enable or Disable Updates
-6. Plugin Options Allow You to Enable or Disable Updates Per Plugin
-7. Theme Options Allow You to Enable or Disable Updates Per Theme
-8. Advanced Options Allow You to Exclude Users or Reset All Options
-9. Help Screen Provides Helpful Links
+1. Single site install settings page location
+2. Multisite install settings page location
+3. Global settings in General tab
+4. Automatic Update settings in General tab
+5. Notification and Miscellaneous settings in Global tab
+6. Enable/Disable updates and automatic updates individually for plugins
+7. Enable/Disable updates and automatic updates individually for themes
+8. Advanced options tab
+9. Help tab
 
 == Installation == 
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
