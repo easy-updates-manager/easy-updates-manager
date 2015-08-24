@@ -190,9 +190,9 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 
 	public function no_items() {
 		if ( ! $this->has_items )
-			_e( 'No themes found.' );
+			_e( 'No themes found.', 'stops-core-theme-and-plugin-updates'  );
 		else
-			_e( 'You do not appear to have any themes available at this time.' );
+			_e( 'You do not appear to have any themes available at this time.', 'stops-core-theme-and-plugin-updates'  );
 	}
 
 	public function get_columns() {
@@ -200,8 +200,8 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 
 		return array(
 			'cb'          => '<input type="checkbox" />',
-			'name'        => __( 'Theme' ),
-			'description' => __( 'Description' ),
+			'name'        => __( 'Theme', 'stops-core-theme-and-plugin-updates' ),
+			'description' => __( 'Description', 'stops-core-theme-and-plugin-updates'  ),
 		);
 	}
 
@@ -296,7 +296,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 		$actions = apply_filters( 'mpsum_theme_action_links', array(), $theme, 'all' );
 
 		$checkbox_id = "checkbox_" . md5( $theme->get('Name') );
-		$checkbox = "<input type='checkbox' name='checked[]' value='" . esc_attr( $stylesheet ) . "' id='" . $checkbox_id . "' /><label class='screen-reader-text' for='" . $checkbox_id . "' >" . __('Select') . " " . $theme->display('Name') . "</label>";
+		$checkbox = "<input type='checkbox' name='checked[]' value='" . esc_attr( $stylesheet ) . "' id='" . $checkbox_id . "' /><label class='screen-reader-text' for='" . $checkbox_id . "' >" . __('Select', 'stops-core-theme-and-plugin-updates' ) . " " . $theme->display('Name') . "</label>";
 
 		$id = sanitize_html_class( $theme->get_stylesheet() );
 		$class = 'active';
@@ -325,7 +325,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 				case 'description':
 					echo "<td class='column-description desc'$style>";
 					if ( $theme->errors() ) {
-						$pre = $status == 'broken' ? __( 'Broken Theme:' ) . ' ' : '';
+						$pre = $status == 'broken' ? __( 'Broken Theme:', 'stops-core-theme-and-plugin-updates'  ) . ' ' : '';
 						echo '<p><strong class="attention">' . $pre . $theme->errors()->get_error_message() . '</strong></p>';
 					}
 					echo "<div class='theme-description'><p>" . $theme->display( 'Description' ) . "</p></div>
@@ -334,12 +334,12 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 					$theme_meta = array();
 
 					if ( $theme->get('Version') )
-						$theme_meta[] = sprintf( __( 'Version %s' ), $theme->display('Version') );
+						$theme_meta[] = sprintf( __( 'Version %s', 'stops-core-theme-and-plugin-updates'  ), $theme->display('Version') );
 
-					$theme_meta[] = sprintf( __( 'By %s' ), $theme->display('Author') );
+					$theme_meta[] = sprintf( __( 'By %s', 'stops-core-theme-and-plugin-updates' ), $theme->display('Author') );
 
 					if ( $theme->get('ThemeURI') )
-						$theme_meta[] = '<a href="' . $theme->display('ThemeURI') . '" title="' . esc_attr__( 'Visit theme homepage' ) . '">' . __( 'Visit Theme Site' ) . '</a>';
+						$theme_meta[] = '<a href="' . $theme->display('ThemeURI') . '" title="' . esc_attr__( 'Visit theme homepage', 'stops-core-theme-and-plugin-updates' ) . '">' . __( 'Visit Theme Site', 'stops-core-theme-and-plugin-updates' ) . '</a>';
 
 					/**
 					 * Filter the array of row meta for each theme in the Multisite themes
