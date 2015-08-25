@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager v1.0.0\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-08-24 13:10-0600\n"
+"POT-Creation-Date: 2015-08-25 11:27+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pixolin <pixolin@gmx.com>\n"
 "Language-Team: Ronald Huereca <ronalfy@gmail.com>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.7\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: includes/MPSUM_Admin.php:164 includes/MPSUM_Admin.php:180
@@ -676,4 +676,10 @@ msgstr ""
 
 #: includes/MPSUM_Themes_List_Table.php:342
 msgid "Visit Theme Site"
+msgstr ""
+
+#: main.php:335
+msgid ""
+"Manage and disable WordPress updates, including core, plugin, theme, and "
+"automatic updates - Works with Multisite."
 msgstr ""
