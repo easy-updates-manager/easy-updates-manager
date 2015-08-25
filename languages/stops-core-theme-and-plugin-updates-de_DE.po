@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-08-24 13:10-0600\n"
-"PO-Revision-Date: 2015-08-24 13:11-0600\n"
+"POT-Creation-Date: 2015-08-25 11:27+0100\n"
+"PO-Revision-Date: 2015-08-25 11:32+0100\n"
 "Last-Translator: Pixolin <pixolin@gmx.com>\n"
 "Language-Team: pixolin <pixolin@gmx.com>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -424,15 +424,19 @@ msgstr "Automatische Aktualisierungen aktivieren"
 
 #: includes/MPSUM_Admin_Plugins.php:231 includes/MPSUM_Admin_Themes.php:191
 msgid "Settings have been updated."
-msgstr ""
+msgstr "Einstellungen wurden aktualisiert."
 
 #: includes/MPSUM_Admin_Plugins.php:234
 msgid "The selected plugins have had automatic updates enabled."
 msgstr ""
+"Für die ausgewählten Plugins wurde eine automatische Aktualisierung "
+"aktiviert."
 
 #: includes/MPSUM_Admin_Plugins.php:236
 msgid "The selected plugins have had automatic updates disabled."
 msgstr ""
+"Für die ausgewählten Plugins wurde eine automatische Aktualisierung "
+"deaktiviert."
 
 #: includes/MPSUM_Admin_Plugins.php:238
 msgid "The selected plugin updates have been disabled."
@@ -453,10 +457,13 @@ msgstr "Alle Plugin-Aktualisierungen wurden deaktiviert."
 #: includes/MPSUM_Admin_Themes.php:193
 msgid "The selected themes have had automatic updates enabled."
 msgstr ""
+"Für die ausgewählten Themes wurde eine automatische Aktualisierung aktiviert."
 
 #: includes/MPSUM_Admin_Themes.php:195
 msgid "The selected themes have had automatic updates disabled."
 msgstr ""
+"Für die ausgewählten Themes wurde eine automatische Aktualisierung "
+"deaktiviert."
 
 #: includes/MPSUM_Admin_Themes.php:197
 msgid "The selected theme updates have been disabled."
@@ -720,10 +727,11 @@ msgstr "Besuche die Theme-Homepage"
 msgid "Visit Theme Site"
 msgstr "Besuche die Theme-Website"
 
-#~ msgid ""
-#~ "Manage and disable WordPress updates, including core, plugin, theme, and "
-#~ "automatic updates - Works with Multisite."
-#~ msgstr ""
-#~ "Verwalte oder deaktiviere WordPress-Aktualisierungen einschließlich Core, "
-#~ "Plugins, Themes und automatischen Aktualisierungen. Funktioniert auch bei "
-#~ "Multisite."
+#: main.php:335
+msgid ""
+"Manage and disable WordPress updates, including core, plugin, theme, and "
+"automatic updates - Works with Multisite."
+msgstr ""
+"Verwalte und deaktiviere WordPress-Aktualisierungen, einschließlich Core, "
+"Plugins, Themes und automatischen Aktualisierungen. Funktioniert auch bei "
+"Multisite."
