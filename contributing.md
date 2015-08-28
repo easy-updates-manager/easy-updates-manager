@@ -10,10 +10,10 @@ There are a few ways that you can start contributing.
 ### Submitting a Pull Request
 There are many thing that you can submit pull requests for.
 
-#### Enhancements
+- #### Enhancements
 We will always accept new ideas, especially if you code it for us.
 
-##### If you are submitting an enhancement then please follow these guidelines:
+-- ##### If you are submitting an enhancement then please follow these guidelines:
 	1. You document the code. 
 	2. You make sure that your code works with the most recent version of WordPress.
 	3. You use proper coding format and layout.
