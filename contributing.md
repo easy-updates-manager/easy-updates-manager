@@ -109,7 +109,7 @@ We are always more then happy if you want to test beta versions of Easy Updates 
 2. Test everything on a fresh localhost website (you can use XAMPP, MAMP, or VVV to create localhost installs).
 
 ###### Note
-Beta version are not actually officially released. You can either test the developing version stright from GitHub or look for items tags with the <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues?q=is%3Aopen+is%3Aissue+label%3Atesting">testing tag</a>.
+Beta version are not actually officially released. You can either test the developing version straight from GitHub or look for items tags with the <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues?q=is%3Aopen+is%3Aissue+label%3Atesting">testing tag</a>.
 
 
 ### Promotions
