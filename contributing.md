@@ -7,10 +7,10 @@ When contributing we ask you to please ensure that you follow the guidelines bel
 There are a few ways that you can start contributing.
 
 
-### Submitting a Pull Request
+## Submitting a Pull Request
 There are many thing that you can submit pull requests for.
 
-	<h3>Enhancements</h3>
+        #### Enhancements
 		We will always accept new ideas, especially if you code it for us.
 
 		##### If you are submitting an enhancement then please follow these guidelines:
