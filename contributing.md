@@ -40,6 +40,30 @@ Anybody can answer a few support questions. As Easy Updates Manager grows, so do
 ###### Note
 All support threads are in our WordPress <a href="https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates">support forum</a>.
 
+
+### Documentation
+Documentation (just like this one) doesn't always need to be written by the authors of the plugin.
+
+#### Video
+Please feel free anytime to create a video explaining or showing how to do something in Easy Updates Manager. The more documentation there is out there the more happy users there will be.
+
+##### If you are creating a video then please follow these guidelines:
+1. Make sure that you are using the most recent version of Easy Updates Manager at the time that you made the video.
+2. Make sure that you are using the most recent version of WordPress at the time that you made the video.
+3. Please include some sort of English translation in your video. For example if your video is in German then please include English subtitles.
+4. Please make an issue and tag it with documentation so that we can watch your video and potentially add it in to the plugins documentation.
+
+#### Wiki
+We don't always need to make the docs.
+
+##### If you are creating documentation for Easy Updates Manager then please follow these guidelines:
+1. Make sure that the documentation is for the most recent version of Easy Updates Manager.
+2. Make sure that (if you do use) screenshots that they are taken on a fresh localhost install with no other plugins installed, using the default Twenty Fifteen theme, and using the most recent version of WordPress.
+
+###### Note
+If you are creating documentation on your own website then go ahead. If you want to edit the Easy Updates Manager GitHub wiki then please edit it and create an issue (tags with the documentation tag) with your changes included.
+
+
 ## Advanced Contributing
 If you are feeling like doing some more advanced contributing.
 
@@ -77,32 +101,18 @@ As much as you try to fix all the bugs in a plugin they will never all be fixed.
 ###### Note
 Although you created a pull request that doesn't mean that we will always merge it. Although we will consider every pull request.
 
+### Testing
+We are always more then happy if you want to test beta versions of Easy Updates Manager.
 
-### Documentation
-Documentation (just like this one) doesn't always need to be written by the authors of the plugin.
-
-#### Video
-Please feel free anytime to create a video explaining or showing how to do something in Easy Updates Manager. The more documentation there is out there the more happy users there will be.
-
-##### If you are creating a video then please follow these guidelines:
-1. Make sure that you are using the most recent version of Easy Updates Manager at the time that you made the video.
-2. Make sure that you are using the most recent version of WordPress at the time that you made the video.
-3. Please include some sort of English translation in your video. For example if your video is in German then please include English subtitles.
-4. Please make an issue and tag it with documentation so that we can watch your video and potentially add it in to the plugins documentation.
-
-
-#### Wiki
-We don't always need to make the docs.
-
-##### If you are creating documentation for Easy Updates Manager then please follow these guidelines:
-1. Make sure that the documentation is for the most recent version of Easy Updates Manager.
-2. Make sure that (if you do use) screenshots that they are taken on a fresh localhost install with no other plugins installed, using the default Twenty Fifteen theme, and using the most recent version of WordPress.
+##### If you are testing something for Easy Updates Manager then please follow these guidelines:
+1. Make sure to test everything with the lastest version of WordPress (in less otherwise specified).
+2. Test everything on a fresh localhost website (you can use XAMPP, MAMP, or VVV to create localhost installs).
 
 ###### Note
-If you are creating documentation on your own website then go ahead. If you want to edit the Easy Updates Manager GitHub wiki then please edit it and create an issue (tags with the documentation tag) with your changes included.
+Beta version are not actually officially released. You can either test the developing version stright from GitHub or look for items tags with the <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues?q=is%3Aopen+is%3Aissue+label%3Atesting">testing tag</a>.
 
 
 ### Promotions
 If you are a loyal contributor then one day you make wake up and figure out that you have been promoted to be able to directly edit the wiki or commit directly to the repository. If this does happen then don't abuse it.
 
-###### Contributor Handbook v1.3
+###### Contributor Handbook v2.0
