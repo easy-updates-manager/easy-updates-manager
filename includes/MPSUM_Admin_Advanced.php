@@ -43,7 +43,7 @@ class MPSUM_Admin_Advanced {
 		add_action( 'mpsum_admin_tab_advanced', array( $this, 'tab_output' ) );	
 		add_action( 'admin_init', array( $this, 'maybe_save_options' ) );
 	}
-	
+		
 	/**
 	* Determine whether the save the advanced options or not.
 	*
@@ -82,6 +82,12 @@ class MPSUM_Admin_Advanced {
 				check_admin_referer( 'mpsum_reset_options', '_mpsum' );
 				MPSUM_Updates_Manager::update_options( array() );
 				break;
+            case 'mpsum_force_updates':
+                wp_schedule_event( current_time( 'timestamp' ) + 10, 'twicedaily', 'wp_update_plugins' );
+                wp_schedule_event( current_time( 'timestamp' ) + 5, 'twicedaily', 'wp_version_check' );
+                wp_schedule_event( current_time( 'timestamp' ) + 5, 'twicedaily', 'wp_update_themes' );
+                wp_schedule_event( current_time( 'timestamp' ) + 5, 'twicedaily', 'wp_maybe_auto_update' );
+                break;
 			default:
 				return;	
 		}
@@ -181,6 +187,7 @@ class MPSUM_Admin_Advanced {
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<p><?php esc_html_e( 'This will attempt to force automatic updates. This is useful for debugging.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+		<p><?php esc_html_e( 'Run this update and wait about 60 seconds, and refresh to test automatic updates.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<input type="hidden" name="action" value='mpsum_force_updates' />
 	    <?php
 		wp_nonce_field( 'mpsum_force_updates', '_mpsum' );
