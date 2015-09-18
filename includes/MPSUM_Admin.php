@@ -161,7 +161,7 @@ class MPSUM_Admin {
 	*
 	*/
 	public function init_network_admin_menus() {
-		$hook = add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		$hook = add_dashboard_page( __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
 		add_action( "load-$hook", array( $this, 'init_help_screen' ) );
 	}
 	
@@ -177,7 +177,7 @@ class MPSUM_Admin {
 	*
 	*/
 	public function init_single_site_admin_menus() {
-		$hook = add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		$hook = add_dashboard_page( __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
 		add_action( "load-$hook", array( $this, 'init_help_screen' ) );	
 	}
 	
