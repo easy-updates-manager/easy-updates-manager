@@ -83,10 +83,10 @@ class MPSUM_Admin_Advanced {
 				MPSUM_Updates_Manager::update_options( array() );
 				break;
             case 'mpsum_force_updates':
-                wp_schedule_event( current_time( 'timestamp' ) + 10, 'twicedaily', 'wp_update_plugins' );
-                wp_schedule_event( current_time( 'timestamp' ) + 5, 'twicedaily', 'wp_version_check' );
-                wp_schedule_event( current_time( 'timestamp' ) + 5, 'twicedaily', 'wp_update_themes' );
-                wp_schedule_event( current_time( 'timestamp' ) + 5, 'twicedaily', 'wp_maybe_auto_update' );
+                wp_schedule_single_event( time() + 10, 'wp_update_plugins' );
+                wp_schedule_single_event( time() + 10, 'wp_version_check' );
+                wp_schedule_single_event( time() + 10, 'wp_update_themes' );
+                wp_schedule_single_event( time() + 45, 'wp_maybe_auto_update' );
                 break;
 			default:
 				return;	
