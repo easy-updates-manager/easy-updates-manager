@@ -178,6 +178,17 @@ class MPSUM_Admin_Advanced {
 		echo '</p>';
 		?>
         </form>
+        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
+		<p><?php esc_html_e( 'This will attempt to force automatic updates. This is useful for debugging.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+		<input type="hidden" name="action" value='mpsum_force_updates' />
+	    <?php
+		wp_nonce_field( 'mpsum_force_updates', '_mpsum' );
+		echo '<p class="submit">';
+		submit_button( __( 'Force Updates', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
+		echo '</p>';
+		?>
+        </form>
     <?php
 	} //end tab_output
 }
