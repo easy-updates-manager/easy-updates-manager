@@ -57,7 +57,7 @@ If you are interested in translating our plugin, please create a new support req
 
 == Installation == 
 
-[youtube https://www.youtube.com/watch?v=V8AWwBc6GrUe]
+[youtube https://www.youtube.com/watch?v=V8AWwBc6GrU]
 
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
 
@@ -92,7 +92,7 @@ A plugin was also created to change the background updates email address: https:
 = Automatic Updates =
 
 Check out our video on how the automatic updating works in WordPress.
-[youtube https://www.youtube.com/watch?v=V8AWwBc6GrUe]
+[youtube https://www.youtube.com/watch?v=V8AWwBc6GrU]
 
 = Additional Information and FAQ =
 
