@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager v1.0.0\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-09-18 18:29-0600\n"
+"POT-Creation-Date: 2015-09-19 11:22-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ronald Huereca <ron@ronalfy.com>\n"
 "Language-Team: Ronald Huereca <ronalfy@gmail.com>\n"
@@ -51,63 +51,71 @@ msgstr ""
 msgid "Configure"
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:119 includes/MPSUM_Admin_Core.php:130
-msgid "Options saved."
+#: includes/MPSUM_Admin_Advanced.php:123
+msgid "The exclusion of users option has been updated."
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:128
-msgid "Exclude Users"
+#: includes/MPSUM_Admin_Advanced.php:126
+msgid "The plugin settings have now been reset."
 msgstr ""
 
 #: includes/MPSUM_Admin_Advanced.php:129
+msgid ""
+"Force update checks have been initialized. Please check your site in 90 "
+"seconds, and refresh to test automatic updates."
+msgstr ""
+
+#: includes/MPSUM_Admin_Advanced.php:132 includes/MPSUM_Admin_Core.php:130
+msgid "Options saved."
+msgstr ""
+
+#: includes/MPSUM_Admin_Advanced.php:144
+msgid "Exclude Users"
+msgstr ""
+
+#: includes/MPSUM_Admin_Advanced.php:145
 msgid ""
 "Select which users to be excluded from the settings of this plugin.  Default "
 "WordPress behavior will be used."
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:130
+#: includes/MPSUM_Admin_Advanced.php:146
 msgid ""
 "This option is useful if, for example, you would like to disable updates, "
 "but have a user account that can still update WordPress."
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:133
+#: includes/MPSUM_Admin_Advanced.php:149
 msgid "Users to be Excluded"
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:172
+#: includes/MPSUM_Admin_Advanced.php:188
 msgid "Save Users"
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:177
+#: includes/MPSUM_Admin_Advanced.php:193
 msgid "Reset Options"
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:178
+#: includes/MPSUM_Admin_Advanced.php:194
 msgid ""
 "This will reset all options to as if you have just installed the plugin."
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:183
+#: includes/MPSUM_Admin_Advanced.php:199
 msgid "Reset All Options"
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:188
+#: includes/MPSUM_Admin_Advanced.php:204
 msgid "Force Automatic Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:189
+#: includes/MPSUM_Admin_Advanced.php:205
 msgid ""
 "This will attempt to force automatic updates. This is useful for debugging."
 msgstr ""
 
-#: includes/MPSUM_Admin_Advanced.php:190
-msgid ""
-"Run this update and wait about 60 seconds, and refresh to test automatic "
-"updates."
-msgstr ""
-
-#: includes/MPSUM_Admin_Advanced.php:195
+#: includes/MPSUM_Admin_Advanced.php:210
 msgid "Force Updates"
 msgstr ""
 
