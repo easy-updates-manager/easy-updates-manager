@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-08-25 11:27+0100\n"
-"PO-Revision-Date: 2015-08-25 11:34+0100\n"
-"Last-Translator: Pixolin <pixolin@gmx.com>\n"
+"POT-Creation-Date: 2015-09-19 11:56-0600\n"
+"PO-Revision-Date: 2015-09-19 11:57-0600\n"
+"Last-Translator: Ronald Huereca <ron@ronalfy.com>\n"
 "Language-Team: pixolin <pixolin@gmx.com>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: includes/MPSUM_Admin.php:164 includes/MPSUM_Admin.php:180
-msgid "Update Options"
+msgid "Updates Options"
 msgstr "Aktualisierungs-Optionen"
 
 #: includes/MPSUM_Admin.php:198
@@ -47,15 +47,31 @@ msgstr "Erweitert"
 msgid "Configure"
 msgstr "Konfigurieren"
 
-#: includes/MPSUM_Admin_Advanced.php:113 includes/MPSUM_Admin_Core.php:130
+#: includes/MPSUM_Admin_Advanced.php:123
+msgid "The exclusion of users option has been updated."
+msgstr "Der Ausschluss von Benutzern Option wurde aktualisiert."
+
+#: includes/MPSUM_Admin_Advanced.php:126
+msgid "The plugin settings have now been reset."
+msgstr "Die Aktualisierung ausgewählter Plugins wurde aktiviert."
+
+#: includes/MPSUM_Admin_Advanced.php:129
+msgid ""
+"Force update checks have been initialized. Please check your site in 90 "
+"seconds, and refresh to test automatic updates."
+msgstr ""
+"Führen Sie diese Aktualisierung aus, warten Sie etwa 60 Sekunden und laden "
+"Sie dann neu, um automatische Aktualisierungen zu testen."
+
+#: includes/MPSUM_Admin_Advanced.php:132 includes/MPSUM_Admin_Core.php:130
 msgid "Options saved."
 msgstr "Einstellungen gespeichert."
 
-#: includes/MPSUM_Admin_Advanced.php:122
+#: includes/MPSUM_Admin_Advanced.php:144
 msgid "Exclude Users"
 msgstr "Anwender ausschließen"
 
-#: includes/MPSUM_Admin_Advanced.php:123
+#: includes/MPSUM_Admin_Advanced.php:145
 msgid ""
 "Select which users to be excluded from the settings of this plugin.  Default "
 "WordPress behavior will be used."
@@ -64,7 +80,7 @@ msgstr ""
 "ausgeschlossen werden sollen.  Das normale Verhalten von WordPress wird dann "
 "verwendet."
 
-#: includes/MPSUM_Admin_Advanced.php:124
+#: includes/MPSUM_Admin_Advanced.php:146
 msgid ""
 "This option is useful if, for example, you would like to disable updates, "
 "but have a user account that can still update WordPress."
@@ -73,28 +89,43 @@ msgstr ""
 "möchten, aber gleichzeitig ein Anwender weiterhin WordPress aktualisieren "
 "können soll."
 
-#: includes/MPSUM_Admin_Advanced.php:127
+#: includes/MPSUM_Admin_Advanced.php:149
 msgid "Users to be Excluded"
 msgstr "Anwender, die ausgeschlossen werden sollen"
 
-#: includes/MPSUM_Admin_Advanced.php:166
+#: includes/MPSUM_Admin_Advanced.php:188
 msgid "Save Users"
 msgstr "Anwender speichern"
 
-#: includes/MPSUM_Admin_Advanced.php:171
+#: includes/MPSUM_Admin_Advanced.php:193
 msgid "Reset Options"
 msgstr "Einstellungen zurücksetzen"
 
-#: includes/MPSUM_Admin_Advanced.php:172
+#: includes/MPSUM_Admin_Advanced.php:194
 msgid ""
 "This will reset all options to as if you have just installed the plugin."
 msgstr ""
 "Hiermit werden alle Einstellungen so zurückgesetzt, als hätten Sie das "
 "Plugin gerade erst installiert."
 
-#: includes/MPSUM_Admin_Advanced.php:177
+#: includes/MPSUM_Admin_Advanced.php:199
 msgid "Reset All Options"
 msgstr "Alle Einstellungen zurücksetzen"
+
+#: includes/MPSUM_Admin_Advanced.php:204
+msgid "Force Automatic Updates"
+msgstr "Automatische Aktualisierungen erzwingen"
+
+#: includes/MPSUM_Admin_Advanced.php:205
+msgid ""
+"This will attempt to force automatic updates. This is useful for debugging."
+msgstr ""
+"Es wird versucht, automatische Aktualisierungen zu erzwingen. Nützlich bei "
+"der Fehlersuche."
+
+#: includes/MPSUM_Admin_Advanced.php:210
+msgid "Force Updates"
+msgstr "Aktualisierungen erzwingen"
 
 #: includes/MPSUM_Admin_Core.php:139
 msgid "Global Settings"
@@ -728,11 +759,13 @@ msgstr "Besuchen Sie die Theme-Homepage"
 msgid "Visit Theme Site"
 msgstr "Besuchen Sie die Theme-Website"
 
-#: main.php:335
-msgid ""
-"Manage and disable WordPress updates, including core, plugin, theme, and "
-"automatic updates - Works with Multisite."
-msgstr ""
-"Verwalten und deaktivieren Sie WordPress-Aktualisierungen, einschließlich "
-"Core, Plugins, Themes und automatischen Aktualisierungen. Funktioniert auch "
-"bei Multisite."
+#~ msgid ""
+#~ "Manage and disable WordPress updates, including core, plugin, theme, and "
+#~ "automatic updates - Works with Multisite."
+#~ msgstr ""
+#~ "Verwalten und deaktivieren Sie WordPress-Aktualisierungen, einschließlich "
+#~ "Core, Plugins, Themes und automatischen Aktualisierungen. Funktioniert "
+#~ "auch bei Multisite."
+
+#~ msgid "Update Options"
+#~ msgstr "Aktualisierungs-Optionen"
