@@ -56,6 +56,9 @@ If you are interested in translating our plugin, please create a new support req
 9. Help tab
 
 == Installation == 
+
+[youtube https://www.youtube.com/watch?v=V8AWwBc6GrUe]
+
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
 
 1. You can also upload it by going into your 'Plugins' section and selecting add a new plugin
@@ -89,7 +92,7 @@ A plugin was also created to change the background updates email address: https:
 = Automatic Updates =
 
 Check out our video on how the automatic updating works in WordPress.
-[youtube https://www.youtube.com/watch?v=VBAfoK1PP0o]
+[youtube https://www.youtube.com/watch?v=V8AWwBc6GrUe]
 
 = Additional Information and FAQ =
 
