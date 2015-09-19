@@ -96,6 +96,7 @@ class MPSUM_Admin_Advanced {
 		$query_args = array();
 		$query_args[ 'updated' ] = "1";
 		$query_args[ 'tab' ] = $this->tab;
+		$query_args[ 'mpaction' ] = $action;
 		
 				
 		//Redirect back to settings screen
@@ -114,9 +115,24 @@ class MPSUM_Admin_Advanced {
 	* @internal Uses the mpsum_admin_tab_main action
 	*/
 	public function tab_output() {
-				
-		if ( isset( $_GET[ 'updated' ] ) ) {
-			$message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
+    	
+		if ( isset( $_GET[ 'updated' ] ) ) {    
+    		$action = isset( $_GET[ 'mpaction' ] ) ? $_GET[ 'mpaction' ] : '';		
+            switch( $action ) {
+                case 'mpsum_save_excluded_users':
+                    $message = __( 'The exclusion of users option has been updated.', 'stops-core-theme-and-plugin-updates' );
+                    break;
+                case 'mpsum_reset_options':
+                    $message = __( 'The plugin settings have now been reset.', 'stops-core-theme-and-plugin-updates' );
+                    break;
+                case 'mpsum_force_updates':
+                    $message = __( 'Force update checks have been initialized. Please check your site in 90 seconds, and refresh to test automatic updates.', 'stops-core-theme-and-plugin-updates' );
+                    break;
+                default:
+                    $message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
+                	return;	
+            }
+    		
 			?>
 			<br />
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
@@ -187,7 +203,6 @@ class MPSUM_Admin_Advanced {
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<p><?php esc_html_e( 'This will attempt to force automatic updates. This is useful for debugging.', 'stops-core-theme-and-plugin-updates' ); ?></p>
-		<p><?php esc_html_e( 'Run this update and wait about 60 seconds, and refresh to test automatic updates.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<input type="hidden" name="action" value='mpsum_force_updates' />
 	    <?php
 		wp_nonce_field( 'mpsum_force_updates', '_mpsum' );
