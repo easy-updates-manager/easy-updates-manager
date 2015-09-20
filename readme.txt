@@ -101,13 +101,14 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 == Changelog ==
 
 = 5.2.0 =
-* Released 2015-09-19
+Released 2015-09-19
+
 * Added Force check in the Advanced Tab.
 * Better support for third-party plugins.
 * Updating the filter priority for better update experience with third-party plugins.
 
 = 5.1.1 =
-Updated: 2015-08-24
+Released 2015-08-24
 
 * Fixed internationalization in plugin files.
 * Added German translation.
@@ -115,7 +116,7 @@ Updated: 2015-08-24
 * Fixing errant status messages.
 
 = 5.1.0 =
-Updated: 2015-08-13
+Released 2015-08-13
 
 * WordPress 4.3 tested and is now the minimum supported version.
 * Added default option to plugin/theme automatic updates.
