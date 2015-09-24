@@ -115,4 +115,4 @@ Beta version are not actually officially released. You can either test the devel
 ### Promotions
 If you are a loyal contributor then one day you make wake up and figure out that you have been promoted to be able to directly edit the wiki or commit directly to the repository. If this does happen then don't abuse it.
 
-###### Contributor Handbook v2.0
+###### Contributor Handbook v3.0
