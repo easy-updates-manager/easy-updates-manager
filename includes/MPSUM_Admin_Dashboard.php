@@ -41,39 +41,7 @@ class MPSUM_Admin_Dashboard {
 		$this->slug = $slug;
 		//Admin Tab Actions
 		add_action( 'mpsum_admin_tab_dashboard', array( $this, 'tab_output' ) );	
-	}
-	
-	/**
-	* Get tab defaults.
-	*
-	* Get default core plugin options.
-	*
-	* @since 5.0.0
-	* @access private
-	*
-	* @return array Associative array of default options
-	*/
-	private function get_defaults() {
-		return array(
-			'all_updates' => 'on',
-			'core_updates' => 'on',
-			'plugin_updates' => 'on',
-			'theme_updates' => 'on',
-			'translation_updates' => 'on',
-			'automatic_development_updates' => 'off',
-			'automatic_major_updates' => 'off',
-			'automatic_minor_updates' => 'on',
-			'automatic_plugin_updates' => 'default',
-			'automatic_theme_updates' => 'default',
-			'automatic_translation_updates' => 'on',
-			'notification_core_update_emails' => 'on',
-			'misc_browser_nag' => 'on',
-			'misc_wp_footer' => 'on',
-			'notification_core_update_emails_plugins' => 'on',
-			'notification_core_update_emails_themes' => 'on',
-			'notification_core_update_emails_translations' => 'on' 
-		);	
-	}
+    }
 
 	
 	/**
@@ -88,11 +56,11 @@ class MPSUM_Admin_Dashboard {
 	*/
 	public function tab_output() {
 		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = wp_parse_args( $options, $this->get_defaults() );
+		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		echo '<pre>' . print_r( $options, true ) . '</pre>';
 		?>
 		<div id="dashboard-main-outputs">
-    		<div class="dashboard-main-wrapper">
+    		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
         		<div class="dashboard-main-header">WordPress Updates</div><!-- .dashboard-main-header -->
         		<div class="dashboard-item-wrapper">
             		<div class="dashboard-item" "dashboard-main">
@@ -109,8 +77,8 @@ class MPSUM_Admin_Dashboard {
                                 $options[ 'translation_updates' ] = 'off'; 
                             }
                             ?>
-                            <input type="checkbox" name="options[all_updates]" value="on"  />
-                            <input type="checkbox"  class="dashboard-hide" name="options[all_updates]" value="off" id="all_updates_on" <?php checked( 'on', $options[ 'all_updates' ] ); ?> />&nbsp;<label for="all_updates_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                            <input type="checkbox" name="options[all_updates]" value="off"  />
+                            <input type="checkbox"  class="dashboard-hide" name="options[all_updates]" value="on" id="all_updates_on" <?php checked( 'on', $options[ 'all_updates' ] ); ?> />&nbsp;<label for="all_updates_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
@@ -118,7 +86,7 @@ class MPSUM_Admin_Dashboard {
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
                     		<input type="hidden" name="options[core_updates]" value="on" />
-            				<input type="checkbox"  class="dashboard-hide" name="options[core_updates]" value="off" id="core_updates_off" <?php checked( 'on', $options[ 'core_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="core_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-updates-check" type="checkbox"  class="dashboard-hide" name="options[core_updates]" value="off" id="core_updates_off" <?php checked( 'on', $options[ 'core_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="core_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
@@ -126,7 +94,7 @@ class MPSUM_Admin_Dashboard {
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
                     		<input type="hidden" name="options[plugin_updates]" value="on" /> 
-            				<input type="checkbox" class="dashboard-hide"  name="options[plugin_updates]" value="off" id="plugin_updates_off" <?php checked( 'on', $options[ 'plugin_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="plugin_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-plugin-check" type="checkbox" class="dashboard-hide"  name="options[plugin_updates]" value="off" id="plugin_updates_off" <?php checked( 'on', $options[ 'plugin_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="plugin_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
@@ -134,7 +102,7 @@ class MPSUM_Admin_Dashboard {
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
                     		<input type="hidden" name="options[theme_updates]" value="on" />
-            				<input type="checkbox"  class="dashboard-hide" name="options[theme_updates]" value="off" id="theme_updates_off" <?php checked( 'on', $options[ 'theme_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="theme_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-theme-check" type="checkbox"  class="dashboard-hide" name="options[theme_updates]" value="off" id="theme_updates_off" <?php checked( 'on', $options[ 'theme_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="theme_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
@@ -143,7 +111,7 @@ class MPSUM_Admin_Dashboard {
                 		<div class="dashboard-item-choice">
                     		
             				<input type="hidden" name="options[translation_updates]" value="on" />
-            				<input type="radio" class="dashboard-hide" name="options[translation_updates]" value="off" id="translation_updates_off" <?php checked( 'on', $options[ 'translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-translation-check" type="radio" class="dashboard-hide" name="options[translation_updates]" value="off" id="translation_updates_off" <?php checked( 'on', $options[ 'translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
         		</div><!-- .dashboard-item-wrapper -->

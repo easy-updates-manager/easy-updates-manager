@@ -133,6 +133,8 @@ class MPSUM_Admin {
 		new MPSUM_Admin_Core( self::get_slug() );
 		new MPSUM_Admin_Advanced( self::get_slug() );
 		
+		
+		
 	}	
 	
 	/**

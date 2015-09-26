@@ -54,7 +54,7 @@ class MPSUM_Admin_Core {
 	*
 	* @return array Associative array of default options
 	*/
-	private function get_defaults() {
+	public static function get_defaults() {
 		return array(
 			'all_updates' => 'on',
 			'core_updates' => 'on',
