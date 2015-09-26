@@ -91,7 +91,7 @@ class MPSUM_Admin_Core {
 		if ( !isset( $_POST[ 'options' ] ) ) return;
 		if ( 'mpsum_save_core_options' !== $_REQUEST[ 'action' ] ) return;
 		check_admin_referer( 'mpsum_main_update', '_mpsum' );
-		
+				
 		$query_args = array();
 		$query_args[ 'updated' ] = "1";
 		
@@ -235,10 +235,12 @@ class MPSUM_Admin_Core {
 		<h3><?php esc_html_e( 'Notifications', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<table class="form-table">
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Core Update E-mails', 'stops-core-theme-and-plugin-updates' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ); ?></th>
 				<td>
-					<input type="radio" name="options[notification_core_update_emails]" value="on" id="notification_core_update_emails_on" <?php checked( 'on', $options[ 'notification_core_update_emails' ] ); ?> />&nbsp;<label for="notification_core_update_emails_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="radio" name="options[notification_core_update_emails]" value="off" id="notification_core_update_emails_off" <?php checked( 'off', $options[ 'notification_core_update_emails' ] ); ?> />&nbsp;<label for="notification_core_update_emails_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+					<input type="checkbox" name="options[notification_core_update_emails]" value="on" id="notification_core_update_emails_on" <?php checked( 'on', $options[ 'notification_core_update_emails' ] ); ?> />&nbsp;<label for="notification_core_update_emails_on"><?php esc_html_e( 'Core Update Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="checkbox" name="options[notification_core_update_emails_plugins]" value="on" id="notification_core_update_emails_plugins_on" <?php checked( 'on', $options[ 'notification_core_update_emails_plugins' ] ); ?> />&nbsp;<label for="notification_core_update_emails_plugins_on"><?php esc_html_e( 'Core Plugin Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="checkbox" name="options[notification_core_update_emails_themes]" value="on" id="notification_core_update_emails_themes" <?php checked( 'on', $options[ 'notification_core_update_emails_themes' ] ); ?> />&nbsp;<label for="notification_core_update_emails_themes"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="checkbox" name="options[notification_core_update_emails_translations]" value="on" id="notification_core_update_emails_translations_on" <?php checked( 'on', $options[ 'notification_core_update_emails_translations' ] ); ?> />&nbsp;<label for="notification_core_update_emails_translations_on"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?></label>
 					<p class="description"><?php esc_html_e( 'Disable e-mails that are sent when your site has been upgraded automatically.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
 			</tr>
