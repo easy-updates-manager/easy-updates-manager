@@ -69,7 +69,10 @@ class MPSUM_Admin_Core {
 			'automatic_translation_updates' => 'on',
 			'notification_core_update_emails' => 'on',
 			'misc_browser_nag' => 'on',
-			'misc_wp_footer' => 'on'
+			'misc_wp_footer' => 'on',
+			'notification_core_update_emails_plugins' => 'on',
+			'notification_core_update_emails_themes' => 'on',
+			'notification_core_update_emails_translations' => 'on' 
 		);	
 	}
 	
@@ -245,7 +248,7 @@ class MPSUM_Admin_Core {
 					<input type="checkbox" name="options[notification_core_update_emails_themes]" value="on" id="notification_core_update_emails_themes" <?php checked( 'on', $options[ 'notification_core_update_emails_themes' ] ); ?> />&nbsp;<label for="notification_core_update_emails_themes"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="hidden" name="options[notification_core_update_emails_translations]" value="off" />
 					<input type="checkbox" name="options[notification_core_update_emails_translations]" value="on" id="notification_core_update_emails_translations_on" <?php checked( 'on', $options[ 'notification_core_update_emails_translations' ] ); ?> />&nbsp;<label for="notification_core_update_emails_translations_on"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Disable e-mails that are sent when your site has been upgraded automatically.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Disable e-mails that are sent when your site has been upgraded automatically. These will not be functional until WordPress 4.4.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
 			</tr>
 		</table>
