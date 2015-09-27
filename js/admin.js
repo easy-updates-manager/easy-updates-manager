@@ -32,7 +32,10 @@ jQuery( document ).ready( function( $ ) {
     } );
     
     $( "#dashboard-form" ).on( 'change', 'input', function( e ) {
-         console.log( 'yo' );
+         $checkbox = jQuery( this );
+         $.each( $checkbox, function() {
+             alert( jQuery( this ).attr( 'data-context' ) );
+         } );
      } );
     
     
