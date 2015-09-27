@@ -244,7 +244,7 @@ class MPSUM_Admin {
 			$tabs_count = count( $tabs );
 			if ( $tabs && !empty( $tabs ) )  {
 				$tab_html =  '<h2 class="nav-tab-wrapper">';
-				$active_tab = isset( $_GET[ 'tab' ] ) ? sanitize_text_field( $_GET[ 'tab' ] ) : 'main';
+				$active_tab = isset( $_GET[ 'tab' ] ) ? sanitize_text_field( $_GET[ 'tab' ] ) : 'dashboard';
 				$do_action = false;
 				foreach( $tabs as $tab ) {
 					$classes = array( 'nav-tab' );
