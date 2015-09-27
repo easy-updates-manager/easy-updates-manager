@@ -7,7 +7,7 @@ jQuery( document ).ready( function( $ ) {
         } else {
             input_var = 'off';   
         }
-        $.post( ajaxurl, { action: 'mpsum_disable_updates', new_val: input_var }, function( response ) {
+        $.post( ajaxurl, { action: 'mpsum_disable_updates', new_val: input_var, _ajax_nonce: $( '#_mpsum' ).val() }, function( response ) {
             if ( response.length > 0 ) {
                  $.each( response, function( key, value ) { 
                      $input_checkbox = $( '#' + value );
@@ -31,10 +31,27 @@ jQuery( document ).ready( function( $ ) {
         }, 'json');
     } );
     
+    /* For when other button is clicked */
     $( "#dashboard-form" ).on( 'change', 'input', function( e ) {
          $checkbox = jQuery( this );
+         checkbox_id = $checkbox.attr( 'id' );
+         if ( checkbox_id == 'all_updates_on' ) {
+            return;    
+         }  
+         
          $.each( $checkbox, function() {
-             alert( jQuery( this ).attr( 'data-context' ) );
+             data_context = jQuery( this ).data( 'context' );
+             data_action = jQuery( this ).data( 'action' );
+             data_checked = jQuery( this ).attr( 'checked' );
+             if ( data_checked == '' || undefined == data_checked ) {
+                 data_checked = 'off';
+              } else {
+                data_checked = "on";  
+              }
+              
+              $.post( ajaxurl, { action: 'mpsum_ajax_action', context: data_context, data_action: data_action, _ajax_nonce: $( '#_mpsum' ).val(), checked: data_checked }, function( response ) {
+            } );
+             
          } );
      } );
     

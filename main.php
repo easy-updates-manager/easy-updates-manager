@@ -296,6 +296,7 @@ class MPSUM_Updates_Manager {
 		}
 		
 		add_action( 'wp_ajax_mpsum_disable_updates', array( $this, 'ajax_disable_updates' ) );
+		add_action( 'wp_ajax_mpsum_ajax_action', array( $this, 'ajax_update_option' ) );
 		
 		
 		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
@@ -305,6 +306,39 @@ class MPSUM_Updates_Manager {
 		}	
 	}
 	
+	public function ajax_update_option() {
+        if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) ) {
+            die( 'Cheating, huh' );
+        }
+        
+        /* Get Ajax Options */
+        $context = sanitize_text_field( $_POST[ 'context' ] );
+        $option = sanitize_text_field( $_POST[ 'data_action' ] );	
+        $option_value = sanitize_text_field( $_POST[ 'checked' ] );
+                
+        $options = MPSUM_Updates_Manager::get_options( $context );
+		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
+		if ( 'core' == $context ) {
+    		$options[ $option ] = $option_value;
+            MPSUM_Updates_Manager::update_options( $options, $context );
+        } else if ( 'plugins' == $context ) {
+            $plugin_options = MPSUM_Updates_Manager::get_options( $context );
+            if ( 'on' == $option_value ) {
+                foreach( $plugin_options as $plugin ) {
+                    if ( ( $key = array_search( $option, $plugin_options ) ) !== false ) {
+                		unset( $plugin_options[ $key ] );
+                    }
+                }
+            } else {
+                $plugin_options[] = $option;
+                $plugin_options = array_values( array_unique( $plugin_options ) );
+            }
+        	
+            MPSUM_Updates_Manager::update_options( $plugin_options, $context );
+            die( '' );
+        }   
+            
+    }
 	public function ajax_disable_updates() {
     	if ( !current_user_can( 'update_core' ) ) return;
     	$options = MPSUM_Updates_Manager::get_options( 'core' );
