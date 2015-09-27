@@ -2,7 +2,6 @@ jQuery( document ).ready( function( $ ) {
     /* When all updates button is clicked */
     $( '.dashboard-item-choice' ).on( 'change', '#all_updates_on', function( e ) {
        input_var = 'on';
-       console.log( $( this ).attr( 'id'  ));
        if ( 'checked' == $( this ).attr( 'checked' ) ) {
            input_var = 'on';
         } else {
@@ -19,19 +18,23 @@ jQuery( document ).ready( function( $ ) {
             } else {
                 $.each( jQuery( 'input.update-option' ), function() {
                     $element = jQuery( this );
-                    id = $element.attr( 'id' ) + '_before';
-                    is_checked = jQuery( '#' + id ).val();
+                    $before = $element.siblings(':first' )
+                    is_checked = $before.val();
                     if ( '' == is_checked ) {
                         $element.removeAttr( 'checked' );
                         return;
                     }
-                    $element.attr( 'checked', jQuery( '#' + id ).val() );
+                    $element.attr( 'checked', $before.val() );
                 } );
             }
             
         }, 'json');
     } );
     
+    /* Toggle */
+    $( '.dashboard-item-choice' ).on( 'change', function ( e ) {
+        //alert( e );
+    } );
     
     
     /* Plugin / Theme Tabs */

@@ -89,7 +89,7 @@
   left: 20px;
   box-shadow: inset 0 0 0 1px rgba(19, 191, 17, 1), 0 2px 4px rgba(0, 0, 0, .2);
 }
-.dashboard-main-wrapper.dashboard-hide {
+#dashboard-main-outputs .dashboard-hide {
     display: none;
 }
 .dashboard-item-header {

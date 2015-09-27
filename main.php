@@ -317,10 +317,10 @@ class MPSUM_Updates_Manager {
         MPSUM_Updates_Manager::update_options( $options, 'core' );
         if ( $options[ 'all_updates' ] == 'off' ) {
              $return = array(
-                'core-updates-check',
-                'core-translation-check',
-                'core-plugin-check',
-                'core-theme-check',
+                'core_updates_off',
+                'plugin_updates_off',
+                'theme_updates_off',
+                'translation_updates_off',
             ); 
             
         } else {
