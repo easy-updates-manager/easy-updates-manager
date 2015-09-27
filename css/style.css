@@ -4,6 +4,7 @@
     float: left;
     width: 100%;
     margin-right: 30px;
+    overflow: hidden;
     
 }
 .dashboard-item-wrapper {
@@ -140,6 +141,6 @@ dashboard-tab-item a:hover {
 }
 .dashboard-item-wrapper {
     max-height: 400px;
-    overflow: scroll; 
+    overflow: auto;
 }
 

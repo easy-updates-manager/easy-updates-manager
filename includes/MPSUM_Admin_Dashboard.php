@@ -172,14 +172,11 @@ class MPSUM_Admin_Dashboard {
                                 		if ( in_array( $plugin_slug,  $options )  ) {
                                     		$checked_value = '';
                                         } else {
-                                            echo 'yo';    
                                         }
-                                        
-                                        
                                         
                                         ?>
                         				<input type="hidden" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
-                        				<input id="<?php echo esc_attr( $plugin_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?>" id="<?php echo esc_attr( $plugin_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                        				<input id="<?php echo esc_attr( $plugin_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?>" id="<?php echo esc_attr( $plugin_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="<?php echo esc_attr( $plugin_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                             		</div><!-- .dashboard-item-choice -->
                         		</div><!-- dashboard-item-->
                                 
@@ -193,7 +190,38 @@ class MPSUM_Admin_Dashboard {
         		<div class="dashboard-tab-themes dashboard-tab-content inactive">
             		<div class="dashboard-item-wrapper">
                 		<div class="dashboard-item" "dashboard-main">
-                            yo theme uses
+                             <?php
+                            $options = MPSUM_Updates_Manager::get_options(  'themes' );
+                            $themes = wp_get_themes();
+                            
+                            foreach( $themes as $theme_slug => $theme_data ) {
+                                $is_theme_active = false;
+                                if ( in_array( $theme_slug,  $options ) ) {
+                                    $is_theme_active = true;
+                                }
+                                $theme_name = $theme_data->Name;
+                                ?>
+                                <div class="dashboard-item" "dashboard-main">
+                            		<div class="dashboard-item-header"><?php echo esc_html( $theme_name ) ?>
+                            		</div><!-- .dashboard-item-header -->
+                            		<div class="dashboard-item-choice">
+                                		<?php
+                                        $checked_value = 'checked';
+                                		if ( in_array( $theme_slug,  $options )  ) {
+                                    		$checked_value = '';
+                                        } else {
+                                        }
+                                        
+                                        ?>
+                        				<input type="hidden" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?> " />
+                        				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                            		</div><!-- .dashboard-item-choice -->
+                        		</div><!-- dashboard-item-->
+                                
+                                <?php
+                            }
+                            ?>
+
                 		</div><!-- dashboard-item-->
             		</div><!-- .dashboard-item-wrapper -->
         		</div><!-- .dashboard-tab-plugins -->
