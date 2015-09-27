@@ -48,6 +48,7 @@ CONTENT3;
 		
 		$content4_strings = array(
 			'intro' => esc_html__( 'You will see four tabs where you can configure the update options.', 'stops-core-theme-and-plugin-updates' ),
+			'dashboard' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'Use this screen for an at-a-glance view of your settings.', 'stops-core-theme-and-plugin-updates' ) ),
 			'general' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'Use this screen to finely tune which updates and automatic updates you would like to see.', 'stops-core-theme-and-plugin-updates' ) ),
 			'plugins' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Plugins', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If plugin updates are enabled and/or automatic updates for plugins are enabled, you can configure which plugins will receive updates and/or automatic updates.', 'stops-core-theme-and-plugin-updates' ) ),
 			'themes' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Themes', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If theme updates are enabled and/or automatic updates for themes are enabled, you can configure which themes will receive updates and/or automatic updates.', 'stops-core-theme-and-plugin-updates' ) ),
@@ -57,6 +58,8 @@ CONTENT3;
 		$content4 = <<<CONTENT4
 <p>
 {$content4_strings['intro']}
+<br>
+{$content4_strings['dashboard']}
 <br>
 <br>
 {$content4_strings['general']}

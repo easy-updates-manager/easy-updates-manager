@@ -274,11 +274,11 @@ class MPSUM_Admin_Dashboard {
         		</div><!-- .dashboard-item-wrapper -->
     		</div><!--- .dashboard-main-wrapper -->
     		<!-- Plugin / Theme Updates -->
-    		<div class="dashboard-main-wrapper" id="dashboard-plugin-theme-updates">
+    		<div class="dashboard-main-wrapper dashboard-plugin-theme-updates">
         		<div class="dashboard-main-header"><?php esc_html_e( 'Plugin and Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-tab">
-        		    <div id="dashboard-tab-plugin" class="dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" ><?php esc_html_e( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
-        		    <div id="dashboard-tab-theme" class="dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" ><?php esc_html_e( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
+        		    <div class="dashboard-tab-header-plugin dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" ><?php esc_html_e( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
+        		    <div class="dashboard-tab-header-theme dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" ><?php esc_html_e( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
         		</div><!- .dashboard-tab -->
         		<div class="dashboard-tab-plugins  dashboard-tab-content active">
             		<div class="dashboard-item-wrapper">
@@ -372,11 +372,11 @@ class MPSUM_Admin_Dashboard {
         		</div><!-- .dashboard-tab-plugins -->
     		</div><!--- .dashboard-main-wrapper -->
     		<!-- Plugin / Theme Updates -->
-    		<div class="dashboard-main-wrapper" id="dashboard-plugin-theme-updates">
+    		<div class="dashboard-main-wrapper dashboard-plugin-theme-updates">
         		<div class="dashboard-main-header"><?php esc_html_e( 'Plugin and Theme Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-tab">
-        		    <div id="dashboard-tab-plugin" class="dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" ><?php esc_html_e( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
-        		    <div id="dashboard-tab-theme" class="dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" ><?php esc_html_e( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
+        		    <div class="dashboard-tab-header-plugin dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" ><?php esc_html_e( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
+        		    <div class="dashboard-tab-header-theme dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" ><?php esc_html_e( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
         		</div><!- .dashboard-tab -->
         		<div class="dashboard-tab-plugins  dashboard-tab-content active">
             		<div class="dashboard-item-wrapper">

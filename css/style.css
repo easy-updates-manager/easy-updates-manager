@@ -7,12 +7,6 @@
     margin-right: 20px;
     margin-bottom: 30px;
 }
-@media only screen and (max-width:1000px) {
-    .dashboard-main-wrapper {
-        margin-right: 0;
-        max-width: 100%;
-    }
-}
 .dashboard-item-wrapper {
     background: #e4e4e4; /* Old browsers */
     border-radius: 0px 0px 20px 20px;
@@ -142,10 +136,24 @@ dashboard-tab-item a:hover {
     border-top: none;
 }
 .dashboard-item-wrapper {
-    max-height: 400px;
+    min-height: 650px;
+    max-height: 700px;
     overflow: auto;
 }
 .multi-choice {
     clear: both;
     margin-top; 20px;
+}
+@media only screen and (max-width:1000px) {
+    .dashboard-main-wrapper {
+        margin-right: 0;
+        max-width: 100%;
+    }
+    .dashboard-item-wrapper {
+        min-height: auto;
+        max-height: 700px;
+        overflow: auto;
+    }
+}
+
 
