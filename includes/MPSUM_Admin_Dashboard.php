@@ -57,7 +57,6 @@ class MPSUM_Admin_Dashboard {
 	public function tab_output() {
 		$options = MPSUM_Updates_Manager::get_options( 'core' );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		echo '<pre>' . print_r( $options, true ) . '</pre>';
 		?>
 		<div id="dashboard-main-outputs">
     		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
@@ -115,6 +114,28 @@ class MPSUM_Admin_Dashboard {
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
         		</div><!-- .dashboard-item-wrapper -->
+    		</div><!--- .dashboard-main-wrapper -->
+    		<!-- Plugin Automatic Updates -->
+    		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
+        		<div class="dashboard-main-header">Plugin and Theme Updates</div><!-- .dashboard-main-header -->
+        		<div class="dashboard-tab">
+        		    <div class="dashboard-tab-item dashboard-tab-content active " ><a href="#" data-tab-plugins="plugins">Plugin Updates</a></div>
+        		    <div class="dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-plugins="plugins">Theme Updates</a></div>
+        		</div><!- .dashboard-tab -->
+        		<div class="dashboard-tab-plugins  dashboard-tab-content active">
+            		<div class="dashboard-item-wrapper">
+                		<div class="dashboard-item" "dashboard-main">
+                            yo plugin uses
+                		</div><!-- dashboard-item-->
+            		</div><!-- .dashboard-item-wrapper -->
+        		</div><!-- .dashboard-tab-plugins -->
+        		<div class="dashboard-tab-themes dashboard-tab-content inactive">
+            		<div class="dashboard-item-wrapper">
+                		<div class="dashboard-item" "dashboard-main">
+                            yo theme uses
+                		</div><!-- dashboard-item-->
+            		</div><!-- .dashboard-item-wrapper -->
+        		</div><!-- .dashboard-tab-plugins -->
     		</div><!--- .dashboard-main-wrapper -->
 		</div><!-- #dashboard-main-outputs -->
         <?php		

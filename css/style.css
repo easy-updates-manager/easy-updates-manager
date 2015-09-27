@@ -109,3 +109,29 @@
     padding: 20px 0;  
     overflow: hidden;
 }
+.dashboard-tab-item {
+    background: #FFF;
+    width: 50%;
+    float: left;   
+    text-align: center;
+    overflow: hidden;
+}
+.dashboard-tab-item a,
+.dashboard-tab-item a:visited,
+dashboard-tab-item a:hover {
+    display: block;
+    width: 100%;
+    background: #FFF;
+    color: #000;  
+    text-decoration: none; 
+    padding: 15px 0;
+}
+.dashboard-tab-item.active {
+    font-weight: 800;   
+}
+.dashboard-tab-content.active {
+    display: block;   
+}
+.dashboard-tab-content.inactive {
+    display: none;   
+}
