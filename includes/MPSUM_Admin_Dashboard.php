@@ -137,7 +137,7 @@ class MPSUM_Admin_Dashboard {
                             ?>
                     		<input id="core-translation-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
             				<input type="hidden" name="options[translation_updates]" value="on" />
-            				<input id="core-translation-check" type="radio" class="dashboard-hide update-option" name="options[translation_updates]" value="off" id="translation_updates_off" <?php checked( 'on', $options[ 'translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-translation-check" type="checkbox" class="dashboard-hide update-option" name="options[translation_updates]" value="off" id="translation_updates_off" <?php checked( 'on', $options[ 'translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
         		</div><!-- .dashboard-item-wrapper -->
@@ -152,7 +152,41 @@ class MPSUM_Admin_Dashboard {
         		<div class="dashboard-tab-plugins  dashboard-tab-content active">
             		<div class="dashboard-item-wrapper">
                 		<div class="dashboard-item" "dashboard-main">
-                            yo plugin uses
+                            <?php
+                            $options = MPSUM_Updates_Manager::get_options(  'plugins' );
+                            
+                            $plugins = get_plugins(); 
+                            foreach( $plugins as $plugin_slug => $plugin_data ) {
+                                $is_plugin_active = false;
+                                if ( in_array( $plugin_slug,  $options ) ) {
+                                    $is_plugin_active = true;
+                                }
+                                $plugin_name = $plugin_data[ 'Name' ];
+                                ?>
+                                <div class="dashboard-item" "dashboard-main">
+                            		<div class="dashboard-item-header"><?php echo esc_html( $plugin_name ) ?>
+                            		</div><!-- .dashboard-item-header -->
+                            		<div class="dashboard-item-choice">
+                                		<?php
+                                        $checked_value = 'checked';
+                                		if ( in_array( $plugin_slug,  $options )  ) {
+                                    		$checked_value = '';
+                                        } else {
+                                            echo 'yo';    
+                                        }
+                                        
+                                        
+                                        
+                                        ?>
+                        				<input type="hidden" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
+                        				<input id="<?php echo esc_attr( $plugin_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?>" id="<?php echo esc_attr( $plugin_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                            		</div><!-- .dashboard-item-choice -->
+                        		</div><!-- dashboard-item-->
+                                
+                                <?php
+                            }
+                            
+                            ?>
                 		</div><!-- dashboard-item-->
             		</div><!-- .dashboard-item-wrapper -->
         		</div><!-- .dashboard-tab-plugins -->
