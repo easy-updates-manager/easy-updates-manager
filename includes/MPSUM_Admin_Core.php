@@ -97,6 +97,7 @@ class MPSUM_Admin_Core {
 				
 		$query_args = array();
 		$query_args[ 'updated' ] = "1";
+		$query_args[ 'tab' ] = 'main';
 		
 		//Save options
 		$options = $_POST[ 'options' ];
