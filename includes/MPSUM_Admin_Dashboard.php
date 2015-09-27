@@ -146,7 +146,73 @@ class MPSUM_Admin_Dashboard {
             		</div><!-- dashboard-item-->
         		</div><!-- .dashboard-item-wrapper -->
     		</div><!--- .dashboard-main-wrapper -->
-    		<!-- Plugin Automatic Updates -->
+    		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
+        		<div class="dashboard-main-header">Automatic Updates</div><!-- .dashboard-main-header --><?php
+            		/*
+                		[automatic_development_updates] => off
+    [automatic_major_updates] => off
+    [automatic_minor_updates] => on
+    [automatic_plugin_updates] => default
+    [automatic_theme_updates] => default
+    [automatic_translation_updates] =
+    */          ?>
+        		<div class="dashboard-item-wrapper">
+            		<div class="dashboard-item" "dashboard-main">
+                		<div class="dashboard-item-header"><?php esc_html_e( 'Major Releases', 'stops-core-theme-and-plugin-updates' ); ?>
+                		</div><!-- .dashboard-item-header -->
+                		<div class="dashboard-item-choice">
+                            <input type="checkbox" name="options[automatic_major_updates]" value="off"  />
+                            <input type="checkbox"  data-context="core" data-action="automatic_major_updates" class="dashboard-hide" name="options[all_updates]" value="on" id="automatic_major_on" <?php checked( 'on', $options[ 'automatic_major_updates' ] ); ?> />&nbsp;<label for="automatic_major_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                		</div><!-- .dashboard-item-choice -->
+            		</div><!-- dashboard-item-->
+            		<div class="dashboard-item" "dashboard-main">
+                		<div class="dashboard-item-header"><?php esc_html_e( 'Minor Releases', 'stops-core-theme-and-plugin-updates' ); ?>
+                		</div><!-- .dashboard-item-header -->
+                		<div class="dashboard-item-choice">
+                    		<input id="core-updates-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
+                    		<input type="hidden"   name="options[automatic_minor_updates]" value="on" />
+            				<input id="automatic_minor_on" data-context="core" data-action="automatic_minor_updates" type="checkbox"  class="dashboard-hide update-option" name="options[core_updates]" value="off"  <?php checked( 'on', $options[ 'automatic_minor_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_minor_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                		</div><!-- .dashboard-item-choice -->
+            		</div><!-- dashboard-item-->
+            		<div class="dashboard-item" "dashboard-main">
+                		<div class="dashboard-item-header"><?php esc_html_e( 'Development Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                		</div><!-- .dashboard-item-header -->
+                		<div class="dashboard-item-choice">
+                    		<input type="hidden" name="options[automatic_development_updates]" value="on" /> 
+            				<input id="automatic_dev_on" type="checkbox"  data-context="core" data-action="automatic_development_updates" class="dashboard-hide update-option"  name="options[automatic_development_updates]" value="off" id="plugin_updates_off" <?php checked( 'on', $options[ 'automatic_development_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_dev_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                		</div><!-- .dashboard-item-choice -->
+            		</div><!-- dashboard-item-->
+            		<div class="dashboard-item" "dashboard-main">
+                		<div class="dashboard-item-header"><?php esc_html_e( 'Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                		</div><!-- .dashboard-item-header -->
+                		<div class="dashboard-item-choice">
+                    		<input id="core-theme-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
+                    		<input type="hidden" name="options[automatic_translation_updates]" value="on" />
+            				<input id="checkbox" type="checkbox"  data-context="core" data-action="automatic_plugin_on" class="dashboard-hide update-option" name="options[theme_updates]" value="off" id="theme_updates_off" <?php checked( 'on', $options[ 'theme_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_translation_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                		</div><!-- .dashboard-item-choice -->
+            		</div><!-- dashboard-item-->
+            		<div class="dashboard-item" "dashboard-main">
+                		<div class="dashboard-item-header"><?php esc_html_e( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                		</div><!-- .dashboard-item-header -->
+                		<div class="multi-choice">
+                    		<input type="radio" data-context="core" data-action="automatic_plugin_updates" name="options[automatic_plugin_updates]" value="on" id="automatic_plugin_on" <?php checked( 'on', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+        					<input type="radio"  data-context="core" data-action="automatic_plugin_updates" name="options[automatic_plugin_updates]" value="off" id="automatic_plugin_off" <?php checked( 'off', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+        					<input type="radio"  data-context="core" data-action="automatic_plugin_updates" name="options[automatic_plugin_updates]" value="default" id="automatic_plugin_default" <?php checked( 'default', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_default"><?php esc_html_e( 'Default', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+        					<input type="radio"  data-context="core" data-action="automatic_plugin_updates" name="options[automatic_plugin_updates]" value="individual" id="automatic_plugin_individual" <?php checked( 'individual', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_individual"><?php esc_html_e( 'Select Individually', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            		    </div><!--multi-choice-->
+            		</div><!-- .dashboard-item -->
+            		<div class="dashboard-item" "dashboard-main">
+                		<div class="dashboard-item-header"><?php esc_html_e( 'Automatic Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                		</div><!-- .dashboard-item-header -->
+                		<div class="multi-choice">
+                    		<input type="radio" data-context="core" data-action="automatic_theme_updates" name="options[automatic_theme_updates]" value="on" id="automatic_theme_on" <?php checked( 'on', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+    					<input type="radio" data-context="core" data-action="automatic_theme_updates" name="options[automatic_theme_updates]" value="off" id="automatic_theme_off" <?php checked( 'off', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+    					<input type="radio" data-context="core" data-action="automatic_theme_updates" name="options[automatic_theme_updates]" value="default" id="automatic_theme_default" <?php checked( 'default', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_default"><?php esc_html_e( 'Default', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+    					<input type="radio"  data-context="core" data-action="automatic_theme_updates" name="options[automatic_theme_updates]" value="individual" id="automatic_theme_individual" <?php checked( 'individual', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_individual"><?php esc_html_e( 'Select Individually', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            		    </div><!--multi-choice-->
+            		</div><!-- .dashboard-item -->
+            </div>
+    		<!-- Plugin / Theme Updates -->
     		<div class="dashboard-main-wrapper" id="dashboard-plugin-theme-updates">
         		<div class="dashboard-main-header">Plugin and Theme Updates</div><!-- .dashboard-main-header -->
         		<div class="dashboard-tab">

@@ -143,4 +143,7 @@ dashboard-tab-item a:hover {
     max-height: 400px;
     overflow: auto;
 }
+.multi-choice {
+    clear: both;
+    margin-top; 20px;
 

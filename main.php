@@ -315,11 +315,15 @@ class MPSUM_Updates_Manager {
         $context = sanitize_text_field( $_POST[ 'context' ] );
         $option = sanitize_text_field( $_POST[ 'data_action' ] );	
         $option_value = sanitize_text_field( $_POST[ 'checked' ] );
-                
+        $val = sanitize_text_field( $_POST[ 'val' ] );
+                    
         $options = MPSUM_Updates_Manager::get_options( $context );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		if ( 'core' == $context ) {
     		$options[ $option ] = $option_value;
+    		if ( $option == 'automatic_theme_updates' || $option == 'automatic_plugin_updates' ) {
+        	    $options[ $option ] = $val;	
+            }
             MPSUM_Updates_Manager::update_options( $options, $context );
         } else if ( 'plugins' == $context ) {
             $plugin_options = MPSUM_Updates_Manager::get_options( $context );
@@ -350,10 +354,10 @@ class MPSUM_Updates_Manager {
             }
         	
             MPSUM_Updates_Manager::update_options( $theme_options, $context );
-            die( '' );
-        }  
+            die( $context );
+        } 
         
-        die( '' );
+        die( $context );
             
     }
 	public function ajax_disable_updates() {
