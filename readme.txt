@@ -32,6 +32,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>Disable theme updates and automatic updates individually by selecting which themes on a table. Also able to bulk select themes.</li>
 <li>The ability to block users from configuring the settings.</li>
 <li>The ability to select which users can still see and perform updates.</li>
+<li>The ability to update some third party plugins.</li>
 </ul>
 
 For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
@@ -57,14 +58,12 @@ If you are interested in translating our plugin, please create a new support req
 
 == Installation == 
 
-[youtube https://www.youtube.com/watch?v=V8AWwBc6GrU]
-
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
 
-1. You can also upload it by going into your 'Plugins' section and selecting add a new plugin
+1. You can download Easy Updates Manager by going into your 'Plugins' section and selecting add a new plugin
 2. Search for the plugin by typing 'Easy Updates Manager' into the search bar
 3. Install and activate the plugin by pushing the 'Install' button and then the 'activate plugin' link
-4. Configure the plugin by going to the 'Update Options' section in your admin area under the Dashboard
+4. Configure the plugin by going to the 'Updates Options' section in your admin area under the Dashboard
 
 <strong>Installing Easy Updates Manager through FTP</strong> 
 
