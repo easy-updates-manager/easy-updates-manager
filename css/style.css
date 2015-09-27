@@ -14,27 +14,21 @@
     }
 }
 .dashboard-item-wrapper {
-    background: #eb3835; /* Old browsers */
-    background: -moz-linear-gradient(45deg, #eb3835 0%, #eb3835 50%, #eb3835 51%, #e63043 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#eb3835), color-stop(50%,#eb3835), color-stop(51%,#eb3835), color-stop(100%,#e63043)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(45deg, #eb3835 0%,#eb3835 50%,#eb3835 51%,#e63043 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(45deg, #eb3835 0%,#eb3835 50%,#eb3835 51%,#e63043 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(45deg, #eb3835 0%,#eb3835 50%,#eb3835 51%,#e63043 100%); /* IE10+ */
-    background: linear-gradient(45deg, #eb3835 0%,#eb3835 50%,#eb3835 51%,#e63043 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eb3835', endColorstr='#e63043',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background: #e4e4e4; /* Old browsers */
     border-radius: 0px 0px 20px 20px;
     -moz-border-radius: 0px 0px 20px 20px;
     -webkit-border-radius: 0px 0px 20px 20px;
     border: 0px solid #eb3835;
     padding: 0 20px;   
     overflow: hidden;
+    color: #000;
 }
 .dashboard-main-header { 
     background: #FFF;
     border-radius: 20px 20px 0px 0px;
     -moz-border-radius: 20px 20px 0px 0px;
     -webkit-border-radius: 20px 20px 0px 0px;
-    border: 1px solid #eb3835;
+    border: 1px solid #e4e4e4;
     padding: 20px;
     color: #000;
     font-size: 16px;
