@@ -140,6 +140,9 @@ dashboard-tab-item a:hover {
     max-height: 700px;
     overflow: auto;
 }
+.dashboard-main-wrapper:nth-child( odd ) {
+    clear: left;   
+}
 .multi-choice {
     clear: both;
     margin-top; 20px;

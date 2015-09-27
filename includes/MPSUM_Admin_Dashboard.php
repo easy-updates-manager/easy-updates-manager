@@ -148,16 +148,8 @@ class MPSUM_Admin_Dashboard {
     		</div><!--- .dashboard-main-wrapper -->
     		
     		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
-        		<div class="dashboard-main-header"><?php esc_html_e( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header --><?php
-            		/*
-                		[automatic_development_updates] => off
-    [automatic_major_updates] => off
-    [automatic_minor_updates] => on
-    [automatic_plugin_updates] => default
-    [automatic_theme_updates] => default
-    [automatic_translation_updates] =
-    */          ?>
-        		<div class="dashboard-item-wrapper">
+        		<div class="dashboard-main-header"><?php esc_html_e( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
+        		  <div class="dashboard-item-wrapper">
             		<div class="dashboard-item" "dashboard-main">
                 		<div class="dashboard-item-header"><?php esc_html_e( 'Major Releases', 'stops-core-theme-and-plugin-updates' ); ?>
                 		</div><!-- .dashboard-item-header -->
@@ -383,6 +375,12 @@ class MPSUM_Admin_Dashboard {
                 		<?php
                         $can_show_plugins = false;
                         $options = MPSUM_Updates_Manager::get_options(  'core' );
+                        if ( !isset( $options[ 'automatic_theme_updates' ] ) ) {
+                            $options[ 'automatic_plugin_updates' ] = 'default';
+                            $auto_theme_updates = $options[ 'automatic_plugin_updates' ];
+                        } else {
+                            $auto_theme_updates = 'default';
+                        }
                         $auto_theme_updates = $options[ 'automatic_plugin_updates' ];
                         $error = '';
                         if ( 'default' == $auto_theme_updates ) {
@@ -440,7 +438,13 @@ class MPSUM_Admin_Dashboard {
                              <?php
                             $can_show_themes = false;
                             $options = MPSUM_Updates_Manager::get_options(  'core' );
-                            $auto_theme_updates = $options[ 'automatic_theme_updates' ];
+                            if ( !isset( $options[ 'automatic_theme_updates' ] ) ) {
+                                $options[ 'automatic_theme_updates' ] = 'default';
+                                $auto_theme_updates = $options[ 'automatic_theme_updates' ];
+                            } else {
+                                $auto_theme_updates = 'default';
+                            }
+                            
                             $error = '';
                             if ( 'default' == $auto_theme_updates ) {
                                 $can_show_themes = false;
