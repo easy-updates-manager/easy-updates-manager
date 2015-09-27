@@ -84,33 +84,60 @@ class MPSUM_Admin_Dashboard {
                 		<div class="dashboard-item-header"><?php esc_html_e( 'WordPress Core Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
+                    		<?php
+                            $checked_value = 'checked';
+                    		if ( checked( 'off', $options[ 'core_updates' ], false ) ) {
+                        		$checked_value = '';
+                            }
+                            ?>
+                    		<input id="core-updates-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
                     		<input type="hidden" name="options[core_updates]" value="on" />
-            				<input id="core-updates-check" type="checkbox"  class="dashboard-hide" name="options[core_updates]" value="off" id="core_updates_off" <?php checked( 'on', $options[ 'core_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="core_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-updates-check" type="checkbox"  class="dashboard-hide update-option" name="options[core_updates]" value="off" id="core_updates_off" <?php checked( 'on', $options[ 'core_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="core_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
                 		<div class="dashboard-item-header"><?php esc_html_e( 'All Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
+                    		<?php
+                            $checked_value = 'checked';
+                    		if ( checked( 'off', $options[ 'plugin_updates' ], false ) ) {
+                        		$checked_value = '';
+                            }
+                            ?>
+                    		<input id="core-plugin-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
                     		<input type="hidden" name="options[plugin_updates]" value="on" /> 
-            				<input id="core-plugin-check" type="checkbox" class="dashboard-hide"  name="options[plugin_updates]" value="off" id="plugin_updates_off" <?php checked( 'on', $options[ 'plugin_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="plugin_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-plugin-check" type="checkbox" class="dashboard-hide update-option"  name="options[plugin_updates]" value="off" id="plugin_updates_off" <?php checked( 'on', $options[ 'plugin_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="plugin_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
                 		<div class="dashboard-item-header"><?php esc_html_e( 'All Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
+                    		<?php
+                            $checked_value = 'checked';
+                    		if ( checked( 'off', $options[ 'theme_updates' ], false  ) ) {
+                        		$checked_value = '';
+                            }
+                            ?>
+                    		<input id="core-theme-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
                     		<input type="hidden" name="options[theme_updates]" value="on" />
-            				<input id="core-theme-check" type="checkbox"  class="dashboard-hide" name="options[theme_updates]" value="off" id="theme_updates_off" <?php checked( 'on', $options[ 'theme_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="theme_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-theme-check" type="checkbox"  class="dashboard-hide update-option" name="options[theme_updates]" value="off" id="theme_updates_off" <?php checked( 'on', $options[ 'theme_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="theme_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
                 		<div class="dashboard-item-header"><?php esc_html_e( 'All Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
-                    		
+                    		<?php
+                            $checked_value = 'checked';
+                    		if ( checked( 'off', $options[ 'translation_updates' ], false  ) ) {
+                        		$checked_value = '';
+                            }
+                            ?>
+                    		<input id="core-translation-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
             				<input type="hidden" name="options[translation_updates]" value="on" />
-            				<input id="core-translation-check" type="radio" class="dashboard-hide" name="options[translation_updates]" value="off" id="translation_updates_off" <?php checked( 'on', $options[ 'translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input id="core-translation-check" type="radio" class="dashboard-hide update-option" name="options[translation_updates]" value="off" id="translation_updates_off" <?php checked( 'on', $options[ 'translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="translation_updates_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
         		</div><!-- .dashboard-item-wrapper -->

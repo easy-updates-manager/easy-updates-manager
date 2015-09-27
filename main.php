@@ -315,12 +315,18 @@ class MPSUM_Updates_Manager {
             $options[ 'all_updates' ] = 'off';
         } 
         MPSUM_Updates_Manager::update_options( $options, 'core' );
-        $return = array(
-            'core-updates-check',
-            'core-translation-check',
-            'core-plugin-check',
-            'core-theme-check',
-        );    	
+        if ( $options[ 'all_updates' ] == 'off' ) {
+             $return = array(
+                'core-updates-check',
+                'core-translation-check',
+                'core-plugin-check',
+                'core-theme-check',
+            ); 
+            
+        } else {
+            $return = array();
+        }
+          	
         die( json_encode( $return ) );
     }
 	
