@@ -50,6 +50,7 @@ jQuery( document ).ready( function( $ ) {
               }
               
               $.post( ajaxurl, { action: 'mpsum_ajax_action', context: data_context, data_action: data_action, _ajax_nonce: $( '#_mpsum' ).val(), checked: data_checked }, function( response ) {
+                  alert( response );
             } );
              
          } );

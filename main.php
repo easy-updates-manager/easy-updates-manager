@@ -336,7 +336,24 @@ class MPSUM_Updates_Manager {
         	
             MPSUM_Updates_Manager::update_options( $plugin_options, $context );
             die( '' );
-        }   
+        } else if ( 'themes' == $context ) {
+            $theme_options = MPSUM_Updates_Manager::get_options( $context );
+            if ( 'on' == $option_value ) {
+                foreach( $theme_options as $theme ) {
+                    if ( ( $key = array_search( $option, $theme_options ) ) !== false ) {
+                		unset( $theme_options[ $key ] );
+                    }
+                }
+            } else {
+                $theme_options[] = $option;
+                $theme_options = array_values( array_unique( $theme_options ) );
+            }
+        	
+            MPSUM_Updates_Manager::update_options( $theme_options, $context );
+            die( '' );
+        }  
+        
+        die( '' );
             
     }
 	public function ajax_disable_updates() {

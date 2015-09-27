@@ -206,9 +206,9 @@ class MPSUM_Admin_Dashboard {
                                 $themes = wp_get_themes();
                                 
                                 foreach( $themes as $theme_slug => $theme_data ) {
-                                    $is_theme_active = false;
+                                    $is_theme_active = true;
                                     if ( in_array( $theme_slug,  $options ) ) {
-                                        $is_theme_active = true;
+                                        $is_theme_active = false;
                                     }
                                     $theme_name = $theme_data->Name;
                                     ?>
@@ -225,7 +225,7 @@ class MPSUM_Admin_Dashboard {
                                             
                                             ?>
                             				<input type="hidden" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?> " />
-                            				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" data-context="themes" data-action="<?php echo esc_attr( $theme_slug ); ?>" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                            				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" data-context="themes" data-action="<?php echo esc_attr( $theme_slug ); ?>" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, $is_theme_active ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                                 		</div><!-- .dashboard-item-choice -->
                             		</div><!-- dashboard-item-->
                                     
