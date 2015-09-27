@@ -58,7 +58,11 @@ class MPSUM_Admin_Dashboard {
 		$options = MPSUM_Updates_Manager::get_options( 'core' );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		?>
-		<div id="dashboard-main-outputs">
+		<form id="dashboard-form" method="post">
+        <?php
+        wp_nonce_field( 'mpsum_options_save', '_mpsum' );
+        ?>
+    	<div id="dashboard-main-outputs">
     		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
         		<div class="dashboard-main-header">WordPress Updates</div><!-- .dashboard-main-header -->
         		<div class="dashboard-item-wrapper">
@@ -151,39 +155,54 @@ class MPSUM_Admin_Dashboard {
         		</div><!- .dashboard-tab -->
         		<div class="dashboard-tab-plugins  dashboard-tab-content active">
             		<div class="dashboard-item-wrapper">
+                		<?php
+                        $can_show_plugins = $can_show_themes = false;
+                        if(  'on' == $options[ 'theme_updates' ] ) {
+                            $can_show_themes = true;
+                        }
+                        if(  'on' == $options[ 'plugin_updates' ] ) {
+                            $can_show_themes = true;
+                        }
+                        ?>
                 		<div class="dashboard-item" "dashboard-main">
                             <?php
-                            $options = MPSUM_Updates_Manager::get_options(  'plugins' );
-                            
-                            $plugins = get_plugins(); 
-                            foreach( $plugins as $plugin_slug => $plugin_data ) {
-                                $is_plugin_active = false;
-                                if ( in_array( $plugin_slug,  $options ) ) {
-                                    $is_plugin_active = true;
-                                }
-                                $plugin_name = $plugin_data[ 'Name' ];
-                                ?>
-                                <div class="dashboard-item" "dashboard-main">
-                            		<div class="dashboard-item-header"><?php echo esc_html( $plugin_name ) ?>
-                            		</div><!-- .dashboard-item-header -->
-                            		<div class="dashboard-item-choice">
-                                		<?php
-                                        $checked_value = 'checked';
-                                		if ( in_array( $plugin_slug,  $options )  ) {
-                                    		$checked_value = '';
-                                        } else {
-                                        }
-                                        
-                                        ?>
-                        				<input type="hidden" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
-                        				<input id="<?php echo esc_attr( $plugin_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?>" id="<?php echo esc_attr( $plugin_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="<?php echo esc_attr( $plugin_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-                            		</div><!-- .dashboard-item-choice -->
-                        		</div><!-- dashboard-item-->
+                            if ( $can_show_plugins ) :
+                                $options = MPSUM_Updates_Manager::get_options(  'plugins' );
                                 
-                                <?php
-                            }
-                            
+                                $plugins = get_plugins(); 
+                                foreach( $plugins as $plugin_slug => $plugin_data ) {
+                                    $is_plugin_active = false;
+                                    if ( in_array( $plugin_slug,  $options ) ) {
+                                        $is_plugin_active = true;
+                                    }
+                                    $plugin_name = $plugin_data[ 'Name' ];
+                                    ?>
+                                    <div class="dashboard-item" "dashboard-main">
+                                		<div class="dashboard-item-header"><?php echo esc_html( $plugin_name ) ?>
+                                		</div><!-- .dashboard-item-header -->
+                                		<div class="dashboard-item-choice">
+                                    		<?php
+                                            $checked_value = 'checked';
+                                    		if ( in_array( $plugin_slug,  $options )  ) {
+                                        		$checked_value = '';
+                                            } else {
+                                            }
+                                            
+                                            ?>
+                            				<input type="hidden" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
+                            				<input id="<?php echo esc_attr( $plugin_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?>" id="<?php echo esc_attr( $plugin_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="<?php echo esc_attr( $plugin_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                                		</div><!-- .dashboard-item-choice -->
+                            		</div><!-- dashboard-item-->
+                                    
+                                    <?php
+                                }
+                            else:
                             ?>
+                            <p><?php 
+                                esc_html_e( 'All plugin updates have been disabled.', 'stops-core-theme-and-plugin-updates' ); 
+                            endif;
+                            ?>
+                            </p>
                 		</div><!-- dashboard-item-->
             		</div><!-- .dashboard-item-wrapper -->
         		</div><!-- .dashboard-tab-plugins -->
@@ -191,42 +210,51 @@ class MPSUM_Admin_Dashboard {
             		<div class="dashboard-item-wrapper">
                 		<div class="dashboard-item" "dashboard-main">
                              <?php
-                            $options = MPSUM_Updates_Manager::get_options(  'themes' );
-                            $themes = wp_get_themes();
-                            
-                            foreach( $themes as $theme_slug => $theme_data ) {
-                                $is_theme_active = false;
-                                if ( in_array( $theme_slug,  $options ) ) {
-                                    $is_theme_active = true;
-                                }
-                                $theme_name = $theme_data->Name;
-                                ?>
-                                <div class="dashboard-item" "dashboard-main">
-                            		<div class="dashboard-item-header"><?php echo esc_html( $theme_name ) ?>
-                            		</div><!-- .dashboard-item-header -->
-                            		<div class="dashboard-item-choice">
-                                		<?php
-                                        $checked_value = 'checked';
-                                		if ( in_array( $theme_slug,  $options )  ) {
-                                    		$checked_value = '';
-                                        } else {
-                                        }
-                                        
-                                        ?>
-                        				<input type="hidden" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?> " />
-                        				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-                            		</div><!-- .dashboard-item-choice -->
-                        		</div><!-- dashboard-item-->
+                             if( $can_show_themes ) :
+                                $options = MPSUM_Updates_Manager::get_options(  'themes' );
+                                $themes = wp_get_themes();
                                 
-                                <?php
-                            }
+                                foreach( $themes as $theme_slug => $theme_data ) {
+                                    $is_theme_active = false;
+                                    if ( in_array( $theme_slug,  $options ) ) {
+                                        $is_theme_active = true;
+                                    }
+                                    $theme_name = $theme_data->Name;
+                                    ?>
+                                    <div class="dashboard-item" "dashboard-main">
+                                		<div class="dashboard-item-header"><?php echo esc_html( $theme_name ) ?>
+                                		</div><!-- .dashboard-item-header -->
+                                		<div class="dashboard-item-choice">
+                                    		<?php
+                                            $checked_value = 'checked';
+                                    		if ( in_array( $theme_slug,  $options )  ) {
+                                        		$checked_value = '';
+                                            } else {
+                                            }
+                                            
+                                            ?>
+                            				<input type="hidden" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?> " />
+                            				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, true ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                                		</div><!-- .dashboard-item-choice -->
+                            		</div><!-- dashboard-item-->
+                                    
+                                    <?php
+                                }
+                            else: 
+                                ?>
+                                <p><?php 
+                                esc_html_e( 'All theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) ?>
+                            <?php
+                            endif;
                             ?>
+                        
 
                 		</div><!-- dashboard-item-->
             		</div><!-- .dashboard-item-wrapper -->
         		</div><!-- .dashboard-tab-plugins -->
     		</div><!--- .dashboard-main-wrapper -->
 		</div><!-- #dashboard-main-outputs -->
+		</form>
         <?php		
 		return;
 	} //end tab_output_plugins

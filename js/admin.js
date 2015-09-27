@@ -31,6 +31,10 @@ jQuery( document ).ready( function( $ ) {
         }, 'json');
     } );
     
+    $( "#dashboard-form" ).on( 'change', 'input', function( e ) {
+         console.log( 'yo' );
+     } );
+    
     
     /* Plugin / Theme Tabs */
     $( '.dashboard-tab-item' ).on( 'click', 'a', function( e ) {
