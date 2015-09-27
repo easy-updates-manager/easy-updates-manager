@@ -22,6 +22,7 @@
     padding: 0 20px;   
     overflow: hidden;
     color: #000;
+    font-weight; 700;
 }
 .dashboard-main-header { 
     background: #FFF;
@@ -97,6 +98,7 @@
     clear: both;
     float: left;
     width: 60%;   
+    font-weight: 700;
 }
 .dashboard-item:first-child {
     border-top: none;  
@@ -136,7 +138,7 @@ dashboard-tab-item a:hover {
 }
 .dashboard-tab {
     overflow: hidden;
-    border: 1px solid #eb3835;
+    border: 1px solid #e4e4e4;
     border-top: none;
 }
 .dashboard-item-wrapper {
