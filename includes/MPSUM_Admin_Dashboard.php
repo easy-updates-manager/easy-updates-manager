@@ -64,7 +64,7 @@ class MPSUM_Admin_Dashboard {
         ?>
     	<div id="dashboard-main-outputs">
     		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
-        		<div class="dashboard-main-header">WordPress Updates</div><!-- .dashboard-main-header -->
+        		<div class="dashboard-main-header"><?php esc_html_e( 'WordPress Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-item-wrapper">
             		<div class="dashboard-item" "dashboard-main">
                 		<div class="dashboard-item-header"><?php esc_html_e( 'All Updates', 'stops-core-theme-and-plugin-updates' ); ?>
@@ -148,7 +148,7 @@ class MPSUM_Admin_Dashboard {
     		</div><!--- .dashboard-main-wrapper -->
     		
     		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
-        		<div class="dashboard-main-header">Automatic Updates</div><!-- .dashboard-main-header --><?php
+        		<div class="dashboard-main-header"><?php esc_html_e( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header --><?php
             		/*
                 		[automatic_development_updates] => off
     [automatic_major_updates] => off
@@ -215,7 +215,7 @@ class MPSUM_Admin_Dashboard {
             </div>
     		</div>
     		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
-        		<div class="dashboard-main-header">WordPress Notifications</div><!-- .dashboard-main-header -->
+        		<div class="dashboard-main-header"><?php esc_html_e( 'WordPress Notifications', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-item-wrapper">
             		<div class="dashboard-item" "dashboard-main">
                 		<div class="dashboard-item-header"><?php esc_html_e( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ); ?>
@@ -275,10 +275,10 @@ class MPSUM_Admin_Dashboard {
     		</div><!--- .dashboard-main-wrapper -->
     		<!-- Plugin / Theme Updates -->
     		<div class="dashboard-main-wrapper" id="dashboard-plugin-theme-updates">
-        		<div class="dashboard-main-header">Plugin and Theme Updates</div><!-- .dashboard-main-header -->
+        		<div class="dashboard-main-header"><?php esc_html_e( 'Plugin and Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-tab">
-        		    <div id="dashboard-tab-plugin" class="dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" >Plugin Updates</a></div>
-        		    <div id="dashboard-tab-theme" class="dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" >Theme Updates</a></div>
+        		    <div id="dashboard-tab-plugin" class="dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" ><?php esc_html_e( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
+        		    <div id="dashboard-tab-theme" class="dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" ><?php esc_html_e( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
         		</div><!- .dashboard-tab -->
         		<div class="dashboard-tab-plugins  dashboard-tab-content active">
             		<div class="dashboard-item-wrapper">
@@ -373,10 +373,10 @@ class MPSUM_Admin_Dashboard {
     		</div><!--- .dashboard-main-wrapper -->
     		<!-- Plugin / Theme Updates -->
     		<div class="dashboard-main-wrapper" id="dashboard-plugin-theme-updates">
-        		<div class="dashboard-main-header">Plugin and Theme Automatic Updates</div><!-- .dashboard-main-header -->
+        		<div class="dashboard-main-header"><?php esc_html_e( 'Plugin and Theme Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-tab">
-        		    <div id="dashboard-tab-plugin" class="dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" >Plugin Updates</a></div>
-        		    <div id="dashboard-tab-theme" class="dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" >Theme Updates</a></div>
+        		    <div id="dashboard-tab-plugin" class="dashboard-tab-item dashboard-tab-content active" ><a href="#" data-tab-action="plugins" ><?php esc_html_e( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
+        		    <div id="dashboard-tab-theme" class="dashboard-tab-item" data-tab-plugins="plugins"><a href="#" data-tab-action="themes" ><?php esc_html_e( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?></a></div>
         		</div><!- .dashboard-tab -->
         		<div class="dashboard-tab-plugins  dashboard-tab-content active">
             		<div class="dashboard-item-wrapper">
