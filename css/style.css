@@ -1,11 +1,17 @@
 .dashboard-main-wrapper {
     color: #FFF;
-    max-width: 315px;
+    max-width: 48%;
     float: left;
     width: 100%;
-    margin-right: 30px;
     overflow: hidden;
-    
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+@media only screen and (max-width:1000px) {
+    .dashboard-main-wrapper {
+        margin-right: 0;
+        max-width: 100%;
+    }
 }
 .dashboard-item-wrapper {
     background: #eb3835; /* Old browsers */
