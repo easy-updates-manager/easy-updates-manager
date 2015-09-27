@@ -31,22 +31,22 @@ jQuery( document ).ready( function( $ ) {
         }, 'json');
     } );
     
-    /* Toggle */
-    $( '.dashboard-item-choice' ).on( 'change', function ( e ) {
-        //alert( e );
-    } );
-    
     
     /* Plugin / Theme Tabs */
     $( '.dashboard-tab-item' ).on( 'click', 'a', function( e ) {
         e.preventDefault();
-        tag_action = jQuery ( this ).attr( 'data-tab-action' );
+        tag_action = jQuery( this ).attr( 'data-tab-action' );
         if ( tag_action == 'plugins' ) {
             $( '.dashboard-tab-themes' ).removeClass( 'active' ).addClass( 'inactive' );
             $( '.dashboard-tab-plugins' ).removeClass( 'inactive' ).addClass( 'active' );   
+            $( '#dashboard-tab-plugin' ).addClass( 'active' );
+            $( '#dashboard-tab-theme' ).removeClass( 'active' );
         } else {
              $( '.dashboard-tab-plugins' ).removeClass( 'active' ).addClass( 'inactive' );
             $( '.dashboard-tab-themes' ).removeClass( 'inactive' ).addClass( 'active' );
+            $( '#dashboard-tab-themes' ).addClass( 'active' );
+            $( '#dashboard-tab-plugin' ).removeClass( 'active' );
+            
         }
     } ); 
     
