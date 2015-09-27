@@ -135,3 +135,8 @@ dashboard-tab-item a:hover {
 .dashboard-tab-content.inactive {
     display: none;   
 }
+.dashboard-tab {
+    overflow: hidden;
+    border: 1px solid #eb3835;
+    border-top: none;
+}

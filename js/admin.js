@@ -1,4 +1,5 @@
 jQuery( document ).ready( function( $ ) {    
+    /* When all updates button is clicked */
     $( '.dashboard-item-choice' ).on( 'change', '#all_updates_on', function( e ) {
        input_var = 'on';
        console.log( $( this ).attr( 'id'  ));
@@ -30,5 +31,20 @@ jQuery( document ).ready( function( $ ) {
             
         }, 'json');
     } );
+    
+    
+    
+    /* Plugin / Theme Tabs */
+    $( '.dashboard-tab-item' ).on( 'click', 'a', function( e ) {
+        e.preventDefault();
+        tag_action = jQuery ( this ).attr( 'data-tab-action' );
+        if ( tag_action == 'plugins' ) {
+            $( '.dashboard-tab-themes' ).removeClass( 'active' ).addClass( 'inactive' );
+            $( '.dashboard-tab-plugins' ).removeClass( 'inactive' ).addClass( 'active' );   
+        } else {
+             $( '.dashboard-tab-plugins' ).removeClass( 'active' ).addClass( 'inactive' );
+            $( '.dashboard-tab-themes' ).removeClass( 'inactive' ).addClass( 'active' );
+        }
+    } ); 
     
 } );
