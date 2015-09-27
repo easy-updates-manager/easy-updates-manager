@@ -189,7 +189,7 @@ class MPSUM_Admin_Dashboard {
                 		<div class="dashboard-item-choice">
                     		<input id="core-theme-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
                     		<input type="hidden" name="options[automatic_translation_updates]" value="on" />
-            				<input id="checkbox" type="checkbox"  data-context="core" data-action="automatic_plugin_on" class="dashboard-hide update-option" name="options[theme_updates]" value="off" id="theme_updates_off" <?php checked( 'on', $options[ 'theme_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_translation_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+            				<input type="checkbox"  data-context="core" data-action="automatic_translation_updates" class="dashboard-hide update-option" name="options[automatic_translation_updates]" value="off" id="automatic_translation_updates_on" <?php checked( 'on', $options[ 'automatic_translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_translation_updates_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
             		</div><!-- dashboard-item-->
             		<div class="dashboard-item" "dashboard-main">
