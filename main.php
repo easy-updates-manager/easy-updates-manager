@@ -4,7 +4,7 @@ Plugin Name: Easy Updates Manager
 Plugin URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Description: Manage and disable WordPress updates, including core, plugin, theme, and automatic updates - Works with Multisite.
 Author: kidsguide, ronalfy
-Version: 5.3.0
+Version: 5.3.1
 Requires at least: 4.3
 Author URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Contributors: kidsguide, ronalfy
@@ -326,7 +326,7 @@ class MPSUM_Updates_Manager {
         	    $options[ $option ] = $val;	
             }
             MPSUM_Updates_Manager::update_options( $options, $context );
-        } else if ( 'plugins' == $context || 'themes' == $context || 'plugins_automatic' == $context || 'themes_automatic' == $context   ) {
+        } else if ( 'plugins' == $context || 'themes' == $context    ) {
             $plugin_options = MPSUM_Updates_Manager::get_options( $context );
             if ( 'on' == $option_value ) {
                 foreach( $plugin_options as $plugin ) {
@@ -338,7 +338,22 @@ class MPSUM_Updates_Manager {
                 $plugin_options[] = $option;
                 $plugin_options = array_values( array_unique( $plugin_options ) );
             }
-        	
+                    	
+            MPSUM_Updates_Manager::update_options( $plugin_options, $context );
+        } elseif( 'plugins_automatic' == $context || 'themes_automatic' == $context ) {
+            $plugin_options = MPSUM_Updates_Manager::get_options( $context );
+            if ( 'off' == $option_value ) {
+                foreach( $plugin_options as $plugin ) {
+                    if ( ( $key = array_search( $option, $plugin_options ) ) !== false ) {
+                		unset( $plugin_options[ $key ] );
+                    }
+                }
+            } else {
+                $options = MPSUM_Updates_Manager::get_options( $context );
+                $options[] = $option;
+                $plugin_options = array_values( array_unique( $options ) );
+            }
+            
             MPSUM_Updates_Manager::update_options( $plugin_options, $context );
         }
         
