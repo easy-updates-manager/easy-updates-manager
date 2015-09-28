@@ -48,13 +48,15 @@ If you are interested in translating our plugin, please create a new support req
 == Screenshots ==
 1. Single site install settings page location
 2. Multisite install settings page location
-3. Global settings in General tab
-4. Automatic Update settings in General tab
-5. Notification and Miscellaneous settings in Global tab
-6. Enable/Disable updates and automatic updates individually for plugins
-7. Enable/Disable updates and automatic updates individually for themes
-8. Advanced options tab
-9. Help tab
+3. Dashboard tab full
+4. Dashboard tab small
+5. Global settings in General tab
+6. Automatic Update settings in General tab
+7. Notification and Miscellaneous settings in Global tab
+8. Enable/Disable updates and automatic updates individually for plugins
+9. Enable/Disable updates and automatic updates individually for themes
+10. Advanced options tab
+11. Help tab
 
 == Installation == 
 
