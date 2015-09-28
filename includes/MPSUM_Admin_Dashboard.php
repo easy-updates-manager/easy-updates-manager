@@ -213,13 +213,6 @@ class MPSUM_Admin_Dashboard {
                 		<div class="dashboard-item-header"><?php esc_html_e( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ); ?>
                 		</div><!-- .dashboard-item-header -->
                 		<div class="dashboard-item-choice">
-                    		<?php
-                            /* [notification_core_update_emails] => on
-    [notification_core_update_emails_plugins] => off
-    [notification_core_update_emails_themes] => off
-    [notification_core_update_emails_translations] => on
-    */
-                            ?>
                             <input type="checkbox" name="options[notification_core_update_emails]" value="off"  />
                             <input type="checkbox"  data-context="core" data-action="notification_core_update_emails" class="dashboard-hide" name="options[notification_core_update_emails]" value="on" id="notification_core_update_emails_on" <?php checked( 'on', $options[ 'notification_core_update_emails' ] ); ?> />&nbsp;<label for="notification_core_update_emails_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		</div><!-- .dashboard-item-choice -->
@@ -375,21 +368,23 @@ class MPSUM_Admin_Dashboard {
                 		<?php
                         $can_show_plugins = false;
                         $options = MPSUM_Updates_Manager::get_options(  'core' );
-                        if ( !isset( $options[ 'automatic_theme_updates' ] ) ) {
+                        if ( !isset( $options[ 'automatic_plugin_updates' ] ) ) {
                             $options[ 'automatic_plugin_updates' ] = 'default';
-                            $auto_theme_updates = $options[ 'automatic_plugin_updates' ];
+                            $can_show_plugins = $options[ 'automatic_plugin_updates' ];
                         } else {
-                            $auto_theme_updates = 'default';
+                            $can_show_plugins = $options[ 'automatic_plugin_updates' ];
                         }
-                        $auto_theme_updates = $options[ 'automatic_plugin_updates' ];
+                        if ( isset( $options[ 'plugin_updates' ] ) && 'off' == $options[ 'plugin_updates' ] ) {
+                            $can_show_plugins = 'off';   
+                        }
                         $error = '';
-                        if ( 'default' == $auto_theme_updates ) {
+                        if ( 'default' == $can_show_plugins ) {
                             $can_show_plugins = false;
                             $error = __( 'WordPress defaults control which updates are automatic or not.', 'stops-core-theme-and-plugin-updates' );
-                        } elseif ( 'on' == $auto_theme_updates ) {
+                        } elseif ( 'on' == $can_show_plugins ) {
                             $can_show_plugins = false;
                             $error = __( 'Automatic updates are on for all plugins', 'stops-core-theme-and-plugin-updates' );
-                        } elseif ( 'off' == $auto_theme_updates ) {
+                        } elseif ( 'off' == $can_show_plugins ) {
                             $can_show_plugins = false;
                             $error = __( 'Automatic updates are disabled for all plugins', 'stops-core-theme-and-plugin-updates' );
                         } else {
@@ -402,9 +397,9 @@ class MPSUM_Admin_Dashboard {
                                 $options = MPSUM_Updates_Manager::get_options(  'plugins_automatic' );
                                 $plugins = get_plugins(); 
                                 foreach( $plugins as $plugin_slug => $plugin_data ) {
-                                    $is_plugin_active = true;
+                                    $is_plugin_active = false;
                                     if ( in_array( $plugin_slug,  $options ) ) {
-                                        $is_plugin_active = false;
+                                        $is_plugin_active = true;
                                     }
                                     $plugin_name = $plugin_data[ 'Name' ];
                                     ?>
@@ -442,9 +437,12 @@ class MPSUM_Admin_Dashboard {
                                 $options[ 'automatic_theme_updates' ] = 'default';
                                 $auto_theme_updates = $options[ 'automatic_theme_updates' ];
                             } else {
-                                $auto_theme_updates = 'default';
+                                $auto_theme_updates = $options[ 'automatic_theme_updates' ];
                             }
-                            
+                             if ( isset( $options[ 'theme_updates' ] ) && 'off' == $options[ 'theme_updates' ] ) {
+                                $can_show_plugins = 'off';   
+                                $auto_theme_updates = 'off';
+                            }
                             $error = '';
                             if ( 'default' == $auto_theme_updates ) {
                                 $can_show_themes = false;
@@ -459,13 +457,13 @@ class MPSUM_Admin_Dashboard {
                                 $can_show_themes = true;   
                             }
                              if( $can_show_themes ) :
-                                $options = MPSUM_Updates_Manager::get_options(  'themes' );
+                                $options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
                                 $themes = wp_get_themes();
-                                
+                                                            
                                 foreach( $themes as $theme_slug => $theme_data ) {
-                                    $is_theme_active = true;
+                                    $is_theme_active = false;
                                     if ( in_array( $theme_slug,  $options ) ) {
-                                        $is_theme_active = false;
+                                        $is_theme_active = true;
                                     }
                                     $theme_name = $theme_data->Name;
                                     ?>
@@ -481,8 +479,8 @@ class MPSUM_Admin_Dashboard {
                                             }
                                             
                                             ?>
-                            				<input type="hidden" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?> " />
-                            				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" data-context="themes" data-action="<?php echo esc_attr( $theme_slug ); ?>" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, $is_theme_active ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                            				<input type="hidden" name="options[themes_automatic]" value="<?php echo esc_attr( $theme_slug ); ?> " />
+                            				<input id="themes_automatic_on_<?php echo $theme_slug; ?>" type="checkbox" data-context="themes_automatic" data-action="<?php echo esc_attr( $theme_slug ); ?>" class="dashboard-hide update-option" name="options[themes_automatic]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, $is_theme_active ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="themes_automatic_on_<?php echo $theme_slug; ?>"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                                 		</div><!-- .dashboard-item-choice -->
                             		</div><!-- dashboard-item-->
                                     
