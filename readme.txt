@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
 Tested up to: 4.3.1
-Stable tag: 5.3.0
+Stable tag: 5.3.1
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
@@ -146,6 +146,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 5.3.1 =
+Fixing automatic updates in dashboard view.
 
 = 5.3.0 =
 New Dashboard View. Support for WordPress 4.4 Email Notifications.
