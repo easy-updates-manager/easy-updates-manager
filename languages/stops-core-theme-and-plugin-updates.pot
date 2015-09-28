@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Updates Manager v1.0.0\n"
 "Report-Msgid-Bugs-To: Ronald Huereca <ronalfy@gmail.com>\n"
-"POT-Creation-Date: 2015-09-27 18:56-0600\n"
+"POT-Creation-Date: 2015-09-28 09:35+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Ronald Huereca <ron@ronalfy.com>\n"
+"Last-Translator: pixolin <pixolin@gmx.com>\n"
 "Language-Team: Ronald Huereca <ronalfy@gmail.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: includes/MPSUM_Admin.php:172 includes/MPSUM_Admin.php:189
@@ -141,10 +141,10 @@ msgstr ""
 #: includes/MPSUM_Admin_Dashboard.php:158
 #: includes/MPSUM_Admin_Dashboard.php:191
 #: includes/MPSUM_Admin_Dashboard.php:201
-#: includes/MPSUM_Admin_Dashboard.php:224
-#: includes/MPSUM_Admin_Dashboard.php:239
-#: includes/MPSUM_Admin_Dashboard.php:254
-#: includes/MPSUM_Admin_Dashboard.php:263
+#: includes/MPSUM_Admin_Dashboard.php:217
+#: includes/MPSUM_Admin_Dashboard.php:232
+#: includes/MPSUM_Admin_Dashboard.php:247
+#: includes/MPSUM_Admin_Dashboard.php:256
 msgid "Enabled"
 msgstr ""
 
@@ -163,10 +163,10 @@ msgstr ""
 #: includes/MPSUM_Admin_Dashboard.php:184
 #: includes/MPSUM_Admin_Dashboard.php:192
 #: includes/MPSUM_Admin_Dashboard.php:202
-#: includes/MPSUM_Admin_Dashboard.php:303
-#: includes/MPSUM_Admin_Dashboard.php:347
-#: includes/MPSUM_Admin_Dashboard.php:416
-#: includes/MPSUM_Admin_Dashboard.php:485
+#: includes/MPSUM_Admin_Dashboard.php:296
+#: includes/MPSUM_Admin_Dashboard.php:340
+#: includes/MPSUM_Admin_Dashboard.php:411
+#: includes/MPSUM_Admin_Dashboard.php:483
 msgid "Disabled"
 msgstr ""
 
@@ -280,15 +280,15 @@ msgstr ""
 msgid "Core Update Emails"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:247 includes/MPSUM_Admin_Dashboard.php:228
+#: includes/MPSUM_Admin_Core.php:247 includes/MPSUM_Admin_Dashboard.php:221
 msgid "Core Plugin Emails"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:249 includes/MPSUM_Admin_Dashboard.php:243
+#: includes/MPSUM_Admin_Core.php:249 includes/MPSUM_Admin_Dashboard.php:236
 msgid "Core Theme Emails"
 msgstr ""
 
-#: includes/MPSUM_Admin_Core.php:251 includes/MPSUM_Admin_Dashboard.php:258
+#: includes/MPSUM_Admin_Core.php:251 includes/MPSUM_Admin_Dashboard.php:251
 msgid "Core Translation Emails"
 msgstr ""
 
@@ -334,50 +334,50 @@ msgstr ""
 msgid "WordPress Notifications"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:270
+#: includes/MPSUM_Admin_Dashboard.php:263
 msgid "Plugin and Theme Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:272
-#: includes/MPSUM_Admin_Dashboard.php:370
+#: includes/MPSUM_Admin_Dashboard.php:265
+#: includes/MPSUM_Admin_Dashboard.php:363
 msgid "Plugin Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:273
-#: includes/MPSUM_Admin_Dashboard.php:371
+#: includes/MPSUM_Admin_Dashboard.php:266
+#: includes/MPSUM_Admin_Dashboard.php:364
 msgid "Theme Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:312 includes/MPSUM_Admin_Plugins.php:260
+#: includes/MPSUM_Admin_Dashboard.php:305 includes/MPSUM_Admin_Plugins.php:260
 msgid "All plugin updates have been disabled."
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:356 includes/MPSUM_Admin_Themes.php:221
+#: includes/MPSUM_Admin_Dashboard.php:349 includes/MPSUM_Admin_Themes.php:221
 msgid "All theme updates have been disabled."
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:368
+#: includes/MPSUM_Admin_Dashboard.php:361
 msgid "Plugin and Theme Automatic Updates"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:388
-#: includes/MPSUM_Admin_Dashboard.php:451
+#: includes/MPSUM_Admin_Dashboard.php:383
+#: includes/MPSUM_Admin_Dashboard.php:449
 msgid "WordPress defaults control which updates are automatic or not."
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:391
+#: includes/MPSUM_Admin_Dashboard.php:386
 msgid "Automatic updates are on for all plugins"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:394
+#: includes/MPSUM_Admin_Dashboard.php:389
 msgid "Automatic updates are disabled for all plugins"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:454
+#: includes/MPSUM_Admin_Dashboard.php:452
 msgid "Automatic updates are on for all themes"
 msgstr ""
 
-#: includes/MPSUM_Admin_Dashboard.php:457
+#: includes/MPSUM_Admin_Dashboard.php:455
 msgid "Automatic updates are disabled for all themes"
 msgstr ""
 
@@ -593,6 +593,7 @@ msgstr ""
 msgid "All dates"
 msgstr ""
 
+#. translators: 1: month name, 2: 4-digit year
 #: includes/MPSUM_List_Table.php:571
 #, php-format
 msgid "%1$s %2$d"
@@ -798,4 +799,10 @@ msgstr ""
 
 #: includes/MPSUM_Themes_List_Table.php:342
 msgid "Visit Theme Site"
+msgstr ""
+
+#: main.php:417
+msgid ""
+"Manage and disable WordPress updates, including core, plugin, theme, and "
+"automatic updates - Works with Multisite."
 msgstr ""
