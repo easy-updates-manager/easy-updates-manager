@@ -121,16 +121,23 @@ class MPSUM_Disable_Updates {
 			add_filter( 'auto_core_update_send_email', '__return_false', 50 );
 			add_filter( 'send_core_update_notification_email', '__return_false', 50 );
 			add_filter( 'automatic_updates_send_debug_email', '__return_false', 50 );
-		}
+		} elseif( isset( $core_options[ 'notification_core_update_emails_plugins' ] ) && 'off' == $core_options[ 'notification_core_update_emails_plugins' ] ) {
+    		add_filter( 'send_update_notification_email', array( $this, 'maybe_disable_emails' ), 10, 3 );
+        } elseif( isset( $core_options[ 'notification_core_update_emails_themes' ] ) && 'off' == $core_options[ 'notification_core_update_emails_themes' ] ) {
+    		add_filter( 'send_update_notification_email', array( $this, 'maybe_disable_emails' ), 10, 3 );
+        } elseif( isset( $core_options[ 'notification_core_update_emails_translations' ] ) && 'off' == $core_options[ 'notification_core_update_emails_translations' ] ) {
+    		add_filter( 'send_update_notification_email', array( $this, 'maybe_disable_emails' ), 10, 3 );
+        }
+		
 		
 		//Enable Plugin Auto-updates
 		if ( isset( $core_options[ 'plugin_updates' ] ) && 'on' == $core_options[ 'plugin_updates' ] ) {
 			if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'on' == $core_options[ 'automatic_plugin_updates' ] ) {
-				add_filter( 'auto_update_plugin',  '__return_true', 10, 2 );
+				add_filter( 'auto_update_plugin',  '__return_true', 50, 2 );
 			} elseif( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'off' == $core_options[ 'automatic_plugin_updates' ] ) {
-				add_filter( 'auto_update_plugin',  '__return_false', 10, 2 );
+				add_filter( 'auto_update_plugin',  '__return_false', 50, 2 );
 			} elseif( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] ) {
-				add_filter( 'auto_update_plugin',  array( $this, 'automatic_updates_plugins' ), 10, 2 );
+				add_filter( 'auto_update_plugin',  array( $this, 'automatic_updates_plugins' ), 50, 2 );
 			}
 		}
 		
@@ -138,11 +145,11 @@ class MPSUM_Disable_Updates {
 		//Enable Theme Auto-updates
 		if ( isset( $core_options[ 'theme_updates' ] ) && 'on' == $core_options[ 'theme_updates' ] ) {
 			if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'on' == $core_options[ 'automatic_theme_updates' ] ) {
-				add_filter( 'auto_update_theme',  '__return_true', 10, 2 );
+				add_filter( 'auto_update_theme',  '__return_true', 50, 2 );
 			} elseif( isset( $core_options[ 'automatic_theme_updates' ] ) && 'off' == $core_options[ 'automatic_theme_updates' ] ) {
-				add_filter( 'auto_update_theme',  '__return_false', 10, 2 );
+				add_filter( 'auto_update_theme',  '__return_false', 50, 2 );
 			} elseif( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' == $core_options[ 'automatic_theme_updates' ] ) {
-				add_filter( 'auto_update_theme',  array( $this, 'automatic_updates_theme' ), 10, 2 );
+				add_filter( 'auto_update_theme',  array( $this, 'automatic_updates_theme' ), 50, 2 );
 			}
 		}
 		
@@ -154,6 +161,34 @@ class MPSUM_Disable_Updates {
 		
 	} //end constructor
 	
+	/**
+	* Maybe disable updates.
+	*
+	* Disable background translation emails, plugin emails, theme emails
+	*
+	* @since 5.2.0
+	* @access public
+	* @see __construct
+	* 
+	* @param bool Whether to disable or not
+	* @param type ( theme, plugin , translation )
+	* @param obj wp update object
+	*
+	*/
+    public function maybe_disable_emails( $bool, $type, $object ) {
+        $core_options = MPSUM_Updates_Manager::get_options( 'core' );
+        if( isset( $core_options[ 'notification_core_update_emails_plugins' ] ) && 'off' == $core_options[ 'notification_core_update_emails_plugins' ] && $type == 'plugin' ) {
+             return false;
+        } 
+        if( isset( $core_options[ 'notification_core_update_emails_themes' ] ) && 'off' == $core_options[ 'notification_core_update_emails_themes' ] && $type == 'theme' ) {
+             return false;
+        } 
+        if( isset( $core_options[ 'notification_core_update_emails_translations' ] ) && 'off' == $core_options[ 'notification_core_update_emails_translations' ] && $type == 'translation' ) {
+             return false;
+        }
+        return $bool;
+        
+    }
 	/**
 	* Disable the out-of-date browser nag on the WordPress Dashboard.
 	*

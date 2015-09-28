@@ -181,9 +181,9 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		global $plugins;
 
 		if ( !empty( $plugins['all'] ) )
-			_e( 'No plugins found.' );
+			_e( 'No plugins found.', 'stops-core-theme-and-plugin-updates' );
 		else
-			_e( 'You do not appear to have any plugins available at this time.' );
+			_e( 'You do not appear to have any plugins available at this time.', 'stops-core-theme-and-plugin-updates' );
 	}
 
 	public function get_columns() {
@@ -191,8 +191,8 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 		return array(
 			'cb'          => !in_array( $status, array( 'mustuse', 'dropins' ) ) ? '<input type="checkbox" />' : '',
-			'name'        => __( 'Plugin' ),
-			'description' => __( 'Description' ),
+			'name'        => __( 'Plugin', 'stops-core-theme-and-plugin-updates' ),
+			'description' => __( 'Description', 'stops-core-theme-and-plugin-updates' ),
 		);
 	}
 
@@ -245,12 +245,12 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 		$actions = array();
 		        
-		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'disable-plugin-and-theme-updates' );
-		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'disable-plugin-and-theme-updates' );
+		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' );
+		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' );
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] ) {
-			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'disable-plugin-and-theme-updates' );
-			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'disable-plugin-and-theme-updates' );
+			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
+			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
 		}
 		
 		return $actions;
@@ -284,11 +284,11 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		echo '<div class="alignleft actions">';
 
 		if ( ! $this->screen->in_admin( 'network' ) && 'recently_activated' == $status )
-			submit_button( __( 'Clear List' ), 'button', 'clear-recent-list', false );
+			submit_button( __( 'Clear List', 'stops-core-theme-and-plugin-updates' ), 'button', 'clear-recent-list', false );
 		elseif ( 'top' == $which && 'mustuse' == $status )
-			echo '<p>' . sprintf( __( 'Files in the <code>%s</code> directory are executed automatically.' ), str_replace( ABSPATH, '/', WPMU_PLUGIN_DIR ) ) . '</p>';
+			echo '<p>' . sprintf( __( 'Files in the <code>%s</code> directory are executed automatically.', 'stops-core-theme-and-plugin-updates' ), str_replace( ABSPATH, '/', WPMU_PLUGIN_DIR ) ) . '</p>';
 		elseif ( 'top' == $which && 'dropins' == $status )
-			echo '<p>' . sprintf( __( 'Drop-ins are advanced plugins in the <code>%s</code> directory that replace WordPress functionality when present.' ), str_replace( ABSPATH, '', WP_CONTENT_DIR ) ) . '</p>';
+			echo '<p>' . sprintf( __( 'Drop-ins are advanced plugins in the <code>%s</code> directory that replace WordPress functionality when present.', 'stops-core-theme-and-plugin-updates' ), str_replace( ABSPATH, '', WP_CONTENT_DIR ) ) . '</p>';
 
 		echo '</div>';
 	}
@@ -341,7 +341,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 			$class = 'inactive';
 		} 
 		$checkbox_id =  "checkbox_" . md5($plugin_data['Name']);
-		$checkbox = "<label class='screen-reader-text' for='" . $checkbox_id . "' >" . sprintf( __( 'Select %s' ), $plugin_data['Name'] ) . "</label>"
+		$checkbox = "<label class='screen-reader-text' for='" . $checkbox_id . "' >" . sprintf( __( 'Select %s', 'stops-core-theme-and-plugin-updates' ), $plugin_data['Name'] ) . "</label>"
 				. "<input type='checkbox' name='checked[]' value='" . esc_attr( $plugin_file ) . "' id='" . $checkbox_id . "' />";
 		$description = '<p>' . ( $plugin_data['Description'] ? $plugin_data['Description'] : '&nbsp;' ) . '</p>';
 		$plugin_name = $plugin_data['Name'];
@@ -373,12 +373,12 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 					$plugin_meta = array();
 					if ( !empty( $plugin_data['Version'] ) )
-						$plugin_meta[] = sprintf( __( 'Version %s' ), $plugin_data['Version'] );
+						$plugin_meta[] = sprintf( __( 'Version %s', 'stops-core-theme-and-plugin-updates' ), $plugin_data['Version'] );
 					if ( !empty( $plugin_data['Author'] ) ) {
 						$author = $plugin_data['Author'];
 						if ( !empty( $plugin_data['AuthorURI'] ) )
 							$author = '<a href="' . $plugin_data['AuthorURI'] . '">' . $plugin_data['Author'] . '</a>';
-						$plugin_meta[] = sprintf( __( 'By %s' ), $author );
+						$plugin_meta[] = sprintf( __( 'By %s', 'stops-core-theme-and-plugin-updates' ), $author );
 					}
 
 					// Details link using API info, if available
@@ -386,14 +386,14 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 						$plugin_meta[] = sprintf( '<a href="%s" class="thickbox" aria-label="%s" data-title="%s">%s</a>',
 							esc_url( network_admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . $plugin_data['slug'] .
 								'&TB_iframe=true&width=600&height=550' ) ),
-							esc_attr( sprintf( __( 'More information about %s' ), $plugin_name ) ),
+							esc_attr( sprintf( __( 'More information about %s', 'stops-core-theme-and-plugin-updates' ), $plugin_name ) ),
 							esc_attr( $plugin_name ),
-							__( 'View details' )
+							__( 'View details', 'stops-core-theme-and-plugin-updates' )
 						);
 					} elseif ( ! empty( $plugin_data['PluginURI'] ) ) {
 						$plugin_meta[] = sprintf( '<a href="%s">%s</a>',
 							esc_url( $plugin_data['PluginURI'] ),
-							__( 'Visit plugin site' )
+							__( 'Visit plugin site', 'stops-core-theme-and-plugin-updates' )
 						);
 					}
 

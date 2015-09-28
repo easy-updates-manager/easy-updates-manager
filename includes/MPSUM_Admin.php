@@ -127,10 +127,13 @@ class MPSUM_Admin {
 		add_action( $prefix . 'plugin_action_links_' . MPSUM_Updates_Manager::get_plugin_basename(), array( $this, 'plugin_settings_link' ) );
 		
 		//todo - maybe load these conditionally based on $_REQUEST[ 'tab' ] param
+		new MPSUM_Admin_Dashboard( self::get_slug() );
 		new MPSUM_Admin_Plugins( self::get_slug() );
 		new MPSUM_Admin_Themes( self::get_slug() );
 		new MPSUM_Admin_Core( self::get_slug() );
 		new MPSUM_Admin_Advanced( self::get_slug() );
+		
+		
 		
 	}	
 	
@@ -149,6 +152,11 @@ class MPSUM_Admin {
 		new MPSUM_Admin_Help();
 	}
 	
+	public function enqueue_scripts() {
+    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js', array( 'jquery' ) ) );
+    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ) );
+    }
+	
 	/**
 	* Adds a sub-menu page for multisite.
 	*
@@ -161,7 +169,8 @@ class MPSUM_Admin {
 	*
 	*/
 	public function init_network_admin_menus() {
-		$hook = add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		$hook = add_dashboard_page( __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( "load-$hook", array( $this, 'init_help_screen' ) );
 	}
 	
@@ -177,7 +186,8 @@ class MPSUM_Admin {
 	*
 	*/
 	public function init_single_site_admin_menus() {
-		$hook = add_dashboard_page( __( 'Update Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Update Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		$hook = add_dashboard_page( __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ), 'update_core', self::get_slug(), array( $this, 'output_admin_interface' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( "load-$hook", array( $this, 'init_help_screen' ) );	
 	}
 	
@@ -200,6 +210,12 @@ class MPSUM_Admin {
 			<?php
 			$tabs = 
 			array(
+    			array(
+					'url' => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
+					'label' => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
+					'get' => 'dashboard' /*$_GET variable*/,
+					'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
+				),
 				array(
 					'url' => add_query_arg( array( 'tab' => 'main' ), self::get_url() ), /* URL to the tab */
 					'label' => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
@@ -228,7 +244,7 @@ class MPSUM_Admin {
 			$tabs_count = count( $tabs );
 			if ( $tabs && !empty( $tabs ) )  {
 				$tab_html =  '<h2 class="nav-tab-wrapper">';
-				$active_tab = isset( $_GET[ 'tab' ] ) ? sanitize_text_field( $_GET[ 'tab' ] ) : 'main';
+				$active_tab = isset( $_GET[ 'tab' ] ) ? sanitize_text_field( $_GET[ 'tab' ] ) : 'dashboard';
 				$do_action = false;
 				foreach( $tabs as $tab ) {
 					$classes = array( 'nav-tab' );

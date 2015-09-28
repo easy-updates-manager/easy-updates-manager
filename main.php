@@ -2,9 +2,9 @@
 /*
 Plugin Name: Easy Updates Manager
 Plugin URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
-Description: Manage and disable WordPress updates, including core, plugin, theme, and automatic updates - Works with Multisite
+Description: Manage and disable WordPress updates, including core, plugin, theme, and automatic updates - Works with Multisite.
 Author: kidsguide, ronalfy
-Version: 5.1.0
+Version: 5.3.0
 Requires at least: 4.3
 Author URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Contributors: kidsguide, ronalfy
@@ -295,6 +295,9 @@ class MPSUM_Updates_Manager {
 			MPSUM_Disable_Updates::run();
 		}
 		
+		add_action( 'wp_ajax_mpsum_disable_updates', array( $this, 'ajax_disable_updates' ) );
+		add_action( 'wp_ajax_mpsum_ajax_action', array( $this, 'ajax_update_option' ) );
+		
 		
 		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
 		$not_admin_disabled = ( !defined( 'MPSUM_DISABLE_ADMIN' ) || !MPSUM_DISABLE_ADMIN );
@@ -302,6 +305,70 @@ class MPSUM_Updates_Manager {
 			MPSUM_Admin::run();	
 		}	
 	}
+	
+	public function ajax_update_option() {
+        if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) ) {
+            die( 'Cheating, huh' );
+        }
+        
+        /* Get Ajax Options */
+        $context = sanitize_text_field( $_POST[ 'context' ] );
+        $option = sanitize_text_field( $_POST[ 'data_action' ] );	
+        $option_value = sanitize_text_field( $_POST[ 'checked' ] );
+        $val = sanitize_text_field( $_POST[ 'val' ] );
+        
+                    
+        $options = MPSUM_Updates_Manager::get_options( $context );
+		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
+		if ( 'core' == $context ) {
+    		$options[ $option ] = $option_value;
+    		if ( $option == 'automatic_theme_updates' || $option == 'automatic_plugin_updates' ) {
+        	    $options[ $option ] = $val;	
+            }
+            MPSUM_Updates_Manager::update_options( $options, $context );
+        } else if ( 'plugins' == $context || 'themes' == $context || 'plugins_automatic' == $context || 'themes_automatic' == $context   ) {
+            $plugin_options = MPSUM_Updates_Manager::get_options( $context );
+            if ( 'on' == $option_value ) {
+                foreach( $plugin_options as $plugin ) {
+                    if ( ( $key = array_search( $option, $plugin_options ) ) !== false ) {
+                		unset( $plugin_options[ $key ] );
+                    }
+                }
+            } else {
+                $plugin_options[] = $option;
+                $plugin_options = array_values( array_unique( $plugin_options ) );
+            }
+        	
+            MPSUM_Updates_Manager::update_options( $plugin_options, $context );
+        }
+        
+        die( $context );
+            
+    }
+	public function ajax_disable_updates() {
+    	if ( !current_user_can( 'update_core' ) ) return;
+    	$options = MPSUM_Updates_Manager::get_options( 'core' );
+		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
+    	if ( 'on' == $_POST[ 'new_val' ] ) {
+        	 $options[ 'all_updates' ] = 'on';
+        } else {
+            $options[ 'all_updates' ] = 'off';
+        } 
+        MPSUM_Updates_Manager::update_options( $options, 'core' );
+        if ( $options[ 'all_updates' ] == 'off' ) {
+             $return = array(
+                'core_updates_off',
+                'plugin_updates_off',
+                'theme_updates_off',
+                'translation_updates_off',
+            ); 
+            
+        } else {
+            $return = array();
+        }
+          	
+        die( json_encode( $return ) );
+    }
 	
 	/**
 	* Save plugin options.

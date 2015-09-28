@@ -1,9 +1,9 @@
 === Easy Updates Manager ===
 Contributors: kidsguide, ronalfy
-Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates
+Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
-Tested up to: 4.3
-Stable tag: 5.1.0
+Tested up to: 4.3.1
+Stable tag: 5.3.0
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
@@ -32,28 +32,38 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>Disable theme updates and automatic updates individually by selecting which themes on a table. Also able to bulk select themes.</li>
 <li>The ability to block users from configuring the settings.</li>
 <li>The ability to select which users can still see and perform updates.</li>
+<li>The ability to update some third party plugins.</li>
 </ul>
 
 For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
+<h3>Translations</h3>
+
+<ul>
+<li>German - Props <a href="https://github.com/pixolin">Bego Mario Garde</a></li>
+</ul>
+
+If you are interested in translating our plugin, please create a new support request with a link to your translation or <a href="https://github.com/easy-updates-manager/easy-updates-manager">submit a pull request</a>.
+
 == Screenshots ==
-1. Easy Updates Manager on Single-Site Plugins Screen with Shortcut Configure Option
-2. Easy Updates Manager Options are Under Dashboard on Single-Site
-3. Easy Updates Manager on Multisite Plugins Screen with Shortcut Configure Option
-4. Easy Updates Manager Options are Under Updates on Multisite
-5. General Options Allow You to Enable or Disable Updates
-6. Plugin Options Allow You to Enable or Disable Updates Per Plugin
-7. Theme Options Allow You to Enable or Disable Updates Per Theme
-8. Advanced Options Allow You to Exclude Users or Reset All Options
-9. Help Screen Provides Helpful Links
+1. Single site install settings page location
+2. Multisite install settings page location
+3. Global settings in General tab
+4. Automatic Update settings in General tab
+5. Notification and Miscellaneous settings in Global tab
+6. Enable/Disable updates and automatic updates individually for plugins
+7. Enable/Disable updates and automatic updates individually for themes
+8. Advanced options tab
+9. Help tab
 
 == Installation == 
+
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
 
-1. You can also upload it by going into your 'Plugins' section and selecting add a new plugin
+1. You can download Easy Updates Manager by going into your 'Plugins' section and selecting add a new plugin
 2. Search for the plugin by typing 'Easy Updates Manager' into the search bar
 3. Install and activate the plugin by pushing the 'Install' button and then the 'activate plugin' link
-4. Configure the plugin by going to the 'Update Options' section in your admin area under the Dashboard
+4. Configure the plugin by going to the 'Updates Options' section in your admin area under the Dashboard
 
 <strong>Installing Easy Updates Manager through FTP</strong> 
 
@@ -81,7 +91,7 @@ A plugin was also created to change the background updates email address: https:
 = Automatic Updates =
 
 Check out our video on how the automatic updating works in WordPress.
-[youtube https://www.youtube.com/watch?v=VBAfoK1PP0o]
+[youtube https://www.youtube.com/watch?v=V8AWwBc6GrU]
 
 = Additional Information and FAQ =
 
@@ -89,8 +99,29 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 5.3.0 =
+Released 2015-09-27
+
+* New Dashboard View
+* Support for WordPress 4.4 Email Notifications
+
+= 5.2.0 =
+Released 2015-09-19
+
+* Added Force check in the Advanced Tab.
+* Better support for third-party plugins.
+* Updating the filter priority for better update experience with third-party plugins.
+
+= 5.1.1 =
+Released 2015-08-24
+
+* Fixed internationalization in plugin files.
+* Added German translation.
+* Updated internal plugin documentation.
+* Fixing errant status messages.
+
 = 5.1.0 =
-Updated: 2015-08-13
+Released 2015-08-13
 
 * WordPress 4.3 tested and is now the minimum supported version.
 * Added default option to plugin/theme automatic updates.
@@ -109,6 +140,16 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 5.3.0 =
+New Dashboard View. Support for WordPress 4.4 Email Notifications.
+
+= 5.2.0 =
+Force update button available. Better support for third-party solutions.
+
+= 5.1.1 =
+Fixing internationalization issues and adding German translation.
+
 = 5.1.0 =
 Only upgrade if using WordPress 4.3. Many changes to ensure WordPress 4.3 compatibility. 
 

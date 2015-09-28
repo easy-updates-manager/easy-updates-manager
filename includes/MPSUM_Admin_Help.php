@@ -48,6 +48,7 @@ CONTENT3;
 		
 		$content4_strings = array(
 			'intro' => esc_html__( 'You will see four tabs where you can configure the update options.', 'stops-core-theme-and-plugin-updates' ),
+			'dashboard' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'Use this screen for an at-a-glance view of your settings.', 'stops-core-theme-and-plugin-updates' ) ),
 			'general' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'Use this screen to finely tune which updates and automatic updates you would like to see.', 'stops-core-theme-and-plugin-updates' ) ),
 			'plugins' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Plugins', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If plugin updates are enabled and/or automatic updates for plugins are enabled, you can configure which plugins will receive updates and/or automatic updates.', 'stops-core-theme-and-plugin-updates' ) ),
 			'themes' => sprintf( '<strong>%s</strong> - %s', esc_html__( 'Themes', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If theme updates are enabled and/or automatic updates for themes are enabled, you can configure which themes will receive updates and/or automatic updates.', 'stops-core-theme-and-plugin-updates' ) ),
@@ -57,6 +58,8 @@ CONTENT3;
 		$content4 = <<<CONTENT4
 <p>
 {$content4_strings['intro']}
+<br>
+{$content4_strings['dashboard']}
 <br>
 <br>
 {$content4_strings['general']}
@@ -92,12 +95,7 @@ CONTENT5;
 
 		$content6 = '<p>';
 		$content6 .= esc_html__( 'WordPress encourages you to update your plugins, themes, and core to make sure that there are no bugs. Even though you most likely want to disable all the updates and never think about updating again, you should still consider updating every once in a while to avoid major bugs and errors on your WordPress website.', 'stops-core-theme-and-plugin-updates' );
-		$content6 .= sprintf( '<h3>%s</h3>', esc_html__( 'This plugin is tested so there are no known major issues.', 'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= '<ul>';
-		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with WordPress 4.1.1.',  'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with popular plugins to ensure that there are no conflicts.',  'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= sprintf( '<li>%s</li>', esc_html__( 'Tested with popular themes to ensure that there are no conflicts.',  'stops-core-theme-and-plugin-updates' ) );
-		$content6 .= '</ul>';
+		$content6 .= sprintf( '<h4>%s</h4>', esc_html__( 'This plugin is tested with the most recent versions of WordPress to ensure that there are no major issues.', 'stops-core-theme-and-plugin-updates' ) );
 		$content6 .= '</p>';
 
 		$screen->add_help_tab(array(
@@ -108,7 +106,7 @@ CONTENT5;
 			
 	    $screen->add_help_tab(array(
                 'id' => 'help_tab_content_4',
-                'title' => __( 'Tabs',  'stops-core-theme-and-plugin-updates' ),
+                'title' => __( 'Navigation',  'stops-core-theme-and-plugin-updates' ),
                 'content' => $content4,
             ));
 			
@@ -131,7 +129,7 @@ CONTENT5;
             ));
 				
 		$screen->set_help_sidebar($content5);
-	
+			
 	} //end constructor
 	
 }

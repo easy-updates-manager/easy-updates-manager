@@ -83,12 +83,9 @@ class MPSUM_Admin_Themes {
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
 		if ( !isset( $_GET[ 'tab' ] ) || $_GET[ 'tab' ] != $this->tab ) return;
 		if ( !isset( $_REQUEST[ 'action' ] ) ) return;
+		if ( !isset( $_REQUEST[ '_mpsum' ] ) ) return;
 		
 		$action = $_REQUEST[ 'action' ];
-		$theme_disabled = false;
-		if ( 'disallow-update-selected' == $action || 'disallow-automatic-selected' == $action ) {
-			$theme_disabled = true;
-		}
 		
 		//Build Query Args
 		$paged = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : false;
@@ -97,11 +94,7 @@ class MPSUM_Admin_Themes {
 		if ( false !== $paged ) {
 			$query_args[ 'paged' ] = $paged;	
 		}
-		if ( false == $theme_disabled ) {
-			$query_args[ 'disabled' ] = 0;
-		} else {
-			$query_args[ 'disabled' ] = 1;
-		}
+		$query_args[ 'action' ] = $action;
 		$query_args[ 'tab' ] = $this->tab;
 		$theme_status = isset( $_REQUEST[ 'theme_status' ] ) ? $_REQUEST[ 'theme_status' ] : false;
 		if ( false !== $theme_status ) {
@@ -194,10 +187,16 @@ class MPSUM_Admin_Themes {
 	* @internal Uses the mpsum_admin_tab_themes action
 	*/
 	public function tab_output_themes() {
-		if ( isset( $_GET[ 'disabled' ] ) ) {
-			$message = __( 'The selected theme updates have been enabled.', 'stops-core-theme-and-plugin-updates' );
-			if ( $_GET[ 'disabled' ] == 1 ) {
-				$message = __( 'The selected theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' );
+		if ( isset( $_GET[ 'action' ] ) ) {
+			$message = __( 'Settings have been updated.', 'stops-core-theme-and-plugin-updates' );
+			if ( 'allow-automatic-selected' == $_GET[ 'action' ] ) {
+				$message = __( 'The selected themes have had automatic updates enabled.', 'stops-core-theme-and-plugin-updates' );
+			} elseif( 'disallow-automatic-selected' == $_GET[ 'action' ] ) {
+				$message = __( 'The selected themes have had automatic updates disabled.', 'stops-core-theme-and-plugin-updates' );
+			} elseif( 'disallow-update-selected' == $_GET[ 'action' ] ) {
+					$message = __( 'The selected theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' );
+			} elseif( 'allow-update-selected' == $_GET[ 'action' ] ) {
+				$message = __( 'The selected theme updates have been enabled.', 'stops-core-theme-and-plugin-updates' );
 			}	
 			?>
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
