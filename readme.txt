@@ -99,6 +99,10 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 5.3.1 =
+Released 2015-09-27
+* Fixing automatic updates dashboard widget.
+
 = 5.3.0 =
 Released 2015-09-27
 
