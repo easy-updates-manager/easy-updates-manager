@@ -1,9 +1,9 @@
 === Easy Updates Manager ===
-Contributors: kidsguide, ronalfy
+Contributors: kidsguide, ronalfy, pixolin
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
 Tested up to: 4.3.1
-Stable tag: 5.3.0
+Stable tag: 5.3.1
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
@@ -37,13 +37,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 
 For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
-<h3>Translations</h3>
-
-<ul>
-<li>German - Props <a href="https://github.com/pixolin">Bego Mario Garde</a></li>
-</ul>
-
-If you are interested in translating our plugin, please create a new support request with a link to your translation or <a href="https://github.com/easy-updates-manager/easy-updates-manager">submit a pull request</a>.
+If you want to contribute to the translation, please go to https://translate.wordpress.org/, select your language and search for plugin Easy Updates Manager. We appreciate all the translation help we can get.
 
 == Screenshots ==
 1. Single site install settings page location
@@ -58,8 +52,7 @@ If you are interested in translating our plugin, please create a new support req
 10. Advanced options tab
 11. Help tab
 
-== Installation == 
-
+== Installation ==
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
 
 1. You can download Easy Updates Manager by going into your 'Plugins' section and selecting add a new plugin
@@ -67,7 +60,7 @@ If you are interested in translating our plugin, please create a new support req
 3. Install and activate the plugin by pushing the 'Install' button and then the 'activate plugin' link
 4. Configure the plugin by going to the 'Updates Options' section in your admin area under the Dashboard
 
-<strong>Installing Easy Updates Manager through FTP</strong> 
+<strong>Installing Easy Updates Manager through FTP</strong>
 
 1. Upload the Easy Updates Manager folder to the '/wp-content/plugins/' directory (make sure it is unzipped)
 2. Activate the Easy Updates Manager plugin through the 'Plugins' menu in WordPress
@@ -75,7 +68,7 @@ If you are interested in translating our plugin, please create a new support req
 
 Activate the plugin after installation.  If you are on Multisite, the plugin must be network-activated.
 
-== Frequently Asked Questions == 
+== Frequently Asked Questions ==
 = Do you support older WordPress versions? =
 
 Version 5.0.x should support WP versions 4.0 - 4.2.x. Version 4.7.0 should support WP versions 2.3 - 4.0.
@@ -88,7 +81,7 @@ Unfortunately, we do not support older versions of WordPress or the non-current 
 
 There's some documentation about changing the notification e-mail here: http://www.iwebcontrol.co.uk/2013/10/change-wordpress-auto-update-email-address/
 
-A plugin was also created to change the background updates email address: https://wordpress.org/plugins/background-update-notification-email-address/ 
+A plugin was also created to change the background updates email address: https://wordpress.org/plugins/background-update-notification-email-address/
 
 = Automatic Updates =
 
@@ -132,7 +125,7 @@ Released 2015-08-13
 
 * WordPress 4.3 tested and is now the minimum supported version.
 * Added default option to plugin/theme automatic updates.
-* Updated internal HTML to be WordPress 4.3 compatible. 
+* Updated internal HTML to be WordPress 4.3 compatible.
 * Updated internal list tables to be WordPress 4.3 compatible.
 * Moved menus in multisite to Dashboard for WordPress 4.3 compatibility.
 
@@ -148,6 +141,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 
 == Upgrade Notice ==
 
+= 5.3.1 =
+Fixing automatic updates in dashboard view.
+
 = 5.3.0 =
 New Dashboard View. Support for WordPress 4.4 Email Notifications.
 
@@ -158,7 +154,7 @@ Force update button available. Better support for third-party solutions.
 Fixing internationalization issues and adding German translation.
 
 = 5.1.0 =
-Only upgrade if using WordPress 4.3. Many changes to ensure WordPress 4.3 compatibility. 
+Only upgrade if using WordPress 4.3. Many changes to ensure WordPress 4.3 compatibility.
 
 = 5.0.0 =
 Major plugin rewrite and update. Updating will port over your old options. We recommend you perform a backup of your site before updating. Now you can configure just about any aspect of WordPress updates.
