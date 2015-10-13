@@ -24,7 +24,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>Development Updates - This setting toggles whether or not you want the bleeding edge version of WordPress to automatically update itself.</li>
 <li>Plugin Updates - This setting can either automatically update all your plugins, or automatically update any select plugins you want.</li>
 <li>Theme Updates - This setting can either automatically update all your themes, or automatically update any select themes you want.</li>
-<li>Translation Updates - This setting can unable automatic updating or translation updates.</li>
+<li>Translation Updates - This setting can unable automatic updating for translation updates.</li>
 <li>Core Update E-mails - This setting disables the core update e-mails.</li>
 <li>Browser Nag - This setting removes the WordPress browser nag which appears when you are using an older browser.</li>
 <li>WordPress Version in Footer - This setting will remove the WordPress version in the admin footer on your website.</li>
