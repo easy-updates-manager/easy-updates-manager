@@ -86,8 +86,9 @@ CONTENT4;
 <p style="align: center;">
 <h3>{$content5_strings[ 'contributors' ]}</h3>
 <ul>
-<li><a href="http://profiles.wordpress.org/kidsguide/">Matthew</a></li>
-<li><a href="http://profiles.wordpress.org/ronalfy/">Ronalfy</a></li>
+<li><a href="http://profiles.wordpress.org/kidsguide/">Matthew (kidsguide)</a></li>
+<li><a href="http://profiles.wordpress.org/ronalfy/">Ronald Huereca (ronalfy)</a></li>
+<li><a href="http://profiles.wordpress.org/pixolin/">Bego Mario Garde (pixolin)</a></li>
 </ul>
 </p>
 
