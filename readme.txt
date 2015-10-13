@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, pixolin
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
 Tested up to: 4.3.1
-Stable tag: 5.3.1
+Stable tag: 5.3.2
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
@@ -24,7 +24,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>Development Updates - This setting toggles whether or not you want the bleeding edge version of WordPress to automatically update itself.</li>
 <li>Plugin Updates - This setting can either automatically update all your plugins, or automatically update any select plugins you want.</li>
 <li>Theme Updates - This setting can either automatically update all your themes, or automatically update any select themes you want.</li>
-<li>Translation Updates - This setting can unable automatic updating or translation updates.</li>
+<li>Translation Updates - This setting can unable automatic updating for translation updates.</li>
 <li>Core Update E-mails - This setting disables the core update e-mails.</li>
 <li>Browser Nag - This setting removes the WordPress browser nag which appears when you are using an older browser.</li>
 <li>WordPress Version in Footer - This setting will remove the WordPress version in the admin footer on your website.</li>
@@ -37,7 +37,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 
 For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
-If you want to contribute to the translation, please go to https://translate.wordpress.org/, select your language and search for plugin Easy Updates Manager. 
+If you want to contribute to the translation, please go to https://translate.wordpress.org/, select your language and search for plugin Easy Updates Manager. We appreciate all the translation help we can get.
 
 == Screenshots ==
 1. Single site install settings page location
@@ -53,7 +53,6 @@ If you want to contribute to the translation, please go to https://translate.wor
 11. Help tab
 
 == Installation ==
-
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
 
 1. You can download Easy Updates Manager by going into your 'Plugins' section and selecting add a new plugin
@@ -95,8 +94,15 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 5.3.2 =
+Released 2015-10-13
+
+* Fixed translation errors.
+* Welcomed Bego Mario Garde (pixolin) as a official contributor.
+
 = 5.3.1 =
 Released 2015-09-27
+
 * Fixing automatic updates dashboard widget.
 
 = 5.3.0 =
@@ -140,6 +146,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 5.3.2 =
+Fixed translation errors. 
 
 = 5.3.1 =
 Fixing automatic updates in dashboard view.
