@@ -23,6 +23,4 @@ Note that if you want to right up stuff for the wiki then please submit an issue
 Support is a fairly big thing to manage. We volunteers at Easy Updates Manager want to make sure that our users get the best support they can. How you can help with this is extremely simple. Head over to our WordPress Support Forum and answer some support topics. 
 
 ### Translation
-Easy Updates Manager is currently only available in English and German. If you would like to translate Easy Updates Manager into a different language then you can do so by creating a pull request with your po and mo files.
-
-###### Contributor Handbook v3.0
+We are always trying to expand Easy Updates Managers translations. If you are interested in translating Easy Updates Manager then go here. https://translate.wordpress.org/projects/wp-plugins/stops-core-theme-and-plugin-updates 
