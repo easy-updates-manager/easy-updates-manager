@@ -121,11 +121,14 @@ class MPSUM_Disable_Updates {
 			add_filter( 'auto_core_update_send_email', '__return_false', 50 );
 			add_filter( 'send_core_update_notification_email', '__return_false', 50 );
 			add_filter( 'automatic_updates_send_debug_email', '__return_false', 50 );
-		} elseif( isset( $core_options[ 'notification_core_update_emails_plugins' ] ) && 'off' == $core_options[ 'notification_core_update_emails_plugins' ] ) {
+		}
+		if( isset( $core_options[ 'notification_core_update_emails_plugins' ] ) && 'off' == $core_options[ 'notification_core_update_emails_plugins' ] ) {
     		add_filter( 'send_update_notification_email', array( $this, 'maybe_disable_emails' ), 10, 3 );
-        } elseif( isset( $core_options[ 'notification_core_update_emails_themes' ] ) && 'off' == $core_options[ 'notification_core_update_emails_themes' ] ) {
+        } 
+        if( isset( $core_options[ 'notification_core_update_emails_themes' ] ) && 'off' == $core_options[ 'notification_core_update_emails_themes' ] ) {
     		add_filter( 'send_update_notification_email', array( $this, 'maybe_disable_emails' ), 10, 3 );
-        } elseif( isset( $core_options[ 'notification_core_update_emails_translations' ] ) && 'off' == $core_options[ 'notification_core_update_emails_translations' ] ) {
+        }
+        if( isset( $core_options[ 'notification_core_update_emails_translations' ] ) && 'off' == $core_options[ 'notification_core_update_emails_translations' ] ) {
     		add_filter( 'send_update_notification_email', array( $this, 'maybe_disable_emails' ), 10, 3 );
         }
 		
