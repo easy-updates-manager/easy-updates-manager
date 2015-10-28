@@ -1,8 +1,8 @@
 === Easy Updates Manager ===
-Contributors: kidsguide, ronalfy, pixolin
+Contributors: kidsguide, ronalfy, pixolin, ramiy
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
-Tested up to: 4.3.1
+Tested up to: 4.3
 Stable tag: 5.3.2
 License: GPLv2 or later
 
@@ -11,33 +11,36 @@ Manage all your WordPress updates, including individual plugin/theme updates, au
 == Description ==
 Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to take control of their websites updates.
 
-[youtube https://www.youtube.com/watch?v=MmNrNAkCI0g&list=PL7YF6bIhLLz0HzndENZZAdoh2nJBefTeA]
+https://www.youtube.com/watch?v=MmNrNAkCI0g&list=PL7YF6bIhLLz0HzndENZZAdoh2nJBefTeA
 
 = Features Include =
-<ul>
-<li>All Updates - This setting quite easily just overrides all other settings and disables everything.</li>
-<li>WordPress Core Updates- This setting is used to toggle on and off the WordPress core updates.</li>
-<li>Plugin Updates - This setting is used to disable all plugin updates on your website.</li>
-<li>Theme Updates - This setting is used to disable all theme updates on your website.</li>
-<li>Major Releases - This setting toggles whether or not you want the major WordPress core versions to automatically update themselves.</li>
-<li>Minor Releases - This setting toggles whether or not you want the minor WordPress core versions to automatically update themselves.</li>
-<li>Development Updates - This setting toggles whether or not you want the bleeding edge version of WordPress to automatically update itself.</li>
-<li>Plugin Updates - This setting can either automatically update all your plugins, or automatically update any select plugins you want.</li>
-<li>Theme Updates - This setting can either automatically update all your themes, or automatically update any select themes you want.</li>
-<li>Translation Updates - This setting can unable automatic updating for translation updates.</li>
-<li>Core Update E-mails - This setting disables the core update e-mails.</li>
-<li>Browser Nag - This setting removes the WordPress browser nag which appears when you are using an older browser.</li>
-<li>WordPress Version in Footer - This setting will remove the WordPress version in the admin footer on your website.</li>
-<li>Disable plugin updates and automatic updates individually by selecting which plugins on a table. Also able to bulk select plugins.</li>
-<li>Disable theme updates and automatic updates individually by selecting which themes on a table. Also able to bulk select themes.</li>
-<li>The ability to block users from configuring the settings.</li>
-<li>The ability to select which users can still see and perform updates.</li>
-<li>The ability to update some third party plugins.</li>
-</ul>
 
-For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
+* All Updates - This setting quite easily just overrides all other settings and disables everything.
+* WordPress Core Updates- This setting is used to toggle on and off the WordPress core updates.
+* Plugin Updates - This setting is used to disable all plugin updates on your website.
+* Theme Updates - This setting is used to disable all theme updates on your website.
+* Major Releases - This setting toggles whether or not you want the major WordPress core versions to automatically update themselves.
+* Minor Releases - This setting toggles whether or not you want the minor WordPress core versions to automatically update themselves.
+* Development Updates - This setting toggles whether or not you want the bleeding edge version of WordPress to automatically update itself.
+* Plugin Updates - This setting can either automatically update all your plugins, or automatically update any select plugins you want.
+* Theme Updates - This setting can either automatically update all your themes, or automatically update any select themes you want.
+* Translation Updates - This setting can unable automatic updating for translation updates.
+* Core Update E-mails - This setting disables the core update e-mails.
+* Browser Nag - This setting removes the WordPress browser nag which appears when you are using an older browser.
+* WordPress Version in Footer - This setting will remove the WordPress version in the admin footer on your website.
+* Disable plugin updates and automatic updates individually by selecting which plugins on a table. Also able to bulk select plugins.
+* Disable theme updates and automatic updates individually by selecting which themes on a table. Also able to bulk select themes.
+* The ability to block users from configuring the settings.
+* The ability to select which users can still see and perform updates.
+* The ability to update some third party plugins.
 
-If you want to contribute to the translation, please go to https://translate.wordpress.org/, select your language and search for plugin Easy Updates Manager. We appreciate all the translation help we can get.
+= More Information =
+
+For more information on how to use Easy Updates Manager, check out our [wiki](https://github.com/easy-updates-manager/easy-updates-manager/wiki).
+
+= Internationalization =
+
+If you want to contribute to the translation, please go to [translate.wordpress.org](https://translate.wordpress.org/), select your language and search for plugin Easy Updates Manager. We appreciate all the translation help we can get.
 
 == Screenshots ==
 1. Single site install settings page location
@@ -53,14 +56,14 @@ If you want to contribute to the translation, please go to https://translate.wor
 11. Help tab
 
 == Installation ==
-<strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
+** Installing Easy Updates Manager in your WordPress Dashboard ** (recommended)
 
 1. You can download Easy Updates Manager by going into your 'Plugins' section and selecting add a new plugin
 2. Search for the plugin by typing 'Easy Updates Manager' into the search bar
 3. Install and activate the plugin by pushing the 'Install' button and then the 'activate plugin' link
 4. Configure the plugin by going to the 'Updates Options' section in your admin area under the Dashboard
 
-<strong>Installing Easy Updates Manager through FTP</strong>
+** Installing Easy Updates Manager through FTP **
 
 1. Upload the Easy Updates Manager folder to the '/wp-content/plugins/' directory (make sure it is unzipped)
 2. Activate the Easy Updates Manager plugin through the 'Plugins' menu in WordPress
@@ -79,26 +82,34 @@ Unfortunately, we do not support older versions of WordPress or the non-current 
 
 = How do I change the WordPress update notification e-mail? =
 
-There's some documentation about changing the notification e-mail here: http://www.iwebcontrol.co.uk/2013/10/change-wordpress-auto-update-email-address/
+See the documentation about [changing the notification email](http://www.iwebcontrol.co.uk/2013/10/change-wordpress-auto-update-email-address/).
 
-A plugin was also created to change the background updates email address: https://wordpress.org/plugins/background-update-notification-email-address/
+A plugin was also created to change the [background updates notification email](https://wordpress.org/plugins/background-update-notification-email-address/).
 
 = Automatic Updates =
 
 Check out our video on how the automatic updating works in WordPress.
-[youtube https://www.youtube.com/watch?v=V8AWwBc6GrU]
+
+https://www.youtube.com/watch?v=V8AWwBc6GrU
 
 = Additional Information and FAQ =
 
-For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
+For additional information and FAQs for Easy Updates Manager check out our [wiki](https://github.com/easy-updates-manager/easy-updates-manager/wiki).
 
 == Changelog ==
+
+= 5.3.3 =
+Released 2015-??-??
+
+* Avoid using HTML tags in translation strings.
+* Fix readme marckdown.
+* Welcome [Rami Yushuvaev](https://profiles.wordpress.org/ramiy/) as a contributor.
 
 = 5.3.2 =
 Released 2015-10-13
 
 * Fixed translation errors.
-* Welcomed Bego Mario Garde (pixolin) as a official contributor.
+* Welcome [Bego Mario Garde](https://profiles.wordpress.org/pixolin/) as a contributor.
 
 = 5.3.1 =
 Released 2015-09-27
@@ -143,7 +154,7 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * Complete re-write of Disable Updates Manager with new user interface.
 * Now compatible with WordPress Multisite installations.
 * New name: Easy Updates Manager
-* New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
+* New contributor: [Ronald Huereca](https://profiles.wordpress.org/ronalfy/)
 
 == Upgrade Notice ==
 
