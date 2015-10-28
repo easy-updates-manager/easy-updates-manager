@@ -1,5 +1,5 @@
 === Easy Updates Manager ===
-Contributors: kidsguide, ronalfy, pixolin
+Contributors: kidsguide, ronalfy, pixolin, roary86
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
 Tested up to: 4.3.1
