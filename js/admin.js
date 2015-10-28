@@ -61,18 +61,10 @@ jQuery( document ).ready( function( $ ) {
     $( '.dashboard-plugin-theme-updates' ).on( 'click', 'a', function( e ) {
         e.preventDefault();
         tag_action = jQuery( this ).attr( 'data-tab-action' );
-        if ( tag_action == 'plugins' ) {
-            $( '.dashboard-tab-themes' ).removeClass( 'active' ).addClass( 'inactive' );
-            $( '.dashboard-tab-plugins' ).removeClass( 'inactive' ).addClass( 'active' );   
-            $( '.dashboard-tab-header-plugin' ).addClass( 'active' );
-            $( 'dashboard-tab-header-theme' ).removeClass( 'active' );
-        } else {
-             $( '.dashboard-tab-plugins' ).removeClass( 'active' ).addClass( 'inactive' );
-            $( '.dashboard-tab-themes' ).removeClass( 'inactive' ).addClass( 'active' );
-            $( '.dashboard-tab-header-theme' ).addClass( 'active' );
-            $( '.dashboard-tab-header-plugin' ).removeClass( 'active' );
-            
-        }
+        $( '.dashboard-plugin-theme-updates .dashboard-tab-themes' ).toggleClass( 'active' );
+        $( '.dashboard-plugin-theme-updates .dashboard-tab-plugins' ).toggleClass( 'active' );
+        $( '.dashboard-plugin-theme-updates .dashboard-tab-header-plugin' ).toggleClass( 'active' );
+        $( '.dashboard-plugin-theme-updates .dashboard-tab-header-theme' ).toggleClass( 'active' );
     } ); 
     
 } );
