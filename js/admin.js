@@ -62,15 +62,15 @@ jQuery( document ).ready( function( $ ) {
         e.preventDefault();
         tag_action = jQuery( this ).attr( 'data-tab-action' );
         if ( tag_action == 'plugins' ) {
-            $( '.dashboard-tab-themes' ).toggleClass( 'active' );
-            $( '.dashboard-tab-plugins' ).toggleClass( 'inactive' );
-            $( '.dashboard-tab-header-plugin' ).toggleClass( 'active' );
-            $( 'dashboard-tab-header-theme' ).toggleClass( 'active' );
+            $( '.dashboard-tab-themes' ).removeClass( 'active' ).addClass( 'inactive' );
+            $( '.dashboard-tab-plugins' ).removeClass( 'inactive' ).addClass( 'active' );   
+            $( '.dashboard-tab-header-plugin' ).addClass( 'active' );
+            $( 'dashboard-tab-header-theme' ).removeClass( 'active' );
         } else {
-             $( '.dashboard-tab-plugins' ).toggleClass( 'active' );
-            $( '.dashboard-tab-themes' ).toggleClass( 'inactive' );
-            $( '.dashboard-tab-header-theme' ).toggleClass( 'active' );
-            $( '.dashboard-tab-header-plugin' ).toggleClass( 'active' );
+             $( '.dashboard-tab-plugins' ).removeClass( 'active' ).addClass( 'inactive' );
+            $( '.dashboard-tab-themes' ).removeClass( 'inactive' ).addClass( 'active' );
+            $( '.dashboard-tab-header-theme' ).addClass( 'active' );
+            $( '.dashboard-tab-header-plugin' ).removeClass( 'active' );
             
         }
     } ); 
