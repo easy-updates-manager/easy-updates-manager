@@ -65,6 +65,15 @@ jQuery( document ).ready( function( $ ) {
         $( '.dashboard-plugin-theme-updates .dashboard-tab-plugins' ).toggleClass( 'active' );
         $( '.dashboard-plugin-theme-updates .dashboard-tab-header-plugin' ).toggleClass( 'active' );
         $( '.dashboard-plugin-theme-updates .dashboard-tab-header-theme' ).toggleClass( 'active' );
+    } );
+    /* Plugin / Theme Tabs */
+    $( '.dashboard-plugin-theme-auto-updates' ).on( 'click', 'a', function( e ) {
+        e.preventDefault();
+        tag_action = jQuery( this ).attr( 'data-tab-action' );
+        $( '.dashboard-plugin-theme-auto-updates  .dashboard-tab-themes' ).toggleClass( 'active' );
+        $( '.dashboard-plugin-theme-auto-updates  .dashboard-tab-plugins' ).toggleClass( 'active' );
+        $( '.dashboard-plugin-theme-auto-updates .dashboard-tab-header-plugin' ).toggleClass( 'active' );
+        $( '.dashboard-plugin-theme-auto-updates .dashboard-tab-header-theme' ).toggleClass( 'active' );
     } ); 
     
 } );
