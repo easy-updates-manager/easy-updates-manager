@@ -63,7 +63,7 @@ class MPSUM_Admin_Dashboard {
         wp_nonce_field( 'mpsum_options_save', '_mpsum' );
         ?>
     	<div id="dashboard-main-outputs">
-    		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
+    		<div class="dashboard-main-wrapper">
         		<div class="dashboard-main-header"><?php esc_html_e( 'WordPress Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-item-wrapper">
             		<div class="dashboard-item" "dashboard-main">
@@ -147,7 +147,7 @@ class MPSUM_Admin_Dashboard {
         		</div><!-- .dashboard-item-wrapper -->
     		</div><!--- .dashboard-main-wrapper -->
     		
-    		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
+    		<div class="dashboard-main-wrapper">
         		<div class="dashboard-main-header"><?php esc_html_e( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		  <div class="dashboard-item-wrapper">
             		<div class="dashboard-item" "dashboard-main">
@@ -206,7 +206,7 @@ class MPSUM_Admin_Dashboard {
             		</div><!-- .dashboard-item -->
             </div>
     		</div>
-    		<div class="dashboard-main-wrapper" id="dashboard-main-updates">
+    		<div class="dashboard-main-wrapper">
         		<div class="dashboard-main-header"><?php esc_html_e( 'WordPress Notifications', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
         		<div class="dashboard-item-wrapper">
             		<div class="dashboard-item" "dashboard-main">
