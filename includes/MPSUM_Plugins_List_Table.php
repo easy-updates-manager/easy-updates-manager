@@ -283,12 +283,25 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 		echo '<div class="alignleft actions">';
 
-		if ( ! $this->screen->in_admin( 'network' ) && 'recently_activated' == $status )
+		if ( ! $this->screen->in_admin( 'network' ) && 'recently_activated' == $status ) {
 			submit_button( __( 'Clear List', 'stops-core-theme-and-plugin-updates' ), 'button', 'clear-recent-list', false );
-		elseif ( 'top' == $which && 'mustuse' == $status )
-			echo '<p>' . sprintf( __( 'Files in the <code>%s</code> directory are executed automatically.', 'stops-core-theme-and-plugin-updates' ), str_replace( ABSPATH, '/', WPMU_PLUGIN_DIR ) ) . '</p>';
-		elseif ( 'top' == $which && 'dropins' == $status )
-			echo '<p>' . sprintf( __( 'Drop-ins are advanced plugins in the <code>%s</code> directory that replace WordPress functionality when present.', 'stops-core-theme-and-plugin-updates' ), str_replace( ABSPATH, '', WP_CONTENT_DIR ) ) . '</p>';
+		}
+		elseif ( 'top' == $which && 'mustuse' == $status ) {
+			echo '<p>' .
+				sprintf(
+					__( 'Files in the %s directory are executed automatically.', 'stops-core-theme-and-plugin-updates' ),
+					'<code>' . str_replace( ABSPATH, '/', WPMU_PLUGIN_DIR ) . '</code>'
+				) .
+				'</p>';
+		}
+		elseif ( 'top' == $which && 'dropins' == $status ) {
+			echo '<p>' .
+				sprintf(
+					__( 'Drop-ins are advanced plugins in the %s directory that replace WordPress functionality when present.', 'stops-core-theme-and-plugin-updates' ),
+					'<code>' . str_replace( ABSPATH, '', WP_CONTENT_DIR ) . '</code>'
+				) .
+				'</p>';
+		}
 
 		echo '</div>';
 	}
