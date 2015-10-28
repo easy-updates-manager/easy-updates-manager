@@ -389,7 +389,6 @@ class MPSUM_Admin_Dashboard {
                             $can_show_plugins = true;   
                         }
                         ?>
-                		<div class="dashboard-item">
                             <?php
                             if ( $can_show_plugins ) :
                                 $options = MPSUM_Updates_Manager::get_options(  'plugins_automatic' );
@@ -422,7 +421,6 @@ class MPSUM_Admin_Dashboard {
                             endif;
                             ?>
                             </p>
-                		</div><!-- dashboard-item-->
             		</div><!-- .dashboard-item-wrapper -->
         		</div><!-- .dashboard-tab-plugins -->
         		<div class="dashboard-tab-themes dashboard-tab-content inactive">
