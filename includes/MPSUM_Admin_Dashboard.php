@@ -276,28 +276,27 @@ class MPSUM_Admin_Dashboard {
                             $can_show_plugins = true;
                         }
                         ?>
-                		<div class="dashboard-item">
-                            <?php
-                            if ( $can_show_plugins ) :
-                                $options = MPSUM_Updates_Manager::get_options(  'plugins' );
-                                $plugins = get_plugins(); 
-                                foreach( $plugins as $plugin_slug => $plugin_data ) {
-                                    $is_plugin_active = true;
-                                    if ( in_array( $plugin_slug,  $options ) ) {
-                                        $is_plugin_active = false;
-                                    }
-                                    $plugin_name = $plugin_data[ 'Name' ];
-                                    ?>
-                                    <div class="dashboard-item">
-                                		<div class="dashboard-item-header"><?php echo esc_html( $plugin_name ) ?>
-                                		</div><!-- .dashboard-item-header -->
-                                		<div class="dashboard-item-choice">
-                            				<input type="hidden" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
-                            				<input id="<?php echo esc_attr( $plugin_slug ); ?>-check" type="checkbox" data-context="plugins" data-action="<?php echo esc_attr( $plugin_slug ); ?>" class="dashboard-hide update-option" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?>" id="<?php echo esc_attr( $plugin_slug ); ?>_off" <?php checked( true, $is_plugin_active ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="<?php echo esc_attr( $plugin_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-                                		</div><!-- .dashboard-item-choice -->
-                            		</div><!-- dashboard-item-->
-                                    
-                                    <?php
+                        <?php
+                        if ( $can_show_plugins ) :
+                            $options = MPSUM_Updates_Manager::get_options(  'plugins' );
+                            $plugins = get_plugins(); 
+                            foreach( $plugins as $plugin_slug => $plugin_data ) {
+                                $is_plugin_active = true;
+                                if ( in_array( $plugin_slug,  $options ) ) {
+                                    $is_plugin_active = false;
+                                }
+                                $plugin_name = $plugin_data[ 'Name' ];
+                                ?>
+                                <div class="dashboard-item">
+                            		<div class="dashboard-item-header"><?php echo esc_html( $plugin_name ) ?>
+                            		</div><!-- .dashboard-item-header -->
+                            		<div class="dashboard-item-choice">
+                        				<input type="hidden" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
+                        				<input id="<?php echo esc_attr( $plugin_slug ); ?>-check" type="checkbox" data-context="plugins" data-action="<?php echo esc_attr( $plugin_slug ); ?>" class="dashboard-hide update-option" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?>" id="<?php echo esc_attr( $plugin_slug ); ?>_off" <?php checked( true, $is_plugin_active ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="<?php echo esc_attr( $plugin_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                            		</div><!-- .dashboard-item-choice -->
+                        		</div><!-- dashboard-item-->
+                                
+                                <?php
                                 }
                             else:
                             ?>
@@ -306,7 +305,6 @@ class MPSUM_Admin_Dashboard {
                             endif;
                             ?>
                             </p>
-                		</div><!-- dashboard-item-->
             		</div><!-- .dashboard-item-wrapper -->
         		</div><!-- .dashboard-tab-plugins -->
         		<div class="dashboard-tab-themes dashboard-tab-content inactive">
