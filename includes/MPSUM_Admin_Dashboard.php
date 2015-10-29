@@ -185,7 +185,7 @@ class MPSUM_Admin_Dashboard {
                 				<input type="checkbox"  data-context="core" data-action="automatic_translation_updates" class="dashboard-hide update-option" name="options[automatic_translation_updates]" value="off" id="automatic_translation_updates_on" <?php checked( 'on', $options[ 'automatic_translation_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_translation_updates_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'off' != $options[ 'automatic_plugin_updates' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="multi-choice">
@@ -195,7 +195,7 @@ class MPSUM_Admin_Dashboard {
             					<input type="radio"  data-context="core" data-action="automatic_plugin_updates" name="options[automatic_plugin_updates]" value="individual" id="automatic_plugin_individual" <?php checked( 'individual', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_individual"><?php esc_html_e( 'Select Individually', 'stops-core-theme-and-plugin-updates' ); ?></label>
                 		    </div><!--multi-choice-->
                 		</div><!-- .dashboard-item -->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'off' != $options[ 'automatic_theme_updates' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Automatic Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="multi-choice">
@@ -277,7 +277,7 @@ class MPSUM_Admin_Dashboard {
                                     }
                                     $plugin_name = $plugin_data[ 'Name' ];
                                     ?>
-                                    <div class="dashboard-item <?php $is_plugin_active ? 'active': '' ?>">
+                                    <div class="dashboard-item <?php echo $is_plugin_active ? 'active': '' ?>">
                                 		<div class="dashboard-item-header input-radio"><?php echo esc_html( $plugin_name ) ?>
                                 		</div><!-- .dashboard-item-header -->
                                 		<div class="dashboard-item-choice">
@@ -311,7 +311,8 @@ class MPSUM_Admin_Dashboard {
                                     }
                                     $theme_name = $theme_data->Name;
                                     ?>
-                                    <div class="dashboard-item">
+                                    
+                                    <div class="dashboard-item <?php echo $is_theme_active ? 'active': '' ?>">
                                 		<div class="dashboard-item-header input-radio"><?php echo esc_html( $theme_name ) ?>
                                 		</div><!-- .dashboard-item-header -->
                                 		<div class="dashboard-item-choice">
