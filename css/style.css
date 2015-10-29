@@ -133,6 +133,12 @@
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
+.dashboard-item-header {
+  color:#aaa;
+}
+.dashboard-item.active .dashboard-item-header{
+  color:#000;
+}
 .dashboard-tab-item {
   background: #FFF;
   width: 50%;
