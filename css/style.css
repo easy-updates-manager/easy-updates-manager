@@ -135,9 +135,19 @@
 }
 .dashboard-item-header {
   color:#888;
+    -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 .dashboard-item.active .dashboard-item-header{
   color:#000;
+    -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 .dashboard-item-header.input-radio {
   color:#000;
