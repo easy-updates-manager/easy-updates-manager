@@ -134,10 +134,14 @@
   transition: all 0.2s ease;
 }
 .dashboard-item-header {
-  color:#aaa;
+  color:#888;
 }
 .dashboard-item.active .dashboard-item-header{
   color:#000;
+}
+.dashboard-item-header.input-radio {
+  color:#000;
+  font-weight: 400;
 }
 .dashboard-tab-item {
   background: #FFF;
