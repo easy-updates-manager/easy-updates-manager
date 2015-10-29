@@ -149,6 +149,9 @@
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
+.dashboard-item.active .dashboard-item-header.input-radio {
+ font-weight: 700;
+}
 .dashboard-item-header.input-radio {
   color:#000;
   font-weight: 400;
