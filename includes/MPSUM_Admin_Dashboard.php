@@ -68,7 +68,7 @@ class MPSUM_Admin_Dashboard {
             		<div class="dashboard-main-header"><?php esc_html_e( 'WordPress Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
             		<div class="dashboard-item-wrapper">
                 		<div class="dashboard-item <?php if ( 'on' == $options[ 'all_updates' ] ) { echo 'active'; } ?>">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'All Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'All Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<?php
@@ -86,7 +86,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item <?php if ( 'on' == $options[ 'core_updates' ] ) { echo 'active'; } ?>">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'WordPress Core Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'WordPress Core Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<?php
@@ -101,7 +101,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item <?php if ( 'on' == $options[ 'plugin_updates' ] ) { echo 'active'; } ?>">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'All Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'All Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<?php
@@ -116,7 +116,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item <?php if ( 'on' == $options[ 'theme_updates' ] ) { echo 'active'; } ?>">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'All Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'All Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<?php
@@ -131,7 +131,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item <?php if ( 'on' == $options[ 'translation_updates' ] ) { echo 'active'; } ?>">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'All Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'All Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<?php
@@ -152,7 +152,7 @@ class MPSUM_Admin_Dashboard {
             		<div class="dashboard-main-header"><?php esc_html_e( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
             		  <div class="dashboard-item-wrapper">
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Major Releases', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Major Releases', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                                 <input type="checkbox" name="options[automatic_major_updates]" value="off"  />
@@ -160,7 +160,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Minor Releases', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Minor Releases', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<input id="core-updates-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
@@ -169,7 +169,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Development Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Development Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<input type="hidden" name="options[automatic_development_updates]" value="on" /> 
@@ -177,7 +177,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<input id="core-theme-check_before" type="hidden" value="<?php echo esc_attr( $checked_value ); ?>" />
@@ -186,7 +186,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="multi-choice">
                         		<input type="radio" data-context="core" data-action="automatic_plugin_updates" name="options[automatic_plugin_updates]" value="on" id="automatic_plugin_on" <?php checked( 'on', $options[ 'automatic_plugin_updates' ] ); ?> />&nbsp;<label for="automatic_plugin_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
@@ -196,7 +196,7 @@ class MPSUM_Admin_Dashboard {
                 		    </div><!--multi-choice-->
                 		</div><!-- .dashboard-item -->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Automatic Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Automatic Theme Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="multi-choice">
                         		<input type="radio" data-context="core" data-action="automatic_theme_updates" name="options[automatic_theme_updates]" value="on" id="automatic_theme_on" <?php checked( 'on', $options[ 'automatic_theme_updates' ] ); ?> />&nbsp;<label for="automatic_theme_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
@@ -211,7 +211,7 @@ class MPSUM_Admin_Dashboard {
             		<div class="dashboard-main-header"><?php esc_html_e( 'WordPress Notifications', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
             		<div class="dashboard-item-wrapper">
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                                 <input type="checkbox" name="options[notification_core_update_emails]" value="off"  />
@@ -219,7 +219,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Core Plugin Emails', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core Plugin Emails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<?php
@@ -234,7 +234,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		<?php
@@ -249,7 +249,7 @@ class MPSUM_Admin_Dashboard {
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
                 		<div class="dashboard-item">
-                    		<div class="dashboard-item-header"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?>
+                    		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
                         		
@@ -292,7 +292,7 @@ class MPSUM_Admin_Dashboard {
                                     $plugin_name = $plugin_data[ 'Name' ];
                                     ?>
                                     <div class="dashboard-item <?php $is_plugin_active ? 'active': '' ?>">
-                                		<div class="dashboard-item-header"><?php echo esc_html( $plugin_name ) ?>
+                                		<div class="dashboard-item-header input-radio"><?php echo esc_html( $plugin_name ) ?>
                                 		</div><!-- .dashboard-item-header -->
                                 		<div class="dashboard-item-choice">
                             				<input type="hidden" name="options[plugins]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
@@ -326,7 +326,7 @@ class MPSUM_Admin_Dashboard {
                                     $theme_name = $theme_data->Name;
                                     ?>
                                     <div class="dashboard-item">
-                                		<div class="dashboard-item-header"><?php echo esc_html( $theme_name ) ?>
+                                		<div class="dashboard-item-header input-radio"><?php echo esc_html( $theme_name ) ?>
                                 		</div><!-- .dashboard-item-header -->
                                 		<div class="dashboard-item-choice">
                                     		<?php
@@ -401,7 +401,7 @@ class MPSUM_Admin_Dashboard {
                                         $plugin_name = $plugin_data[ 'Name' ];
                                         ?>
                                         <div class="dashboard-item">
-                                    		<div class="dashboard-item-header"><?php echo esc_html( $plugin_name ) ?>
+                                    		<div class="dashboard-item-header input-radio"><?php echo esc_html( $plugin_name ) ?>
                                     		</div><!-- .dashboard-item-header -->
                                     		<div class="dashboard-item-choice">
                                 				<input type="hidden" name="options[plugins_automatic]" value="<?php echo esc_attr( $plugin_slug ); ?> " />
@@ -464,7 +464,7 @@ class MPSUM_Admin_Dashboard {
                                         $theme_name = $theme_data->Name;
                                         ?>
                                         <div class="dashboard-item">
-                                    		<div class="dashboard-item-header"><?php echo esc_html( $theme_name ) ?>
+                                    		<div class="dashboard-item-header input-radio"><?php echo esc_html( $theme_name ) ?>
                                     		</div><!-- .dashboard-item-header -->
                                     		<div class="dashboard-item-choice">
                                         		<?php
