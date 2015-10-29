@@ -210,7 +210,7 @@ class MPSUM_Admin_Dashboard {
         		<div class="dashboard-main-wrapper">
             		<div class="dashboard-main-header"><?php esc_html_e( 'WordPress Notifications', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
             		<div class="dashboard-item-wrapper">
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'on' == $options[ 'notification_core_update_emails' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
@@ -218,37 +218,23 @@ class MPSUM_Admin_Dashboard {
                                 <input type="checkbox"  data-context="core" data-action="notification_core_update_emails" class="dashboard-hide" name="options[notification_core_update_emails]" value="on" id="notification_core_update_emails_on" <?php checked( 'on', $options[ 'notification_core_update_emails' ] ); ?> />&nbsp;<label for="notification_core_update_emails_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'on' == $options[ 'notification_core_update_emails_plugins' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core Plugin Emails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
-                        		<?php
-                                /* [notification_core_update_emails] => on
-        [notification_core_update_emails_plugins] => off
-        [notification_core_update_emails_themes] => off
-        [notification_core_update_emails_translations] => on
-        */
-                                ?>
                                 <input type="checkbox" name="options[notification_core_update_emails_plugins]" value="off"  />
                                 <input type="checkbox"  data-context="core" data-action="notification_core_update_emails_plugins" class="dashboard-hide" name="options[all_updates]" value="on" id="notification_core_update_emails_plugins_on" <?php checked( 'on', $options[ 'notification_core_update_emails_plugins' ] ); ?> />&nbsp;<label for="notification_core_update_emails_plugins_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'on' == $options[ 'notification_core_update_emails_themes' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
-                        		<?php
-                                /* [notification_core_update_emails] => on
-        [notification_core_update_emails_plugins] => off
-        [notification_core_update_emails_themes] => off
-        [notification_core_update_emails_translations] => on
-        */
-                                ?>
                                 <input type="checkbox" name="options[notification_core_update_emails_themes]" value="off"  />
                                 <input type="checkbox"  data-context="core" data-action="notification_core_update_emails_themes" class="dashboard-hide" name="options[notification_core_update_emails_themes]" value="on" id="notification_core_update_emails_themes_on" <?php checked( 'on', $options[ 'notification_core_update_emails_themes' ] ); ?> />&nbsp;<label for="notification_core_update_emails_themes_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'on' == $options[ 'notification_core_update_emails_translations' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
