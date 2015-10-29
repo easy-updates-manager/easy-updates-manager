@@ -183,49 +183,13 @@
   clear: both;
   margin-top; 20px;
 }
-@media only screen and (max-width:1200px) {
-  .dashboard-main-wrapper {
-    width: 48.5%;
 
-  }
-}
-@media only screen and (max-width:1000px) {
-  .dashboard-main-wrapper {
-    margin-right: 0;
-    max-width: 100%;
-  }
-  .dashboard-item-wrapper {
-    min-height: auto;
-    max-height: 700px;
-    overflow: auto;
-  }
-}
-@media only screen and (max-width:782px) {
-  .dashboard-main-wrapper {
-    width: 100%;
-
-  }
-}
-input[type=checkbox],
-input[type=radio] {
-  border:1px solid #e33524;
-  background-color:#dddddd;
-}
-
-input[type=radio]:checked:before {
-  background-color:#0daf88;
-}
-input[type=checkbox]:checked,
-input[type=radio]:checked {
-  border:1px solid #0daf88;
-}
 label{
   font-weight: 100 !important;
 
 }
 
-
-input[type="radio"] {
+input[type=radio] {
   -webkit-appearance: none; /* remove default */
   margin: 10px;
   width: 15px;
@@ -234,32 +198,32 @@ input[type="radio"] {
   cursor: pointer;
   vertical-align: middle;
   outline: none;
-
-
-  background-image: -webkit-radial-gradient( hsla(3, 84%, 47%, 0) 0%, hsla(3, 84%, 47%, 0) 0%, hsla(3, 84%, 47%, 0) 0%, hsla(3, 84%, 47%, 0) 70%
-    );
-
+  border:1px solid #e33524;
+  background-color:#dddddd;
   -webkit-transition: background-position .15s cubic-bezier(.8, 0, 1, 1),
   -webkit-transform .25s cubic-bezier(.8, 0, 1, 1);
-
-
 }
 
+input[type=checkbox]:checked:before,
+input[type=radio]:checked:before {
+  background-color:#0daf88 !important;
+}
+
+input[type=checkbox]:checked,
 input[type="radio"]:checked {
   -webkit-transition: background-position .2s .15s cubic-bezier(0, 0, .2, 1),
   -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
   background:rgba(37, 175, 118, 1);
-
+  border:1px solid #0daf88;
 }
-input[type="radio"]:active {
+input[type=radio]:active {
   -webkit-transform: scale(1.5);
   -webkit-transition: -webkit-transform .1s cubic-bezier(0, 0, .2, 1);
   background:rgba(37, 175, 118, 1);
-
 }
 
-/* The up/down direction logic */
 
+/* The up/down direction logic */
 input,
 input:active {
   background-position: 0 24px;
@@ -270,4 +234,30 @@ input:checked {
 input:checked ~ input,
 input:checked ~ input:active {
   background-position: 0 -24px;
+}
+
+@media only screen and (max-width:1200px) {
+  #dashboard-main-outputs {
+    width:100%;
+  }
+}
+@media only screen and (max-width:1000px) {
+  #dashboard-main-outputs .dashboard-main-wrapper {
+    width: 48.5%;
+    padding:0;
+
+  }
+  .dashboard-item-wrapper {
+    min-height: auto;
+    max-height: 700px;
+    overflow: auto;
+  }
+}
+@media only screen and (max-width:782px) {
+  #dashboard-main-outputs .dashboard-main-wrapper {
+    width: 98.5%;
+  }
+  input[type=radio]:checked:before {
+    margin:0 !important;
+  }
 }
