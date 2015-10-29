@@ -151,7 +151,7 @@ class MPSUM_Admin_Dashboard {
         		<div class="dashboard-main-wrapper">
             		<div class="dashboard-main-header"><?php esc_html_e( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></div><!-- .dashboard-main-header -->
             		  <div class="dashboard-item-wrapper">
-                		<div class="dashboard-item">
+                		<div class="dashboard-item  <?php if( 'on' == $options[ 'automatic_major_updates' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Major Releases', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
@@ -159,7 +159,7 @@ class MPSUM_Admin_Dashboard {
                                 <input type="checkbox"  data-context="core" data-action="automatic_major_updates" class="dashboard-hide" name="options[all_updates]" value="on" id="automatic_major_on" <?php checked( 'on', $options[ 'automatic_major_updates' ] ); ?> />&nbsp;<label for="automatic_major_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item   <?php if( 'on' == $options[ 'automatic_minor_updates' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Minor Releases', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
@@ -168,7 +168,7 @@ class MPSUM_Admin_Dashboard {
                 				<input id="automatic_minor_on" data-context="core" data-action="automatic_minor_updates" type="checkbox"  class="dashboard-hide update-option" name="options[core_updates]" value="off"  <?php checked( 'on', $options[ 'automatic_minor_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_minor_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'on' == $options[ 'automatic_development_updates' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Development Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
@@ -176,7 +176,7 @@ class MPSUM_Admin_Dashboard {
                 				<input id="automatic_dev_on" type="checkbox"  data-context="core" data-action="automatic_development_updates" class="dashboard-hide update-option"  name="options[automatic_development_updates]" value="off" id="plugin_updates_off" <?php checked( 'on', $options[ 'automatic_development_updates' ] ); ?> <?php disabled( true, $disable_core_options ); ?> />&nbsp;<label for="automatic_dev_on"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
                     		</div><!-- .dashboard-item-choice -->
                 		</div><!-- dashboard-item-->
-                		<div class="dashboard-item">
+                		<div class="dashboard-item <?php if( 'on' == $options[ 'automatic_translation_updates' ] ) { echo 'active'; }?>">
                     		<div class="dashboard-item-header input-radio"><?php esc_html_e( 'Translation Updates', 'stops-core-theme-and-plugin-updates' ); ?>
                     		</div><!-- .dashboard-item-header -->
                     		<div class="dashboard-item-choice">
