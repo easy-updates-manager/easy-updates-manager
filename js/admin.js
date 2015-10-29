@@ -5,11 +5,12 @@ jQuery( document ).ready( function( $ ) {
        if ( 'checked' == $( this ).attr( 'checked' ) ) {
            input_var = 'on';
         } else {
-            $( this ).parent().parent().toggleClass( 'active' );
+           // $( this ).parent().parent().toggleClass( 'active' );
             input_var = 'off';   
         }
         $.post( ajaxurl, { action: 'mpsum_disable_updates', new_val: input_var, _ajax_nonce: $( '#_mpsum' ).val() }, function( response ) {
-            if ( response.length > 0 ) {
+           //todo - Fix JS tabs
+           /* if ( response.length > 0 ) {
                  $.each( response, function( key, value ) { 
                      $input_checkbox = $( '#' + value );
                     if ( 'checked' == $input_checkbox.attr( 'checked' ) ) {
@@ -29,7 +30,7 @@ jQuery( document ).ready( function( $ ) {
                     }
                     $element.attr( 'checked', $before.val() );
                 } );
-            }
+            }*/
             
         }, 'json');
     } );
@@ -37,6 +38,7 @@ jQuery( document ).ready( function( $ ) {
     /* For when other button is clicked */
     $( "#dashboard-form" ).on( 'change', 'input', function( e ) {
          $checkbox = jQuery( this );
+         $checkbox.parent().parent().toggleClass( 'active' );
          checkbox_id = $checkbox.attr( 'id' );
          if ( checkbox_id == 'all_updates_on' ) {
             return;    
