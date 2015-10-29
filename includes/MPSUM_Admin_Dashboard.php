@@ -313,48 +313,44 @@ class MPSUM_Admin_Dashboard {
             		</div><!-- .dashboard-tab-plugins -->
             		<div class="dashboard-tab-themes dashboard-tab-content">
                 		<div class="dashboard-item-wrapper">
-                    		<div class="dashboard-item">
-                                 <?php
-                                 if( $can_show_themes ) :
-                                    $options = MPSUM_Updates_Manager::get_options(  'themes' );
-                                    $themes = wp_get_themes();
-                                    
-                                    foreach( $themes as $theme_slug => $theme_data ) {
-                                        $is_theme_active = true;
-                                        if ( in_array( $theme_slug,  $options ) ) {
-                                            $is_theme_active = false;
-                                        }
-                                        $theme_name = $theme_data->Name;
-                                        ?>
-                                        <div class="dashboard-item">
-                                    		<div class="dashboard-item-header"><?php echo esc_html( $theme_name ) ?>
-                                    		</div><!-- .dashboard-item-header -->
-                                    		<div class="dashboard-item-choice">
-                                        		<?php
-                                                $checked_value = 'checked';
-                                        		if ( in_array( $theme_slug,  $options )  ) {
-                                            		$checked_value = '';
-                                                } else {
-                                                }
-                                                
-                                                ?>
-                                				<input type="hidden" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?> " />
-                                				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" data-context="themes" data-action="<?php echo esc_attr( $theme_slug ); ?>" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, $is_theme_active ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
-                                    		</div><!-- .dashboard-item-choice -->
-                                		</div><!-- dashboard-item-->
-                                        
-                                        <?php
+                             <?php
+                             if( $can_show_themes ) :
+                                $options = MPSUM_Updates_Manager::get_options(  'themes' );
+                                $themes = wp_get_themes();
+                                
+                                foreach( $themes as $theme_slug => $theme_data ) {
+                                    $is_theme_active = true;
+                                    if ( in_array( $theme_slug,  $options ) ) {
+                                        $is_theme_active = false;
                                     }
-                                else: 
+                                    $theme_name = $theme_data->Name;
                                     ?>
-                                    <p><?php 
-                                    esc_html_e( 'All theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) ?>
-                                <?php
-                                endif;
+                                    <div class="dashboard-item">
+                                		<div class="dashboard-item-header"><?php echo esc_html( $theme_name ) ?>
+                                		</div><!-- .dashboard-item-header -->
+                                		<div class="dashboard-item-choice">
+                                    		<?php
+                                            $checked_value = 'checked';
+                                    		if ( in_array( $theme_slug,  $options )  ) {
+                                        		$checked_value = '';
+                                            } else {
+                                            }
+                                            
+                                            ?>
+                            				<input type="hidden" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?> " />
+                            				<input id="<?php echo esc_attr( $theme_slug ); ?>-check" type="checkbox" data-context="themes" data-action="<?php echo esc_attr( $theme_slug ); ?>" class="dashboard-hide update-option" name="options[themes]" value="<?php echo esc_attr( $theme_slug ); ?>" id="<?php echo esc_attr( $theme_slug ); ?>_off" <?php checked( true, $is_theme_active ); ?> <?php disabled( true, false ); ?> />&nbsp;<label for="<?php echo esc_attr( $theme_slug ); ?>-check"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
+                                		</div><!-- .dashboard-item-choice -->
+                            		</div><!-- dashboard-item-->
+                                    
+                                    <?php
+                                }
+                            else: 
                                 ?>
-                            
-    
-                    		</div><!-- dashboard-item-->
+                                <p><?php 
+                                esc_html_e( 'All theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) ?>
+                            <?php
+                            endif;
+                            ?>    
                 		</div><!-- .dashboard-item-wrapper -->
             		</div><!-- .dashboard-tab-plugins -->
         		</div><!--- .dashboard-main-wrapper -->
