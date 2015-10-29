@@ -5,6 +5,7 @@ jQuery( document ).ready( function( $ ) {
        if ( 'checked' == $( this ).attr( 'checked' ) ) {
            input_var = 'on';
         } else {
+            $( this ).parent().parent().toggleClass( 'active' );
             input_var = 'off';   
         }
         $.post( ajaxurl, { action: 'mpsum_disable_updates', new_val: input_var, _ajax_nonce: $( '#_mpsum' ).val() }, function( response ) {
@@ -13,6 +14,7 @@ jQuery( document ).ready( function( $ ) {
                      $input_checkbox = $( '#' + value );
                     if ( 'checked' == $input_checkbox.attr( 'checked' ) ) {
                         $input_checkbox.removeAttr( 'checked' );
+                        $input_checkbox.parent().parent().toggleClass( 'active' );
                     }
                  } );
             } else {
@@ -22,6 +24,7 @@ jQuery( document ).ready( function( $ ) {
                     is_checked = $before.val();
                     if ( '' == is_checked ) {
                         $element.removeAttr( 'checked' );
+                         $element.parent().parent().toggleClass( 'active' );
                         return;
                     }
                     $element.attr( 'checked', $before.val() );
