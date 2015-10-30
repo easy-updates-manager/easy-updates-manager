@@ -407,7 +407,6 @@ class MPSUM_Admin_Dashboard {
                                     <?php
                                 endif;
                                 ?>
-                                </p>
                 		</div><!-- .dashboard-item-wrapper -->
             		</div><!-- .dashboard-tab-plugins -->
             		<div class="dashboard-tab-themes dashboard-tab-content">
