@@ -257,6 +257,7 @@ class MPSUM_Admin_Dashboard {
             		</div><!- .dashboard-tab -->
             		<div class="dashboard-tab-plugins  dashboard-tab-content active">
                 		<div class="dashboard-item-wrapper">
+                    		<div class="dashboard-item">
                     		<?php
                             $can_show_plugins = $can_show_themes = false;
                             if(  'on' == $options[ 'theme_updates' ] ) {
@@ -290,16 +291,17 @@ class MPSUM_Admin_Dashboard {
                                     }
                                 else:
                                 ?>
-                                <div class="dashboard-item"
                                 <p><?php 
                                     esc_html_e( 'All plugin updates have been disabled.', 'stops-core-theme-and-plugin-updates' ); 
                                 endif;
                                 ?>
-                                </p></div>
+                                </p>
+                    		</div>
                 		</div><!-- .dashboard-item-wrapper -->
             		</div><!-- .dashboard-tab-plugins -->
             		<div class="dashboard-tab-themes dashboard-tab-content">
                 		<div class="dashboard-item-wrapper">
+                    		<div class="dashboard-item">
                              <?php
                              if( $can_show_themes ) :
                                 $options = MPSUM_Updates_Manager::get_options(  'themes' );
@@ -334,14 +336,12 @@ class MPSUM_Admin_Dashboard {
                                 }
                             else: 
                                 ?>
-                                <div class="dashboard-item">
                                 <p><?php 
                                 esc_html_e( 'All theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) ?>
                             <?php
                             endif;
-                            ?>    
-                                </p>
-                                </div><!-- .dashboard-item -->
+                            ?>
+                                </div><!-- .dashboard-item --> 
                 		</div><!-- .dashboard-item-wrapper -->
             		</div><!-- .dashboard-tab-plugins -->
         		</div><!--- .dashboard-main-wrapper -->
@@ -354,6 +354,7 @@ class MPSUM_Admin_Dashboard {
             		</div><!- .dashboard-tab -->
             		<div class="dashboard-tab-plugins  dashboard-tab-content active">
                 		<div class="dashboard-item-wrapper">
+                    		<div class="dashboard-item">
                     		<?php
                             $can_show_plugins = false;
                             $options = MPSUM_Updates_Manager::get_options(  'core' );
@@ -403,16 +404,16 @@ class MPSUM_Admin_Dashboard {
                                         <?php
                                     }
                                 else:
-                                ?><div class="dashboard-item">
+                                ?>
                                 <p><?php 
                                    echo esc_html( $error ); 
                                    ?>
                                     </p>
-                                </div><!-- .dashboard-item -->
                                     <?php
                                 endif;
                                 ?>
                                 </p>
+                                </div><!-- .dashboard-item -->
                 		</div><!-- .dashboard-item-wrapper -->
             		</div><!-- .dashboard-tab-plugins -->
             		<div class="dashboard-tab-themes dashboard-tab-content">
