@@ -43,11 +43,13 @@ jQuery( document ).ready( function( $ ) {
         
         if ( $checked_boxes.length > 0 ) {
             $checked_boxes.prop( 'checked', false );
-        } else {
+            $checked_boxes.parent().parent().toggleClass( 'active' );
+        } else if( $unchecked_boxes.length > 0 ) {
             $unchecked_boxes.prop( 'checked', true );
+            $unchecked_boxes.parent().parent().toggleClass( 'active' );
         }
     } );
-    
+    return;
     $( ".dashboard-item" ).on( 'change', 'input', function( e ) {
          $checkbox = jQuery( this );
          $checkbox.parent().parent().toggleClass( 'active' );
