@@ -1,40 +1,4 @@
-jQuery( document ).ready( function( $ ) {    
-    /* When all updates button is clicked */
-    $( '.dashboard-item-choice' ).on( 'change', '#all_updates_on', function( e ) {
-       input_var = 'on';
-       if ( 'checked' == $( this ).attr( 'checked' ) ) {
-           input_var = 'on';
-        } else {
-           // $( this ).parent().parent().toggleClass( 'active' );
-            input_var = 'off';   
-        }
-        $.post( ajaxurl, { action: 'mpsum_disable_updates', new_val: input_var, _ajax_nonce: $( '#_mpsum' ).val() }, function( response ) {
-           //todo - Fix JS tabs
-           /* if ( response.length > 0 ) {
-                 $.each( response, function( key, value ) { 
-                     $input_checkbox = $( '#' + value );
-                    if ( 'checked' == $input_checkbox.attr( 'checked' ) ) {
-                        $input_checkbox.removeAttr( 'checked' );
-                        $input_checkbox.parent().parent().toggleClass( 'active' );
-                    }
-                 } );
-            } else {
-                $.each( jQuery( 'input.update-option' ), function() {
-                    $element = jQuery( this );
-                    $before = $element.siblings(':first' )
-                    is_checked = $before.val();
-                    if ( '' == is_checked ) {
-                        $element.removeAttr( 'checked' );
-                         $element.parent().parent().toggleClass( 'active' );
-                        return;
-                    }
-                    $element.attr( 'checked', $before.val() );
-                } );
-            }*/
-            
-        }, 'json');
-    } );
-    
+jQuery( document ).ready( function( $ ) {        
     function eum_checkbox_save( $checkbox ) {
         checkbox_id = $checkbox.attr( 'id' );
          
