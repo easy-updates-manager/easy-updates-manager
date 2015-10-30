@@ -57,8 +57,14 @@ jQuery( document ).ready( function( $ ) {
     
     /* For when other button is clicked */
     $( '.dashboard-item' ).on( 'click', function( e ) {
-        e.preventDefault();
         $input_wrapper = jQuery( this );
+        $radio_boxes = $input_wrapper.find( 'input[type="radio"]:checked' );
+        if ( $radio_boxes.length > 0 ) {
+            eum_checkbox_save( $radio_boxes );
+            return;
+        }
+        e.preventDefault();
+        
         $checked_boxes = $input_wrapper.find( 'input[type="checkbox"]:checked' );
         $unchecked_boxes = $input_wrapper.find( 'input:checkbox:not(:checked)' );
         
