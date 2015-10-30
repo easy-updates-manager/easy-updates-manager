@@ -197,6 +197,9 @@
   overflow: auto;
   padding-bottom:20px;
 }
+.dashboard-item-wrapper p {
+    padding: 15px;
+}
 /*
 .dashboard-main-wrapper:nth-child( odd ) {
   clear: left;
