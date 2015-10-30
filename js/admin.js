@@ -57,6 +57,7 @@ jQuery( document ).ready( function( $ ) {
     
     /* For when other button is clicked */
     $( '.dashboard-item' ).on( 'click', function( e ) {
+        e.preventDefault();
         $input_wrapper = jQuery( this );
         $checked_boxes = $input_wrapper.find( 'input[type="checkbox"]:checked' );
         $unchecked_boxes = $input_wrapper.find( 'input:checkbox:not(:checked)' );
