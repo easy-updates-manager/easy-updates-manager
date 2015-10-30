@@ -290,11 +290,12 @@ class MPSUM_Admin_Dashboard {
                                     }
                                 else:
                                 ?>
+                                <div class="dashboard-item"
                                 <p><?php 
                                     esc_html_e( 'All plugin updates have been disabled.', 'stops-core-theme-and-plugin-updates' ); 
                                 endif;
                                 ?>
-                                </p>
+                                </p></div>
                 		</div><!-- .dashboard-item-wrapper -->
             		</div><!-- .dashboard-tab-plugins -->
             		<div class="dashboard-tab-themes dashboard-tab-content">
@@ -333,11 +334,14 @@ class MPSUM_Admin_Dashboard {
                                 }
                             else: 
                                 ?>
+                                <div class="dashboard-item">
                                 <p><?php 
                                 esc_html_e( 'All theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) ?>
                             <?php
                             endif;
                             ?>    
+                                </p>
+                                </div><!-- .dashboard-item -->
                 		</div><!-- .dashboard-item-wrapper -->
             		</div><!-- .dashboard-tab-plugins -->
         		</div><!--- .dashboard-main-wrapper -->
@@ -399,11 +403,12 @@ class MPSUM_Admin_Dashboard {
                                         <?php
                                     }
                                 else:
-                                ?>
+                                ?><div class="dashboard-item">
                                 <p><?php 
                                    echo esc_html( $error ); 
                                    ?>
                                     </p>
+                                </div><!-- .dashboard-item -->
                                     <?php
                                 endif;
                                 ?>

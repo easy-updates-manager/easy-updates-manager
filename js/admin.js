@@ -73,11 +73,8 @@ jQuery( document ).ready( function( $ ) {
     } );
     
     $( '.dashboard-item' ).on( 'change', function( e ) {
-        e.preventDefault();
         eum_checkbox_save( jQuery( this ) );
-        return;
     } );
-    return;
     
     
     /* Plugin / Theme Tabs */
