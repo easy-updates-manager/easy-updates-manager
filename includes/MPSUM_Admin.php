@@ -153,11 +153,24 @@ class MPSUM_Admin {
 	}
 	
 	public function enqueue_scripts() {
-    	if ( isset( $_GET[ 'tab' ] ) && $_GET[ 'tab' ] != 'dashboard' ) {
+    	$pagenow = isset( $_GET[ 'page' ] ) ? $_GET[  'page' ] : false;
+    	$is_active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : false;
+    	
+    	//Check to make sure we're on the mpsum admin page
+    	if ( $pagenow != 'mpsum-update-options' ) {
             return;	
+        } else {
+            if ( count( $_GET ) == 1 && $_GET[ 'page' ] == 'mpsum-update-options' ) {
+                $is_active_tab = 'dashboard';   
+            } 
         }
-    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20151028', true );
-    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20151028' );
+        //Return of now active tabs
+        if ( $is_active_tab == false || $is_active_tab != 'dashboard'  ) {
+            return;   
+        }
+        
+    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20151031', true );
+    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20151031' );
     }
 	
 	/**
