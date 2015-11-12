@@ -270,7 +270,7 @@ class MPSUM_Admin_Core {
 			<tr>
 				<th scope="row"><?php esc_html_e( 'WordPress Version in Footer', 'stops-core-theme-and-plugin-updates' ); ?></th>
 				<td>
-					<input type="radio" name="options[misc_wp_footer]" value="on" id="misc_wp_footer_on" <?php checked( 'on', $options[ 'misc_wp_footer' ] ); ?> />&nbsp;<label for="misc_wp_footer_off"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
+					<input type="radio" name="options[misc_wp_footer]" value="on" id="misc_wp_footer_on" <?php checked( 'on', $options[ 'misc_wp_footer' ] ); ?> />&nbsp;<label for="misc_wp_footer_on"><?php esc_html_e( 'Enabled', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="radio" name="options[misc_wp_footer]" value="off" id="misc_wp_footer_off" <?php checked( 'off', $options[ 'misc_wp_footer' ] ); ?> />&nbsp;<label for="misc_wp_footer_off"><?php esc_html_e( 'Disabled', 'stops-core-theme-and-plugin-updates' ); ?></label>
 					<p class="description"><?php esc_html_e( 'Removes the WordPress version in the footer.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
