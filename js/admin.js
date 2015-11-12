@@ -5,13 +5,13 @@ jQuery( document ).ready( function( $ ) {
          $.each( $checkbox, function() {
              data_context = jQuery( this ).data( 'context' );
              data_action = jQuery( this ).data( 'action' );
-             data_checked = jQuery( this ).attr( 'checked' );
+             data_checked = jQuery( this ).prop('checked');
+             if ( data_checked ) {
+                data_checked = 'on';  
+             } else {
+                data_checked = 'off';
+             }
              data_val = jQuery( this ).val();
-             if ( data_checked == '' || undefined == data_checked ) {
-                 data_checked = 'off';
-              } else {
-                data_checked = "on";  
-              }
               
               $.post( ajaxurl, { action: 'mpsum_ajax_action', context: data_context, data_action: data_action, _ajax_nonce: $( '#_mpsum' ).val(), checked: data_checked, val: data_val }, function( response ) {
             } );
