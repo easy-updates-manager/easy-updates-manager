@@ -242,14 +242,18 @@ class MPSUM_Admin_Core {
 				<th scope="row"><?php esc_html_e( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ); ?></th>
 				<td>
     				<input type="hidden" name="options[notification_core_update_emails]" value="off" />
-					<input type="checkbox" name="options[notification_core_update_emails]" value="on" id="notification_core_update_emails_on" <?php checked( 'on', $options[ 'notification_core_update_emails' ] ); ?> />&nbsp;<label for="notification_core_update_emails_on"><?php esc_html_e( 'Core Update Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="hidden" name="options[notification_core_update_emails_plugins]" value="off" />
-					<input type="checkbox" name="options[notification_core_update_emails_plugins]" value="on" id="notification_core_update_emails_plugins_on" <?php checked( 'on', $options[ 'notification_core_update_emails_plugins' ] ); ?> />&nbsp;<label for="notification_core_update_emails_plugins_on"><?php esc_html_e( 'Core Plugin Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="hidden" name="options[notification_core_update_emails_themes]" value="off" />
+					<input type="checkbox" name="options[notification_core_update_emails]" value="on" id="notification_core_update_emails_on" <?php checked( 'on', $options[ 'notification_core_update_emails' ] ); ?> />&nbsp;<label for="notification_core_update_emails_on"><?php esc_html_e( 'Core Update Emails', 'stops-core-theme-and-plugin-updates' ); ?></label>
+					<?php /* Hidden checkboxes until changes make into core. Shooting for WordPress 4.5 */ ?>
+					<input type="hidden" name="options[notification_core_update_emails_plugins]" value="on" />
+					<input type="hidden" name="options[notification_core_update_emails_themes]" value="on" />
+                    <input type="hidden" name="options[notification_core_update_emails_translations]" value="on" />
+                    <?php /*
+                    <br />
+                    <input type="checkbox" name="options[notification_core_update_emails_plugins]" value="on" id="notification_core_update_emails_plugins_on" <?php checked( 'on', $options[ 'notification_core_update_emails_plugins' ] ); ?> />&nbsp;<label for="notification_core_update_emails_plugins_on">
+                    <?php esc_html_e( 'Core Plugin Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="checkbox" name="options[notification_core_update_emails_themes]" value="on" id="notification_core_update_emails_themes" <?php checked( 'on', $options[ 'notification_core_update_emails_themes' ] ); ?> />&nbsp;<label for="notification_core_update_emails_themes"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="hidden" name="options[notification_core_update_emails_translations]" value="off" />
 					<input type="checkbox" name="options[notification_core_update_emails_translations]" value="on" id="notification_core_update_emails_translations_on" <?php checked( 'on', $options[ 'notification_core_update_emails_translations' ] ); ?> />&nbsp;<label for="notification_core_update_emails_translations_on"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Disable e-mails that are sent when your site has been upgraded automatically. These will not be functional until WordPress 4.4.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Disable e-mails that are sent when your site has been upgraded automatically. These will not be functional until WordPress 4.5.', 'stops-core-theme-and-plugin-updates' ); ?></p>*/ ?>
 				</td>
 			</tr>
 		</table>
