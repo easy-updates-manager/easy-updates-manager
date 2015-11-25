@@ -283,7 +283,7 @@ class MPSUM_Updates_Manager {
 	public function plugins_loaded() {
 		//Skip disable updates if a user is excluded
 		$disable_updates_skip = false;
-		if ( current_user_can( 'update_core' ) ) {
+		if ( current_user_can( 'install_plugins' ) ) {
 			$current_user = wp_get_current_user();
 			$current_user_id = $current_user->ID;
 			$excluded_users = MPSUM_Updates_Manager::get_options( 'excluded_users' );
@@ -361,7 +361,7 @@ class MPSUM_Updates_Manager {
             
     }
 	public function ajax_disable_updates() {
-    	if ( !current_user_can( 'update_core' ) ) return;
+    	if ( !current_user_can( 'install_plugins' ) ) return;
     	$options = MPSUM_Updates_Manager::get_options( 'core' );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
     	if ( 'on' == $_POST[ 'new_val' ] ) {

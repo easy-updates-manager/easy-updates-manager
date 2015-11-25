@@ -88,7 +88,7 @@ class MPSUM_Admin_Core {
 	*
 	*/
 	public function maybe_save_options() {
-		if ( !current_user_can( 'update_core' ) ) return;
+		if ( !current_user_can( 'install_plugins' ) ) return;
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
 		if ( !isset( $_REQUEST[ 'action' ] ) ) return;
 		if ( !isset( $_POST[ 'options' ] ) ) return;
