@@ -1,6 +1,6 @@
 #dashboard-main-outputs {
   text-align: justify;
-  width: 75%;
+  width: 99%;
   margin:60px auto 0;
 }
 #dashboard-main-output:after {
@@ -10,12 +10,15 @@
   clear: both;
 }
 .dashboard-main-wrapper {
-  width: 30%;
+  width: 33%;
   display: inline-block;
   text-align: left;
   vertical-align: top;
   margin-bottom:30px;
   padding-right:30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 #dashboard-main-columns {
   margin-bottom:30px;
@@ -285,6 +288,9 @@ input:checked ~ input:active {
 @media only screen and (max-width:782px) {
   #dashboard-main-outputs .dashboard-main-wrapper {
     width: 98.5%;
+  }
+  #dashboard-main-outputs { 
+      margin-top: 20px;
   }
   input[type=radio]:checked:before {
     margin:0 !important;
