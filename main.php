@@ -295,7 +295,6 @@ class MPSUM_Updates_Manager {
 			MPSUM_Disable_Updates::run();
 		}
 		
-		add_action( 'wp_ajax_mpsum_disable_updates', array( $this, 'ajax_disable_updates' ) );
 		add_action( 'wp_ajax_mpsum_ajax_action', array( $this, 'ajax_update_option' ) );
 		
 		
@@ -359,30 +358,6 @@ class MPSUM_Updates_Manager {
         
         die( $context );
             
-    }
-	public function ajax_disable_updates() {
-    	if ( !current_user_can( 'install_plugins' ) ) return;
-    	$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-    	if ( 'on' == $_POST[ 'new_val' ] ) {
-        	 $options[ 'all_updates' ] = 'on';
-        } else {
-            $options[ 'all_updates' ] = 'off';
-        } 
-        MPSUM_Updates_Manager::update_options( $options, 'core' );
-        if ( $options[ 'all_updates' ] == 'off' ) {
-             $return = array(
-                'core_updates_off',
-                'plugin_updates_off',
-                'theme_updates_off',
-                'translation_updates_off',
-            ); 
-            
-        } else {
-            $return = array();
-        }
-          	
-        die( json_encode( $return ) );
     }
 	
 	/**
