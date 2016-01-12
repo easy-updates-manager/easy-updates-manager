@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, pixolin, roary86
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
 Tested up to: 4.4
-Stable tag: 5.4.2
+Stable tag: 5.4.3
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
@@ -94,6 +94,12 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 5.4.3 =
+Released 2015-01-12
+
+* Fixed dashboard styles to be more responsive
+* Added dashboard JS to preserve states on the Core dashboard tab
+
 = 5.4.2 =
 Released 2015-11-25
 
@@ -164,6 +170,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 5.4.3 =
+CSS and JS enhancements for the main dashboard tab
 
 = 5.4.2 =
 Fixing GoDaddy permissions issue. Removing options that didn't make it into WordPress 4.4.
