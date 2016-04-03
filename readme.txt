@@ -95,7 +95,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 == Changelog ==
 
 = 5.4.3 =
-Released 2015-01-12
+Released 2015-01-15
 
 * Fixed dashboard styles to be more responsive
 * Added dashboard JS to preserve states on the Core dashboard tab
