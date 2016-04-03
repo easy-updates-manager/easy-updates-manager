@@ -2,7 +2,7 @@
 Contributors: kidsguide, ronalfy, pixolin, roary86
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
 Requires at least: 4.3
-Tested up to: 4.4.1
+Tested up to: 4.5
 Stable tag: 5.4.3
 License: GPLv2 or later
 
@@ -95,7 +95,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 == Changelog ==
 
 = 5.4.3 =
-Released 2016-01-15
+Released 2015-01-12
 
 * Fixed dashboard styles to be more responsive
 * Added dashboard JS to preserve states on the Core dashboard tab
