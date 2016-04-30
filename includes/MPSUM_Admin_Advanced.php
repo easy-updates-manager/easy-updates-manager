@@ -154,7 +154,7 @@ class MPSUM_Admin_Advanced {
 						if ( is_multisite() ) {
 							global $wpdb;
 							$logins = implode( "', '", get_super_admins() );
-							$users = $wpdb->get_col( "SELECT ID FROM $wpdb->users WHERE user_login IN ('$logins')" );
+							$users = $wpdb->get_col( "SELECT ID FROM $wpdb->users WHERE user_login IN ('$logins') GROUP BY user_login" );
 						
 						} else {
 							/**
