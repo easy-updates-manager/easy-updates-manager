@@ -3,17 +3,35 @@ jQuery( document ).ready( function( $ ) {
         checkbox_id = $checkbox.attr( 'id' );
          
          $.each( $checkbox, function() {
-             data_context = jQuery( this ).data( 'context' );
-             data_action = jQuery( this ).data( 'action' );
-             data_checked = jQuery( this ).prop('checked');
+             var checkbox = jQuery( this );
+             data_context = checkbox.data( 'context' );
+             data_action = checkbox.data( 'action' );
+             data_checked = checkbox.prop('checked');
              if ( data_checked ) {
                 data_checked = 'on';  
              } else {
                 data_checked = 'off';
              }
-             data_val = jQuery( this ).val();
+             data_val = checkbox.val();
+             if ( checkbox.parent().hasClass( 'multi-choice' ) ) {
+                 checkbox.parent( '.multi-choice' ).hide();
+                 checkbox.parent().parent().append( '<div class="mpsum-spinner" id="spinner-' + checkbox.prop( 'id' ) + '"><img src="' + mpsum.spinner + '"></div>' );
+             } else {
+                 checkbox.siblings( 'label' ).hide();
+                 checkbox.parent().append( '<div class="mpsum-spinner" id="spinner-' + checkbox.prop( 'id' ) + '"><img src="' + mpsum.spinner + '"></div>' );
+             }
+             
+             
               
-              $.post( ajaxurl, { action: 'mpsum_ajax_action', context: data_context, data_action: data_action, _ajax_nonce: $( '#_mpsum' ).val(), checked: data_checked, val: data_val }, function( response ) {
+             $.post( ajaxurl, { action: 'mpsum_ajax_action', context: data_context, data_action: data_action, _ajax_nonce: $( '#_mpsum' ).val(), checked: data_checked, val: data_val }, function( response ) {
+                     if ( checkbox.parent().hasClass( 'multi-choice' ) ) {
+                         checkbox.parent().parent().find( '.mpsum-spinner' ).remove();
+                         checkbox.parent( '.multi-choice' ).show();
+                     } else {
+                         checkbox.parent().find( '.mpsum-spinner' ).remove();
+                         checkbox.siblings( 'label' ).show();
+                     }
+                  
             } );
              
          } );   
@@ -43,7 +61,7 @@ jQuery( document ).ready( function( $ ) {
     };
     
     /* For when other button is clicked */
-    $( '.dashboard-item' ).on( 'click', function( e ) {
+    $( '.dashboard-item' ).on( 'change', function( e ) {
         $input_wrapper = jQuery( this );
         $radio_boxes = $input_wrapper.find( 'input[type="radio"]:checked' );
         if ( $radio_boxes.length > 0 ) {
@@ -55,28 +73,28 @@ jQuery( document ).ready( function( $ ) {
         $checked_boxes = $input_wrapper.find( 'input[type="checkbox"]:checked' );
         $unchecked_boxes = $input_wrapper.find( 'input:checkbox:not(:checked)' );
         
-        if ( $checked_boxes.length > 0 ) {
-            if ( $checked_boxes.prop( 'disabled' ) == true ) {
-                return;
-            }
-            $checked_boxes.data( 'value', 'off' );
-            $checked_boxes.prop( 'checked', false );
-            $checked_boxes.parent().parent().toggleClass( 'active' );
-            if ( $checked_boxes.prop( 'id' ) == 'all_updates_off' ) {
-                eum_toggle_main( $checked_boxes );   
-            }
-            eum_checkbox_save( $checked_boxes );
-        } else if( $unchecked_boxes.length > 0 ) {
+        if ( $unchecked_boxes.length > 0 ) {
             if ( $unchecked_boxes.prop( 'disabled' ) == true ) {
                 return;
             }
-            $unchecked_boxes.data( 'value', 'on' );
-            $unchecked_boxes.prop( 'checked', true );
+            $unchecked_boxes.attr( 'value', 'off' );
+            $unchecked_boxes.prop( 'checked', false );
             $unchecked_boxes.parent().parent().toggleClass( 'active' );
             if ( $unchecked_boxes.prop( 'id' ) == 'all_updates_off' ) {
-                eum_toggle_main( $unchecked_boxes );  
+                eum_toggle_main( $unchecked_boxes );   
             }
             eum_checkbox_save( $unchecked_boxes );
+        } else if( $checked_boxes.length > 0 ) {
+            if ( $checked_boxes.prop( 'disabled' ) == true ) {
+                return;
+            }
+            $checked_boxes.attr( 'value', 'on' );
+            $checked_boxes.prop( 'checked', true );
+            $checked_boxes.parent().parent().toggleClass( 'active' );
+            if ( $checked_boxes.prop( 'id' ) == 'all_updates_off' ) {
+                eum_toggle_main( $checked_boxes );  
+            }
+            eum_checkbox_save( $checked_boxes );
         }
     } );
     

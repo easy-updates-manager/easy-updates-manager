@@ -309,7 +309,10 @@ class MPSUM_Updates_Manager {
         if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) ) {
             die( 'Cheating, huh' );
         }
-        
+        error_log( print_r( $_REQUEST, true ) );
+        if ( !isset( $_POST[ 'context' ] ) || !isset( $_POST[ 'data_action' ] ) ) {
+            die('');
+        }
         /* Get Ajax Options */
         $context = sanitize_text_field( $_POST[ 'context' ] );
         $option = sanitize_text_field( $_POST[ 'data_action' ] );	
@@ -321,6 +324,7 @@ class MPSUM_Updates_Manager {
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		if ( 'core' == $context ) {
     		$options[ $option ] = $option_value;
+    		error_log( print_r( $options, true ) );
     		if ( $option == 'automatic_theme_updates' || $option == 'automatic_plugin_updates' ) {
         	    $options[ $option ] = $val;	
             }
