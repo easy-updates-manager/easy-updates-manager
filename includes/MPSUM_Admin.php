@@ -169,7 +169,7 @@ class MPSUM_Admin {
             return;   
         }
         
-    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20151125', true );
+    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20160429', true );
     	wp_localize_script( 'mpsum_dashboard', 'mpsum', array( 'spinner' => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ) ) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20151125' );
     }
