@@ -60,11 +60,9 @@ class MPSUM_Admin_Advanced {
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
 		if ( !isset( $_POST[ 'action' ] ) ) return;
 		if ( !isset( $_POST[ '_mpsum' ] ) ) return;
-		
 		//Get action
 		$action = $_POST[ 'action' ];
 		if ( empty( $action ) ) return;
-		
 		switch( $action ) {
 			case 'mpsum_save_excluded_users':
 				check_admin_referer( 'mpsum_exclude_users', '_mpsum' );
@@ -89,10 +87,17 @@ class MPSUM_Admin_Advanced {
                 wp_schedule_single_event( time() + 45, 'wp_maybe_auto_update' );
                 break;
             case 'mpsum_enable_logs':
-                check_admin_referer( 'mpsum_enable_logs', '_mpsum' );
+                check_admin_referer( 'mpsum_logs', '_mpsum' );
                 $options = MPSUM_Updates_Manager::get_options( 'core' );
                 $options[ 'logs' ] = 'on';
                 MPSUM_Updates_Manager::update_options( $options, 'core' );
+                break;
+            case 'mpsum_delete_logs':
+                check_admin_referer( 'mpsum_logs', '_mpsum' );
+                $options = MPSUM_Updates_Manager::get_options( 'core' );
+                $options[ 'logs' ] = 'off';
+                MPSUM_Updates_Manager::update_options( $options, 'core' );
+            case 'mpsum_clear_logs':
                 break;
 			default:
 				return;	
@@ -136,6 +141,12 @@ class MPSUM_Admin_Advanced {
                     break;
                 case 'mpsum_enable_logs':
                     $message = "Logs are now enabled";
+                    break;
+                case 'mpsum_delete_logs':
+                    $message = "Logs have been disabled";
+                    break;
+                case 'mpsum_clear_logs':
+                    $message = "Logs have been emptied";
                     break;
                 default:
                     $message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
@@ -220,30 +231,45 @@ class MPSUM_Admin_Advanced {
 		echo '</p>';
 		?>
         </form>
-        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
-		<h3>Logs</h3>
-		<p>This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues">File a GitHub issue instead</a>.</p>
-		<input type="hidden" name="action" value='mpsum_enable_logs' />
-	    <?php
+        <?php
         $options = MPSUM_Updates_Manager::get_options( 'core' );
-        if ( isset( $options[ 'logs' ] ) && 'on' == $options[ 'logs' ] ) {
-            wp_nonce_field( 'mpsum_disable_logs', '_mpsum' );
-    		echo '<p><em>This will clear the log table</em></p>';
-            echo '<p class="submit">';
-    		submit_button( 'Clear Log' , 'primary', 'clear-log', false );
-    		echo '</p>';
-    		echo '<p><em>This will remove the log table and disable logging.</em></p>';
-            echo '<p class="submit">';
-    		submit_button( 'Disable Log' , 'delete', 'delete-log', false );
-    		echo '</p>';
-        } else {
-            wp_nonce_field( 'mpsum_enable_logs', '_mpsum' );
-    		echo '<p class="submit">';
-    		submit_button( 'Enable Logs' , 'primary', 'submit', false );
-    		echo '</p>';
-        }
-		?>
-        </form>
-    <?php
+        if ( !isset( $options[ 'logs' ] ) || 'off' == $options[ 'logs' ] ):
+        ?>
+            <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+            <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
+    		<h3>Logs</h3>
+    		<p>This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues">File a GitHub issue instead</a>.</p>
+    		<input type="hidden" name="action" value='mpsum_enable_logs' />
+    		<p class="submit">
+                <?php submit_button( 'Enable Logs' , 'primary', 'enable-log', false ); ?>
+    		</p>
+            </form>
+	    <?php
+        else:
+        ?>
+            <h3>Logs</h3>
+            <p>This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues">File a GitHub issue instead</a>.</p>
+            <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+                <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
+        		<input type="hidden" name="action" value='mpsum_clear_logs' />
+        		<?php
+            	echo '<p><em>This will clear the log table</em></p>';
+                echo '<p class="submit">';
+        		submit_button( 'Clear Logs' , 'primary', 'clear-log', false );
+        		echo '</p>';	
+                ?>
+            </form>
+            <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+                <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
+        		<input type="hidden" name="action" value='mpsum_delete_logs' />
+        		<?php
+            	echo '<p><em>This will remove the log table and disable logging.</em></p>';
+                echo '<p class="submit">';
+        		submit_button( 'Disable Logging' , 'delete', 'delete-log', false );
+        		echo '</p>';	
+                ?>
+            </form>
+        <?php
+        endif;
 	} //end tab_output
 }
