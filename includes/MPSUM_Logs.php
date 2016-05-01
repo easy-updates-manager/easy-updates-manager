@@ -80,7 +80,6 @@ class MPSUM_Logs {
 	*
 	*/
 	private function build_table() {
-    	die( 'blah' );
     	global $wpdb;
     	$tablename = $wpdb->base_prefix . 'eum_logs';
     	
@@ -103,5 +102,37 @@ class MPSUM_Logs {
                         ) {$charset_collate};";
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta($sql);
+	}
+	
+	/**
+	* Clears the log table
+	*
+	* Clears the log table
+	*
+	* @since 6.0.0
+	* @access static
+	*
+	*/
+	public static function clear() {
+    	global $wpdb;
+    	$tablename = $wpdb->base_prefix . 'eum_logs';
+    	$sql = "delete from $tablename";
+    	$wpdb->query( $sql );
+	}
+	
+	/**
+	* Drops the log table
+	*
+	* Drops the log table
+	*
+	* @since 6.0.0
+	* @access static
+	*
+	*/
+	public static function drop() {
+    	global $wpdb;
+    	$tablename = $wpdb->base_prefix . 'eum_logs';
+    	$sql = "drop table if exists $tablename";
+    	$wpdb->query( $sql );
 	}
 }

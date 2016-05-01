@@ -97,7 +97,11 @@ class MPSUM_Admin_Advanced {
                 $options = MPSUM_Updates_Manager::get_options( 'core' );
                 $options[ 'logs' ] = 'off';
                 MPSUM_Updates_Manager::update_options( $options, 'core' );
+                update_site_option( 'mpsum_log_table_version', '0' );
+                MPSUM_Logs::drop();
+                break;
             case 'mpsum_clear_logs':
+                MPSUM_Logs::clear();
                 break;
 			default:
 				return;	
