@@ -205,6 +205,7 @@ class MPSUM_Logs {
 
 		$sql = "CREATE TABLE {$tablename} (
 						log_id BIGINT(20) NOT NULL AUTO_INCREMENT,
+						user_id BIGINT(20) NOT NULL DEFAULT 0,
 						name VARCHAR(255) NOT NULL,
 						type VARCHAR(255) NOT NULL,
 						version VARCHAR(255) NOT NULL,
