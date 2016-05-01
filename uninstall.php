@@ -15,3 +15,5 @@ delete_option( '_disable_updates' );
 delete_site_option( '_disable_updates' );
 delete_option( 'MPSUM' );
 delete_site_option( 'MPSUM' );
+delete_option( 'mpsum_log_table_version' );
+delete_site_option( 'mpsum_log_table_version' );

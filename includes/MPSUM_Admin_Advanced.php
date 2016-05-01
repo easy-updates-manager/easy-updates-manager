@@ -88,6 +88,12 @@ class MPSUM_Admin_Advanced {
                 wp_schedule_single_event( time() + 10, 'wp_update_themes' );
                 wp_schedule_single_event( time() + 45, 'wp_maybe_auto_update' );
                 break;
+            case 'mpsum_enable_logs':
+                check_admin_referer( 'mpsum_enable_logs', '_mpsum' );
+                $options = MPSUM_Updates_Manager::get_options( 'core' );
+                $options[ 'logs' ] = 'on';
+                MPSUM_Updates_Manager::update_options( $options, 'core' );
+                break;
 			default:
 				return;	
 		}
@@ -128,9 +134,12 @@ class MPSUM_Admin_Advanced {
                 case 'mpsum_force_updates':
                     $message = __( 'Force update checks have been initialized. Please check your site in 90 seconds, and refresh to test automatic updates.', 'stops-core-theme-and-plugin-updates' );
                     break;
+                case 'mpsum_enable_logs':
+                    $message = "Logs are now enabled";
+                    break;
                 default:
                     $message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
-                	return;	
+                	break;	
             }
     		
 			?>
@@ -189,7 +198,7 @@ class MPSUM_Admin_Advanced {
 		echo '</p>';
 		?>
         </form>
-         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Reset Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<p><?php esc_html_e( 'This will reset all options to as if you have just installed the plugin.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<input type="hidden" name="action" value='mpsum_reset_options' />
@@ -209,6 +218,30 @@ class MPSUM_Admin_Advanced {
 		echo '<p class="submit">';
 		submit_button( __( 'Force Updates', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
 		echo '</p>';
+		?>
+        </form>
+        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		<h3>Logs</h3>
+		<p>This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues">File a GitHub issue instead</a>.</p>
+		<input type="hidden" name="action" value='mpsum_enable_logs' />
+	    <?php
+        $options = MPSUM_Updates_Manager::get_options( 'core' );
+        if ( isset( $options[ 'logs' ] ) && 'on' == $options[ 'logs' ] ) {
+            wp_nonce_field( 'mpsum_disable_logs', '_mpsum' );
+    		echo '<p><em>This will clear the log table</em></p>';
+            echo '<p class="submit">';
+    		submit_button( 'Clear Log' , 'primary', 'clear-log', false );
+    		echo '</p>';
+    		echo '<p><em>This will remove the log table and disable logging.</em></p>';
+            echo '<p class="submit">';
+    		submit_button( 'Disable Log' , 'delete', 'delete-log', false );
+    		echo '</p>';
+        } else {
+            wp_nonce_field( 'mpsum_enable_logs', '_mpsum' );
+    		echo '<p class="submit">';
+    		submit_button( 'Enable Logs' , 'primary', 'submit', false );
+    		echo '</p>';
+        }
 		?>
         </form>
     <?php

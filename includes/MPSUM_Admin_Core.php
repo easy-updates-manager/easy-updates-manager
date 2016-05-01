@@ -56,23 +56,24 @@ class MPSUM_Admin_Core {
 	*/
 	public static function get_defaults() {
 		return array(
-			'all_updates' => 'on',
-			'core_updates' => 'on',
-			'plugin_updates' => 'on',
-			'theme_updates' => 'on',
-			'translation_updates' => 'on',
-			'automatic_development_updates' => 'off',
-			'automatic_major_updates' => 'off',
-			'automatic_minor_updates' => 'on',
-			'automatic_plugin_updates' => 'default',
-			'automatic_theme_updates' => 'default',
-			'automatic_translation_updates' => 'on',
-			'notification_core_update_emails' => 'on',
-			'misc_browser_nag' => 'on',
-			'misc_wp_footer' => 'on',
-			'notification_core_update_emails_plugins' => 'on',
-			'notification_core_update_emails_themes' => 'on',
-			'notification_core_update_emails_translations' => 'on' 
+			'all_updates'                                  => 'on',
+			'core_updates'                                 => 'on',
+			'plugin_updates'                               => 'on',
+			'theme_updates'                                => 'on',
+			'translation_updates'                          => 'on',
+			'automatic_development_updates'                => 'off',
+			'automatic_major_updates'                      => 'off',
+			'automatic_minor_updates'                      => 'on',
+			'automatic_plugin_updates'                     => 'default',
+			'automatic_theme_updates'                      => 'default',
+			'automatic_translation_updates'                => 'on',
+			'notification_core_update_emails'              => 'on',
+			'misc_browser_nag'                             => 'on',
+			'misc_wp_footer'                               => 'on',
+			'notification_core_update_emails_plugins'      => 'on',
+			'notification_core_update_emails_themes'       => 'on',
+			'notification_core_update_emails_translations' => 'on',
+			'logs'                                         => 'off' 
 		);	
 	}
 	

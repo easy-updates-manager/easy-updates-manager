@@ -159,14 +159,6 @@ class MPSUM_Admin {
     	//Check to make sure we're on the mpsum admin page
     	if ( $pagenow != 'mpsum-update-options' ) {
             return;	
-        } else {
-            if ( count( $_GET ) == 1 && $_GET[ 'page' ] == 'mpsum-update-options' ) {
-                $is_active_tab = 'dashboard';   
-            } 
-        }
-        //Return of now active tabs
-        if ( $is_active_tab == false || $is_active_tab != 'dashboard'  ) {
-            return;   
         }
         
     	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20160429', true );

@@ -270,6 +270,10 @@ input:checked ~ input,
 input:checked ~ input:active {
   background-position: 0 -24px;
 }
+.button.delete {
+    background-color: #e14d43;
+    color: #FFF;
+}
 
 @media only screen and (max-width:1200px) {
   #dashboard-main-outputs {
