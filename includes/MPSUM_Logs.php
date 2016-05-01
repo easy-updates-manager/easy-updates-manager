@@ -20,15 +20,6 @@ class MPSUM_Logs {
 	private static $instance = null;
 	
 	/**
-	* Holds the slug to the admin panel page
-	*
-	* @since 6.0.0
-	* @access static
-	* @var string $slug
-	*/
-	private static $slug = 'mpsum-update-options';
-	
-	/**
 	* Holds version number of the table
 	*
 	* @since 6.0.0

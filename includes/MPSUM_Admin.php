@@ -127,9 +127,13 @@ class MPSUM_Admin {
 		add_action( $prefix . 'plugin_action_links_' . MPSUM_Updates_Manager::get_plugin_basename(), array( $this, 'plugin_settings_link' ) );
 		
 		//todo - maybe load these conditionally based on $_REQUEST[ 'tab' ] param
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		new MPSUM_Admin_Dashboard( self::get_slug() );
 		new MPSUM_Admin_Plugins( self::get_slug() );
 		new MPSUM_Admin_Themes( self::get_slug() );
+		if ( isset( $core_options[ 'logs' ] ) && 'on' == $core_options[ 'logs' ] ) {
+    		new MPSUM_Admin_Logs( self::get_slug() );
+		}
 		new MPSUM_Admin_Core( self::get_slug() );
 		new MPSUM_Admin_Advanced( self::get_slug() );
 		
@@ -217,38 +221,45 @@ class MPSUM_Admin {
 				<?php echo esc_html_e( 'Manage Updates', 'stops-core-theme-and-plugin-updates' ); ?>
 			</h1>
 			<?php
-			$tabs = 
-			array(
-    			array(
-					'url' => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
-					'label' => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
-					'get' => 'dashboard' /*$_GET variable*/,
-					'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
-				),
-				array(
-					'url' => add_query_arg( array( 'tab' => 'main' ), self::get_url() ), /* URL to the tab */
-					'label' => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
-					'get' => 'main' /*$_GET variable*/,
-					'action' => 'mpsum_admin_tab_main' /* action variable in do_action */
-				),
-				array(
-					'url' => add_query_arg( array( 'tab' => 'plugins' ), self::get_url() ), /* URL to the tab */
-					'label' => esc_html__( 'Plugins', 'stops-core-theme-and-plugin-updates' ),
-					'get' => 'plugins' /*$_GET variable*/,
-					'action' => 'mpsum_admin_tab_plugins' /* action variable in do_action */
-				),
-				array(
-					'url' => add_query_arg( array( 'tab' => 'themes' ), self::get_url() ), /* URL to the tab */
-					'label' => esc_html__( 'Themes', 'stops-core-theme-and-plugin-updates' ),
-					'get' => 'themes' /*$_GET variable*/,
-					'action' => 'mpsum_admin_tab_themes' /* action variable in do_action */
-				),
-				array(
-					'url' => add_query_arg( array( 'tab' => 'advanced' ), self::get_url() ), /* URL to the tab */
-					'label' => esc_html__( 'Advanced', 'stops-core-theme-and-plugin-updates' ),
-					'get' => 'advanced' /*$_GET variable*/,
-					'action' => 'mpsum_admin_tab_advanced' /* action variable in do_action */
-				)
+            $core_options = MPSUM_Updates_Manager::get_options( 'core' );
+			$tabs = array();
+			$tabs[] = array(
+    			'url'    => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
+    			'label'  => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
+    			'get'    => 'dashboard' /*$_GET variable*/,
+    			'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
+            );
+            $tabs[] = array(
+				'url'    => add_query_arg( array( 'tab' => 'main' ), self::get_url() ), /* URL to the tab */
+				'label'  => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
+				'get'    => 'main' /*$_GET variable*/,
+				'action' => 'mpsum_admin_tab_main' /* action variable in do_action */
+			);
+			$tabs[] = array(
+				'url'    => add_query_arg( array( 'tab' => 'plugins' ), self::get_url() ), /* URL to the tab */
+				'label'  => esc_html__( 'Plugins', 'stops-core-theme-and-plugin-updates' ),
+				'get'    => 'plugins' /*$_GET variable*/,
+				'action' => 'mpsum_admin_tab_plugins' /* action variable in do_action */
+			);
+			$tabs[] = array(
+				'url'    => add_query_arg( array( 'tab' => 'themes' ), self::get_url() ), /* URL to the tab */
+				'label'  => esc_html__( 'Themes', 'stops-core-theme-and-plugin-updates' ),
+				'get'    => 'themes' /*$_GET variable*/,
+				'action' => 'mpsum_admin_tab_themes' /* action variable in do_action */
+			);
+			if ( isset( $core_options[ 'logs' ] ) && 'on' == $core_options[ 'logs' ] ) {
+        		$tabs[] = array(
+					'url'    => add_query_arg( array( 'tab' => 'logs' ), self::get_url() ), /* URL to the tab */
+					'label'  => esc_html__( 'Logs', 'stops-core-theme-and-plugin-updates' ),
+					'get'    => 'logs' /*$_GET variable*/,
+					'action' => 'mpsum_admin_tab_logs' /* action variable in do_action */
+				);
+    		}
+    		$tabs[] = array(
+				'url'    => add_query_arg( array( 'tab' => 'advanced' ), self::get_url() ), /* URL to the tab */
+				'label'  => esc_html__( 'Advanced', 'stops-core-theme-and-plugin-updates' ),
+				'get'    => 'advanced' /*$_GET variable*/,
+				'action' => 'mpsum_admin_tab_advanced' /* action variable in do_action */
 			);
 			$tabs_count = count( $tabs );
 			if ( $tabs && !empty( $tabs ) )  {
