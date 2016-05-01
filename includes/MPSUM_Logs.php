@@ -69,11 +69,20 @@ class MPSUM_Logs {
     	}
     	
     	add_action( 'automatic_updates_complete', array( $this, 'automatic_updates' ) );
+    	add_action( 'upgrader_process_complete', array( $this, 'manual_updates' ), 10, 2 );
 	
 	} //end constructor
 	
+	/**
+	* automatic_updates
+	*
+	* Log automatic updates
+	*
+	* @since 6.0.0
+	* @access public
+	*
+	*/
 	public function automatic_updates( $update_results ) {
-    	error_log( print_r( $update_results, true ) );
     	global $wpdb;
     	$tablename = $wpdb->base_prefix . 'eum_logs';
     	if ( empty( $update_results ) ) return;
@@ -181,6 +190,105 @@ class MPSUM_Logs {
                     break;
         	}
     	}    	
+	}
+	
+	public function manual_updates( $upgrader_object, $options ) {
+    	if ( !isset( $options[ 'action' ] ) || 'update' !== $options[ 'action' ] ) return;
+    	global $wpdb;
+    	$tablename = $wpdb->base_prefix . 'eum_logs';
+    	$user_id = get_current_user_id();
+    	
+    	switch( $options[ 'type' ] ) {
+        	case 'core':
+        	    include( ABSPATH . WPINC . '/version.php' );
+        	    $wpdb->insert( 
+            	    $tablename,
+            	    array(
+                	    'user_id' => $user_id,
+                	    'name'    => 'WordPress ' . $wp_version,
+                	    'type'    => $options[ 'type' ],
+                	    'version' => $wp_version,
+                	    'action'  => 'manual',
+                	    'status'  => 1,
+                	    'date'    => current_time( 'mysql' ),
+            	    ),
+            	    array(
+                	    '%d',
+                	    '%s',
+                	    '%s',
+                	    '%s',
+                	    '%s',
+                	    '%s',
+                	    '%s',
+            	    )
+        	    );
+        	    break;
+            case 'plugin':
+                $plugins = array();
+                if ( ! function_exists( 'get_plugins' ) ) {
+                    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+                }
+                $plugins = get_plugins();
+                if ( !empty( $plugins ) && isset( $options[ 'plugins' ] ) && !empty( $options[ 'plugins' ] ) ) {
+                    foreach( $options[ 'plugins' ] as $plugin ) {
+                        $plugin_data = isset( $plugins[ $plugin ] ) ? $plugins[ $plugin ] : false;
+                        if ( false !== $plugin_data ) {
+                            $wpdb->insert( 
+                        	    $tablename,
+                        	    array(
+                            	    'user_id' => $user_id,
+                            	    'name'    => $plugin_data[ 'Name' ],
+                            	    'type'    => $options[ 'type' ],
+                            	    'version' => $plugin_data[ 'Version' ],
+                            	    'action'  => 'manual',
+                            	    'status'  => 1,
+                            	    'date'    => current_time( 'mysql' ),
+                        	    ),
+                        	    array(
+                            	    '%d',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                        	    )
+                    	    );
+                        }
+                    }
+                }
+                break;
+            case 'theme':
+                if ( isset( $options[ 'themes' ] ) && !empty( $options[ 'themes' ] ) ) {
+                    foreach( $options[ 'themes' ] as $theme ) {
+                        $theme_data = $theme = wp_get_theme( $theme );
+                        if ( $theme_data->exists() ) {
+                            $wpdb->insert( 
+                        	    $tablename,
+                        	    array(
+                            	    'user_id' => $user_id,
+                            	    'name'    => $theme_data->get( 'Name' ),
+                            	    'type'    => $options[ 'type' ],
+                            	    'version' => $theme_data->get( 'Version' ),
+                            	    'action'  => 'manual',
+                            	    'status'  => 1,
+                            	    'date'    => current_time( 'mysql' ),
+                        	    ),
+                        	    array(
+                            	    '%d',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                            	    '%s',
+                        	    )
+                    	    );
+                        }
+                    }
+                }
+                break;
+    	}
 	}
 	
 	/**
