@@ -65,6 +65,7 @@ class MPSUM_Logs {
     	$table_version = get_site_option( 'mpsum_log_table_version', '0' );
     	if ( version_compare( $table_version, $this->version ) < 0 ) {
         	$this->build_table();
+        	update_site_option( 'mpsum_log_table_version', $this->version );
     	}
 	
 	} //end constructor
@@ -79,6 +80,28 @@ class MPSUM_Logs {
 	*
 	*/
 	private function build_table() {
-    	die( 'yo' );
+    	die( 'blah' );
+    	global $wpdb;
+    	$tablename = $wpdb->base_prefix . 'eum_logs';
+    	
+    	// Get collation - From /wp-admin/includes/schema.php
+		$charset_collate = '';
+		if ( ! empty($wpdb->charset) )
+			$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
+		if ( ! empty($wpdb->collate) )
+			$charset_collate .= " COLLATE $wpdb->collate";
+
+		$sql = "CREATE TABLE {$tablename} (
+						log_id BIGINT(20) NOT NULL AUTO_INCREMENT,
+						name VARCHAR(255) NOT NULL,
+						type VARCHAR(255) NOT NULL,
+						version VARCHAR(255) NOT NULL,
+						action VARCHAR(255) NOT NULL,
+						status VARCHAR(255) NOT NULL,
+						date DATETIME NOT NULL,
+						PRIMARY KEY  (log_id) 
+                        ) {$charset_collate};";
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta($sql);
 	}
 }
