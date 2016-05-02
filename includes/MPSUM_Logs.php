@@ -219,6 +219,7 @@ class MPSUM_Logs {
                 if ( ! function_exists( 'get_plugins' ) ) {
                     require_once ABSPATH . 'wp-admin/includes/plugin.php';
                 }
+                wp_clean_plugins_cache();
                 $plugins = get_plugins();
                 if ( !empty( $plugins ) && isset( $options[ 'plugins' ] ) && !empty( $options[ 'plugins' ] ) ) {
                     foreach( $options[ 'plugins' ] as $plugin ) {
@@ -251,6 +252,7 @@ class MPSUM_Logs {
                 break;
             case 'theme':
                 if ( isset( $options[ 'themes' ] ) && !empty( $options[ 'themes' ] ) ) {
+                    wp_clean_themes_cache();
                     foreach( $options[ 'themes' ] as $theme ) {
                         $theme_data = $theme = wp_get_theme( $theme );
                         if ( $theme_data->exists() ) {
