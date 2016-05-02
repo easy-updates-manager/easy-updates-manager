@@ -257,10 +257,13 @@ class MPSUM_Logs {
                 break;
             case 'theme':
                 if ( isset( $options[ 'themes' ] ) && !empty( $options[ 'themes' ] ) ) {
+                    $theme_data_from_cache = wp_get_themes();
                     wp_clean_themes_cache();
                     foreach( $options[ 'themes' ] as $theme ) {
-                        $theme_data = $theme = wp_get_theme( $theme );
+                        $theme_data = wp_get_theme( $theme );
+                        $theme_from_cache = $theme_data_from_cache[ $theme ];
                         if ( $theme_data->exists() ) {
+                            $status = ( $theme_from_cache->get( 'Version' ) == $theme_data->get( 'Version' ) ) ? 0 : 1;
                             $wpdb->insert( 
                         	    $tablename,
                         	    array(
@@ -269,7 +272,7 @@ class MPSUM_Logs {
                             	    'type'    => $options[ 'type' ],
                             	    'version' => $theme_data->get( 'Version' ),
                             	    'action'  => 'manual',
-                            	    'status'  => 1,
+                            	    'status'  => $status,
                             	    'date'    => current_time( 'mysql' ),
                         	    ),
                         	    array(
