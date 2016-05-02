@@ -35,7 +35,7 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 		global $wpdb, $_wp_column_headers;
 		$screen = get_current_screen();
         $tablename = $wpdb->base_prefix . 'eum_logs';
-        $per_page = 5;
+        $per_page = 50;
 		$log_count = $wpdb->get_var( "select count( * ) from $tablename" );
 		
 		$paged = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : 0;
