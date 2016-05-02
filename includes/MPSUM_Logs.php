@@ -188,6 +188,8 @@ class MPSUM_Logs {
     	global $wpdb;
     	$tablename = $wpdb->base_prefix . 'eum_logs';
     	$user_id = get_current_user_id();
+    	if ( 0 == $user_id ) return; // If there is no user, this is not a manual update
+    	
     	
     	switch( $options[ 'type' ] ) {
         	case 'core':
