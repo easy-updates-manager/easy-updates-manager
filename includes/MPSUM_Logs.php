@@ -134,8 +134,14 @@ class MPSUM_Logs {
                 case 'theme':
                     foreach( $results as $theme ) {
 	                    error_log( print_r( $theme, true ) );
-                	    $status = is_wp_error( $theme->result ) ? 0: 1;
-                	    $version = ( 1 == $status ) ? $theme->item->new_version : '';
+                	    $status = ( is_wp_error( $theme->result ) || empty( $theme->result ) ) ? 0: 1;
+                	    if ( 0 == $status ) {
+	                	    $theme_data_from_cache = wp_get_themes();
+	                	    $theme_data = $theme_data_from_cache[ $theme->item->theme ];
+	                	    $version = $theme_data->get( 'Version' );
+                	    } else {
+	                	    $version = $theme->item->new_version;
+                	    }
                 	    $wpdb->insert( 
                     	    $tablename,
                     	    array(
