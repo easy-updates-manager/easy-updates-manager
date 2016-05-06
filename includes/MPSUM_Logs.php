@@ -106,12 +106,14 @@ class MPSUM_Logs {
             	    break;
             	case 'plugin':
             	    foreach( $results as $plugin ) {
+	            	    error_log( print_r( $plugin, true ) );
                 	    $status = is_wp_error( $plugin->result ) ? 0: 1;
-                	    $version = ( 1 == $status ) ? $plugin->item->new_version : '';
+                	    $version = isset( $plugin->item->new_version ) ? $plugin->item->new_version : '0.00';
+                	    $name = ( isset( $plugin->name ) && !empty( $plugin->name ) ) ? $plugin->name : $plugin->item->slug;
                 	    $wpdb->insert( 
                     	    $tablename,
                     	    array(
-                        	    'name'    => $plugin->name,
+                        	    'name'    => $name,
                         	    'type'    => $type,
                         	    'version' => $version,
                         	    'action'  => 'automatic',
@@ -131,6 +133,7 @@ class MPSUM_Logs {
             	    break;
                 case 'theme':
                     foreach( $results as $theme ) {
+	                    error_log( print_r( $theme, true ) );
                 	    $status = is_wp_error( $theme->result ) ? 0: 1;
                 	    $version = ( 1 == $status ) ? $theme->item->new_version : '';
                 	    $wpdb->insert( 
