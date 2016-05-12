@@ -33,6 +33,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>The ability to block users from configuring the settings.</li>
 <li>The ability to select which users can still see and perform updates.</li>
 <li>The ability to update some third party plugins.</li>
+<li>Logging plugin updates</li>
 </ul>
 
 For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
@@ -71,7 +72,7 @@ Activate the plugin after installation.  If you are on Multisite, the plugin mus
 == Frequently Asked Questions ==
 = Do you support older WordPress versions? =
 
-Version 5.0.x should support WP versions 4.0 - 4.2.x. Version 4.7.0 should support WP versions 2.3 - 4.0.
+Version 6.x.x should support WP versions 4.0 and up. Version 4.7.0 should support WP versions 2.3 - 4.0.
 
 Since WordPress is constantly changing, this plugin will always strive to support the latest version of WordPress. As there are many security vulnerabilities reported, please always keep WordPress as up-to-date as possible.
 
@@ -88,11 +89,20 @@ A plugin was also created to change the background updates email address: https:
 Check out our video on how the automatic updating works in WordPress.
 [youtube https://www.youtube.com/watch?v=V8AWwBc6GrU]
 
+= How Do I Enable Logging? =
+
+todo video
+
 = Additional Information and FAQ =
 
 For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Changelog ==
+
+= 6.0.0 =
+Released TBD
+
+* LOGS! A highly requested feature is now here. Please keep in mind we consider logs still in beta.
 
 = 5.4.5 =
 Released 2016-04-29
@@ -178,38 +188,8 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 
 == Upgrade Notice ==
 
+= 6.0.0 =
+LOGS! A highly requested feature is now here. Please keep in mind we consider logs still in beta
+
 = 5.4.5 =
 Dashboard improvements and multisite fixes
-
-= 5.4.3 =
-CSS and JS enhancements for the main dashboard tab
-
-= 5.4.2 =
-Fixing GoDaddy permissions issue. Removing options that didn't make it into WordPress 4.4.
-
-= 5.4.1 =
-Fixing styling issues where EUM styles were being used elsewhere.
-
-= 5.4.0 =
-Major dashboard overhaul and WordPress 4.4 preparation
-
-= 5.3.2 =
-Fixed translation errors. 
-
-= 5.3.1 =
-Fixing automatic updates in dashboard view.
-
-= 5.3.0 =
-New Dashboard View. Support for WordPress 4.4 Email Notifications.
-
-= 5.2.0 =
-Force update button available. Better support for third-party solutions.
-
-= 5.1.1 =
-Fixing internationalization issues and adding German translation.
-
-= 5.1.0 =
-Only upgrade if using WordPress 4.3. Many changes to ensure WordPress 4.3 compatibility.
-
-= 5.0.0 =
-Major plugin rewrite and update. Updating will port over your old options. We recommend you perform a backup of your site before updating. Now you can configure just about any aspect of WordPress updates.
