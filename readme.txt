@@ -91,7 +91,7 @@ Check out our video on how the automatic updating works in WordPress.
 
 = How Do I Enable Logging? =
 
-todo video
+[youtube https://www.youtube.com/watch?v=Z6dPPv8Wttc]
 
 = Additional Information and FAQ =
 
