@@ -56,6 +56,7 @@ class MPSUM_Admin_Logs {
 	public function tab_output_logs() {
 		?>
         <h3><?php esc_html_e( 'Update Logs', 'stops-core-theme-and-plugin-updates' ); ?></h3>
+        <p><?php esc_html_e( 'Please note that this feature does not necessarily work for premium themes and plugins.', 'stops-core-theme-and-plugin-updates' );?></p>
         <?php
 	    $core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		$logs_table = new MPSUM_Logs_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );

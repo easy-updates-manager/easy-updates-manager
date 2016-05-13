@@ -75,13 +75,13 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array( 
-    		'user'    => 'User',
-		    'name'    => 'Name',
-		    'type'    => 'Type',
-		    'version' => 'Version',
-		    'action'  => 'Action',
-		    'status'  => 'Status',
-		    'date'    => 'Date',
+    		'user'    => _x( 'User', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
+		    'name'    => _x( 'Name', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
+		    'type'    => _x( 'Type', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
+		    'version' => _x( 'Version', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
+		    'action'  => _x( 'Action', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
+		    'status'  => _x( 'Status', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
+		    'date'    => _x( 'Date', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
 		    
         );
 		return $columns;
@@ -116,7 +116,7 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
         		switch( $record_key ) {
             		case 'user_id':
             		    if ( 0 == $record_data ) {
-                		    echo 'None';
+                		    echo _x( 'None', 'No user found', 'stops-core-theme-and-plugin-updates' );
             		    } else {
                 		    $user = get_user_by( 'id', $record_data );
                 		    if ( $user ) {
@@ -129,19 +129,36 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
                         echo esc_html( $record_data );
                         break;
                     case 'type':
-                        echo esc_html( ucfirst( $record_data ) );
+                        if ( 'core' == $record_data ) {
+                            echo esc_html( ucfirst( _x( 'core', 'update type', 'stops-core-theme-and-plugin-updates' ) ) );
+                        } elseif ( 'translation' == $record_data ) {
+                            echo esc_html( ucfirst( _x( 'translation', 'update type', 'stops-core-theme-and-plugin-updates' ) ) );
+                        } elseif( 'plugin' == $record_data ) {
+                           echo esc_html( ucfirst( _x( 'plugin', 'update type', 'stops-core-theme-and-plugin-updates' ) ) );
+                        } elseif( 'theme' == $record_data ) {
+                            echo esc_html( ucfirst( _x( 'theme', 'update type', 'stops-core-theme-and-plugin-updates' ) ) );
+                        } else {
+                            echo esc_html( ucfirst( $record_data ) );
+                        }
                         break;
                     case 'version':
                         echo esc_html( $record_data );
                         break;
                     case 'action':
-                        echo esc_html( ucfirst( $record_data ) );
+                        if ( 'manual' == $record_data ) {
+                            echo esc_html( ucfirst( _x( 'manual', 'update type - manual or automatic updates', 'stops-core-theme-and-plugin-updates' ) ) );
+                        } elseif( 'automatic' == $record_data ) {
+                            echo esc_html( ucfirst( _x( 'automatic', 'update type - manual or automatic updates', 'stops-core-theme-and-plugin-updates' ) ) );
+                        } else {
+                            echo esc_html( ucfirst( $record_data ) );
+                        }
+                        
                         break;
                     case 'status':
                         if ( 1 == $record_data ) {
-                            echo 'Success';
+                            echo esc_html__( 'Success', 'stops-core-theme-and-plugin-updates' );
                         } else {
-                            echo 'Failure';
+                            echo esc_html__( 'Failure', 'stops-core-theme-and-plugin-updates' );
                         }
                         break;
                     case 'date':

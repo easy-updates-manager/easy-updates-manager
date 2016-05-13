@@ -144,13 +144,13 @@ class MPSUM_Admin_Advanced {
                     $message = __( 'Force update checks have been initialized. Please check your site in 90 seconds, and refresh to test automatic updates.', 'stops-core-theme-and-plugin-updates' );
                     break;
                 case 'mpsum_enable_logs':
-                    $message = "Logs are now enabled";
+                    $message = __( 'Logs are now enabled', 'stops-core-theme-and-plugin-updates' );
                     break;
                 case 'mpsum_delete_logs':
-                    $message = "Logs have been disabled";
+                    $message = __( 'Logs have been disabled', 'stops-core-theme-and-plugin-updates' );
                     break;
                 case 'mpsum_clear_logs':
-                    $message = "Logs have been emptied";
+                    $message = __( 'Logs have been emptied', 'stops-core-theme-and-plugin-updates' );
                     break;
                 default:
                     $message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
@@ -241,25 +241,25 @@ class MPSUM_Admin_Advanced {
         ?>
             <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
             <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
-    		<h3>Logs</h3>
-    		<p>This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues">File a GitHub issue instead</a>.</p>
+    		<h3><?php echo esc_html( _x( 'Logs', 'Advanced title heading', 'stops-core-theme-and-plugin-updates' ) ); ?></h3>
+    		<p><?php printf( __( 'This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="%s">File a GitHub issue instead</a>.', 'stops-core-theme-and-plugin-updates', 'stops-core-theme-and-plugin-updates' ), 'https://github.com/easy-updates-manager/easy-updates-manager/issues' );?></p>
     		<input type="hidden" name="action" value='mpsum_enable_logs' />
     		<p class="submit">
-                <?php submit_button( 'Enable Logs' , 'primary', 'enable-log', false ); ?>
+                <?php submit_button( __( 'Enable Logs', 'stops-core-theme-and-plugin-updates' ), 'primary', 'enable-log', false ); ?>
     		</p>
             </form>
 	    <?php
         else:
         ?>
-            <h3>Logs</h3>
-            <p>This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="https://github.com/easy-updates-manager/easy-updates-manager/issues">File a GitHub issue instead</a>.</p>
+            <h3><?php echo esc_html( _x( 'Logs', 'Advanced title heading', 'stops-core-theme-and-plugin-updates' ) ); ?></h3>
+            <p><?php printf( __( 'This feature is currently in beta. Use at your own risk. Do not post support requests on WordPress.org. <a href="%s">File a GitHub issue instead</a>.', 'stops-core-theme-and-plugin-updates', 'stops-core-theme-and-plugin-updates' ), 'https://github.com/easy-updates-manager/easy-updates-manager/issues' );?></p>
             <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
                 <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
         		<input type="hidden" name="action" value='mpsum_clear_logs' />
         		<?php
-            	echo '<p><em>This will clear the log table</em></p>';
+            	echo '<p><em>' . __( 'This will clear the log table.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
                 echo '<p class="submit">';
-        		submit_button( 'Clear Logs' , 'primary', 'clear-log', false );
+        		submit_button( __( 'Clear Logs', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'clear-log', false );
         		echo '</p>';	
                 ?>
             </form>
@@ -267,9 +267,9 @@ class MPSUM_Admin_Advanced {
                 <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
         		<input type="hidden" name="action" value='mpsum_delete_logs' />
         		<?php
-            	echo '<p><em>This will remove the log table and disable logging.</em></p>';
+                echo '<p><em>' . __( 'This will remove the log table and disable logging.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
                 echo '<p class="submit">';
-        		submit_button( 'Disable Logging' , 'delete', 'delete-log', false );
+        		submit_button( __( 'Disable Logging', 'stops-core-theme-and-plugin-updates' ) , 'delete', 'delete-log', false );
         		echo '</p>';	
                 ?>
             </form>
