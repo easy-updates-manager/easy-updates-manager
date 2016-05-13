@@ -1,10 +1,11 @@
 === Easy Updates Manager ===
-Contributors: kidsguide, ronalfy, pixolin, roary86
-Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite
+Contributors: kidsguide, ronalfy, pixolin, roary86, bigwing
+Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.3
 Tested up to: 4.5
 Stable tag: 6.0.0
 License: GPLv2 or later
+Donate link: https://mediaron.com/contribute/
 
 Manage all your WordPress updates, including individual plugin/theme updates, automatic updates, and loads more. Also works with WordPress Multisite.
 
@@ -69,6 +70,8 @@ If you want to contribute to the translation, please go to https://translate.wor
 
 Activate the plugin after installation.  If you are on Multisite, the plugin must be network-activated.
 
+For additional information for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
+
 == Frequently Asked Questions ==
 = Do you support older WordPress versions? =
 
@@ -100,7 +103,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 == Changelog ==
 
 = 6.0.0 =
-Released TBD
+Released 2014-05-14
 
 * LOGS! A highly requested feature is now here. Please keep in mind we consider logs still in beta.
 
