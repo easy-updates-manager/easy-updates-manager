@@ -42,7 +42,7 @@ CONTENT1;
 		$content1 .= '</p>';
 		$content1 .= sprintf( '<div><p><strong>%s - </strong>%s</p></div>', esc_html__( 'Please Note!', 'stops-core-theme-and-plugin-updates' ), esc_html__( 'If either your WordPress core, theme, or plugins get too out of date, you may run into compatibility problems. Check the capability tab for more information.', 'stops-core-theme-and-plugin-updates' ) );
 
-		$content2 = sprintf( '<div><p><a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">%s</a></p></div>', esc_html__( 'Please see our Wiki for documentation and videos.', 'stops-core-theme-and-plugin-updates' ) );
+		$content2 = sprintf( '<div><p><a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">%s</a></p></div>', esc_html__( 'Check out our Wiki for updated documentation and videos.', 'stops-core-theme-and-plugin-updates' ) );
 		
 		$content4_strings = array(
 			'intro' => esc_html__( 'You will see multiple tabs where you can configure the update options.', 'stops-core-theme-and-plugin-updates' ),
@@ -58,20 +58,16 @@ CONTENT1;
 <p>
 {$content4_strings['intro']}
 <br>
-{$content4_strings['dashboard']}
 <br>
+{$content4_strings['dashboard']}
 <br>
 {$content4_strings['general']}
 <br>
-<br>
 {$content4_strings['plugins']}
-<br>
 <br>
 {$content4_strings['themes']}
 <br>
-<br>
 {$content4_strings['logs']}
-<br>
 <br>
 {$content4_strings['advanced']}
 <br>
