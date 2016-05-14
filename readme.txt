@@ -1,7 +1,7 @@
 === Easy Updates Manager ===
 Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
-Requires at least: 4.3
+Requires at least: 4.4
 Tested up to: 4.5
 Stable tag: 6.0.0
 License: GPLv2 or later
@@ -106,7 +106,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 == Changelog ==
 
 = 6.0.0 =
-Released 2014-05-14
+Released 2016-05-14
 
 * LOGS! A highly requested feature is now here. Please keep in mind we consider logs still in beta.
 
