@@ -215,7 +215,7 @@ class MPSUM_Admin_Advanced {
         </form>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Reset Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
-		<p><?php esc_html_e( 'This will reset all options to as if you have just installed the plugin.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+		<p><?php esc_html_e( 'This will reset all options to as if you have just installed the plugin. WARNING!: This also disables and clears the logs.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<input type="hidden" name="action" value='mpsum_reset_options' />
 	    <?php
 		wp_nonce_field( 'mpsum_reset_options', '_mpsum' );
