@@ -78,7 +78,16 @@ class MPSUM_Admin_Advanced {
 				break;
 			case 'mpsum_reset_options':
 				check_admin_referer( 'mpsum_reset_options', '_mpsum' );
+				
+				// Reset options
 				MPSUM_Updates_Manager::update_options( array() );
+				
+				// Remove logs table
+				global $wpdb;
+                $tablename = $wpdb->base_prefix . 'eum_logs';
+                $sql = "drop table if exists $tablename";
+                $wpdb->query( $sql );
+
 				break;
             case 'mpsum_force_updates':
                 wp_schedule_single_event( time() + 10, 'wp_update_plugins' );
