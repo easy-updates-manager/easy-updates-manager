@@ -107,6 +107,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 = 6.0.1 =
 Released 2016-05-15
+
 * Bug fix: Resetting options and enabling logs does not enable logging.
 
 = 6.0.0 =
