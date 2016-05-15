@@ -82,6 +82,9 @@ class MPSUM_Admin_Advanced {
 				// Reset options
 				MPSUM_Updates_Manager::update_options( array() );
 				
+				// Remove table version
+				delete_site_option( 'mpsum_log_table_version' );
+				
 				// Remove logs table
 				global $wpdb;
                 $tablename = $wpdb->base_prefix . 'eum_logs';
