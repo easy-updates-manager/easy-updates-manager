@@ -313,6 +313,11 @@ class MPSUM_Admin {
 	*/
 	public function plugin_settings_link( $settings ) {
 		$admin_anchor = sprintf( '<a href="%s">%s</a>', esc_url( $this->get_url() ), esc_html__( 'Configure', 'stops-core-theme-and-plugin-updates' ) );
-		return array_merge( array( $admin_anchor ), $settings ); 
+		
+		if ( ! is_array( $settings ) ) {
+    		return array( $admin_anchor );
+		} else {
+    		return array_merge( array( $admin_anchor ), $settings );
+		}
 	}
 }
