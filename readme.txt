@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.5
-Stable tag: 6.0.1
+Stable tag: 6.0.3
 License: GPLv2 or later
 Donate link: https://mediaron.com/contribute/
 
@@ -105,6 +105,12 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 6.0.3 =
+Released 2016-05-17
+
+* Bug fix: Allow translations in logs (note: manual logging of translations is not currently possible).
+* Bug fix: Settings link causes PHP warning error in multisite.
+
 = 6.0.1 =
 Released 2016-05-15
 
@@ -198,6 +204,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 6.0.3 =
+Allow translation logging for automatic updates. Fix PHP warning on plugins page in multisite.
 
 = 6.0.1 =
 Bug fix: Resetting options and enabling logs does not enable logging.
