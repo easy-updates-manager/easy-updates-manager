@@ -106,7 +106,6 @@ class MPSUM_Logs {
             	    break;
             	case 'plugin':
             	    foreach( $results as $plugin ) {
-	            	    error_log( print_r( $plugin, true ) );
                 	    $status = is_wp_error( $plugin->result ) ? 0: 1;
                 	    $version = isset( $plugin->item->new_version ) ? $plugin->item->new_version : '0.00';
                 	    $name = ( isset( $plugin->name ) && !empty( $plugin->name ) ) ? $plugin->name : $plugin->item->slug;
@@ -133,7 +132,6 @@ class MPSUM_Logs {
             	    break;
                 case 'theme':
                     foreach( $results as $theme ) {
-	                    error_log( print_r( $theme, true ) );
                 	    $status = ( is_wp_error( $theme->result ) || empty( $theme->result ) ) ? 0: 1;
                 	    if ( 0 == $status ) {
 	                	    $theme_data_from_cache = wp_get_themes();
@@ -165,12 +163,15 @@ class MPSUM_Logs {
                     break;
                 case 'translation':
                     foreach( $results as $translation ) {
+                        
                 	    $status = is_wp_error( $translation->result ) ? 0: 1;
-                	    $version = ( 1 == $status ) ? $translation->item->new_version : '';
+                	    $version = ( 1 == $status ) ? $translation->item->version : '';
+                	    $slug = $translation->item->slug;
+                	    $name = $this->get_name_for_update( $translation->item->type, $translation->item->slug );
                 	    $wpdb->insert( 
                     	    $tablename,
                     	    array(
-                        	    'name'    => $translation->name,
+                        	    'name'    => $name . ' (' . $translation->item->language . ')',
                         	    'type'    => $type,
                         	    'version' => $version,
                         	    'action'  => 'automatic',
@@ -190,6 +191,39 @@ class MPSUM_Logs {
                     break;
         	}
     	}    	
+	}
+	
+	/**
+	 * Get the name of an translation item being updated.
+	 *
+	 * @since 6.0.3
+	 * @access private
+	 *
+	 * @param  string type of translation update
+	 * @param  string $slug of item
+	 * @return string The name of the item being updated.
+	 */
+	private function get_name_for_update( $type, $slug ) {
+    	if ( ! function_exists( 'get_plugins' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+		switch ( $type ) {
+			case 'core':
+				return 'WordPress'; // Not translated
+
+			case 'theme':
+				$theme = wp_get_theme( $slug );
+				if ( $theme->exists() )
+					return $theme->Get( 'Name' );
+				break;
+			case 'plugin':
+				$plugin_data = get_plugins( '/' . $slug );
+				$plugin_data = reset( $plugin_data );
+				if ( $plugin_data )
+					return $plugin_data['Name'];
+				break;
+		}
+		return '';
 	}
 	
 	public function manual_updates( $upgrader_object, $options ) {
