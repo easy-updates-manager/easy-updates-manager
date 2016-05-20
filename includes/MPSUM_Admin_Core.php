@@ -103,7 +103,7 @@ class MPSUM_Admin_Core {
 		//Save options
 		$options = $_POST[ 'options' ];
 		if ( isset( $_POST[ 'reset' ] ) ) {
-			$options = $this->get_defaults();
+			$options = self::get_defaults();
 		}
 		$options_to_save = array();
 		foreach( $options as $key => $value ) {
@@ -129,7 +129,7 @@ class MPSUM_Admin_Core {
 	*/
 	public function tab_output() {
 		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = wp_parse_args( $options, $this->get_defaults() );
+		$options = wp_parse_args( $options, self::get_defaults() );
 
 		if ( isset( $_GET[ 'updated' ] ) ) {
 			$message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
