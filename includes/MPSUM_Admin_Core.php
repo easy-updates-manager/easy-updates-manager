@@ -17,7 +17,7 @@ class MPSUM_Admin_Core {
 	* @var string $slug
 	*/
 	private $slug = '';
-	
+
 	/**
 	* Holds the tab name
 	*
@@ -26,7 +26,7 @@ class MPSUM_Admin_Core {
 	* @var string $tab
 	*/
 	private $tab = 'main';
-	
+
 	/**
 	* Class constructor.
 	*
@@ -40,10 +40,10 @@ class MPSUM_Admin_Core {
 	public function __construct( $slug = '' ) {
 		$this->slug = $slug;
 		//Admin Tab Actions
-		add_action( 'mpsum_admin_tab_main', array( $this, 'tab_output' ) );	
+		add_action( 'mpsum_admin_tab_main', array( $this, 'tab_output' ) );
 		add_action( 'admin_init', array( $this, 'maybe_save_options' ) );
 	}
-	
+
 	/**
 	* Get tab defaults.
 	*
@@ -55,7 +55,7 @@ class MPSUM_Admin_Core {
 	* @return array Associative array of default options
 	*/
 	public static function get_defaults() {
-		return array(
+		return apply_filters( 'mpsum_default_options', array(
 			'all_updates'                                  => 'on',
 			'core_updates'                                 => 'on',
 			'plugin_updates'                               => 'on',
@@ -73,16 +73,16 @@ class MPSUM_Admin_Core {
 			'notification_core_update_emails_plugins'      => 'on',
 			'notification_core_update_emails_themes'       => 'on',
 			'notification_core_update_emails_translations' => 'on',
-			'logs'                                         => 'off' 
-		);	
+			'logs'                                         => 'off',
+		) );
 	}
-	
+
 	/**
 	* Determine whether the save the main options or not.
 	*
 	* Determine whether the save the main options or not.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses admin_init action
@@ -95,15 +95,15 @@ class MPSUM_Admin_Core {
 		if ( !isset( $_POST[ 'options' ] ) ) return;
 		if ( 'mpsum_save_core_options' !== $_REQUEST[ 'action' ] ) return;
 		check_admin_referer( 'mpsum_main_update', '_mpsum' );
-				
+
 		$query_args = array();
 		$query_args[ 'updated' ] = "1";
 		$query_args[ 'tab' ] = 'main';
-		
+
 		//Save options
 		$options = $_POST[ 'options' ];
 		if ( isset( $_POST[ 'reset' ] ) ) {
-			$options = $this->get_defaults();	
+			$options = $this->get_defaults();
 		}
 		$options_to_save = array();
 		foreach( $options as $key => $value ) {
@@ -111,18 +111,18 @@ class MPSUM_Admin_Core {
 			$options_to_save[ sanitize_key( $key ) ] = $option_value;
 		}
 		MPSUM_Updates_Manager::update_options( $options_to_save, 'core' );
-				
+
 		//Redirect back to settings screen
 		wp_redirect( esc_url_raw( add_query_arg( $query_args, MPSUM_Admin::get_url() ) ) );
 		exit;
 	}
-	
+
 	/**
 	* Output the HTML interface for the main tab.
 	*
 	* Output the HTML interface for the main tab.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses the mpsum_admin_tab_main action
@@ -130,7 +130,7 @@ class MPSUM_Admin_Core {
 	public function tab_output() {
 		$options = MPSUM_Updates_Manager::get_options( 'core' );
 		$options = wp_parse_args( $options, $this->get_defaults() );
-				
+
 		if ( isset( $_GET[ 'updated' ] ) ) {
 			$message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
 			?>
@@ -138,7 +138,7 @@ class MPSUM_Admin_Core {
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
 			<?php
 		}
-		
+
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Global Settings', 'stops-core-theme-and-plugin-updates' ); ?></h3>
