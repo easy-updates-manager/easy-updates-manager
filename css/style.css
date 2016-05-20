@@ -224,7 +224,7 @@ label{
 
 }
 
-input[type=radio] {
+#dashboard-main-outputs input[type=radio] {
   -webkit-appearance: none; /* remove default */
   margin: 10px;
   width: 15px;
@@ -239,19 +239,19 @@ input[type=radio] {
   -webkit-transform .25s cubic-bezier(.8, 0, 1, 1);
 }
 
-input[type=checkbox]:checked:before,
-input[type=radio]:checked:before {
+#dashboard-main-outputs input[type=checkbox]:checked:before,
+#dashboard-main-outputs input[type=radio]:checked:before {
   background-color:#0daf88 !important;
 }
 
-input[type=checkbox]:checked,
-input[type="radio"]:checked {
+#dashboard-main-outputs input[type=checkbox]:checked,
+#dashboard-main-outputs input[type="radio"]:checked {
   -webkit-transition: background-position .2s .15s cubic-bezier(0, 0, .2, 1),
   -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
   background:rgba(37, 175, 118, 1);
   border:1px solid #0daf88;
 }
-input[type=radio]:active {
+#dashboard-main-outputs input[type=radio]:active {
   -webkit-transform: scale(1.5);
   -webkit-transition: -webkit-transform .1s cubic-bezier(0, 0, .2, 1);
   background:rgba(37, 175, 118, 1);
@@ -259,15 +259,15 @@ input[type=radio]:active {
 
 
 /* The up/down direction logic */
-input,
-input:active {
+#dashboard-main-outputs input,
+#dashboard-main-outputs input:active {
   background-position: 0 24px;
 }
-input:checked {
+#dashboard-main-outputs input:checked {
   background-position: 0 0;
 }
-input:checked ~ input,
-input:checked ~ input:active {
+#dashboard-main-outputs input:checked ~ input,
+#dashboard-main-outputs input:checked ~ input:active {
   background-position: 0 -24px;
 }
 .button.delete {
@@ -299,7 +299,7 @@ input:checked ~ input:active {
   #dashboard-main-outputs { 
       margin-top: 20px;
   }
-  input[type=radio]:checked:before {
+  #dashboard-main-outputs input[type=radio]:checked:before {
     margin:0 !important;
   }
 }
