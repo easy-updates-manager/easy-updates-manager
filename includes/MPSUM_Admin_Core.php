@@ -55,7 +55,7 @@ class MPSUM_Admin_Core {
 	* @return array Associative array of default options
 	*/
 	public static function get_defaults() {
-		return apply_filters( 'mpsum_default_options', array(
+		return (array) apply_filters( 'mpsum_default_options', array(
 			'all_updates'                                  => 'on',
 			'core_updates'                                 => 'on',
 			'plugin_updates'                               => 'on',
