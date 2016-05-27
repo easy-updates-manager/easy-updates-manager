@@ -86,9 +86,7 @@ Unfortunately, we do not support older versions of WordPress or the non-current 
 
 = How do I change the WordPress update notification e-mail? =
 
-There's some documentation about changing the notification e-mail here: http://www.iwebcontrol.co.uk/2013/10/change-wordpress-auto-update-email-address/
-
-A plugin was also created to change the background updates email address: https://wordpress.org/plugins/background-update-notification-email-address/
+At the moment a feature like this is not avaible in Easy Updates Manager. We recommend that you use https://wordpress.org/plugins/background-update-notification-email-address/
 
 = Automatic Updates =
 
