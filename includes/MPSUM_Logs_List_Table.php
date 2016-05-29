@@ -8,6 +8,8 @@
  * @access private
  */
 class MPSUM_Logs_List_Table extends MPSUM_List_Table {
+	
+	private $url = '';
 
 	/**
 	 * Constructor.
@@ -23,12 +25,13 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 	 * @param array $args An associative array of arguments.
 	 */
 	public function __construct( $args = array() ) {
-		global $post_type_object, $wpdb;
 
 		parent::__construct( array(
 			'singular'=> 'log',			
 			'plural' => 'logs',
         ) );
+        
+        $this->url = add_query_arg( array( 'tab' => 'logs' ), MPSUM_Admin::get_url() );
 	}
 
 	public function prepare_items() {
@@ -44,7 +47,34 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 		} else {
     		$offset = ( $paged -1 ) * $per_page;
 		}
-		$query = $wpdb->prepare( "select * from $tablename order by log_id DESC limit %d,%d", $offset, $per_page );
+		
+		$month = isset( $_GET[ 'm' ] ) ? absint( $_GET[ 'm' ] ) : 0;
+		
+		$where = '';
+		if ( isset( $_GET[ 'm' ] ) && strlen( $_GET[ 'm' ] ) > 4 ) {
+			$where .= " AND YEAR($tablename.date)=" . substr($month, 0, 4);
+			if ( strlen( $month ) > 5 ) {
+				$where .= " AND MONTH($tablename.date)=" . substr( $month, 4, 2 );
+			}
+		}
+		if ( isset( $_GET[ 'status' ] ) && 'all' !== $_GET[ 'status' ] ) {
+			$where .= $wpdb->prepare( " and $tablename.status = %d ", absint( $_GET[ 'status' ] ) );
+		}
+		
+		if ( isset( $_GET[ 'action' ] ) && 'all' !== $_GET[ 'action' ] ) {
+			$where .= $wpdb->prepare( " and $tablename.action = %s ", sanitize_text_field( $_GET[ 'action' ] ) );
+		}
+		
+		if ( isset( $_GET[ 'type' ] ) && 'all' !== $_GET[ 'type' ] ) {
+			$where .= $wpdb->prepare( " and $tablename.type = %s ", sanitize_text_field( $_GET[ 'type' ] ) );
+		}
+		
+		$select = "select * from $tablename WHERE 1=1";
+		$orderby = " order by log_id DESC";
+		$limit = " limit %d,%d";
+		$query = $select . $where . $orderby . $limit;
+		
+		$query = $wpdb->prepare( $query, $offset, $per_page );
 		
 		$this->items = $wpdb->get_results( $query );
 		
@@ -59,6 +89,126 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 			'total_items' => $log_count,
 			'per_page' => $per_page
 		) );
+	}
+	
+	/**
+	 * Display a monthly dropdown for filtering items
+	 *
+	 * @since 6.0.0
+	 * @access protected
+	 *
+	 * @global wpdb      $wpdb
+	 *
+	 * @param string $post_type
+	 */
+	protected function months_dropdown( $post_type ) {
+		global $wpdb, $wp_locale;
+		$tablename = $wpdb->base_prefix . 'eum_logs';
+		$query = "SELECT DISTINCT YEAR( date ) AS year, MONTH( date ) AS month FROM $tablename ORDER BY date DESC";
+
+		$months = $wpdb->get_results( $query );
+
+		$month_count = count( $months );
+		if ( !$month_count || ( 1 == $month_count && 0 == $months[0]->month ) )
+			return;
+		
+		$m = isset( $_GET['m'] ) ? (int) $_GET['m'] : 0;
+?>
+		<label for="filter-by-date" class="screen-reader-text"><?php _e( 'Filter by date', 'stops-core-theme-and-plugin-updates' ); ?></label>
+		<select name="m" id="filter-by-date">
+			<option<?php selected( $m, 0 ); ?> value="0"><?php _e( 'All dates', 'stops-core-theme-and-plugin-updates' ); ?></option>
+<?php
+		foreach ( $months as $arc_row ) {
+			if ( 0 == $arc_row->year )
+				continue;
+
+			$month = zeroise( $arc_row->month, 2 );
+			$year = $arc_row->year;
+
+			printf( "<option %s value='%s'>%s</option>\n",
+				selected( $m, $year . $month, false ),
+				esc_attr( $arc_row->year . $month ),
+				/* translators: 1: month name, 2: 4-digit year */
+				sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month ), $year )
+			);
+		}
+?>
+		</select>
+<?php
+	}
+	
+	private function type_dropdown() {
+		$type = isset( $_GET['type'] ) ? sanitize_text_field( $_GET['type'] ) : 'all';
+		?>
+		<label for="filter-by-type" class="screen-reader-text"><?php _e( 'Filter by Upgrade Type', 'stops-core-theme-and-plugin-updates' ); ?></label>
+		<select name="type" id="filter-by-type">
+			<option<?php selected( $type, 'all' ); ?> value="all"><?php echo _x( 'All Types', 'Upgrade types: translation, core, plugin, theme', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $type, 'core' ); ?> value="core"><?php echo _x( 'Core', 'Show WordPress core updates', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $type, 'plugin' ); ?> value="plugin"><?php echo _x( 'Plugins', 'Show WordPress Plugin updates', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $type, 'theme' ); ?> value="theme"><?php echo _x( 'Themes', 'Show WordPress Theme updates', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $type, 'translation' ); ?> value="translation"><?php echo _x( 'Translations', 'Show WordPress translation updates', 'stops-core-theme-and-plugin-updates' ); ?></option>
+		</select>
+		<?php
+	}
+	
+	private function status_dropdown() {
+		$status = isset( $_GET['status'] ) ? sanitize_text_field( $_GET['status'] ) : 'all';
+		?>
+		<label for="filter-by-success" class="screen-reader-text"><?php _e( 'Filter by Status', 'stops-core-theme-and-plugin-updates' ); ?></label>
+		<select name="status" id="filter-by-success">
+			<option<?php selected( $status, 'all' ); ?> value="all"><?php _e( 'All Statuses', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $status, 1 ); ?> value="1"><?php echo _x( 'Success', 'Show status updates that are successful', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $status, 0 ); ?> value="0"><?php echo _x( 'Failures', 'Show status updates that are not successful', 'stops-core-theme-and-plugin-updates' ); ?></option>
+		</select>
+		<?php
+	}
+	
+	private function action_dropdown() {
+		$action = isset( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : 'all';
+		?>
+		<label for="filter-by-action" class="screen-reader-text"><?php _e( 'Filter by Action', 'stops-core-theme-and-plugin-updates' ); ?></label>
+		<select name="action" id="filter-by-action">
+			<option<?php selected( $action, 'all' ); ?> value="all"><?php _e( 'All Actions', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $action, 'automatic' ); ?> value="automatic"><?php echo _x( 'Automatic Updates', 'Show log items that are automatic updates only', 'stops-core-theme-and-plugin-updates' ); ?></option>
+			<option<?php selected( $action, 'manual' ); ?> value="manual"><?php echo _x( 'Manual Updates', 'Show log items that are manual updates only', 'stops-core-theme-and-plugin-updates' ); ?></option>
+		</select>
+		<?php
+	}
+	
+	/**
+	 * @global int $cat
+	 * @param string $which
+	 */
+	protected function extra_tablenav( $which ) {
+		global $cat;
+?>
+		<form id="logs-filter" action="<?php echo esc_url( $this->url ); ?>" method="GET">
+		<input type="hidden" name="page" value="mpsum-update-options" />
+		<input type="hidden" name="tab" value="logs" />
+		<div class="alignleft">
+<?php
+		if ( 'top' === $which && !is_singular() ) {
+
+			$this->months_dropdown( $this->screen->post_type );
+			$this->status_dropdown();
+			$this->action_dropdown();
+			$this->type_dropdown();
+
+			submit_button( __( 'Filter', 'stops-core-theme-and-plugin-updates' ), 'button', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+		}
+?>
+		</div>
+		</form><!-- #logs-filter -->
+<?php
+		/**
+		 * Fires immediately following the closing "actions" div in the tablenav for the posts
+		 * list table.
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param string $which The location of the extra table nav markup: 'top' or 'bottom'.
+		 */
+		do_action( 'manage_posts_extra_tablenav', $which );
 	}
 
 	/**
