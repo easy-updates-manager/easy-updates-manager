@@ -82,6 +82,7 @@ class MPSUM_Admin_Core {
 			'notification_core_update_emails_themes'       => 'on',
 			'notification_core_update_emails_translations' => 'on',
 			'logs'                                         => 'off',
+			'email_addresses'                              => array(),
 		) );
 	}
 
@@ -107,17 +108,46 @@ class MPSUM_Admin_Core {
 		$query_args = array();
 		$query_args[ 'updated' ] = "1";
 		$query_args[ 'tab' ] = 'main';
+		
+		 
 
 		//Save options
 		$options = $_POST[ 'options' ];
 		if ( isset( $_POST[ 'reset' ] ) ) {
 			$options = self::get_defaults();
 		}
+		
 		$options_to_save = array();
+		
+		//Check for valid e-mail address
+		if ( isset( $options[ 'email_addresses' ] ) ) {
+			$email_addresses = explode( ',', $options[ 'email_addresses' ] );
+			$email_addresses_to_save = array();
+			if ( count( $email_addresses ) > 0 ) {
+				foreach( $email_addresses as $email ) {
+					if ( ! is_email( $email ) && ! empty( $email ) ) {
+						$email_addresses_to_save = array();
+						$query_args[ 'bad_email' ] = 1;
+						break;
+					} else {
+						if ( ! empty( $email ) ) {
+							$email_addresses_to_save[] = $email;
+						}
+						
+					}
+				}
+			}
+			$options_to_save[ 'email_addresses' ] = $email_addresses_to_save;
+		}
+		
 		foreach( $options as $key => $value ) {
+			if ( 'email_addresses' == $key ) continue;
+			
 			$option_value = sanitize_text_field( $value );
 			$options_to_save[ sanitize_key( $key ) ] = $option_value;
 		}
+					//die( '<pre>' . print_r( $options_to_save, true ) );
+
 		MPSUM_Updates_Manager::update_options( $options_to_save, 'core' );
 
 		//Redirect back to settings screen
@@ -144,7 +174,12 @@ class MPSUM_Admin_Core {
 			?>
 			<br />
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
-			<?php
+			<?php 
+			if ( isset( $_GET[ 'bad_email' ] ) ) {
+				?>
+				<div class="error"><p><strong><?php echo esc_html__( 'The email address is not valid', 'stops-core-theme-and-plugin-updates' ); ?></strong></p></div>
+				<?php
+			}
 		}
 
 		?>
@@ -263,6 +298,31 @@ class MPSUM_Admin_Core {
 					<input type="checkbox" name="options[notification_core_update_emails_themes]" value="on" id="notification_core_update_emails_themes" <?php checked( 'on', $options[ 'notification_core_update_emails_themes' ] ); ?> />&nbsp;<label for="notification_core_update_emails_themes"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
 					<input type="checkbox" name="options[notification_core_update_emails_translations]" value="on" id="notification_core_update_emails_translations_on" <?php checked( 'on', $options[ 'notification_core_update_emails_translations' ] ); ?> />&nbsp;<label for="notification_core_update_emails_translations_on"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?></label>
 					<p class="description"><?php esc_html_e( 'Disable e-mails that are sent when your site has been upgraded automatically. These will not be functional until WordPress 4.5.', 'stops-core-theme-and-plugin-updates' ); ?></p>*/ ?>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Notification E-mail', 'stops-core-theme-and-plugin-updates' ); ?></th>
+				<td>
+					<?php
+					$email_addresses = array();
+					if ( isset( $options[ 'email_addresses' ] ) && is_array( $options[ 'email_addresses' ] ) ) {
+						foreach( $options[ 'email_addresses' ] as $email ) {
+							if ( ! is_email( $email ) ) {
+								$email_addresses = array();
+								break;
+							} else {
+								$email_addresses[] = $email;
+							}
+						}
+						if ( ! empty( $email_addresses ) ) {
+							$email_addresses = implode( ',', $options[ 'email_addresses' ] );
+						} else {
+							$email_addresses = '';
+						}
+					}	
+					?>
+    				<input type="text" name="options[email_addresses]" value="<?php echo esc_attr( $email_addresses ); ?>" /><br />
+    				<em><?php echo esc_html_e( 'Emails can be comma separated', 'stops-core-theme-and-plugin-updates' ); ?></em>
 				</td>
 			</tr>
 		</table>
