@@ -47,7 +47,23 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 		} else {
     		$offset = ( $paged -1 ) * $per_page;
 		}
-		$query = $wpdb->prepare( "select * from $tablename order by log_id DESC limit %d,%d", $offset, $per_page );
+		
+		$month = isset( $_GET[ 'm' ] ) ? absint( $_GET[ 'm' ] ) : 0;
+		
+		$where = '';
+		if ( isset( $_GET[ 'm' ] ) ) {
+			$where .= " AND YEAR($tablename.date)=" . substr($month, 0, 4);
+			if ( strlen( $month ) > 5 ) {
+				$where .= " AND MONTH($tablename.date)=" . substr( $month, 4, 2 );
+			}
+		}
+		
+		$select = "select * from $tablename WHERE 1=1";
+		$orderby = " order by log_id DESC";
+		$limit = " limit %d,%d";
+		$query = $select . $where . $orderby . $limit;
+		
+		$query = $wpdb->prepare( $query, $offset, $per_page );
 		
 		$this->items = $wpdb->get_results( $query );
 		
@@ -126,22 +142,11 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 		if ( 'top' === $which && !is_singular() ) {
 
 			$this->months_dropdown( $this->screen->post_type );
-/*
-			if ( is_object_in_taxonomy( $this->screen->post_type, 'category' ) ) {
-				$dropdown_options = array(
-					'show_option_all' => get_taxonomy( 'category' )->labels->all_items,
-					'hide_empty' => 0,
-					'hierarchical' => 1,
-					'show_count' => 0,
-					'orderby' => 'name',
-					'selected' => $cat
-				);
+			//$this->status_dropdown();
+			//$this->action_dropdown();
+			//$this->type_dropdown();
 
-				echo '<label class="screen-reader-text" for="cat">' . __( 'Filter by category' ) . '</label>';
-				wp_dropdown_categories( $dropdown_options );
-			} */
-
-			submit_button( __( 'Filter' ), 'button', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+			submit_button( __( 'Filter', 'stops-core-theme-and-plugin-updates' ), 'button', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
 		}
 ?>
 		</div>
