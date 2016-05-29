@@ -8,6 +8,8 @@
  * @access private
  */
 class MPSUM_Logs_List_Table extends MPSUM_List_Table {
+	
+	private $url = '';
 
 	/**
 	 * Constructor.
@@ -23,12 +25,13 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 	 * @param array $args An associative array of arguments.
 	 */
 	public function __construct( $args = array() ) {
-		global $post_type_object, $wpdb;
 
 		parent::__construct( array(
 			'singular'=> 'log',			
 			'plural' => 'logs',
         ) );
+        
+        $this->url = add_query_arg( array( 'tab' => 'logs' ), MPSUM_Admin::get_url() );
 	}
 
 	public function prepare_items() {
@@ -59,6 +62,100 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 			'total_items' => $log_count,
 			'per_page' => $per_page
 		) );
+	}
+	
+	/**
+	 * Display a monthly dropdown for filtering items
+	 *
+	 * @since 3.1.0
+	 * @access protected
+	 *
+	 * @global wpdb      $wpdb
+	 * @global WP_Locale $wp_locale
+	 *
+	 * @param string $post_type
+	 */
+	protected function months_dropdown( $post_type ) {
+		global $wpdb, $wp_locale;
+		$tablename = $wpdb->base_prefix . 'eum_logs';
+		$query = "SELECT DISTINCT YEAR( date ) AS year, MONTH( date ) AS month FROM $tablename ORDER BY date DESC";
+
+		$months = $wpdb->get_results( $query );
+
+		$month_count = count( $months );
+		if ( !$month_count || ( 1 == $month_count && 0 == $months[0]->month ) )
+			return;
+		
+		$m = isset( $_GET['m'] ) ? (int) $_GET['m'] : 0;
+?>
+		<label for="filter-by-date" class="screen-reader-text"><?php _e( 'Filter by date' ); ?></label>
+		<select name="m" id="filter-by-date">
+			<option<?php selected( $m, 0 ); ?> value="0"><?php _e( 'All dates' ); ?></option>
+<?php
+		foreach ( $months as $arc_row ) {
+			if ( 0 == $arc_row->year )
+				continue;
+
+			$month = zeroise( $arc_row->month, 2 );
+			$year = $arc_row->year;
+
+			printf( "<option %s value='%s'>%s</option>\n",
+				selected( $m, $year . $month, false ),
+				esc_attr( $arc_row->year . $month ),
+				/* translators: 1: month name, 2: 4-digit year */
+				sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month ), $year )
+			);
+		}
+?>
+		</select>
+<?php
+	}
+	
+	/**
+	 * @global int $cat
+	 * @param string $which
+	 */
+	protected function extra_tablenav( $which ) {
+		global $cat;
+?>
+		<form id="logs-filter" action="<?php echo esc_url( $this->url ); ?>" method="GET">
+		<input type="hidden" name="page" value="mpsum-update-options" />
+		<input type="hidden" name="tab" value="logs" />
+		<div class="alignleft">
+<?php
+		if ( 'top' === $which && !is_singular() ) {
+
+			$this->months_dropdown( $this->screen->post_type );
+/*
+			if ( is_object_in_taxonomy( $this->screen->post_type, 'category' ) ) {
+				$dropdown_options = array(
+					'show_option_all' => get_taxonomy( 'category' )->labels->all_items,
+					'hide_empty' => 0,
+					'hierarchical' => 1,
+					'show_count' => 0,
+					'orderby' => 'name',
+					'selected' => $cat
+				);
+
+				echo '<label class="screen-reader-text" for="cat">' . __( 'Filter by category' ) . '</label>';
+				wp_dropdown_categories( $dropdown_options );
+			} */
+
+			submit_button( __( 'Filter' ), 'button', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+		}
+?>
+		</div>
+		</form><!-- #logs-filter -->
+<?php
+		/**
+		 * Fires immediately following the closing "actions" div in the tablenav for the posts
+		 * list table.
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param string $which The location of the extra table nav markup: 'top' or 'bottom'.
+		 */
+		do_action( 'manage_posts_extra_tablenav', $which );
 	}
 
 	/**
