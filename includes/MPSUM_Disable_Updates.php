@@ -156,6 +156,9 @@ class MPSUM_Disable_Updates {
 			}
 		}
 		
+		//Automatic Updates E-mail Address
+		add_filter( 'auto_core_update_email', array( $this, 'maybe_change_automatic_update_email' ), 50 );
+		
 						
 		//Prevent updates on themes/plugins
 		add_filter( 'site_transient_update_plugins', array( $this, 'disable_plugin_notifications' ), 50 );
@@ -163,6 +166,33 @@ class MPSUM_Disable_Updates {
 		add_filter( 'http_request_args', array( $this, 'http_request_args_remove_plugins_themes' ), 5, 2 );
 		
 	} //end constructor
+	
+	/**
+	* Maybe change automatic update email
+	*
+	* @since 6.1.0
+	* @access public
+	* @see __construct
+	* 
+	* @param array $email array
+	*
+	* @return array email array
+	*
+	*/
+	public function maybe_change_automatic_update_email( $email ) {
+		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+		$email_addresses = isset( $core_options[ 'email_addresses' ] ) ? $core_options[ 'email_addresses' ] : array();
+		$email_addresses_to_override = array();
+		foreach( $email_addresses as $email ) {
+			if ( is_email( $email ) ) {
+				$email_addresses_to_override[] = $email;
+			}
+		}
+		if ( ! empty( $email_addresses_to_override ) ) {
+			$email[ 'to' ] = $email_addresses_to_override;
+		}
+		return $email;
+	}
 	
 	/**
 	* Maybe disable updates.
