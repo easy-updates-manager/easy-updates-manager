@@ -183,9 +183,9 @@ class MPSUM_Disable_Updates {
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		$email_addresses = isset( $core_options[ 'email_addresses' ] ) ? $core_options[ 'email_addresses' ] : array();
 		$email_addresses_to_override = array();
-		foreach( $email_addresses as $email ) {
-			if ( is_email( $email ) ) {
-				$email_addresses_to_override[] = $email;
+		foreach( $email_addresses as $emails ) {
+			if ( is_email( $emails ) ) {
+				$email_addresses_to_override[] = $emails;
 			}
 		}
 		if ( ! empty( $email_addresses_to_override ) ) {
