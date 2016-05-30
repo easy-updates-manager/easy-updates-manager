@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.5
-Stable tag: 6.0.5
+Stable tag: 6.1.0
 License: GPLv2 or later
 Donate link: https://mediaron.com/contribute/
 
@@ -103,10 +103,17 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 6.1.0 =
+Released 2016-05-30
+
+* Enhancement: filters for logs.
+* Enhancement: can now change the email address for automatic updates.
+* Enhancement: warnings now show up in the Advanced tab if automatic updates are disabled by something other than this plugin.
+
 = 6.0.5 = 
 Released 2016-05-20
 
-* Added new filter: `mpsum_default_options` to set defaults programmatically
+* Added new filter: `mpsum_default_options` to set defaults programmatically.
 * Bug fix: CSS styles for dashboard were applied to the list views.
 
 = 6.0.3 =
@@ -208,6 +215,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 6.1.0 =
+Filters for logs. Can now change email address for automatic updates.
 
 = 6.0.5 =
 New filter mpsum_default_options. Style fixes for list views.
