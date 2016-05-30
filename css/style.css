@@ -53,7 +53,7 @@
   max-width: 0;
   opacity: 0;
 }
-.dashboard-item-choice  input + label {
+.dashboard-item-choice	input + label {
   display: block;
   position: relative;
   text-indent: -5000px;
@@ -63,7 +63,7 @@
   float: right;
 }
 .dashboard-item-choice .mpsum-spinner {
-    float: right;
+	float: right;
 }
 
 .dashboard-item-choice input + label:before {
@@ -205,9 +205,9 @@
   padding-bottom:20px;
 }
 .dashboard-item-wrapper p {
-    padding: 15px;
-    padding-bottom: 0;
-    margin-bottom: 0;
+	padding: 15px;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 /*
 .dashboard-main-wrapper:nth-child( odd ) {
@@ -271,35 +271,49 @@ label{
   background-position: 0 -24px;
 }
 .button.delete {
-    background-color: #e14d43;
-    color: #FFF;
+	background-color: #e14d43;
+	color: #FFF;
+}
+.mpsum-error {
+	background: #fff;
+	border-left: 4px solid #dc3232;
+	-webkit-box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+	box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+	margin: 5px 15px 2px;
+	padding: 1px 12px;
+	margin: 5px 0 15px;
+	color: #ff0000;
+}
+.mpsum_error p {
+	margin: 0.5em 0;
+	padding: 2px;
 }
 
 @media only screen and (max-width:1200px) {
   #dashboard-main-outputs {
-    width:100%;
+	width:100%;
   }
 }
 @media only screen and (max-width:1000px) {
   #dashboard-main-outputs .dashboard-main-wrapper {
-    width: 48.5%;
-    padding:0;
+	width: 48.5%;
+	padding:0;
 
   }
   .dashboard-item-wrapper {
-    min-height: auto;
-    max-height: 700px;
-    overflow: auto;
+	min-height: auto;
+	max-height: 700px;
+	overflow: auto;
   }
 }
 @media only screen and (max-width:782px) {
   #dashboard-main-outputs .dashboard-main-wrapper {
-    width: 98.5%;
+	width: 98.5%;
   }
   #dashboard-main-outputs { 
-      margin-top: 20px;
+	  margin-top: 20px;
   }
   #dashboard-main-outputs input[type=radio]:checked:before {
-    margin:0 !important;
+	margin:0 !important;
   }
 }
