@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.5
-Stable tag: 6.1.1
+Stable tag: 6.1.3
 License: GPLv2 or later
 Donate link: https://mediaron.com/contribute/
 
@@ -102,6 +102,11 @@ Check out our video on how the automatic updating works in WordPress.
 For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Changelog ==
+
+= 6.1.3 =
+Released 2016-06-21
+
+* Bug fix: email addresses for background updates were not working for non-core updates.
 
 = 6.1.1 =
 Released 2016-06-08
@@ -220,6 +225,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 6.1.3 =
+Bug fix: email addresses for background updates were not working for non-core updates.
 
 = 6.1.1 =
 Fixed bulk action issue for bottom options in plugins and themes tab.

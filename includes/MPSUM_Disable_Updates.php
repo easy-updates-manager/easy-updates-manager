@@ -157,6 +157,7 @@ class MPSUM_Disable_Updates {
 		}
 		
 		//Automatic Updates E-mail Address
+		add_filter( 'automatic_updates_debug_email', array( $this, 'maybe_change_automatic_update_email' ), 50 );
 		add_filter( 'auto_core_update_email', array( $this, 'maybe_change_automatic_update_email' ), 50 );
 		
 						
