@@ -81,7 +81,7 @@ class MPSUM_Admin_Plugins {
 		if ( !current_user_can( 'update_plugins' ) ) return;
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
 		if ( !isset( $_GET[ 'tab' ] ) || $_GET[ 'tab' ] != $this->tab ) return;
-		if ( !isset( $_REQUEST[ 'action' ] ) || ! isset( $_REQUEST[ 'action2' ] ) ) return;
+		if ( !isset( $_REQUEST[ 'action' ] ) && ! isset( $_REQUEST[ 'action2' ] ) ) return;
 		if ( !isset( $_REQUEST[ '_mpsum' ] ) ) return;
 		
 		if ( isset( $_REQUEST['action'] ) && -1 != $_REQUEST[ 'action' ] )

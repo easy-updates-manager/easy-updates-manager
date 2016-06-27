@@ -82,7 +82,7 @@ class MPSUM_Admin_Themes {
 		if ( !current_user_can( 'update_themes' ) ) return;
 		if ( !isset( $_GET[ 'page' ] ) || $_GET[ 'page' ] != $this->slug ) return;
 		if ( !isset( $_GET[ 'tab' ] ) || $_GET[ 'tab' ] != $this->tab ) return;
-		if ( !isset( $_REQUEST[ 'action' ] ) || ! isset( $_REQUEST[ 'action2' ] ) ) return;
+		if ( !isset( $_REQUEST[ 'action' ] ) && ! isset( $_REQUEST[ 'action2' ] ) ) return;
 		if ( !isset( $_REQUEST[ '_mpsum' ] ) ) return;
 		
 		if ( isset( $_REQUEST['action'] ) && -1 != $_REQUEST[ 'action' ] )
@@ -90,6 +90,7 @@ class MPSUM_Admin_Themes {
 
 		if ( isset( $_REQUEST[ 'action2' ] ) && -1 != $_REQUEST[ 'action2' ] )
 			$action = $_REQUEST[ 'action2' ];
+			
 		
 		//Build Query Args
 		$paged = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : false;
