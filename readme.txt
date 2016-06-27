@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.5
-Stable tag: 6.1.3
+Stable tag: 6.1.5
 License: GPLv2 or later
 Donate link: https://mediaron.com/contribute/
 
@@ -102,6 +102,11 @@ Check out our video on how the automatic updating works in WordPress.
 For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Changelog ==
+
+= 6.1.5 =
+Released 2016-06-27
+
+* Bug Fix: Quick links in plugin and themes tab weren't working.
 
 = 6.1.3 =
 Released 2016-06-21
@@ -226,26 +231,8 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 
 == Upgrade Notice ==
 
+= 6.1.5 =
+Bug Fix: Quick links in plugin and themes tab weren't working.
+
 = 6.1.3 =
 Bug fix: email addresses for background updates were not working for non-core updates.
-
-= 6.1.1 =
-Fixed bulk action issue for bottom options in plugins and themes tab.
-
-= 6.1.0 =
-Filters for logs. Can now change email address for automatic updates.
-
-= 6.0.5 =
-New filter `mpsum_default_options`. Style fixes for list views.
-
-= 6.0.3 =
-Allow translation logging for automatic updates. Fix PHP warning on plugins page in multisite.
-
-= 6.0.1 =
-Bug fix: Resetting options and enabling logs does not enable logging.
-
-= 6.0.0 =
-LOGS! A highly requested feature is now here. Please keep in mind we consider logs still in beta
-
-= 5.4.5 =
-Dashboard improvements and multisite fixes
