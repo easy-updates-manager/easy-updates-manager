@@ -2,8 +2,8 @@
 Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
-Tested up to: 4.5
-Stable tag: 6.1.5
+Tested up to: 4.6
+Stable tag: 6.1.8
 License: GPLv2 or later
 Donate link: https://mediaron.com/contribute/
 
@@ -102,6 +102,11 @@ Check out our video on how the automatic updating works in WordPress.
 For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Changelog ==
+
+= 6.1.8 =
+Released 2016-07-06
+
+* Manual logs for translations now work with WordPress 4.6.
 
 = 6.1.5 =
 Released 2016-06-27
@@ -230,6 +235,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 6.1.8 =
+Manual logs for translations now work with WordPress 4.6.
 
 = 6.1.5 =
 Bug Fix: Quick links in plugin and themes tab weren't working.
