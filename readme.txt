@@ -104,7 +104,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 == Changelog ==
 
 = 6.1.8 =
-Released 2016-07-06
+Released 2016-07-07
 
 * Manual logs for translations now work with WordPress 4.6.
 
