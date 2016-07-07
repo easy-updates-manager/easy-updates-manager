@@ -342,6 +342,7 @@ class MPSUM_Logs {
 						 $wpdb->insert( 
 							 $tablename,
 							 array(
+								 'user_id' => $user_id,
 								 'name'	   => $name . ' (' . $translation[ 'language' ] . ')',
 								 'type'	   => $translation[ 'type' ],
 								 'version' => $version,
@@ -350,6 +351,7 @@ class MPSUM_Logs {
 								 'date'	   => current_time( 'mysql' ),
 							 ),
 							 array(
+								 '%d',
 								 '%s',
 								 '%s',
 								 '%s',
