@@ -152,7 +152,7 @@ class MPSUM_Admin {
 		new MPSUM_Admin_Core( self::get_slug() );
 		new MPSUM_Admin_Advanced( self::get_slug() );
 		
-		
+		MPSUM_Admin_Screen_Options::maybe_save_dashboard_screen_option();
 		
 	}	
 	
@@ -195,8 +195,19 @@ class MPSUM_Admin {
             return;	
         }
         
-    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20160429', true );
-    	wp_localize_script( 'mpsum_dashboard', 'mpsum', array( 'spinner' => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ) ) );
+    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20160817', true );
+    	
+    	$user_id = get_current_user_id();
+		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
+		if ( ! $dashboard_showing ) {
+			$dashboard_showing = 'on';
+		}
+    	wp_localize_script( 'mpsum_dashboard', 'mpsum', array( 
+    		'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
+    		'tabs'              => _x( 'Tabs', 'Show or hide admin tabs', 'stops-core-theme-and-plugin-updates' ),
+    		'dashboard'         => _x( 'Show Dashboard', 'Show or hide the dashboard', 'stops-core-theme-and-plugin-updates' ),
+    		'dashboard_showing' => $dashboard_showing,
+    	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20160502' );
     }
 	

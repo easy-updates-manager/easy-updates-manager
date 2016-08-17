@@ -77,4 +77,18 @@ class MPSUM_Admin_Screen_Options {
 		add_screen_option( 'per_page', $args );
 	}
 	
+	public static function maybe_save_dashboard_screen_option() {
+		if ( isset( $_REQUEST[ 'mpsum_dashboard' ] ) && isset( $_REQUEST[ 'screenoptionnonce' ] ) ) {
+			if ( ! wp_verify_nonce( $_REQUEST[ 'screenoptionnonce' ], 'screen-options-nonce' ) ) {
+				return;
+			}
+			$user_id = get_current_user_id();
+			$dashboard = sanitize_text_field( $_REQUEST[ 'mpsum_dashboard' ] );
+			if ( 'on' !== $dashboard ) {
+				$dashboard = 'off';
+			}
+			update_user_meta( $user_id, 'mpsum_dashboard', $dashboard );
+		}
+	}
+	
 }
