@@ -266,12 +266,16 @@ class MPSUM_Admin {
 			<?php
             $core_options = MPSUM_Updates_Manager::get_options( 'core' );
 			$tabs = array();
-			$tabs[] = array(
-    			'url'    => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
-    			'label'  => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
-    			'get'    => 'dashboard' /*$_GET variable*/,
-    			'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
-            );
+			
+			if ( 'off' !== get_user_meta( get_current_user_id(), 'mpsum_dashboard', true ) ) {
+				$tabs[] = array(
+	    			'url'    => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
+	    			'label'  => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
+	    			'get'    => 'dashboard' /*$_GET variable*/,
+	    			'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
+	            );
+			}
+			
             $tabs[] = array(
 				'url'    => add_query_arg( array( 'tab' => 'main' ), self::get_url() ), /* URL to the tab */
 				'label'  => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
@@ -308,6 +312,9 @@ class MPSUM_Admin {
 			if ( $tabs && !empty( $tabs ) )  {
 				$tab_html =  '<h2 class="nav-tab-wrapper">';
 				$active_tab = isset( $_GET[ 'tab' ] ) ? sanitize_text_field( $_GET[ 'tab' ] ) : 'dashboard';
+				if ( 'off' === get_user_meta( get_current_user_id(), 'mpsum_dashboard', true ) && 'dashboard' == $active_tab ) {
+					$active_tab = 'main';
+				}
 				$do_action = false;
 				foreach( $tabs as $tab ) {
 					$classes = array( 'nav-tab' );
@@ -325,6 +332,7 @@ class MPSUM_Admin {
 					echo $tab_html;	
 				}
 				if ( $do_action ) {
+					
 					/**
 					* Perform a tab action.
 					*
