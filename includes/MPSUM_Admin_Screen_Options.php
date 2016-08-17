@@ -67,6 +67,15 @@ class MPSUM_Admin_Screen_Options {
 		}
 	} //end get_instance
 	
+	/**
+	* Set screen options for items per page.
+	*
+	* Set screen options for items per page.
+	*
+	* @since 6.2.0 
+	* @access private
+	*
+	*/
 	private function set_screen_options() {
 		$args = array(
 			'label' => __( 'Items Per Page', 'stops-core-theme-and-plugin-updates' ),
@@ -77,6 +86,15 @@ class MPSUM_Admin_Screen_Options {
 		add_screen_option( 'per_page', $args );
 	}
 	
+	/**
+	* Save dashboard screen options.
+	*
+	* Save dashboard screen options.
+	*
+	* @since 6.2.0 
+	* @access static
+	*
+	*/
 	public static function maybe_save_dashboard_screen_option() {
 		if ( isset( $_REQUEST[ 'mpsum_dashboard' ] ) && isset( $_REQUEST[ 'screenoptionnonce' ] ) ) {
 			if ( ! wp_verify_nonce( $_REQUEST[ 'screenoptionnonce' ], 'screen-options-nonce' ) ) {
