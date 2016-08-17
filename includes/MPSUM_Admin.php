@@ -63,7 +63,22 @@ class MPSUM_Admin {
 	*/
 	private function __construct() {
 		add_action( 'init', array( $this, 'init' ), 9 );
+		add_filter( 'set-screen-option', array( $this, 'add_screen_option_save' ), 10, 3 );
 	} //end constructor
+	
+	/**
+	* Save the screen options.
+	*
+	* Save the screen options.
+	*
+	* @since 6.2.0 
+	* @access static
+	*
+	* @return string URL to the admin panel page.
+	*/
+	public function add_screen_option_save( $status, $option, $value ) {
+		return MPSUM_Admin_Screen_Options::save_options( $status, $option, $value );
+	}
 	
 	/**
 	* Return the URL to the admin panel page.
@@ -156,6 +171,21 @@ class MPSUM_Admin {
 		new MPSUM_Admin_Help();
 	}
 	
+	/**
+	* Initializes the screen options.
+	*
+	* Initializes the screen options.
+	*
+	* @since 6.2
+	* @access public
+	* @see init
+	* @internal Uses load_{$hook} action
+	*
+	*/
+	public function init_screen_options() {
+		MPSUM_Admin_Screen_Options::run();
+	}
+	
 	public function enqueue_scripts() {
     	$pagenow = isset( $_GET[ 'page' ] ) ? $_GET[  'page' ] : false;
     	$is_active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : false;
@@ -185,6 +215,7 @@ class MPSUM_Admin {
 		$hook = add_dashboard_page( __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ), 'install_plugins', self::get_slug(), array( $this, 'output_admin_interface' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( "load-$hook", array( $this, 'init_help_screen' ) );
+		add_action( "load-$hook", array( $this, 'init_screen_options' ) );
 	}
 	
 	/**
@@ -202,6 +233,7 @@ class MPSUM_Admin {
 		$hook = add_dashboard_page( __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ) , __( 'Updates Options', 'stops-core-theme-and-plugin-updates' ), 'install_plugins', self::get_slug(), array( $this, 'output_admin_interface' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( "load-$hook", array( $this, 'init_help_screen' ) );	
+		add_action( "load-$hook", array( $this, 'init_screen_options' ) );
 	}
 	
 	/**

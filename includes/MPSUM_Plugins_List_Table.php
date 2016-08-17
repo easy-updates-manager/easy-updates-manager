@@ -122,8 +122,13 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		}
 
 		$total_this_page = $totals[ $status ];
-
-		$plugins_per_page = 999;
+		
+		// Get plugins per page
+		$user_id = get_current_user_id();
+		$plugins_per_page = get_user_meta( $user_id, 'mpsum_items_per_page', true );
+		if ( ! is_numeric( $plugins_per_page ) ) {
+			$plugins_per_page = 100;
+		}
 		
 		$start = ( $page - 1 ) * $plugins_per_page;
 

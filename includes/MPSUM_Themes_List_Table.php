@@ -127,7 +127,13 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			}
 		}
 		$total_this_page = count( $themes[ 'all' ] );
-		$themes_per_page = 999;
+		
+		// Get themes per page
+		$user_id = get_current_user_id();
+		$themes_per_page = get_user_meta( $user_id, 'mpsum_items_per_page', true );
+		if ( ! is_numeric( $themes_per_page ) ) {
+			$themes_per_page = 100;
+		}
 		
 		$start = ( $page - 1 ) * $themes_per_page;
 
