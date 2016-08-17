@@ -86,7 +86,6 @@ CONTENT4;
 <ul>
 <li><a href="http://profiles.wordpress.org/kidsguide/">Matthew (kidsguide)</a></li>
 <li><a href="http://profiles.wordpress.org/ronalfy/">Ronald Huereca (ronalfy)</a></li>
-<li><a href="http://profiles.wordpress.org/pixolin/">Bego Mario Garde (pixolin)</a></li>
 <li><a href="http://profiles.wordpress.org/roary86/">Roary Tubbs</a></li>
 <li><a href="http://profiles.wordpress.org/bigwing">BigWing Interactive</a></li>
 </ul>
