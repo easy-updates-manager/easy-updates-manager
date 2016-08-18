@@ -322,7 +322,7 @@ class MPSUM_Admin_Core {
 					}	
 					?>
     				<input type="text" name="options[email_addresses]" value="<?php echo esc_attr( $email_addresses ); ?>" style="width: 50%" /><br />
-    				<em><?php echo esc_html_e( 'Emails can be comma separated', 'stops-core-theme-and-plugin-updates' ); ?></em>
+    				<p class="description"><?php echo esc_html_e( 'Emails can be comma separated', 'stops-core-theme-and-plugin-updates' ); ?></p>
 				</td>
 			</tr>
 		</table>
