@@ -53,9 +53,10 @@ If you want to contribute to the translation, please go to https://translate.wor
 9. Enable/Disable updates and automatic updates individually for themes
 10. Advanced options tab
 11. Help tab
-12. Enable Logs in Advanced options tab
-13. Disable or Clear logs
-14. Logs tab
+12. Screen Options
+13. Enable Logs in Advanced options tab
+14. Disable or Clear logs
+15. Logs tab
 
 == Installation ==
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
