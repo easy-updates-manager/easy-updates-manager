@@ -60,7 +60,7 @@ class MPSUM_Logs {
 		}
 		
 		add_action( 'automatic_updates_complete', array( $this, 'automatic_updates' ) );
-		add_action( 'upgrader_process_complete', array( $this, 'manual_updates' ), 10, 2 );
+		add_action( 'upgrader_process_complete', array( $this, 'manual_updates' ), 5, 2 );
 	
 	} //end constructor
 	
@@ -233,7 +233,6 @@ class MPSUM_Logs {
 		$user_id = get_current_user_id();
 		if ( 0 == $user_id ) return; // If there is no user, this is not a manual update
 		
-		
 		switch( $options[ 'type' ] ) {
 			case 'core':
 				 include( ABSPATH . WPINC . '/version.php' );
@@ -300,13 +299,15 @@ class MPSUM_Logs {
 				break;
 			case 'theme':
 				if ( isset( $options[ 'themes' ] ) && !empty( $options[ 'themes' ] ) ) {
-					$theme_data_from_cache = wp_get_themes();
+					$theme_data_from_cache = get_site_transient( 'update_themes' );
 					wp_clean_themes_cache();
 					foreach( $options[ 'themes' ] as $theme ) {
 						$theme_data = wp_get_theme( $theme );
-						$theme_from_cache = $theme_data_from_cache[ $theme ];
-						if ( $theme_data->exists() ) {
-							$status = ( $theme_from_cache->get( 'Version' ) == $theme_data->get( 'Version' ) ) ? 0 : 1;
+						$theme_from_cache_version = isset( $theme_data_from_cache->checked[ $theme ] ) ? $theme_data_from_cache->checked[ $theme ] : false;
+						error_log( $theme_from_cache_version );
+						error_log( $theme_data->get( 'Version' ) );
+						if ( $theme_data->exists() && false !== $theme_from_cache_version ) {
+							$status = ( $theme_from_cache_version == $theme_data->get( 'Version' ) ) ? 0 : 1;
 							$wpdb->insert( 
 								 $tablename,
 								 array(

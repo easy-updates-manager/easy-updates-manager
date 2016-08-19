@@ -74,6 +74,12 @@ class MPSUM_Updates_Manager {
 		
 		spl_autoload_register( array( $this, 'loader' ) );
 		
+		// Logging
+		$options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( isset( $options[ 'logs' ] ) && 'on' == $options[ 'logs' ] ) {
+    		MPSUM_Logs::run();
+		}
+		
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 	} //end constructor
 
@@ -279,12 +285,6 @@ class MPSUM_Updates_Manager {
 		}
 		if ( false === $disable_updates_skip ) {
 			MPSUM_Disable_Updates::run();
-		}
-		
-		// Logging
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		if ( isset( $options[ 'logs' ] ) && 'on' == $options[ 'logs' ] ) {
-    		MPSUM_Logs::run();
 		}
 		
 		add_action( 'wp_ajax_mpsum_ajax_action', array( $this, 'ajax_update_option' ) );
