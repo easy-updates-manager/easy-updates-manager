@@ -263,15 +263,15 @@ class MPSUM_Logs {
 				if ( ! function_exists( 'get_plugins' ) ) {
 					require_once ABSPATH . 'wp-admin/includes/plugin.php';
 				}
-				$plugins_from_cache = get_plugins();
+				$plugins_from_cache = get_site_transient( 'update_plugins' );
 				wp_clean_plugins_cache();
 				$plugins = get_plugins();
 				if ( !empty( $plugins ) && isset( $options[ 'plugins' ] ) && !empty( $options[ 'plugins' ] ) ) {
 					foreach( $options[ 'plugins' ] as $plugin ) {
 						$plugin_data = isset( $plugins[ $plugin ] ) ? $plugins[ $plugin ] : false;
-						$plugin_data_cache = isset( $plugins_from_cache[ $plugin ] ) ? $plugins_from_cache[ $plugin ] : false;
-						if ( false !== $plugin_data && false !== $plugin_data_cache ) {
-							$status = ( $plugin_data[ 'Version' ] == $plugin_data_cache[ 'Version' ] ) ? 0 : 1;
+						$plugins_from_cache = isset( $plugins_from_cache->checked[ $plugin ] ) ? $plugins_from_cache->checked[ $plugin ] : false;
+						if ( false !== $plugin_data && false !== $plugins_from_cache ) {
+							$status = ( $plugin_data[ 'Version' ] == $plugins_from_cache ) ? 0 : 1;
 							$wpdb->insert( 
 								 $tablename,
 								 array(
