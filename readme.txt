@@ -104,6 +104,12 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 6.2.2 =
+Released 2016-08-19
+
+* Bug fix: manual updates of plugins and themes were showing as failures
+* Bug fix: radio boxes on mobile were squished
+
 = 6.2.0 =
 Released 2016-08-17
 
@@ -241,6 +247,9 @@ In version 5.0.0 we completely re-wrote the plugin to offer a faster and more se
 * New contributor: <a href="https://profiles.wordpress.org/ronalfy">ronalfy</a>
 
 == Upgrade Notice ==
+
+= 6.2.2 =
+Fixing issue with manual updates for logs. Fixing CSS issue for mobile.
 
 = 6.2.0 =
 Added screen options for items per page and disabling the dashboard.
