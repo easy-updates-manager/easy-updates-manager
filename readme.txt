@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.6
-Stable tag: 6.2.0
+Stable tag: 6.2.2
 License: GPLv2 or later
 Donate link: https://mediaron.com/contribute/
 
