@@ -4,7 +4,7 @@ Plugin Name: Easy Updates Manager
 Plugin URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Description: Manage and disable WordPress updates, including core, plugin, theme, and automatic updates - Works with Multisite and has built-in logging features.
 Author: Easy Updates Manager Team
-Version: 6.2.3
+Version: 6.2.5
 Requires at least: 4.4
 Author URI: https://wordpress.org/plugins/stops-core-theme-and-plugin-updates/
 Contributors: kidsguide, ronalfy
@@ -84,9 +84,7 @@ class MPSUM_Updates_Manager {
 	*
 	*/
 	private function __construct() {
-		/* Localization Code */
-		load_plugin_textdomain( 'stops-core-theme-and-plugin-updates', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-		
+
 		spl_autoload_register( array( $this, 'loader' ) );
 		
 		// Logging
@@ -94,9 +92,24 @@ class MPSUM_Updates_Manager {
 		if ( isset( $options[ 'logs' ] ) && 'on' == $options[ 'logs' ] ) {
     		MPSUM_Logs::run();
 		}
-		
+
+		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 	} //end constructor
+
+	/**
+	 * Run code during the init action.
+	 *
+	 * Run code during the init action.
+	 *
+	 * @since 6.2.5 
+	 * @access public
+	 *
+	 */
+	public function init() {
+		/* Localization Code */
+		load_plugin_textdomain( 'stops-core-theme-and-plugin-updates', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	}
 
 	/**
 	* Return the absolute path to an asset.
