@@ -2,10 +2,9 @@
 Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
-Tested up to: 4.6.1
-Stable tag: 6.2.3
+Tested up to: 4.7
+Stable tag: 6.2.5
 License: GPLv2 or later
-Donate link: https://mediaron.com/contribute/
 
 Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. Also works with WordPress Multisite.
 
@@ -104,6 +103,11 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 6.2.5 =
+Released 2016-11-14
+
+* Bug fix: internationalization was in the wrong place
+
 = 6.2.3 =
 Released 2016-08-21
 
@@ -134,6 +138,9 @@ Released 2016-06-27
 For past changelogs, please visit our <a href="https://github.com/easy-updates-manager/easy-updates-manager/releases">GitHub</a>.
 
 == Upgrade Notice ==
+
+= 6.2.5 =
+Bug fix: internationalization was in the wrong place
 
 = 6.2.3 =
 Bug fix: options setting on plugins screen disappeared
