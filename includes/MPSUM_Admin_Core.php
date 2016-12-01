@@ -139,14 +139,13 @@ class MPSUM_Admin_Core {
 			}
 			$options_to_save[ 'email_addresses' ] = $email_addresses_to_save;
 		}
-		
+				
 		foreach( $options as $key => $value ) {
 			if ( 'email_addresses' == $key ) continue;
 			
 			$option_value = sanitize_text_field( $value );
 			$options_to_save[ sanitize_key( $key ) ] = $option_value;
 		}
-					//die( '<pre>' . print_r( $options_to_save, true ) );
 
 		MPSUM_Updates_Manager::update_options( $options_to_save, 'core' );
 
@@ -184,6 +183,10 @@ class MPSUM_Admin_Core {
 
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		<?php
+		$logs = isset( $options[ 'logs' ] ) ? $options[ 'logs' ] : 'off';	
+		?>
+		<input type="hidden" name="options[logs]" value="<?php echo esc_attr( $logs ); ?>" />
 		<h3><?php esc_html_e( 'Global Settings', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<table class="form-table">
 			<tr>
