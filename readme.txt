@@ -97,6 +97,10 @@ Check out our video on how the automatic updating works in WordPress.
 
 [youtube https://www.youtube.com/watch?v=Z6dPPv8Wttc]
 
+= Does Logging work with Jetpack Manage? =
+
+Not currently.
+
 = Additional Information and FAQ =
 
 For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
