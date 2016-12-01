@@ -149,6 +149,9 @@ For past changelogs, please visit our <a href="https://github.com/easy-updates-m
 
 == Upgrade Notice ==
 
+= 6.2.7 =
+Bug fix: logs disabled when general settings updated.
+
 = 6.2.5 =
 Bug fix: internationalization was in the wrong place
 
