@@ -20,6 +20,24 @@ class MPSUM_Logs {
 	private static $instance = null;
 	
 	/**
+	 * Holds the class instance.
+	 *
+	 * @since 6.2.9
+	 * @access private
+	 * @var stdClass plugins
+	 */
+	private $plugins_cache = null;
+	
+	/**
+	 * Holds the class instance.
+	 *
+	 * @since 6.2.9
+	 * @access private
+	 * @var stdClass $themes
+	 */
+	private $themes_cache = null;
+	
+	/**
 	* Holds version number of the table
 	*
 	* @since 6.0.0
@@ -58,6 +76,10 @@ class MPSUM_Logs {
 			$this->build_table();
 			update_site_option( 'mpsum_log_table_version', $this->version );
 		}
+		
+		// Set plugin/theme variables for log error checking
+		$this->plugins_cache = get_site_transient( 'update_plugins' );
+		$this->themes_cache = get_site_transient( 'update_themes' );
 		
 		add_action( 'automatic_updates_complete', array( $this, 'automatic_updates' ) );
 		add_action( 'upgrader_process_complete', array( $this, 'manual_updates' ), 5, 2 );
@@ -263,8 +285,7 @@ class MPSUM_Logs {
 				if ( ! function_exists( 'get_plugins' ) ) {
 					require_once ABSPATH . 'wp-admin/includes/plugin.php';
 				}
-				$plugins_from_cache = get_site_transient( 'update_plugins' );
-				wp_clean_plugins_cache();
+				$plugins_from_cache = $this->plugins_cache;
 				$plugins = get_plugins();
 				if ( !empty( $plugins ) && isset( $options[ 'plugins' ] ) && !empty( $options[ 'plugins' ] ) ) {
 					foreach( $options[ 'plugins' ] as $plugin ) {
@@ -299,8 +320,7 @@ class MPSUM_Logs {
 				break;
 			case 'theme':
 				if ( isset( $options[ 'themes' ] ) && !empty( $options[ 'themes' ] ) ) {
-					$theme_data_from_cache = get_site_transient( 'update_themes' );
-					wp_clean_themes_cache();
+					$theme_data_from_cache = $this->themes_cache;
 					foreach( $options[ 'themes' ] as $theme ) {
 						$theme_data = wp_get_theme( $theme );
 						$theme_from_cache_version = isset( $theme_data_from_cache->checked[ $theme ] ) ? $theme_data_from_cache->checked[ $theme ] : false;
