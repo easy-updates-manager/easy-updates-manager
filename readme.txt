@@ -109,6 +109,7 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 = 6.2.9 =
 Released 2016-12-07
+
 * Bug fix: Manual logs not logging plugin or theme updates
 
 = 6.2.7 =
