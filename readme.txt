@@ -117,37 +117,6 @@ Released 2016-12-01
 * Bug fix: Saving general settings disables logs
 * Logs now out of beta. Woo hoo!
 
-= 6.2.5 =
-Released 2016-11-14
-
-* Bug fix: internationalization was in the wrong place
-
-= 6.2.3 =
-Released 2016-08-21
-
-* Bug fix: options setting on plugins screen disappeared
-
-= 6.2.2 =
-Released 2016-08-19
-
-* Bug fix: manual updates of plugins and themes were showing as failures
-* Bug fix: radio boxes on mobile were squished
-
-= 6.2.0 =
-Released 2016-08-17
-
-* Added screen options for items per page and disabling the dashboard.
-
-= 6.1.8 =
-Released 2016-07-07
-
-* Manual logs for translations now work with WordPress 4.6.
-
-= 6.1.5 =
-Released 2016-06-27
-
-* Bug Fix: Quick links in plugin and themes tab weren't working.
-
 
 For past changelogs, please visit our <a href="https://github.com/easy-updates-manager/easy-updates-manager/releases">GitHub</a>.
 
@@ -158,24 +127,3 @@ Bug fix: manual log updates not working with 4.7
 
 = 6.2.7 =
 Bug fix: logs disabled when general settings updated
-
-= 6.2.5 =
-Bug fix: internationalization was in the wrong place
-
-= 6.2.3 =
-Bug fix: options setting on plugins screen disappeared
-
-= 6.2.2 =
-Fixing issue with manual updates for logs. Fixing CSS issue for mobile.
-
-= 6.2.0 =
-Added screen options for items per page and disabling the dashboard.
-
-= 6.1.8 =
-Manual logs for translations now work with WordPress 4.6.
-
-= 6.1.5 =
-Bug Fix: Quick links in plugin and themes tab weren't working.
-
-= 6.1.3 =
-Bug fix: email addresses for background updates were not working for non-core updates.
