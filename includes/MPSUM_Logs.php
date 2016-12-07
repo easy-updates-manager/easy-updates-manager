@@ -327,7 +327,7 @@ class MPSUM_Logs {
 
 					$theme_data_from_cache = get_site_transient( 'update_themes' );
 					wp_clean_themes_cache();
-					if ( false === $plugins_from_cache ) {
+					if ( false === $theme_data_from_cache ) {
 						$theme_data_from_cache = $this->themes_cache;	
 					}
 					foreach( $options[ 'themes' ] as $theme ) {
