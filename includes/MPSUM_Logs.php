@@ -254,7 +254,6 @@ class MPSUM_Logs {
 		$tablename = $wpdb->base_prefix . 'eum_logs';
 		$user_id = get_current_user_id();
 		if ( 0 == $user_id ) return; // If there is no user, this is not a manual update
-		
 		switch( $options[ 'type' ] ) {
 			case 'core':
 				 include( ABSPATH . WPINC . '/version.php' );
@@ -294,9 +293,9 @@ class MPSUM_Logs {
 				if ( !empty( $plugins ) && isset( $options[ 'plugins' ] ) && !empty( $options[ 'plugins' ] ) ) {
 					foreach( $options[ 'plugins' ] as $plugin ) {
 						$plugin_data = isset( $plugins[ $plugin ] ) ? $plugins[ $plugin ] : false;
-						$plugins_from_cache = isset( $plugins_from_cache->checked[ $plugin ] ) ? $plugins_from_cache->checked[ $plugin ] : false;
-						if ( false !== $plugin_data && false !== $plugins_from_cache ) {
-							$status = ( $plugin_data[ 'Version' ] == $plugins_from_cache ) ? 0 : 1;
+						$current_plugin = isset( $plugins_from_cache->checked[ $plugin ] ) ? $plugins_from_cache->checked[ $plugin ] : false;
+						if ( false !== $plugin_data && false !== $current_plugin ) {
+							$status = ( $plugin_data[ 'Version' ] == $current_plugin ) ? 0 : 1;
 							$wpdb->insert( 
 								 $tablename,
 								 array(
@@ -333,8 +332,6 @@ class MPSUM_Logs {
 					foreach( $options[ 'themes' ] as $theme ) {
 						$theme_data = wp_get_theme( $theme );
 						$theme_from_cache_version = isset( $theme_data_from_cache->checked[ $theme ] ) ? $theme_data_from_cache->checked[ $theme ] : false;
-						error_log( $theme_from_cache_version );
-						error_log( $theme_data->get( 'Version' ) );
 						if ( $theme_data->exists() && false !== $theme_from_cache_version ) {
 							$status = ( $theme_from_cache_version == $theme_data->get( 'Version' ) ) ? 0 : 1;
 							$wpdb->insert( 
