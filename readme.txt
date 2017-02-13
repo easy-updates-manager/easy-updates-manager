@@ -2,8 +2,8 @@
 Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
-Tested up to: 4.7
-Stable tag: 6.2.9
+Tested up to: 4.7.2
+Stable tag: 6.2.11
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. Also works with WordPress Multisite.
@@ -107,6 +107,11 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 6.2.11 =
+Released 2016-02-13
+
+* Bug fix: Manual logs only logging one plugin update even if there are multiple
+
 = 6.2.9 =
 Released 2016-12-07
 
@@ -122,6 +127,9 @@ Released 2016-12-01
 For past changelogs, please visit our <a href="https://github.com/easy-updates-manager/easy-updates-manager/releases">GitHub</a>.
 
 == Upgrade Notice ==
+
+= 6.2.11 =
+Bug fix: Manual logs only logging one plugin update even if there are multiple
 
 = 6.2.9 =
 Bug fix: manual log updates not working with 4.7
