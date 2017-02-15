@@ -66,7 +66,7 @@ class MPSUM_Admin_Dashboard {
             $options[ 'translation_updates' ] = 'off'; 
         }
 		?>
-		<div id="app">d</div>
+		<div id="eum-dashboard-app"></div>
 		<form id="dashboard-form" method="post">
         <?php
         wp_nonce_field( 'mpsum_options_save', '_mpsum' );
