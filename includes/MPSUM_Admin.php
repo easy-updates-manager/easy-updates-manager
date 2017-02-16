@@ -221,7 +221,7 @@ class MPSUM_Admin {
 					'title' => 'WordPress Core Updates',
 					'name' => 'core_updates',
 					'disabled' => false,
-					'checked' => true,
+					'checked' => false,
 					'context' => 'core'
 				)
 				

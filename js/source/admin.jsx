@@ -1,15 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import ToggleItem from './components/toggleitem.jsx';
 import ToggleWrapper from './components/togglewrapper.jsx';
 
-
-
-
-
-
 class App extends React.Component {
-	
 	
 	createWrapper( title, items ) {
 		return <ToggleWrapper class="" title={title} items={items} key={title} />
