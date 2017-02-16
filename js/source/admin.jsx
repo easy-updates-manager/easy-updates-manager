@@ -82,7 +82,7 @@ class ToggleWrapper extends React.Component {
 	}
 	createToggleComponent( item ) {
 		return (
-			<div className="dashboard-item-wrapper">
+			<div className="dashboard-item-wrapper" key={item.name}>
 				<ToggleItem 
 					title={item.title} 
 					name={item.name} 
