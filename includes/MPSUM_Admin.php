@@ -213,7 +213,16 @@ class MPSUM_Admin {
 					'title' => 'All Updates',
 					'name' => 'all_updates',
 					'disabled' => false,
-					'checked' => true
+					'checked' => true,
+					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'WordPress Core Updates',
+					'name' => 'core_updates',
+					'disabled' => false,
+					'checked' => true,
+					'context' => 'core'
 				)
 				
 			),
@@ -226,7 +235,8 @@ class MPSUM_Admin {
 					'title' => 'Major Releases',
 					'name' => 'majorReleases',
 					'disabled' => false,
-					'checked' => false
+					'checked' => false,
+					'context' => 'core'
 				)
 			)
 		);
