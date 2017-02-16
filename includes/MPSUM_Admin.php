@@ -202,11 +202,43 @@ class MPSUM_Admin {
 		if ( ! $dashboard_showing ) {
 			$dashboard_showing = 'on';
 		}
+		$core_options = MPSUM_Updates_Manager::get_options();
+		
+		$boxes = array();
+		$boxes[] = array(
+			'title' => 'WordPress Updates',
+			'items' => array(
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'All Updates',
+					'name' => 'all_updates',
+					'disabled' => false,
+					'checked' => true
+				)
+				
+			),
+		);
+		$boxes[] = array(
+			'title' => 'Automatic Updates',
+			'items' => array(
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'Major Releases',
+					'name' => 'majorReleases',
+					'disabled' => false,
+					'checked' => false
+				)
+			)
+		);
+		
     	wp_localize_script( 'mpsum_dashboard', 'mpsum', array( 
     		'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
     		'tabs'              => _x( 'Tabs', 'Show or hide admin tabs', 'stops-core-theme-and-plugin-updates' ),
     		'dashboard'         => _x( 'Show Dashboard', 'Show or hide the dashboard', 'stops-core-theme-and-plugin-updates' ),
     		'dashboard_showing' => $dashboard_showing,
+    		'enabled' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
+    		'disabled' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
+    		'json_options' => $boxes
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20160819' );
     }
