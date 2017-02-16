@@ -186,27 +186,21 @@ class MPSUM_Admin {
 		MPSUM_Admin_Screen_Options::run();
 	}
 	
-	public function enqueue_scripts() {
-    	$pagenow = isset( $_GET[ 'page' ] ) ? $_GET[  'page' ] : false;
-    	$is_active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : false;
-    	
-    	//Check to make sure we're on the mpsum admin page
-    	if ( $pagenow != 'mpsum-update-options' ) {
-            return;	
-        }
-        
-    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20160817', true );
-    	
-    	$user_id = get_current_user_id();
-		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
-		if ( ! $dashboard_showing ) {
-			$dashboard_showing = 'on';
-		}
+	/**
+	 * Returns JSON options for use in React
+	 *
+	 * Returns JSON options for use in React.
+	 *
+	 * @since 6.3
+	 * @access public
+	 */
+	public function get_json_options() {
 		$core_options = MPSUM_Updates_Manager::get_options();
 		
 		$boxes = array();
 		$boxes[] = array(
 			'title' => 'WordPress Updates',
+			'component' => 'ToggleWrapper',
 			'items' => array(
 				array(
 					'component' => 'ToggleItem',
@@ -240,6 +234,26 @@ class MPSUM_Admin {
 				)
 			)
 		);
+		return $boxes;
+	}
+	
+	public function enqueue_scripts() {
+    	$pagenow = isset( $_GET[ 'page' ] ) ? $_GET[  'page' ] : false;
+    	$is_active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : false;
+    	
+    	//Check to make sure we're on the mpsum admin page
+    	if ( $pagenow != 'mpsum-update-options' ) {
+            return;	
+        }
+        
+    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20160817', true );
+    	
+    	$user_id = get_current_user_id();
+		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
+		if ( ! $dashboard_showing ) {
+			$dashboard_showing = 'on';
+		}
+		
 		
     	wp_localize_script( 'mpsum_dashboard', 'mpsum', array( 
     		'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
@@ -248,7 +262,7 @@ class MPSUM_Admin {
     		'dashboard_showing' => $dashboard_showing,
     		'enabled' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
     		'disabled' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
-    		'json_options' => $boxes
+    		'json_options' => $this->get_json_options()
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20160819' );
     }
