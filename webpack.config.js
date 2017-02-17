@@ -5,7 +5,7 @@ var JS_SOURCE_DIR = path.resolve(__dirname, 'js/source');
 var JS_BUILD_DIR = path.resolve(__dirname, 'js');
 
 var config = {
-  entry: JS_SOURCE_DIR + '/admin.jsx',
+  entry: JS_SOURCE_DIR + '/init.jsx',
   output: {
 	path: JS_BUILD_DIR,
 	filename: 'admin.js'

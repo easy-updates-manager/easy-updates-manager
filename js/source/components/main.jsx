@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import ToggleWrapper from './components/togglewrapper.jsx';
+import ToggleWrapper from './togglewrapper.jsx';
 
 let EUM = class App extends React.Component {
 	constructor(props) {
@@ -34,7 +34,3 @@ let EUM = class App extends React.Component {
 }
 
 export default EUM;
-render(
-	<EUM options={mpsum.json_options} />, 
-	document.getElementById('eum-dashboard-app')
-);

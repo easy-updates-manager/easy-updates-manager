@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import LoadingGif from './loading.jsx';
-import EUM from '../admin.jsx';
+import EUM from './main.jsx';
 
 class ToggleItem extends React.Component {
 	
