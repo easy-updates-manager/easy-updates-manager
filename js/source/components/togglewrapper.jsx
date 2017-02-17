@@ -25,7 +25,7 @@ class ToggleWrapper extends React.Component {
 					disabled={item.disabled}
 					context={item.context}
 					update={this.props.update}
-					loading={false}
+					loading={item.loading}
 				/>
 			</div>
 		);

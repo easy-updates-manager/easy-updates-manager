@@ -276,6 +276,7 @@ class MPSUM_Admin {
 					'name' => 'all_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'all_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'all_updates' ),
+					'loading' => false,
 					'context' => 'core'
 				),
 				array(
@@ -284,6 +285,7 @@ class MPSUM_Admin {
 					'name' => 'core_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'core_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'core_updates' ),
+					'loading' => false,
 					'context' => 'core'
 				),
 				array(
@@ -292,6 +294,7 @@ class MPSUM_Admin {
 					'name' => 'plugin_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'plugin_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'plugin_updates' ),
+					'loading' => false,
 					'context' => 'core'
 				),
 				array(
@@ -300,6 +303,7 @@ class MPSUM_Admin {
 					'name' => 'theme_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'theme_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'theme_updates' ),
+					'loading' => false,
 					'context' => 'core'
 				),
 				array(
@@ -308,6 +312,7 @@ class MPSUM_Admin {
 					'name' => 'translation_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'translation_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'translation_updates' ),
+					'loading' => false,
 					'context' => 'core'
 				)
 				

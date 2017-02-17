@@ -37,21 +37,6 @@ class ToggleItem extends React.Component {
 		xhr.onload = function() {
 			if ( xhr.status === 200 ) {
 				let json = JSON.parse( xhr.response );
-				if ( this.state.checked ) {
-					this.setState({
-						checked     : false,
-						label       : mpsum.disabled,
-						itemClasses : this.maybeSetActive(false),
-						loading     : false
-					});
-				} else {
-					this.setState({
-						checked     : true,
-						label       : mpsum.enabled,
-						itemClasses : this.maybeSetActive(true),
-						loading     : false
-					});
-				}
 				this.props.update(json);
 			}	
 		};
@@ -76,30 +61,12 @@ class ToggleItem extends React.Component {
 			</label>	
 		);
 	}
-	componentDidUpdate() {
-		if ( this.state.checked !== this.props.checked ) {
-			this.setState({
-				checked: this.props.checked,
-			});
-		}
-		if ( this.state.disabled !== this.props.disabled ) {
-			this.setState({
-				disabled: this.props.disabled
-			});
-		}
-		
-	}
-	checkedChange() {
-		if ( this.props.checked !== this.state.checked ) {
-			this.state.checked = this.props.checked;
-		}
-		return this.state.checked;
-	}
-	disabledChange() {
-		if ( this.props.disabled !== this.state.disabled ) {
-			this.state.disabled = this.props.disabled;
-		}
-		return this.state.disabled;
+	componentWillReceiveProps(newprops) {
+		this.setState({
+			loading:newprops.loading,
+			checked:newprops.checked,
+			disabled:newprops.disabled
+		});
 	}
 	render() {
 		return (
@@ -117,8 +84,8 @@ class ToggleItem extends React.Component {
 							name={this.props.name} 
 							value="on"
 							onChange={this.itemChange}
-							checked={this.checkedChange()}
-							disabled={this.disabledChange()}
+							checked={this.state.checked}
+							disabled={this.state.disabled}
 						/>
 						{this.getLabel()}
 					</div>
