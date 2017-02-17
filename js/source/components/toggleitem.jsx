@@ -24,10 +24,7 @@ class ToggleItem extends React.Component {
 		}
 	}
 	maybeActiveItem() {
-		if ( this.props.checked ) {
-			return 'dashboard-item active';
-		}
-		return 'dashboard-item';
+		return this.maybeSetActive(this.props.checked);
 	}
 	itemChange(event) {
 		this.setState({
@@ -35,24 +32,23 @@ class ToggleItem extends React.Component {
 		});
 		
 		let xhr = new XMLHttpRequest();
-		let component = this;
 		xhr.open( 'POST', ajaxurl );
 		xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		xhr.onload = function() {
 			if ( xhr.status === 200 ) {
 				let json = JSON.parse( xhr.response );
-				if ( component.state.checked ) {
-					component.setState({
+				if ( this.state.checked ) {
+					this.setState({
 						checked     : false,
 						label       : mpsum.disabled,
-						itemClasses : component.maybeSetActive(false),
+						itemClasses : this.maybeSetActive(false),
 						loading     : false
 					});
 				} else {
-					component.setState({
+					this.setState({
 						checked     : true,
 						label       : mpsum.enabled,
-						itemClasses : component.maybeSetActive(true),
+						itemClasses : this.maybeSetActive(true),
 						loading     : false
 					});
 				}

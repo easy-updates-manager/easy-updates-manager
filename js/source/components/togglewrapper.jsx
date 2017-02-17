@@ -17,7 +17,7 @@ class ToggleWrapper extends React.Component {
 	}
 	createToggleComponent( item ) {
 		return (
-			<div>
+			<div key={item.name}>
 				<ToggleItem 
 					title={item.title} 
 					name={item.name} 
