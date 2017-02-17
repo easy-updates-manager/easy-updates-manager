@@ -7,7 +7,6 @@ class LoadingGif extends React.Component {
 		super(props);
 	}
 	render() {
-		console.log( this.props.src );
 		return (
 			<div className="mpsum-spinner">
 				<img src={this.props.src} />	

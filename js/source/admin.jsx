@@ -2,13 +2,22 @@ import React from 'react';
 import {render} from 'react-dom';
 import ToggleWrapper from './components/togglewrapper.jsx';
 
-class App extends React.Component {
-	
+let EUM = class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			options     : this.props.options,
+		};
+		this.update = this.update.bind(this);
+	}
+	update( json ) {
+		this.setState({options:json});
+	}
 	createWrapper( title, items ) {
-		return <ToggleWrapper class="" title={title} items={items} key={title} />
+		return <ToggleWrapper class="" title={title} items={items} key={title} update={this.update} />
 	}
 	createWrappers( data ) {
-		var wrappers = [];
+		let wrappers = [];
 		for( var value of data ) {
 			wrappers.push( this.createWrapper( value.title, value.items ) );
 		}
@@ -18,12 +27,14 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.createWrappers(mpsum.json_options)}
+				{this.createWrappers(this.state.options)}
 			</div>	
 		);
 	}
 }
+
+export default EUM;
 render(
-	<App />, 
+	<EUM options={mpsum.json_options} />, 
 	document.getElementById('eum-dashboard-app')
 );

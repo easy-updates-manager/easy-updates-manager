@@ -50,6 +50,7 @@ class MPSUM_Admin {
 		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
+		return self::$instance;
 	} //end get_instance	
 	
 	/**
@@ -187,6 +188,72 @@ class MPSUM_Admin {
 	}
 	
 	/**
+	 * Returns whether a JSON component should be disabled or not.
+	 *
+	 * Returns whether a JSON component should be disabled or not.
+	 *
+	 * @since 6.3
+	 * @access public
+	 *
+	 * @param string $option - Option to check
+	 * @param string $context - Option context
+	 * @return bool True of disabled, false if not
+	 *
+	 */
+	private function get_json_maybe_disabled( $option, $context = 'core' ) {
+		$options = MPSUM_Updates_Manager::get_options( $context );
+		if ( 'off' == $options[ 'all_updates' ] && 'all_updates' != $option ) {
+			switch( $option ) {
+				case 'core_updates':
+				case 'plugin_updates':
+				case 'theme_updates':
+				case 'translation_updates':
+					return true;
+					break;
+				default:
+					return false;
+					break;
+			}	
+		}
+		return false;
+	}
+	
+	/**
+	 * Returns whether a JSON component should be enabled or not.
+	 *
+	 * Returns whether a JSON component should be enabled or not.
+	 *
+	 * @since 6.3
+	 * @access public
+	 *
+	 * @param string $option - Option to check
+	 * @param string $context - Option context
+	 * @return bool True of enabled, false if not
+	 *
+	 */
+	private function get_json_maybe_checked( $option, $context = 'core' ) {
+		$options = MPSUM_Updates_Manager::get_options( $context );
+		if ( 'off' == $options[ 'all_updates' ] && 'all_updates' != $option ) {
+			switch( $option ) {
+				case 'core_updates':
+				case 'plugin_updates':
+				case 'theme_updates':
+				case 'translation_updates':
+					return false;
+					break;
+				default:
+					return true;
+					break;
+			}	
+		}
+		if( 'on' == $options[ $option ] ) {
+			return true;	
+		} else {
+			return false;
+		}
+	}
+	
+	/**
 	 * Returns JSON options for use in React
 	 *
 	 * Returns JSON options for use in React.
@@ -195,7 +262,8 @@ class MPSUM_Admin {
 	 * @access public
 	 */
 	public function get_json_options() {
-		$core_options = MPSUM_Updates_Manager::get_options();
+		$options = MPSUM_Updates_Manager::get_options();
+		//die( '<pre>' . print_r( $options, true ) );
 		
 		$boxes = array();
 		$boxes[] = array(
@@ -206,16 +274,40 @@ class MPSUM_Admin {
 					'component' => 'ToggleItem',
 					'title' => 'All Updates',
 					'name' => 'all_updates',
-					'disabled' => false,
-					'checked' => true,
+					'disabled' => $this->get_json_maybe_disabled( 'all_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'all_updates' ),
 					'context' => 'core'
 				),
 				array(
 					'component' => 'ToggleItem',
 					'title' => 'WordPress Core Updates',
 					'name' => 'core_updates',
-					'disabled' => false,
-					'checked' => false,
+					'disabled' => $this->get_json_maybe_disabled( 'core_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'core_updates' ),
+					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'All Plugin Updates',
+					'name' => 'plugin_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'plugin_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'plugin_updates' ),
+					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'All Theme Updates',
+					'name' => 'theme_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'theme_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'theme_updates' ),
+					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'All Translation Updates',
+					'name' => 'translation_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'translation_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'translation_updates' ),
 					'context' => 'core'
 				)
 				

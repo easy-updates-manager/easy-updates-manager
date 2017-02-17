@@ -1,6 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import LoadingGif from './loading.jsx';
+import EUM from '../admin.jsx';
 
 class ToggleItem extends React.Component {
 	
@@ -8,7 +9,7 @@ class ToggleItem extends React.Component {
 		super(props);
 		this.state = {
 			checked     : this.props.checked,
-			itemClasses : this.maybeSetActive(this.props.checked),
+			itemClasses : this.maybeActiveItem(),
 			disabled    : this.props.disabled,
 			label       : mpsum.enabled,
 			loading     : false
@@ -22,34 +23,50 @@ class ToggleItem extends React.Component {
 			return 'dashboard-item';
 		}
 	}
+	maybeActiveItem() {
+		if ( this.props.checked ) {
+			return 'dashboard-item active';
+		}
+		return 'dashboard-item';
+	}
 	itemChange(event) {
 		this.setState({
 			loading: true
 		});
 		
-		// todo Ajax Call
-		if ( this.state.checked ) {
-			this.setState({
-				checked     : false,
-				label       : mpsum.disabled,
-				itemClasses : this.maybeSetActive(false),
-				loading     : false
-			});
-		} else {
-			this.setState({
-				checked     : true,
-				label       : mpsum.enabled,
-				itemClasses : this.maybeSetActive(true),
-				loading     : false
-			});
-		}
-		
-		this.setState({
-			loading: false
-		});
-		//todo - Ajax call
-		//re-render main component
-
+		let xhr = new XMLHttpRequest();
+		let component = this;
+		xhr.open( 'POST', ajaxurl );
+		xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+		xhr.onload = function() {
+			if ( xhr.status === 200 ) {
+				let json = JSON.parse( xhr.response );
+				if ( component.state.checked ) {
+					component.setState({
+						checked     : false,
+						label       : mpsum.disabled,
+						itemClasses : component.maybeSetActive(false),
+						loading     : false
+					});
+				} else {
+					component.setState({
+						checked     : true,
+						label       : mpsum.enabled,
+						itemClasses : component.maybeSetActive(true),
+						loading     : false
+					});
+				}
+				this.props.update(json);
+			}	
+		};
+		xhr.onload = xhr.onload.bind(this);
+		xhr.send(
+			'action=mpsum_ajax_action' +
+			'&_ajax_nonce=' + mpsum.admin_nonce +
+			'&context=' + this.props.context +
+			'&data_action=' + this.props.name +
+			'&value=' +  ( this.state.checked ? 'off' : 'on' )
+		);
 	}
 	getLabel() {
 		if ( this.state.loading ) {
@@ -63,10 +80,35 @@ class ToggleItem extends React.Component {
 			</label>	
 		);
 	}
+	componentDidUpdate() {
+		if ( this.state.checked !== this.props.checked ) {
+			this.setState({
+				checked: this.props.checked,
+			});
+		}
+		if ( this.state.disabled !== this.props.disabled ) {
+			this.setState({
+				disabled: this.props.disabled
+			});
+		}
+		
+	}
+	checkedChange() {
+		if ( this.props.checked !== this.state.checked ) {
+			this.state.checked = this.props.checked;
+		}
+		return this.state.checked;
+	}
+	disabledChange() {
+		if ( this.props.disabled !== this.state.disabled ) {
+			this.state.disabled = this.props.disabled;
+		}
+		return this.state.disabled;
+	}
 	render() {
 		return (
 			<div>
-				<div className={this.state.itemClasses}>
+				<div className={this.maybeActiveItem()}>
 					<div className="dashboard-item-header input-radio">
 						{this.props.title}	
 					</div>		
@@ -79,8 +121,8 @@ class ToggleItem extends React.Component {
 							name={this.props.name} 
 							value="on"
 							onChange={this.itemChange}
-							checked={this.state.checked}
-							disabled={this.state.disabled} 
+							checked={this.checkedChange()}
+							disabled={this.disabledChange()}
 						/>
 						{this.getLabel()}
 					</div>
