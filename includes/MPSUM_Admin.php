@@ -517,6 +517,7 @@ class MPSUM_Admin {
 		);
 		$plugins = get_plugins();
 		$plugin_items = array(); 
+		$plugin_automatic_items = array();
 		foreach( $plugins as $plugin_slug => $plugin_data ) {
 			$plugin_items[] = array(
 				'component' => 'ToggleItem',
@@ -528,9 +529,20 @@ class MPSUM_Admin {
 				'loading' => false,
 				'context' => 'plugins',
 			);
+			$plugin_automatic_items[] = array(
+				'component' => 'ToggleItem',
+				'title' => $plugin_data[ 'Name' ],
+				'id' => $plugin_slug,
+				'name' => 'plugins',
+				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'plugins_automatic' ),
+				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'plugins_automatic' ),
+				'loading' => false,
+				'context' => 'plugins',
+			); 
 		}
 		$themes = wp_get_themes();
 		$theme_items = array(); 
+		$theme_automatic_items = array();
 		foreach( $themes as $theme_slug => $theme_data ) {
 			$theme_items[] = array(
 				'component' => 'ToggleItem',
@@ -539,6 +551,16 @@ class MPSUM_Admin {
 				'name' => 'themes',
 				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'themes' ),
 				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'themes' ),
+				'loading' => false,
+				'context' => 'themes',
+			);
+			$theme_automatic_items[] = array(
+				'component' => 'ToggleItem',
+				'title' => $theme_data->Name,
+				'id' => $theme_slug,
+				'name' => 'themes',
+				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'themes_automatic' ),
+				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'themes_automatic' ),
 				'loading' => false,
 				'context' => 'themes',
 			);
@@ -560,6 +582,28 @@ class MPSUM_Admin {
 							'id'        => 'theme-updates',
 							'label'     => 'Theme Updates',
 							'items'     => $theme_items,
+						)
+					)
+				)
+			)
+		);
+		$boxes[] = array(
+			'title' => 'Plugin and Theme Automatic Updates',
+			'items' => array( 
+				array(
+					'id'        => 'plugins-themes-automatic',
+					'component' => 'ToggleTabs',
+					'active'    => 'plugin-updates-automatic',
+					'tabs' => array(
+						array(
+							'id'        => 'plugin-updates-automatic',
+							'label'     => 'Plugin Updates',
+							'items'     => $plugin_automatic_items,
+						),
+						array(
+							'id'        => 'theme-updates-automatic',
+							'label'     => 'Theme Updates',
+							'items'     => $theme_automatic_items,
 						)
 					)
 				)
