@@ -535,16 +535,23 @@ class MPSUM_Admin {
 		}
 		$boxes[] = array(
 			'title' => 'Plugin and Theme Updates',
-			'items' => array(
+			'items' => array( 
 				array(
-					'component' => 'ToggleItemTab',
-					'label'     => 'Plugin Updates',
-					'items'     => $plugin_items
-				),
-				array(
-					'component' => 'ToggleItemTab',
-					'label'     => 'Theme Updates',
-					'items'     => $theme_items
+					'id'        => 'plugins-themes',
+					'component' => 'ToggleTabs',
+					'active'    => 'plugin-updates',
+					'tabs' => array(
+						array(
+							'id'        => 'plugin-updates',
+							'label'     => 'Plugin Updates',
+							'items'     => $plugin_items,
+						),
+						array(
+							'id'        => 'theme-updates',
+							'label'     => 'Theme Updates',
+							'items'     => $theme_items,
+						)
+					)
 				)
 			)
 		);

@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import ToggleItem from './toggleitem.jsx';
 import ToggleItemRadio from './toggleitemradio.jsx';
+import ToggleTabs from './toggletabs.jsx';
 
 class ToggleWrapper extends React.Component {
 	constructor(props) {
@@ -14,9 +15,21 @@ class ToggleWrapper extends React.Component {
 				items.push( this.createToggleComponent( item ) );
 			} else if( 'ToggleItemRadio' == item.component ) {
 				items.push( this.createToggleRadioComponent( item ) );
+			} else if( 'ToggleTabs' == item.component ) {
+				items.push( this.createToggleTabsComponent (item ) );
 			}
 		}
 		return items;
+	}
+	createToggleTabsComponent( item ) {
+		return (
+			<div key={item.id}>
+				<ToggleTabs
+					tabs={item.tabs}
+					active={item.active}
+				/>
+			</div>
+		)
 	}
 	createToggleComponent( item ) {
 		return (
