@@ -609,6 +609,21 @@ class MPSUM_Admin {
 				)
 			)
 		);
+		$boxes[] = array(
+			'title' => 'WordPress Notifications',
+			'component' => 'ToggleWrapper',
+			'items' => array(
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'Core E-mails',
+					'name' => 'notification_core_update_emails',
+					'disabled' => $this->get_json_maybe_disabled( 'notification_core_update_emails' ),
+					'checked' => $this->get_json_maybe_checked( 'notification_core_update_emails' ),
+					'loading' => false,
+					'context' => 'core'
+				),
+			),
+		);
 		return $boxes;
 	}
 	
