@@ -201,8 +201,8 @@ class MPSUM_Admin {
 	 *
 	 */
 	private function get_json_maybe_disabled( $option, $context = 'core' ) {
-		$options = MPSUM_Updates_Manager::get_options( $context );
-		if ( 'off' == $options[ 'all_updates' ] && 'all_updates' != $option ) {
+		$options = MPSUM_Updates_Manager::get_options();
+		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
 			switch( $option ) {
 				case 'core_updates':
 				case 'plugin_updates':
@@ -220,13 +220,13 @@ class MPSUM_Admin {
 					return false;
 					break;
 			}	
-		} elseif ( 'off' == $options[ 'plugin_updates' ] && 'plugin_updates' !== $option ) {
+		} elseif ( 'off' == $options[ 'core' ][ 'plugin_updates' ] && 'plugin_updates' !== $option ) {
 			switch( $option ) {
 				case 'automatic_plugin_updates':
 					return true;
 					break;
 			}
-		} elseif ( 'off' == $options[ 'translation_updates' ] && 'translation_updates' != $option ) {
+		} elseif ( 'off' == $options[ 'core' ][ 'translation_updates' ] && 'translation_updates' != $option ) {
 					
 
 			switch( $option ) {
@@ -234,7 +234,7 @@ class MPSUM_Admin {
 					return true;
 					break;
 			}
-		} elseif ( 'off' == $options[ 'theme_updates' ] && 'theme_updates' != $option ) {
+		} elseif ( 'off' == $options[ 'core' ][ 'theme_updates' ] && 'theme_updates' != $option ) {
 			switch( $option ) {
 				case 'automatic_theme_updates':
 					return true;
@@ -258,8 +258,8 @@ class MPSUM_Admin {
 	 *
 	 */
 	private function get_json_maybe_checked( $option, $context = 'core' ) {
-		$options = MPSUM_Updates_Manager::get_options( $context );
-		if ( 'off' == $options[ 'all_updates' ] && 'all_updates' != $option ) {
+		$options = MPSUM_Updates_Manager::get_options();
+		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
 			switch( $option ) {
 				case 'core_updates':
 				case 'plugin_updates':
@@ -274,16 +274,24 @@ class MPSUM_Admin {
 				default:
 					break;
 			}	
-		} elseif ( 'off' == $options[ 'translation_updates' ] && 'translation_updates' != $option ) {
+		} elseif ( 'off' == $options[ 'core' ][ 'translation_updates' ] && 'translation_updates' != $option ) {
 			switch( $option ) {
 				case 'automatic_translation_updates':
 					return false;
 					break;
 			}
 		}
-		if( 'on' == $options[ $option ] ) {
+		if( isset( $options[ $context ][ $option ] ) && 'on' == $options[ $context ][ $option ] ) {
 			return true;	
 		} else {
+			switch( $context ) {
+				case 'plugins':
+				case 'themes':
+				case 'plugins_automatic':
+				case 'themes_automatic':
+					return true;
+					break;
+			}
 			return false;
 		}
 	}
@@ -302,8 +310,8 @@ class MPSUM_Admin {
 	 *
 	 */
 	private function get_json_maybe_selected( $option, $context = 'core' ) {
-		$options = MPSUM_Updates_Manager::get_options( $context );
-		if ( 'off' == $options[ 'all_updates' ] && 'all_updates' != $option ) {
+		$options = MPSUM_Updates_Manager::get_options();
+		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
 			switch( $option ) {
 				case 'automatic_plugin_updates':
 				case 'automatic_theme_updates':
@@ -312,13 +320,13 @@ class MPSUM_Admin {
 				default:
 					break;
 			}	
-		} elseif ( 'off' == $options[ 'plugin_updates' ] && 'plugin_updates' != $option ) {
+		} elseif ( 'off' == $options[ 'core' ][ 'plugin_updates' ] && 'plugin_updates' != $option ) {
 			switch( $option ) {
 				case 'automatic_plugin_updates':
 					return 'off';
 					break;
 			}
-		} elseif ( 'off' == $options[ 'theme_updates' ] && 'theme_updates' != $option ) {
+		} elseif ( 'off' == $options[ 'core' ][ 'theme_updates' ] && 'theme_updates' != $option ) {
 			switch( $option ) {
 				case 'automatic_theme_updates':
 					return 'off';
@@ -326,9 +334,7 @@ class MPSUM_Admin {
 			}
 		}
 		
-		
-		
-		return $options[ $option ];
+		return $options[ $context ][ $option ];
 	}
 	
 	/**
@@ -496,6 +502,49 @@ class MPSUM_Admin {
 							'value' => 'individual'
 						)
 					)
+				)
+			)
+		);
+		$plugins = get_plugins();
+		$plugin_items = array(); 
+		foreach( $plugins as $plugin_slug => $plugin_data ) {
+			$plugin_items[] = array(
+				'component' => 'ToggleItem',
+				'title' => $plugin_data[ 'Name' ],
+				'id' => $plugin_slug,
+				'name' => 'plugins',
+				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'plugins' ),
+				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'plugins' ),
+				'loading' => false,
+				'context' => 'plugins',
+			);
+		}
+		$themes = wp_get_themes();
+		$theme_items = array(); 
+		foreach( $themes as $theme_slug => $theme_data ) {
+			$plugin_items[] = array(
+				'component' => 'ToggleItem',
+				'title' => $theme_data->Name,
+				'id' => $theme_slug,
+				'name' => 'themes',
+				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'themes' ),
+				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'themes' ),
+				'loading' => false,
+				'context' => 'themes',
+			);
+		}
+		$boxes[] = array(
+			'title' => 'Plugin and Theme Updates',
+			'items' => array(
+				array(
+					'component' => 'ToggleItemTab',
+					'label'     => 'Plugin Updates',
+					'items'     => $plugin_items
+				),
+				array(
+					'component' => 'ToggleItemTab',
+					'label'     => 'Theme Updates',
+					'items'     => $theme_items
 				)
 			)
 		);
