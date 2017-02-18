@@ -298,8 +298,7 @@ class MPSUM_Admin {
 				case 'themes':
 				case 'plugins_automatic':
 				case 'themes_automatic':
-					return true;
-					break;
+					return ! array_search( $option, $options[ $context ] );
 			}
 			return false;
 		}
@@ -537,7 +536,7 @@ class MPSUM_Admin {
 				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'plugins_automatic' ),
 				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'plugins_automatic' ),
 				'loading' => false,
-				'context' => 'plugins',
+				'context' => 'plugins_automatic',
 			); 
 		}
 		$themes = wp_get_themes();
@@ -562,7 +561,7 @@ class MPSUM_Admin {
 				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'themes_automatic' ),
 				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'themes_automatic' ),
 				'loading' => false,
-				'context' => 'themes',
+				'context' => 'themes_automatic',
 			);
 		}
 		$boxes[] = array(
@@ -577,15 +576,17 @@ class MPSUM_Admin {
 							'id'        => 'plugin-updates',
 							'label'     => 'Plugin Updates',
 							'items'     => $plugin_items,
+							'context'   => 'plugins'
 						),
 						array(
 							'id'        => 'theme-updates',
 							'label'     => 'Theme Updates',
 							'items'     => $theme_items,
+							'context'   => 'themes'
 						)
 					)
 				)
-			)
+			),
 		);
 		$boxes[] = array(
 			'title' => 'Plugin and Theme Automatic Updates',
@@ -599,11 +600,13 @@ class MPSUM_Admin {
 							'id'        => 'plugin-updates-automatic',
 							'label'     => 'Plugin Updates',
 							'items'     => $plugin_automatic_items,
+							'context'   => 'plugins_automatic'
 						),
 						array(
 							'id'        => 'theme-updates-automatic',
 							'label'     => 'Theme Updates',
 							'items'     => $theme_automatic_items,
+							'context'   => 'themes_automatic'
 						)
 					)
 				)

@@ -337,6 +337,7 @@ class MPSUM_Updates_Manager {
         $context = sanitize_text_field( $_POST[ 'context' ] );
         $option = sanitize_text_field( $_POST[ 'data_action' ] );	
         $option_value = sanitize_text_field( $_POST[ 'value' ] );
+        $id = sanitize_text_field( $_POST[ 'id' ] );
         
         $options = MPSUM_Updates_Manager::get_options( $context );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
@@ -346,13 +347,15 @@ class MPSUM_Updates_Manager {
         } else if ( 'plugins' == $context || 'themes' == $context    ) {
             $plugin_options = MPSUM_Updates_Manager::get_options( $context );
             if ( 'on' == $option_value ) {
+	            error_log( print_r( $plugin_options, true ) );
                 foreach( $plugin_options as $plugin ) {
-                    if ( ( $key = array_search( $option, $plugin_options ) ) !== false ) {
-                		unset( $plugin_options[ $key ] );
+                    if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
+	                    error_log( 'unset' );
+                		unset( $plugin_options[ $id ] );
                     }
                 }
             } else {
-                $plugin_options[] = $option;
+                $plugin_options[] = $id;
                 $plugin_options = array_values( array_unique( $plugin_options ) );
             }
                     	
@@ -361,13 +364,13 @@ class MPSUM_Updates_Manager {
             $plugin_options = MPSUM_Updates_Manager::get_options( $context );
             if ( 'off' == $option_value ) {
                 foreach( $plugin_options as $plugin ) {
-                    if ( ( $key = array_search( $option, $plugin_options ) ) !== false ) {
-                		unset( $plugin_options[ $key ] );
+                    if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
+                		unset( $plugin_options[ $id ] );
                     }
                 }
             } else {
                 $options = MPSUM_Updates_Manager::get_options( $context );
-                $options[] = $option;
+                $options[] = $id;
                 $plugin_options = array_values( array_unique( $options ) );
             }
             

@@ -32,8 +32,8 @@ class ToggleTabs extends React.Component {
 					<ToggleItemInput 
 						id={asset.id}
 						title={asset.title} 
-						name={asset.name}
-						key={asset.id} 
+						name={asset.id + '_' + asset.context}
+						key={asset.id + '_' + asset.context} 
 						checked={asset.checked}
 						disabled={asset.disabled}
 						context={tab.context}
