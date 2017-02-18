@@ -363,10 +363,56 @@ class MPSUM_Admin {
 					'checked' => $this->get_json_maybe_checked( 'automatic_translation_updates' ),
 					'loading' => false,
 					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItemRadio',
+					'title' => 'Automatic Plugin Updates',
+					'name' => 'automatic_plugin_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'automatic_plugin_updates' ),
+					'checked' => $this->get_json_maybe_selected( 'automatic_plugin_updates' ),
+					'loading' => false,
+					'context' => 'core',
+					'choices' => array(
+						array(
+							'id'    => 'automatic_plugin_on',
+							'label' => 'Enabled',
+							'value' => 'on'
+						),
+						array(
+							'id'    => 'automatic_plugin_off',
+							'label' => 'Disabled',
+							'value' => 'off'
+						),
+						array(
+							'id'    => 'automatic_plugin_default',
+							'label' => 'Default',
+							'value' => 'default'
+						),
+						array(
+							'id'    => 'automatic_plugin_individual',
+							'label' => 'Select Individually',
+							'value' => 'individual'
+						)
+					)
 				)
 			)
 		);
 		return $boxes;
+	}
+	
+	private function get_json_maybe_selected( $option, $context = 'core' ) {
+		$options = MPSUM_Updates_Manager::get_options( $context );
+		if ( 'off' == $options[ 'all_updates' ] && 'all_updates' != $option ) {
+			switch( $option ) {
+				case 'automatic_plugin_updates':
+				case 'automatic_theme_updates':
+					return 'off';
+					break;
+				default:
+					break;
+			}	
+		}
+		return $options[ $option ];
 	}
 	
 	public function enqueue_scripts() {

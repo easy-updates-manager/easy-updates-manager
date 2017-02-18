@@ -1,6 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import ToggleItem from './toggleitem.jsx';
+import ToggleItemRadio from './toggleitemradio.jsx';
 
 class ToggleWrapper extends React.Component {
 	constructor(props) {
@@ -11,6 +12,8 @@ class ToggleWrapper extends React.Component {
 		for( var item of this.props.items ) {
 			if ( 'ToggleItem' == item.component ) {
 				items.push( this.createToggleComponent( item ) );
+			} else if( 'ToggleItemRadio' == item.component ) {
+				items.push( this.createToggleRadioComponent( item ) );
 			}
 		}
 		return items;
@@ -26,6 +29,22 @@ class ToggleWrapper extends React.Component {
 					context={item.context}
 					update={this.props.update}
 					loading={item.loading}
+				/>
+			</div>
+		);
+	}
+	createToggleRadioComponent( item ) {
+		return (
+			<div key={item.name}>
+				<ToggleItemRadio 
+					title={item.title} 
+					name={item.name} 
+					checked={item.checked}
+					disabled={item.disabled}
+					context={item.context}
+					update={this.props.update}
+					loading={item.loading}
+					choices={item.choices}
 				/>
 			</div>
 		);

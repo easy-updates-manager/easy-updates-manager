@@ -70,7 +70,6 @@ class App extends React.Component {
 		this._onChange = this._onChange.bind(this);
 	}
 	_onChange() {
-		console.log( 'asdfsdfdsf' );
 		this.setState( { options: getState() } );
 	}
 	createWrapper( title, items ) {

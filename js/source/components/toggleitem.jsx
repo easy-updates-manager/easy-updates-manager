@@ -32,7 +32,7 @@ class ToggleItem extends React.Component {
 			loading: true
 		});
 		
-		EUMActions.itemToggle( this.props.context, this.props.name, ( this.state.checked ? 'off' : 'on' ) )
+		EUMActions.itemToggle( this.props.context, this.props.name, ( this.state.checked ? 'off' : 'on' ) );
 		
 	}
 	getLabel() {
