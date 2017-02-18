@@ -242,7 +242,6 @@ class MPSUM_Admin {
 					return false;
 					break;
 				default:
-					return true;
 					break;
 			}	
 		}
@@ -324,9 +323,37 @@ class MPSUM_Admin {
 				array(
 					'component' => 'ToggleItem',
 					'title' => 'Major Releases',
-					'name' => 'majorReleases',
-					'disabled' => false,
-					'checked' => false,
+					'name' => 'automatic_major_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'automatic_major_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'automatic_major_updates' ),
+					'loading' => false,
+					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'Minor Releases',
+					'name' => 'automatic_minor_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'automatic_minor_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'automatic_minor_updates' ),
+					'loading' => false,
+					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'Development Updates',
+					'name' => 'automatic_development_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'automatic_development_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'automatic_development_updates' ),
+					'loading' => false,
+					'context' => 'core'
+				),
+				array(
+					'component' => 'ToggleItem',
+					'title' => 'Translation Updates',
+					'name' => 'automatic_translation_updates',
+					'disabled' => $this->get_json_maybe_disabled( 'automatic_translation_updates' ),
+					'checked' => $this->get_json_maybe_checked( 'automatic_translation_updates' ),
+					'loading' => false,
 					'context' => 'core'
 				)
 			)
