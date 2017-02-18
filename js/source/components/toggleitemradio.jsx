@@ -30,7 +30,7 @@ class ToggleItemRadio extends React.Component {
 			for( var choice of this.props.choices ) {
 				choices.push(
 					<div key={choice.id} className="multi-choice-item">
-						<input type="radio" value={choice.value} id={choice.id} checked={this.state.checked==choice.value ? true : false } onChange={this.itemChange} />
+						<input type="radio" value={choice.value} id={choice.id} checked={this.state.checked==choice.value ? true : false } onChange={this.itemChange} disabled={this.state.disabled} />
 						&nbsp;
 						<label htmlFor={choice.id}>{choice.label}</label>
 					</div>	

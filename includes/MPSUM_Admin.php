@@ -212,12 +212,27 @@ class MPSUM_Admin {
 				case 'automatic_minor_updates':
 				case 'automatic_development_updates';
 				case 'automatic_translation_updates':
+				case 'automatic_plugin_updates':
 					return true;
 					break;
 				default:
 					return false;
 					break;
 			}	
+		} elseif ( 'off' == $options[ 'plugin_updates' ] && 'plugin_updates' !== $option ) {
+			switch( $option ) {
+				case 'automatic_plugin_updates':
+					return true;
+					break;
+			}
+		} elseif ( 'off' == $options[ 'translation_updates' ] && 'translation_updates' != $option ) {
+					
+
+			switch( $option ) {
+				case 'automatic_translation_updates':
+					return true;
+					break;
+			}
 		}
 		return false;
 	}
@@ -252,6 +267,12 @@ class MPSUM_Admin {
 				default:
 					break;
 			}	
+		} elseif ( 'off' == $options[ 'translation_updates' ] && 'translation_updates' != $option ) {
+			switch( $option ) {
+				case 'automatic_translation_updates':
+					return false;
+					break;
+			}
 		}
 		if( 'on' == $options[ $option ] ) {
 			return true;	
@@ -411,6 +432,12 @@ class MPSUM_Admin {
 				default:
 					break;
 			}	
+		} elseif ( 'off' == $options[ 'plugin_updates' ] && 'plugin_updates' != $option ) {
+			switch( $option ) {
+				case 'automatic_plugin_updates':
+					return 'off';
+					break;
+			}
 		}
 		return $options[ $option ];
 	}
