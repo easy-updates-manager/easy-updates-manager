@@ -208,6 +208,10 @@ class MPSUM_Admin {
 				case 'plugin_updates':
 				case 'theme_updates':
 				case 'translation_updates':
+				case 'automatic_major_updates':
+				case 'automatic_minor_updates':
+				case 'automatic_development_updates';
+				case 'automatic_translation_updates':
 					return true;
 					break;
 				default:
@@ -239,6 +243,10 @@ class MPSUM_Admin {
 				case 'plugin_updates':
 				case 'theme_updates':
 				case 'translation_updates':
+				case 'automatic_major_updates':
+				case 'automatic_minor_updates':
+				case 'automatic_development_updates';
+				case 'automatic_translation_updates':
 					return false;
 					break;
 				default:
