@@ -294,6 +294,7 @@ class MPSUM_Admin {
 			}
 			return false;
 		}
+		return false;
 	}
 	
 	/**
@@ -522,7 +523,7 @@ class MPSUM_Admin {
 		$themes = wp_get_themes();
 		$theme_items = array(); 
 		foreach( $themes as $theme_slug => $theme_data ) {
-			$plugin_items[] = array(
+			$theme_items[] = array(
 				'component' => 'ToggleItem',
 				'title' => $theme_data->Name,
 				'id' => $theme_slug,

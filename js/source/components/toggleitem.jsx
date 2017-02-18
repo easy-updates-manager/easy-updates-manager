@@ -37,24 +37,21 @@ class ToggleItem extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className={this.maybeActiveItem()}>
-					<div className="dashboard-item-header input-radio">
-						{this.props.title}	
-					</div>
-					<ToggleItemInput
-						id={this.props.name}
-						name={this.props.name}
-						onChange={this.itemChange}
-						checked={this.state.checked}
-						disabled={this.state.disabled}
-						context={this.props.context}
-					/>		
-				</div>	
+				<ToggleItemInput
+					id={this.props.id}
+					name={this.props.name}
+					onChange={this.itemChange}
+					checked={this.state.checked}
+					disabled={this.state.disabled}
+					context={this.props.context}
+					title={this.props.title}
+				/>		
 			</div>	
 		);
 	}
 }
 ToggleItem.propTypes = {
+	id: React.PropTypes.string,
 	checked: React.PropTypes.bool.isRequired,
 	title: React.PropTypes.string.isRequired,
 	disabled: React.PropTypes.bool.isRequired,
@@ -63,6 +60,7 @@ ToggleItem.propTypes = {
 	loading: React.PropTypes.bool.isRequired
 };
 ToggleItem.defaultProps = {
+	id: '',
 	checked: false,
 	title: '',
 	disabled: false,

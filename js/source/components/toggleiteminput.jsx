@@ -15,6 +15,7 @@ class ToggleItemInput extends React.Component {
 			label       : mpsum.enabled,
 			loading     : false
 		};
+		console.log( this.props.checked );
 		this.itemChange = this.itemChange.bind(this);
 	}
 	maybeSetActive(checked) {
@@ -31,8 +32,7 @@ class ToggleItemInput extends React.Component {
 		this.setState({
 			loading: true
 		});
-		console.log( this.props.context );
-		EUMActions.itemToggle( this.props.context, this.props.name, ( this.state.checked ? 'off' : 'on' ) );
+		EUMActions.itemToggle( this.props.context, this.props.name, ( this.state.checked ? 'off' : 'on' ), this.props.id );
 		
 	}
 	getLabel() {
@@ -56,23 +56,29 @@ class ToggleItemInput extends React.Component {
 	}
 	render() {
 		return (
-			<div className="dashboard-item-choice">
-				<input
-					id={this.props.name}
-					type="checkbox" 
-					className="dashboard-hide" 
-					name={this.props.name} 
-					value="on"
-					onChange={this.itemChange}
-					checked={this.state.checked}
-					disabled={this.state.disabled}
-				/>
-				{this.getLabel()}
+			<div className={this.maybeActiveItem()}>
+				<div className="dashboard-item-header input-radio">
+					{this.props.title}	
+				</div>
+				<div className="dashboard-item-choice">
+					<input
+						id={this.props.name}
+						type="checkbox" 
+						className="dashboard-hide" 
+						name={this.props.name} 
+						value="on"
+						onChange={this.itemChange}
+						checked={this.state.checked}
+						disabled={this.state.disabled}
+					/>
+					{this.getLabel()}
+				</div>
 			</div>	
 		);
 	}
 }
 ToggleItemInput.propTypes = {
+	id: React.PropTypes.string,
 	checked: React.PropTypes.bool.isRequired,
 	disabled: React.PropTypes.bool.isRequired,
 	name: React.PropTypes.string.isRequired,
@@ -80,6 +86,7 @@ ToggleItemInput.propTypes = {
 	loading: React.PropTypes.bool.isRequired
 };
 ToggleItemInput.defaultProps = {
+	id: '',
 	checked: false,
 	disabled: false,
 	name: '',

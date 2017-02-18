@@ -49,7 +49,8 @@ EUMDispatcher.register( function( action ) {
 				'&_ajax_nonce=' + mpsum.admin_nonce +
 				'&context=' + action.context +
 				'&data_action=' + action.action +
-				'&value=' +  action.value
+				'&value=' +  action.value +
+				'&id=' + action.id
 			);
 			break;
 	}
