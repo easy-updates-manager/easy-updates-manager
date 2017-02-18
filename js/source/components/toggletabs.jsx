@@ -19,7 +19,6 @@ class ToggleTabs extends React.Component {
 		var tabs = [];
 		var tabContent = [];
 		for( var tab of this.props.tabs ) {
-			console.log( tab );
 			var className = 'dashboard-tab-header-plugin dashboard-tab-item ' +  (this.state.active == tab.id ? 'active' : '' );
 			tabs.push(
 				<div className={className} key={tab.id}>

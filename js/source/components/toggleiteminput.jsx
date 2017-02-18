@@ -15,7 +15,6 @@ class ToggleItemInput extends React.Component {
 			label       : mpsum.enabled,
 			loading     : false
 		};
-		console.log( this.props.checked );
 		this.itemChange = this.itemChange.bind(this);
 	}
 	maybeSetActive(checked) {

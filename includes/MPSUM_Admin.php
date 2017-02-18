@@ -203,24 +203,23 @@ class MPSUM_Admin {
 	private function get_json_maybe_disabled( $option, $context = 'core' ) {
 		$options = MPSUM_Updates_Manager::get_options();
 		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
-			switch( $option ) {
-				case 'core_updates':
-				case 'plugin_updates':
-				case 'theme_updates':
-				case 'translation_updates':
-				case 'automatic_major_updates':
-				case 'automatic_minor_updates':
-				case 'automatic_development_updates';
-				case 'automatic_translation_updates':
-				case 'automatic_plugin_updates':
-				case 'automatic_theme_updates':
+			// $context disables an entire section
+			switch( $context ) {
+				case 'plugins':
+				case 'themes':
+				case 'plugins_automatic':
+				case 'themes_automatic':
+				case 'core':
 					return true;
 					break;
-				default:
-					return false;
-					break;
-			}	
+			}
+				
 		} elseif ( 'off' == $options[ 'core' ][ 'plugin_updates' ] && 'plugin_updates' !== $option ) {
+			switch( $context ) {
+				case 'plugins':
+					return true;
+					break;
+			}
 			switch( $option ) {
 				case 'automatic_plugin_updates':
 					return true;
@@ -235,6 +234,11 @@ class MPSUM_Admin {
 					break;
 			}
 		} elseif ( 'off' == $options[ 'core' ][ 'theme_updates' ] && 'theme_updates' != $option ) {
+			switch( $context ) {
+				case 'themes':
+					return true;
+					break;
+			}
 			switch( $option ) {
 				case 'automatic_theme_updates':
 					return true;
@@ -260,18 +264,14 @@ class MPSUM_Admin {
 	private function get_json_maybe_checked( $option, $context = 'core' ) {
 		$options = MPSUM_Updates_Manager::get_options();
 		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
-			switch( $option ) {
-				case 'core_updates':
-				case 'plugin_updates':
-				case 'theme_updates':
-				case 'translation_updates':
-				case 'automatic_major_updates':
-				case 'automatic_minor_updates':
-				case 'automatic_development_updates';
-				case 'automatic_translation_updates':
+			// $context disables an entire section
+			switch( $context ) {
+				case 'plugins':
+				case 'themes':
+				case 'plugins_automatic':
+				case 'themes_automatic':
+				case 'core':
 					return false;
-					break;
-				default:
 					break;
 			}	
 		} elseif ( 'off' == $options[ 'core' ][ 'translation_updates' ] && 'translation_updates' != $option ) {
@@ -280,7 +280,16 @@ class MPSUM_Admin {
 					return false;
 					break;
 			}
+		} elseif ( 'off' == $options[ 'core' ][ 'theme_updates' ] && 'theme_updates' != $option ) {
+			switch( $context ) {
+				case 'themes':
+				case 'themes_automatic':
+					return false;
+					break;
+			}
 		}
+		
+		
 		if( isset( $options[ $context ][ $option ] ) && 'on' == $options[ $context ][ $option ] ) {
 			return true;	
 		} else {
