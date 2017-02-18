@@ -1,5 +1,5 @@
-import EUMActionTypes from './EUMActionTypes.js';
-import EUMDispatcher from './EUMDispatcher.js';
+import EUMActionTypes from './EUMActionTypes.jsx';
+import EUMDispatcher from './EUMDispatcher.jsx';
 
 const Actions = {
 	itemToggle( context, action, value ) {

@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import LoadingGif from './loading.jsx';
 import EUM from './main.jsx';
+import EUMActions from '../data/EUMActions.jsx';
 
 class ToggleItem extends React.Component {
 	
@@ -31,23 +32,8 @@ class ToggleItem extends React.Component {
 			loading: true
 		});
 		
-		let xhr = new XMLHttpRequest();
-		xhr.open( 'POST', ajaxurl );
-		xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-		xhr.onload = function() {
-			if ( xhr.status === 200 ) {
-				let json = JSON.parse( xhr.response );
-				this.props.update(json);
-			}	
-		};
-		xhr.onload = xhr.onload.bind(this);
-		xhr.send(
-			'action=mpsum_ajax_action' +
-			'&_ajax_nonce=' + mpsum.admin_nonce +
-			'&context=' + this.props.context +
-			'&data_action=' + this.props.name +
-			'&value=' +  ( this.state.checked ? 'off' : 'on' )
-		);
+		EUMActions.itemToggle( this.props.context, this.props.name, ( this.state.checked ? 'off' : 'on' ) )
+		
 	}
 	getLabel() {
 		if ( this.state.loading ) {
