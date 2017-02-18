@@ -40,7 +40,6 @@ class ToggleWrapper extends React.Component {
 					checked={item.checked}
 					disabled={item.disabled}
 					context={item.context}
-					update={this.props.update}
 					loading={item.loading}
 				/>
 			</div>

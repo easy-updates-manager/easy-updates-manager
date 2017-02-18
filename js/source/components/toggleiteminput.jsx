@@ -3,9 +3,8 @@ import {render} from 'react-dom';
 import LoadingGif from './loading.jsx';
 import EUM from './main.jsx';
 import EUMActions from '../data/EUMActions.jsx';
-import ToggleItemInput from './toggleiteminput.jsx';
 
-class ToggleItem extends React.Component {
+class ToggleItemInput extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -16,6 +15,7 @@ class ToggleItem extends React.Component {
 			label       : mpsum.enabled,
 			loading     : false
 		};
+		this.itemChange = this.itemChange.bind(this);
 	}
 	maybeSetActive(checked) {
 		if(checked) {
@@ -27,6 +27,26 @@ class ToggleItem extends React.Component {
 	maybeActiveItem() {
 		return this.maybeSetActive(this.props.checked);
 	}
+	itemChange(event) {
+		this.setState({
+			loading: true
+		});
+		console.log( this.props.context );
+		EUMActions.itemToggle( this.props.context, this.props.name, ( this.state.checked ? 'off' : 'on' ) );
+		
+	}
+	getLabel() {
+		if ( this.state.loading ) {
+			return(
+				<LoadingGif />
+			)	
+		}
+		return (
+			<label htmlFor={this.props.name}>
+				{this.state.label}
+			</label>	
+		);
+	}
 	componentWillReceiveProps(newprops) {
 		this.setState({
 			loading:newprops.loading,
@@ -36,38 +56,34 @@ class ToggleItem extends React.Component {
 	}
 	render() {
 		return (
-			<div>
-				<div className={this.maybeActiveItem()}>
-					<div className="dashboard-item-header input-radio">
-						{this.props.title}	
-					</div>
-					<ToggleItemInput
-						id={this.props.name}
-						name={this.props.name}
-						onChange={this.itemChange}
-						checked={this.state.checked}
-						disabled={this.state.disabled}
-						context={this.props.context}
-					/>		
-				</div>	
+			<div className="dashboard-item-choice">
+				<input
+					id={this.props.name}
+					type="checkbox" 
+					className="dashboard-hide" 
+					name={this.props.name} 
+					value="on"
+					onChange={this.itemChange}
+					checked={this.state.checked}
+					disabled={this.state.disabled}
+				/>
+				{this.getLabel()}
 			</div>	
 		);
 	}
 }
-ToggleItem.propTypes = {
+ToggleItemInput.propTypes = {
 	checked: React.PropTypes.bool.isRequired,
-	title: React.PropTypes.string.isRequired,
 	disabled: React.PropTypes.bool.isRequired,
 	name: React.PropTypes.string.isRequired,
 	context: React.PropTypes.string.isRequired,
 	loading: React.PropTypes.bool.isRequired
 };
-ToggleItem.defaultProps = {
+ToggleItemInput.defaultProps = {
 	checked: false,
-	title: '',
 	disabled: false,
 	name: '',
 	context: '',
 	loading: false
 };
-export default ToggleItem;
+export default ToggleItemInput;
