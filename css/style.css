@@ -115,9 +115,6 @@
   width: 60%;
   font-weight: 100; }
 
-.dashboard-item:first-child {
-  border-top: none; }
-
 .dashboard-item {
   cursor: pointer;
   clear: both;
@@ -129,14 +126,15 @@
   -ms-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease; }
-
-.dashboard-item:hover {
-  background: #ececec;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease; }
+  .dashboard-item:first-child {
+    border-top: none; }
+  .dashboard-item:hover {
+    background: #ececec;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
 
 .dashboard-item-header {
   color: #888;

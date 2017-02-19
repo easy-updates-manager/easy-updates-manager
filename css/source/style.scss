@@ -130,28 +130,28 @@
   width: 60%;
   font-weight: 100;
 }
-.dashboard-item:first-child {
-  border-top: none;
-}
 .dashboard-item {
-  cursor: pointer;
-  clear: both;
-  border-bottom: 1px solid #d2d2d2;
-  padding: 18px 15px;
-  overflow: hidden;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-.dashboard-item:hover {
-  background:#ececec;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+	cursor: pointer;
+	clear: both;
+	border-bottom: 1px solid #d2d2d2;
+	padding: 18px 15px;
+	overflow: hidden;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-ms-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	&:first-child {
+		border-top: none;
+	}
+	&:hover {
+		background:#ececec;
+		-webkit-transition: all 0.2s ease;
+		-moz-transition: all 0.2s ease;
+		-ms-transition: all 0.2s ease;
+		-o-transition: all 0.2s ease;
+		transition: all 0.2s ease;
+	}
 }
 .dashboard-item-header {
   color:#888;
