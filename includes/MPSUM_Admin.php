@@ -187,6 +187,17 @@ class MPSUM_Admin {
 		MPSUM_Admin_Screen_Options::run();
 	}
 	
+	/**
+	 * Returns formatted array of EUM options
+	 *
+	 * Returns formatted array of EUM options.
+	 *
+	 * @since 6.3
+	 * @access public
+	 *
+	 * @return array EUM implementation options
+	 *
+	 */
 	private function get_options_for_default() {
 		$options = MPSUM_Updates_Manager::get_options();
 		if ( ! isset( $options[ 'core' ] ) ) {
@@ -278,6 +289,9 @@ class MPSUM_Admin {
 				} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'default' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
 					return true;
 				} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+					if ( false !== array_search( $option, $options[ 'plugins' ] ) ) {
+						return true;
+					}
 					return false;
 				}
 				break;
@@ -289,6 +303,9 @@ class MPSUM_Admin {
 				} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'default' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
 					return true;
 				} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+					if ( false !== array_search( $option, $options[ 'themes' ] ) ) {
+						return true;
+					}
 					return false;
 				}
 				break;
@@ -371,7 +388,7 @@ class MPSUM_Admin {
 						return false;
 					} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
 						$option_search = array_search( $option, $options[ $context ] );
-						if ( false === $option_search ) {
+						if ( false === $option_search  || ( false !== array_search( $option, $options[ 'plugins' ] ) ) ) {
 							return false;
 						} else {
 							return true;
@@ -385,7 +402,7 @@ class MPSUM_Admin {
 						return false;
 					} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
 						$option_search = array_search( $option, $options[ $context ] );
-						if ( false === $option_search ) {
+						if ( false === $option_search || ( false !== array_search( $option, $options[ 'themes' ] ) ) ) {
 							return false;
 						} else {
 							return true;
