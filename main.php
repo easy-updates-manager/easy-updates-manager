@@ -347,6 +347,8 @@ class MPSUM_Updates_Manager {
 		$option_value = sanitize_text_field( $_POST[ 'value' ] );
 		$id = sanitize_text_field( $_POST[ 'id' ] );
 		
+		error_log( $id );
+		
 		$options = MPSUM_Updates_Manager::get_options( $context );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		if ( 'core' == $context ) {
@@ -356,8 +358,8 @@ class MPSUM_Updates_Manager {
 			$plugin_options = MPSUM_Updates_Manager::get_options( $context );
 			if ( 'on' == $option_value ) {
 				foreach( $plugin_options as $plugin ) {
-					if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
-						unset( $plugin_options[ $id ] );
+					if ( ( $plugin_index = array_search( $id, $plugin_options ) ) !== false ) {
+						unset( $plugin_options[ $plugin_index ] );
 					}
 				}
 			} else {
@@ -370,8 +372,8 @@ class MPSUM_Updates_Manager {
 			$plugin_options = MPSUM_Updates_Manager::get_options( $context );
 			if ( 'off' == $option_value ) {
 				foreach( $plugin_options as $plugin ) {
-					if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
-						unset( $plugin_options[ $id ] );
+					if ( ( $theme_index = array_search( $id, $plugin_options ) ) !== false ) {
+						unset( $plugin_options[ $theme_index ] );
 					}
 				}
 			} else {
