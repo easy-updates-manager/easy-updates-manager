@@ -189,15 +189,20 @@ class MPSUM_Admin {
 	
 	private function get_options_for_default() {
 		$options = MPSUM_Updates_Manager::get_options();
-		if ( empty( $options ) ) {
-			$options = array(
-				'core' => array(),
-				'plugins' => array(),
-				'themes' => array(),
-				'plugins_automatic' => array(),
-				'themes_automatic' => array()	
-			);
-			$options[ 'core' ] = wp_parse_args( $options[ 'core' ], MPSUM_Admin_Core::get_defaults() );
+		if ( ! isset( $options[ 'core' ] ) ) {
+			$options[ 'core' ] = MPSUM_Admin_Core::get_defaults();
+		}
+		if ( ! isset( $options[ 'plugins' ] ) ) {
+			$options[ 'plugins' ] = array();	
+		}
+		if ( ! isset( $options[ 'themes' ] ) ) {
+			$options[ 'themes' ] = array();	
+		}
+		if ( ! isset( $options[ 'plugins_automatic' ] ) ) {
+			$options[ 'plugins_automatic' ] = array();	
+		}
+		if ( ! isset( $options[ 'themes_automatic' ] ) ) {
+			$options[ 'themes_automatic' ] = array();	
 		}
 		return $options;
 		
@@ -304,19 +309,29 @@ class MPSUM_Admin {
 					break;
 			}
 		}
-		
 		if( isset( $options[ $context ][ $option ] ) && 'on' == $options[ $context ][ $option ] ) {
 			return true;	
 		} else {
 			switch( $context ) {
 				case 'plugins':
+					$option_search = array_search( $option, $options[ $context ] );
+					if ( false === $option_search ) {
+						return true;
+					} else {
+						return false;
+					}
+					break;
 				case 'themes':
+					$option_search = array_search( $option, $options[ $context ] );
+					if ( false === $option_search ) {
+						return true;
+					} else {
+						return false;
+					}
+					break;
 				case 'plugins_automatic':
 				case 'themes_automatic':
-					if ( $option == 'osu' ) {
-						die( 'blah' );
-					}
-					return ! array_search( $option, $options[ $context ] );
+					break;
 			}
 			return false;
 		}
@@ -566,8 +581,8 @@ class MPSUM_Admin {
 				'title' => $theme_data->Name,
 				'id' => $theme_slug,
 				'name' => 'themes',
-				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'themes' ),
-				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'themes' ),
+				'disabled' => $this->get_json_maybe_disabled( $theme_slug, 'themes' ),
+				'checked' => $this->get_json_maybe_checked( $theme_slug, 'themes' ),
 				'loading' => false,
 				'context' => 'themes',
 			);
@@ -576,8 +591,8 @@ class MPSUM_Admin {
 				'title' => $theme_data->Name,
 				'id' => $theme_slug,
 				'name' => 'themes',
-				'disabled' => $this->get_json_maybe_disabled( $plugin_slug, 'themes_automatic' ),
-				'checked' => $this->get_json_maybe_checked( $plugin_slug, 'themes_automatic' ),
+				'disabled' => $this->get_json_maybe_disabled( $theme_slug, 'themes_automatic' ),
+				'checked' => $this->get_json_maybe_checked( $theme_slug, 'themes_automatic' ),
 				'loading' => false,
 				'context' => 'themes_automatic',
 			);

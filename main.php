@@ -347,10 +347,8 @@ class MPSUM_Updates_Manager {
         } else if ( 'plugins' == $context || 'themes' == $context    ) {
             $plugin_options = MPSUM_Updates_Manager::get_options( $context );
             if ( 'on' == $option_value ) {
-	            error_log( print_r( $plugin_options, true ) );
                 foreach( $plugin_options as $plugin ) {
                     if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
-	                    error_log( 'unset' );
                 		unset( $plugin_options[ $id ] );
                     }
                 }
