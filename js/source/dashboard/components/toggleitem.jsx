@@ -1,6 +1,5 @@
 import React from 'react';
 import {render} from 'react-dom';
-import LoadingGif from './loading.jsx';
 import EUM from './main.jsx';
 import EUMActions from '../data/EUMActions.jsx';
 import ToggleItemInput from './toggleiteminput.jsx';

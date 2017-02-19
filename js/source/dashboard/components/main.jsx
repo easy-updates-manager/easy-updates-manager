@@ -5,6 +5,8 @@ import EUMActionTypes from '../data/EUMActionTypes.jsx';
 import EUMDispatcher from '../data/EUMDispatcher.jsx';
 import EventEmitter from 'Event-Emitter';
 import update from "immutability-helper";
+import LoadingGif from './loading.jsx';
+
 
 var _storeJSON = null;
 
@@ -97,6 +99,13 @@ class App extends React.Component {
 		return <ToggleWrapper class="" title={title} items={items} key={title} />
 	}
 	createWrappers( data ) {
+		if ( this.state.loading ) {
+			return (
+				<div id="eum-dashboard-loading">
+					<LoadingGif />
+				</div>
+			)
+		}
 		let wrappers = [];
 		if ( data.length > 0 ) {
 			for( var value of data ) {
