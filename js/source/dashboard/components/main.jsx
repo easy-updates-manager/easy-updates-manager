@@ -98,7 +98,10 @@ class App extends React.Component {
 		);
 	}
 }
-render(
-	<App />, 
-	document.getElementById('eum-dashboard-app')
-);
+let appContainer = document.getElementById('eum-dashboard-app');
+if ( null !== appContainer ) {
+	render(
+		<App />, 
+		appContainer
+	);
+}
