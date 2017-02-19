@@ -52,7 +52,7 @@ class ToggleTabs extends React.Component {
 				{tabs}
 				{tabContent}
 			</div>
-		);tabs;
+		);
 	}
 	render() {
 		return (

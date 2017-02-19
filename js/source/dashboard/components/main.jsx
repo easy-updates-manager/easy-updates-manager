@@ -43,7 +43,6 @@ EUMDispatcher.register( function( action ) {
 					EUMStore.emitChange();
 				}	
 			};
-			console.log( action );
 			xhr.onload = xhr.onload.bind(this);
 			xhr.send(
 				'action=mpsum_ajax_action' +
@@ -75,7 +74,7 @@ class App extends React.Component {
 		this.setState( { options: getState() } );
 	}
 	createWrapper( title, items ) {
-		return <ToggleWrapper class="" title={title} items={items} key={title} update={this.update} />
+		return <ToggleWrapper class="" title={title} items={items} key={title} />
 	}
 	createWrappers( data ) {
 		let wrappers = [];

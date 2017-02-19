@@ -11,21 +11,10 @@ class ToggleItem extends React.Component {
 		super(props);
 		this.state = {
 			checked     : this.props.checked,
-			itemClasses : this.maybeActiveItem(),
 			disabled    : this.props.disabled,
 			label       : mpsum.enabled,
 			loading     : false
 		};
-	}
-	maybeSetActive(checked) {
-		if(checked) {
-			return 'dashboard-item active';
-		} else {
-			return 'dashboard-item';
-		}
-	}
-	maybeActiveItem() {
-		return this.maybeSetActive(this.props.checked);
 	}
 	componentWillReceiveProps(newprops) {
 		this.setState({
