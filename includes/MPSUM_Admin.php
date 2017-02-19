@@ -238,6 +238,7 @@ class MPSUM_Admin {
 		} elseif ( 'off' == $options[ 'core' ][ 'plugin_updates' ] && 'plugin_updates' !== $option ) {
 			switch( $context ) {
 				case 'plugins':
+				case 'plugins_automatic':
 					return true;
 					break;
 			}
@@ -257,6 +258,7 @@ class MPSUM_Admin {
 		} elseif ( 'off' == $options[ 'core' ][ 'theme_updates' ] && 'theme_updates' != $option ) {
 			switch( $context ) {
 				case 'themes':
+				case 'themes_automatic':
 					return true;
 					break;
 			}
@@ -265,6 +267,31 @@ class MPSUM_Admin {
 					return true;
 					break;
 			}
+		}
+		
+		switch( $context ) {
+			case 'plugins_automatic':
+				if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'on' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+					return true;
+				} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'off' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+					return true;
+				} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'default' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+					return true;
+				} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+					return false;
+				}
+				break;
+			case 'themes_automatic':
+				if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'on' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+					return true;
+				} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'off' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+					return true;
+				} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'default' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+					return true;
+				} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+					return false;
+				}
+				break;
 		}
 		return false;
 	}
@@ -308,7 +335,15 @@ class MPSUM_Admin {
 					return false;
 					break;
 			}
+		} elseif ( 'off' == $options[ 'core' ][ 'plugin_updates' ] && 'plugin_updates' != $option ) {
+			switch( $context ) {
+				case 'plugins':
+				case 'plugins_automatic':
+					return false;
+					break;
+			}
 		}
+		
 		if( isset( $options[ $context ][ $option ] ) && 'on' == $options[ $context ][ $option ] ) {
 			return true;	
 		} else {
@@ -330,7 +365,32 @@ class MPSUM_Admin {
 					}
 					break;
 				case 'plugins_automatic':
+					if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'on' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+						return true;
+					} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'default' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+						return false;
+					} else if ( isset( $options[ 'core' ][ 'automatic_plugin_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_plugin_updates' ] ) {
+						$option_search = array_search( $option, $options[ $context ] );
+						if ( false === $option_search ) {
+							return false;
+						} else {
+							return true;
+						}
+					}
+					break;
 				case 'themes_automatic':
+					if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'on' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+						return true;
+					} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'default' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+						return false;
+					} else if ( isset( $options[ 'core' ][ 'automatic_theme_updates' ] ) && 'individual' == $options[ 'core' ][ 'automatic_theme_updates' ] ) {
+						$option_search = array_search( $option, $options[ $context ] );
+						if ( false === $option_search ) {
+							return false;
+						} else {
+							return true;
+						}
+					}
 					break;
 			}
 			return false;
