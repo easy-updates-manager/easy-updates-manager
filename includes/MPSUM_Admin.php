@@ -765,7 +765,6 @@ class MPSUM_Admin {
     		'dashboard_showing' => $dashboard_showing,
     		'enabled' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
     		'disabled' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
-    		'json_options' => $this->get_json_options(),
     		'admin_nonce' => wp_create_nonce( 'mpsum_options_save' )
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20160819' );

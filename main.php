@@ -90,7 +90,7 @@ class MPSUM_Updates_Manager {
 		// Logging
 		$options = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( isset( $options[ 'logs' ] ) && 'on' == $options[ 'logs' ] ) {
-    		MPSUM_Logs::run();
+			MPSUM_Logs::run();
 		}
 
 		add_action( 'init', array( $this, 'init' ) );
@@ -155,9 +155,9 @@ class MPSUM_Updates_Manager {
 	* @since 5.0.0 
 	* @access static
 	*
-	* @param string  $context Context to retrieve options for.  This is used as an array key.
-	* @param bool  $force_reload Whether to retrieve cached options or forcefully retrieve from the database.
-	* @return array All options if no context, or associative array if context is set.  Empty array if no options.
+	* @param string  $context Context to retrieve options for.	 This is used as an array key.
+	* @param bool	$force_reload Whether to retrieve cached options or forcefully retrieve from the database.
+	* @return array All options if no context, or associative array if context is set.	 Empty array if no options.
 	*/
 	public static function get_options( $context = '', $force_reload = false ) {
 		//Try to get cached options
@@ -219,7 +219,7 @@ class MPSUM_Updates_Manager {
 	*
 	* @return bool|array  false if no migration, associative array of options if migration successful
 	*/
-	public static  function maybe_migrate_options() {
+	public static	function maybe_migrate_options() {
 		$options = false;
 		$original_options = get_option( '_disable_updates', false );
 		
@@ -316,6 +316,7 @@ class MPSUM_Updates_Manager {
 		}
 		
 		add_action( 'wp_ajax_mpsum_ajax_action', array( $this, 'ajax_update_option' ) );
+		add_action( 'wp_ajax_mpsum_ajax_get_json', array( $this, 'ajax_get_json' ) );
 		
 		
 		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
@@ -325,59 +326,66 @@ class MPSUM_Updates_Manager {
 		}	
 	}
 	
+	public function ajax_get_json() {
+		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
+			die( 'Cheating, huh' );
+		}
+		die( json_encode( MPSUM_Admin::run()->get_json_options() ) );
+	}
+	
 	public function ajax_update_option() {
 		
-        if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) ) {
-            die( 'Cheating, huh' );
-        }
-        if ( !isset( $_POST[ 'context' ] ) || !isset( $_POST[ 'data_action' ] ) ) {
-            die('');
-        }
-        /* Get Ajax Options */
-        $context = sanitize_text_field( $_POST[ 'context' ] );
-        $option = sanitize_text_field( $_POST[ 'data_action' ] );	
-        $option_value = sanitize_text_field( $_POST[ 'value' ] );
-        $id = sanitize_text_field( $_POST[ 'id' ] );
-        
-        $options = MPSUM_Updates_Manager::get_options( $context );
+		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
+			die( 'Cheating, huh' );
+		}
+		if ( !isset( $_POST[ 'context' ] ) || !isset( $_POST[ 'data_action' ] ) ) {
+			die('');
+		}
+		/* Get Ajax Options */
+		$context = sanitize_text_field( $_POST[ 'context' ] );
+		$option = sanitize_text_field( $_POST[ 'data_action' ] );	
+		$option_value = sanitize_text_field( $_POST[ 'value' ] );
+		$id = sanitize_text_field( $_POST[ 'id' ] );
+		
+		$options = MPSUM_Updates_Manager::get_options( $context );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		if ( 'core' == $context ) {
-    		$options[ $option ] = $option_value;
-            MPSUM_Updates_Manager::update_options( $options, $context );
-        } else if ( 'plugins' == $context || 'themes' == $context    ) {
-            $plugin_options = MPSUM_Updates_Manager::get_options( $context );
-            if ( 'on' == $option_value ) {
-                foreach( $plugin_options as $plugin ) {
-                    if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
-                		unset( $plugin_options[ $id ] );
-                    }
-                }
-            } else {
-                $plugin_options[] = $id;
-                $plugin_options = array_values( array_unique( $plugin_options ) );
-            }
-                    	
-            MPSUM_Updates_Manager::update_options( $plugin_options, $context );
-        } elseif( 'plugins_automatic' == $context || 'themes_automatic' == $context ) {
-            $plugin_options = MPSUM_Updates_Manager::get_options( $context );
-            if ( 'off' == $option_value ) {
-                foreach( $plugin_options as $plugin ) {
-                    if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
-                		unset( $plugin_options[ $id ] );
-                    }
-                }
-            } else {
-                $options = MPSUM_Updates_Manager::get_options( $context );
-                $options[] = $id;
-                $plugin_options = array_values( array_unique( $options ) );
-            }
-            
-            MPSUM_Updates_Manager::update_options( $plugin_options, $context );
-        }
-        
-        die( json_encode( MPSUM_Admin::run()->get_json_options() ) );
-            
-    }
+			$options[ $option ] = $option_value;
+			MPSUM_Updates_Manager::update_options( $options, $context );
+		} else if ( 'plugins' == $context || 'themes' == $context	 ) {
+			$plugin_options = MPSUM_Updates_Manager::get_options( $context );
+			if ( 'on' == $option_value ) {
+				foreach( $plugin_options as $plugin ) {
+					if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
+						unset( $plugin_options[ $id ] );
+					}
+				}
+			} else {
+				$plugin_options[] = $id;
+				$plugin_options = array_values( array_unique( $plugin_options ) );
+			}
+						
+			MPSUM_Updates_Manager::update_options( $plugin_options, $context );
+		} elseif( 'plugins_automatic' == $context || 'themes_automatic' == $context ) {
+			$plugin_options = MPSUM_Updates_Manager::get_options( $context );
+			if ( 'off' == $option_value ) {
+				foreach( $plugin_options as $plugin ) {
+					if ( ( $id = array_search( $id, $plugin_options ) ) !== false ) {
+						unset( $plugin_options[ $id ] );
+					}
+				}
+			} else {
+				$options = MPSUM_Updates_Manager::get_options( $context );
+				$options[] = $id;
+				$plugin_options = array_values( array_unique( $options ) );
+			}
+			
+			MPSUM_Updates_Manager::update_options( $plugin_options, $context );
+		}
+		
+		die( json_encode( MPSUM_Admin::run()->get_json_options() ) );
+			
+	}
 	
 	/**
 	* Save plugin options.
@@ -387,7 +395,7 @@ class MPSUM_Updates_Manager {
 	* @since 5.0.0
 	* @access static
 	*
-	* @param array  $options Associative array of plugin options.
+	* @param array	 $options Associative array of plugin options.
 	* @param string $context Array key of which options to update
 	*/
 	public static function update_options( $options = array(), $context = '' ) {
