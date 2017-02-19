@@ -43,6 +43,7 @@ EUMDispatcher.register( function( action ) {
 					EUMStore.emitChange();
 				}	
 			};
+			console.log( action );
 			xhr.onload = xhr.onload.bind(this);
 			xhr.send(
 				'action=mpsum_ajax_action' +

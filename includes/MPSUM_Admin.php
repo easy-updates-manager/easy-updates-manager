@@ -187,6 +187,22 @@ class MPSUM_Admin {
 		MPSUM_Admin_Screen_Options::run();
 	}
 	
+	private function get_options_for_default() {
+		$options = MPSUM_Updates_Manager::get_options();
+		if ( empty( $options ) ) {
+			$options = array(
+				'core' => array(),
+				'plugins' => array(),
+				'themes' => array(),
+				'plugins_automatic' => array(),
+				'themes_automatic' => array()	
+			);
+			$options[ 'core' ] = wp_parse_args( $options[ 'core' ], MPSUM_Admin_Core::get_defaults() );
+		}
+		return $options;
+		
+	}
+	
 	/**
 	 * Returns whether a JSON component should be disabled or not.
 	 *
@@ -201,7 +217,7 @@ class MPSUM_Admin {
 	 *
 	 */
 	private function get_json_maybe_disabled( $option, $context = 'core' ) {
-		$options = MPSUM_Updates_Manager::get_options();
+		$options = $this->get_options_for_default();
 		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
 			// $context disables an entire section
 			switch( $context ) {
@@ -262,7 +278,7 @@ class MPSUM_Admin {
 	 *
 	 */
 	private function get_json_maybe_checked( $option, $context = 'core' ) {
-		$options = MPSUM_Updates_Manager::get_options();
+		$options = $this->get_options_for_default();
 		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
 			// $context disables an entire section
 			switch( $context ) {
@@ -289,7 +305,6 @@ class MPSUM_Admin {
 			}
 		}
 		
-		
 		if( isset( $options[ $context ][ $option ] ) && 'on' == $options[ $context ][ $option ] ) {
 			return true;	
 		} else {
@@ -298,6 +313,9 @@ class MPSUM_Admin {
 				case 'themes':
 				case 'plugins_automatic':
 				case 'themes_automatic':
+					if ( $option == 'osu' ) {
+						die( 'blah' );
+					}
 					return ! array_search( $option, $options[ $context ] );
 			}
 			return false;
@@ -319,7 +337,7 @@ class MPSUM_Admin {
 	 *
 	 */
 	private function get_json_maybe_selected( $option, $context = 'core' ) {
-		$options = MPSUM_Updates_Manager::get_options();
+		$options = $this->get_options_for_default();
 		if ( 'off' == $options[ 'core' ][ 'all_updates' ] && 'all_updates' != $option ) {
 			switch( $option ) {
 				case 'automatic_plugin_updates':

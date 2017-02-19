@@ -55,16 +55,6 @@ class MPSUM_Admin_Dashboard {
 	* @internal Uses the mpsum_admin_tab_main action
 	*/
 	public function tab_output() {
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = $saved_options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		$disable_core_options = false;
-        if( 'off' == $options[ 'all_updates' ] ) {
-            $disable_core_options = true;
-            $options[ 'core_updates' ] = 'off'; 
-            $options[ 'plugin_updates' ] = 'off';
-            $options[ 'theme_updates' ] = 'off';
-            $options[ 'translation_updates' ] = 'off'; 
-        }
 		?>
 		<div id="eum-dashboard-app"></div>
         <?php		
