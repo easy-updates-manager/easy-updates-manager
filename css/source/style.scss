@@ -15,6 +15,14 @@
 	@include justify-content(space-between);
 	@include flex-wrap(wrap);
 }
+/* CSS hack for uneven items */
+#eum-dashboard-wrappers:after {
+	content: ' ';
+	display: block;
+	width: 100%;
+	max-width: 32%;
+	
+}
 .dashboard-main-wrapper {
   width: 100%;
   max-width: 32%;
