@@ -258,6 +258,24 @@ class MPSUM_Admin {
 					return true;
 					break;
 			}
+		} elseif( 'off' == $options[ 'core' ][ 'core_updates' ] && 'core_updates' != $option ) {
+			switch( $option ) {
+				case 'automatic_major_updates':
+				case 'automatic_minor_updates':
+				case 'automatic_development_updates':
+				case 'automatic_plugin_updates':
+				case 'automatic_theme_updates':
+				case 'automatic_translation_updates':
+					return true;
+					break;
+			}
+			switch( $context ) {
+				case 'plugins_automatic':
+				case 'themes_automatic':
+					return true;
+					break;
+			}
+		
 		} elseif ( 'off' == $options[ 'core' ][ 'translation_updates' ] && 'translation_updates' != $option ) {
 					
 
@@ -345,6 +363,24 @@ class MPSUM_Admin {
 					return false;
 					break;
 			}
+		} elseif( 'off' == $options[ 'core' ][ 'core_updates' ] && 'core_updates' != $option ) {
+			switch( $option ) {
+				case 'automatic_major_updates':
+				case 'automatic_minor_updates':
+				case 'automatic_development_updates':
+				case 'automatic_plugin_updates':
+				case 'automatic_theme_updates':
+				case 'automatic_translation_updates':
+					return false;
+					break;
+			}
+			switch( $context ) {
+				case 'plugins_automatic':
+				case 'themes_automatic':
+					return false;
+					break;
+			}
+		
 		} elseif ( 'off' == $options[ 'core' ][ 'theme_updates' ] && 'theme_updates' != $option ) {
 			switch( $context ) {
 				case 'themes':
@@ -451,6 +487,13 @@ class MPSUM_Admin {
 					return 'off';
 					break;
 			}
+		} elseif( 'off' == $options[ 'core' ][ 'core_updates' ] && 'core_updates' != $option ) {
+			switch( $option ) {
+				case 'automatic_theme_updates':
+				case 'automatic_plugin_updates':
+					return 'off';
+					break;
+			}	
 		}
 		
 		return $options[ $context ][ $option ];
