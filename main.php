@@ -346,9 +346,7 @@ class MPSUM_Updates_Manager {
 		$option = sanitize_text_field( $_POST[ 'data_action' ] );	
 		$option_value = sanitize_text_field( $_POST[ 'value' ] );
 		$id = sanitize_text_field( $_POST[ 'id' ] );
-		
-		error_log( $id );
-		
+				
 		$options = MPSUM_Updates_Manager::get_options( $context );
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		if ( 'core' == $context ) {

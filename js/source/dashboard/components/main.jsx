@@ -73,6 +73,7 @@ var initState = function() {
 			let json = JSON.parse( xhr.response );
 			_storeJSON = json;
 			EUMStore.emitChange();
+			console.log( 'yo' );
 		}	
 	};
 	xhr.onload = xhr.onload.bind(this);
