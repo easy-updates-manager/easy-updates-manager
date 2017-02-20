@@ -125,7 +125,7 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div>
+			<div id="eum-dashboard-wrappers">
 				{this.createWrappers(this.state.options)}
 			</div>	
 		);

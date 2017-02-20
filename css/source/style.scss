@@ -1,5 +1,6 @@
+@import "mixin-flexbox";
+
 #eum-dashboard-app {
-	text-align: justify;
 	width: 99%;
 	margin:30px auto 0;
 	&:after {
@@ -9,13 +10,18 @@
 		clear: both;  
 	}
 }
+#eum-dashboard-wrappers {
+	@include flexbox;
+	@include justify-content(space-between);
+	@include flex-wrap(wrap);
+}
 .dashboard-main-wrapper {
-  width: 33%;
+  width: 100%;
+  max-width: 32%;
   display: inline-block;
   text-align: left;
   vertical-align: top;
   margin-bottom:30px;
-  padding-right:30px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -309,13 +315,14 @@ label{
 }
 
 @media only screen and (max-width:1200px) {
-  #dashboard-main-outputs {
+  #eum-dashboard-app {
 	width:100%;
   }
 }
 @media only screen and (max-width:1000px) {
-  #dashboard-main-outputs .dashboard-main-wrapper {
+  #eum-dashboard-app .dashboard-main-wrapper {
 	width: 48.5%;
+	max-width: 48.5%;
 	padding:0;
 
   }
@@ -326,13 +333,14 @@ label{
   }
 }
 @media only screen and (max-width:782px) {
-  #dashboard-main-outputs .dashboard-main-wrapper {
+  #eum-dashboard-app .dashboard-main-wrapper {
 	width: 98.5%;
+	max-width: 98.5%;
   }
-  #dashboard-main-outputs { 
+  #eum-dashboard-app { 
 	  margin-top: 20px;
   }
-  #dashboard-main-outputs input[type=radio]:checked:before {
+  #eum-dashboard-app input[type=radio]:checked:before {
 	margin:0 !important;
   }
 }
