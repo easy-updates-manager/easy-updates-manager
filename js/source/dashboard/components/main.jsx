@@ -6,6 +6,7 @@ import EUMDispatcher from '../data/EUMDispatcher.jsx';
 import EventEmitter from 'Event-Emitter';
 import update from "immutability-helper";
 import LoadingGif from './loading.jsx';
+import RatingsNag from './ratingsnag.jsx';
 
 
 var _storeJSON = null;
@@ -73,7 +74,6 @@ var initState = function() {
 			let json = JSON.parse( xhr.response );
 			_storeJSON = json;
 			EUMStore.emitChange();
-			console.log( 'yo' );
 		}	
 	};
 	xhr.onload = xhr.onload.bind(this);
@@ -125,8 +125,12 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div id="eum-dashboard-wrappers">
-				{this.createWrappers(this.state.options)}
+			<div>
+				<RatingsNag />
+				<div id="eum-dashboard-wrappers">
+					
+					{this.createWrappers(this.state.options)}
+				</div>
 			</div>	
 		);
 	}

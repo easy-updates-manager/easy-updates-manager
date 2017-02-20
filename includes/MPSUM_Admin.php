@@ -808,7 +808,13 @@ class MPSUM_Admin {
     		'dashboard_showing' => $dashboard_showing,
     		'enabled' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
     		'disabled' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
-    		'admin_nonce' => wp_create_nonce( 'mpsum_options_save' )
+    		'admin_nonce' => wp_create_nonce( 'mpsum_options_save' ),
+    		'ratings_nag' => array(
+	    		'text' => __( 'Hey there! If Easy Updates Manager has helped you, can you do us a HUGE favor and give us a rating? THANKS! - The Easy Updates Manager team', 'stops-core-theme-and-plugin-updates' ),
+	    		'url' => 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post',
+	    		'affirm' => __( 'Sure! Absolutely.', 'stops-core-theme-and-plugin-updates' ),
+	    		'cancel' => __( 'No thanks!', 'stops-core-theme-and-plugin-updates' )
+    		)
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20160819' );
     }

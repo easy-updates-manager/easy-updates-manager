@@ -11,6 +11,7 @@
 	}
 }
 #eum-dashboard-wrappers {
+	clear: both;
 	@include flexbox;
 	@include justify-content(space-between);
 	@include flex-wrap(wrap);
@@ -312,7 +313,8 @@ label{
 	background-color: #e14d43;
 	color: #FFF;
 }
-.mpsum-error {
+.mpsum-error,
+.mpsum-notice {
 	background: #fff;
 	border-left: 4px solid #dc3232;
 	-webkit-box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
@@ -322,7 +324,12 @@ label{
 	margin: 5px 0 15px;
 	color: #ff0000;
 }
-.mpsum_error p {
+.mpsum-notice {
+	border-left-color: #00a0d2;
+	color: #000;
+}
+.mpsum-error p,
+.mpsum-notice p {
 	margin: 0.5em 0;
 	padding: 2px;
 }
