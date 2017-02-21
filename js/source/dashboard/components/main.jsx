@@ -128,7 +128,6 @@ class App extends React.Component {
 			<div>
 				<RatingsNag />
 				<div id="eum-dashboard-wrappers">
-					
 					{this.createWrappers(this.state.options)}
 				</div>
 			</div>	

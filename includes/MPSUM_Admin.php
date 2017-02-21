@@ -800,6 +800,19 @@ class MPSUM_Admin {
 			$dashboard_showing = 'on';
 		}
 		
+		$options = $options = MPSUM_Updates_Manager::get_options();
+		
+		/**
+		 * Filter whether a ratings nag is enabled/disabled or not
+		 *
+		 * @since 6.3.0
+		 *
+		 * @param bool true to show ratings nag, false if not
+		 */
+		$ratings_nag_showing = apply_filters( 'mpsum_ratings_nag', true );
+		if ( isset( $options[ 'core' ][ 'ratings_nag' ] ) && false == $options[ 'core' ][ 'ratings_nag' ] ) {
+			$ratings_nag_showing = false;
+		}
 		
     	wp_localize_script( 'mpsum_dashboard', 'mpsum', array( 
     		'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
@@ -813,7 +826,8 @@ class MPSUM_Admin {
 	    		'text' => __( 'Hey there! If Easy Updates Manager has helped you, can you do us a HUGE favor and give us a rating? THANKS! - The Easy Updates Manager team', 'stops-core-theme-and-plugin-updates' ),
 	    		'url' => 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post',
 	    		'affirm' => __( 'Sure! Absolutely.', 'stops-core-theme-and-plugin-updates' ),
-	    		'cancel' => __( 'No thanks!', 'stops-core-theme-and-plugin-updates' )
+	    		'cancel' => __( 'No thanks!', 'stops-core-theme-and-plugin-updates' ),
+	    		'enabled' => $ratings_nag_showing
     		)
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20160819' );
