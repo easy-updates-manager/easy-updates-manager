@@ -333,6 +333,15 @@ label{
 	margin: 0.5em 0;
 	padding: 2px;
 }
+.eum-ratings-nag {
+	li {
+		display: inline-block;
+		margin-right: 10px;
+	}
+	a {
+		display: inline-block;
+	}
+}
 
 @media only screen and (max-width:1200px) {
   #eum-dashboard-app {

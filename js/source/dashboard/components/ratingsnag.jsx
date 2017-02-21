@@ -27,8 +27,8 @@ class RatingsNag extends React.Component {
 				<div className="eum-ratings-nag mpsum-notice">
 					<p><strong>{mpsum.ratings_nag.text}</strong></p>	
 					<ul>
-						<li><a target="_new" href={mpsum.ratings_nag.url}>{mpsum.ratings_nag.affirm}</a></li>
-						<li><a href="#" onClick={this.disabled}>{mpsum.ratings_nag.cancel}</a></li>
+						<li><a className="button button-primary" target="_new" href={mpsum.ratings_nag.url}>{mpsum.ratings_nag.affirm}</a></li>
+						<li><a className="button button-secondary" href="#" onClick={this.disabled}>{mpsum.ratings_nag.cancel}</a></li>
 					</ul>
 				</div>
 			)
