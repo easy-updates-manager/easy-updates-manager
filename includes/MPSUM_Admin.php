@@ -513,12 +513,12 @@ class MPSUM_Admin {
 		
 		$boxes = array();
 		$boxes[] = array(
-			'title' => 'WordPress Updates',
+			'title' => __( 'WordPress Updates', 'stops-core-theme-and-plugin-updates' ),
 			'component' => 'ToggleWrapper',
 			'items' => array(
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'All Updates',
+					'title' => __( 'All Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'all_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'all_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'all_updates' ),
@@ -527,7 +527,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'WordPress Core Updates',
+					'title' => __( 'WordPress Core Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'core_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'core_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'core_updates' ),
@@ -536,7 +536,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'All Plugin Updates',
+					'title' => __( 'All Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'plugin_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'plugin_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'plugin_updates' ),
@@ -545,7 +545,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'All Theme Updates',
+					'title' => __( 'All Theme Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'theme_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'theme_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'theme_updates' ),
@@ -554,7 +554,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'All Translation Updates',
+					'title' => __( 'All Translation Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'translation_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'translation_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'translation_updates' ),
@@ -565,11 +565,11 @@ class MPSUM_Admin {
 			),
 		);
 		$boxes[] = array(
-			'title' => 'Automatic Updates',
+			'title' => __( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
 			'items' => array(
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'Major Releases',
+					'title' => __( 'Major Releases', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'automatic_major_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'automatic_major_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'automatic_major_updates' ),
@@ -578,7 +578,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'Minor Releases',
+					'title' => __( 'Minor Releases', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'automatic_minor_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'automatic_minor_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'automatic_minor_updates' ),
@@ -587,7 +587,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'Development Updates',
+					'title' => __( 'Development Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'automatic_development_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'automatic_development_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'automatic_development_updates' ),
@@ -596,7 +596,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'Translation Updates',
+					'title' => __( 'Translation Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'automatic_translation_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'automatic_translation_updates' ),
 					'checked' => $this->get_json_maybe_checked( 'automatic_translation_updates' ),
@@ -605,7 +605,7 @@ class MPSUM_Admin {
 				),
 				array(
 					'component' => 'ToggleItemRadio',
-					'title' => 'Automatic Plugin Updates',
+					'title' => __( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'automatic_plugin_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'automatic_plugin_updates' ),
 					'checked' => $this->get_json_maybe_selected( 'automatic_plugin_updates' ),
@@ -614,29 +614,29 @@ class MPSUM_Admin {
 					'choices' => array(
 						array(
 							'id'    => 'automatic_plugin_on',
-							'label' => 'Enabled',
+							'label' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'on'
 						),
 						array(
 							'id'    => 'automatic_plugin_off',
-							'label' => 'Disabled',
+							'label' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'off'
 						),
 						array(
 							'id'    => 'automatic_plugin_default',
-							'label' => 'Default',
+							'label' => __( 'Default', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'default'
 						),
 						array(
 							'id'    => 'automatic_plugin_individual',
-							'label' => 'Select Individually',
+							'label' => __( 'Select Individually', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'individual'
 						)
 					)
 				),
 				array(
 					'component' => 'ToggleItemRadio',
-					'title' => 'Automatic Theme Updates',
+					'title' => __( 'Automatic Theme Updates', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'automatic_theme_updates',
 					'disabled' => $this->get_json_maybe_disabled( 'automatic_theme_updates' ),
 					'checked' => $this->get_json_maybe_selected( 'automatic_theme_updates' ),
@@ -645,22 +645,22 @@ class MPSUM_Admin {
 					'choices' => array(
 						array(
 							'id'    => 'automatic_theme_on',
-							'label' => 'Enabled',
+							'label' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'on'
 						),
 						array(
 							'id'    => 'automatic_theme_off',
-							'label' => 'Disabled',
+							'label' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'off'
 						),
 						array(
 							'id'    => 'automatic_theme_default',
-							'label' => 'Default',
+							'label' => __( 'Default', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'default'
 						),
 						array(
 							'id'    => 'automatic_theme_individual',
-							'label' => 'Select Individually',
+							'label' => __( 'Select Individually', 'stops-core-theme-and-plugin-updates' ),
 							'value' => 'individual'
 						)
 					)
@@ -718,7 +718,7 @@ class MPSUM_Admin {
 			);
 		}
 		$boxes[] = array(
-			'title' => 'Plugin and Theme Updates',
+			'title' => __( 'Plugin and Theme Updates', 'stops-core-theme-and-plugin-updates' ),
 			'items' => array( 
 				array(
 					'id'        => 'plugins-themes',
@@ -727,13 +727,13 @@ class MPSUM_Admin {
 					'tabs' => array(
 						array(
 							'id'        => 'plugin-updates',
-							'label'     => 'Plugin Updates',
+							'label'     => __( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
 							'items'     => $plugin_items,
 							'context'   => 'plugins'
 						),
 						array(
 							'id'        => 'theme-updates',
-							'label'     => 'Theme Updates',
+							'label'     => __( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ),
 							'items'     => $theme_items,
 							'context'   => 'themes'
 						)
@@ -742,7 +742,7 @@ class MPSUM_Admin {
 			),
 		);
 		$boxes[] = array(
-			'title' => 'Plugin and Theme Automatic Updates',
+			'title' => __( 'Plugin and Theme Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
 			'items' => array( 
 				array(
 					'id'        => 'plugins-themes-automatic',
@@ -751,13 +751,13 @@ class MPSUM_Admin {
 					'tabs' => array(
 						array(
 							'id'        => 'plugin-updates-automatic',
-							'label'     => 'Plugin Updates',
+							'label'     => __( 'Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
 							'items'     => $plugin_automatic_items,
 							'context'   => 'plugins_automatic'
 						),
 						array(
 							'id'        => 'theme-updates-automatic',
-							'label'     => 'Theme Updates',
+							'label'     => __( 'Theme Updates', 'stops-core-theme-and-plugin-updates' ),
 							'items'     => $theme_automatic_items,
 							'context'   => 'themes_automatic'
 						)
@@ -766,12 +766,12 @@ class MPSUM_Admin {
 			)
 		);
 		$boxes[] = array(
-			'title' => 'WordPress Notifications',
+			'title' => __( 'WordPress Notifications', 'stops-core-theme-and-plugin-updates' ),
 			'component' => 'ToggleWrapper',
 			'items' => array(
 				array(
 					'component' => 'ToggleItem',
-					'title' => 'Core E-mails',
+					'title' => __( 'Core E-mails', 'stops-core-theme-and-plugin-updates' ),
 					'name' => 'notification_core_update_emails',
 					'disabled' => $this->get_json_maybe_disabled( 'notification_core_update_emails' ),
 					'checked' => $this->get_json_maybe_checked( 'notification_core_update_emails' ),
@@ -830,7 +830,7 @@ class MPSUM_Admin {
 	    		'enabled' => $ratings_nag_showing
     		)
     	) );
-    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20160819' );
+    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20170221' );
     }
 	
 	/**
