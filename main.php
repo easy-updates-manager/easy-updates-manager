@@ -317,6 +317,7 @@ class MPSUM_Updates_Manager {
 		
 		add_action( 'wp_ajax_mpsum_ajax_action', array( $this, 'ajax_update_option' ) );
 		add_action( 'wp_ajax_mpsum_ajax_get_json', array( $this, 'ajax_get_json' ) );
+		add_action( 'wp_ajax_mpsum_ajax_remove_ratings_nag', array( $this, 'ajax_remove_ratings_nag' ) );
 		
 		
 		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
@@ -324,6 +325,17 @@ class MPSUM_Updates_Manager {
 		if ( is_admin() && $not_doing_ajax && $not_admin_disabled ) {
 			MPSUM_Admin::run();	
 		}	
+	}
+	
+	public function ajax_remove_ratings_nag() {
+		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
+			die( 'Cheating, huh' );
+		}
+		$options = MPSUM_Updates_Manager::get_options( 'core' );
+		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
+		$options[ 'ratings_nag' ] = false;
+		MPSUM_Updates_Manager::update_options( $options, 'core' );
+		die( '' );
 	}
 	
 	public function ajax_get_json() {

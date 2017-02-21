@@ -13,12 +13,19 @@ class RatingsNag extends React.Component {
 	disabled(e) {
 		e.preventDefault();
 		this.setState({disabled:true});
+		let xhr = new XMLHttpRequest();
+		xhr.open( 'POST', ajaxurl );
+		xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+		xhr.send(
+			'action=mpsum_ajax_remove_ratings_nag' +
+			'&_ajax_nonce=' + mpsum.admin_nonce
+		);
 	}
 	display() {
 		if ( false === this.state.disabled ) {
 			return (
 				<div className="eum-ratings-nag mpsum-notice">
-					<p>{mpsum.ratings_nag.text}</p>	
+					<p><strong>{mpsum.ratings_nag.text}</strong></p>	
 					<ul>
 						<li><a target="_new" href={mpsum.ratings_nag.url}>{mpsum.ratings_nag.affirm}</a></li>
 						<li><a href="#" onClick={this.disabled}>{mpsum.ratings_nag.cancel}</a></li>
