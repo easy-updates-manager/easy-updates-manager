@@ -126,6 +126,7 @@ class MPSUM_Admin_Core {
 			$email_addresses_to_save = array();
 			if ( count( $email_addresses ) > 0 ) {
 				foreach( $email_addresses as $email ) {
+					$email = trim($email);
 					if ( ! is_email( $email ) && ! empty( $email ) ) {
 						$email_addresses_to_save = array();
 						$query_args[ 'bad_email' ] = 1;
