@@ -22,7 +22,11 @@ var config = [
 				{
 					test : /\.jsx?/,
 					include : JS_SOURCE_DIR,
-					loader : 'babel-loader'
+					loader : 'babel-loader',
+					query: {
+						presets: ['es2015'],
+						plugins: ['transform-runtime']
+					}
 				}
 			]
 		}
