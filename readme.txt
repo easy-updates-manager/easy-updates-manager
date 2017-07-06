@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.8.0
-Stable tag: 6.3.0
+Stable tag: 6.3.1
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. Also works with WordPress Multisite.
@@ -107,13 +107,19 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 6.3.1 =
+Released 2017-07-06
+
+* Hot fix: Yoast SEO conflict with Babel Polyfill dependency resulting in empty EUM Dashboard. We have restructured our JavaScript build dependencies to minimize this occurring again. 
+* Bug fix: Allow white space after comma in email field. Props <a href="https://github.com/nicomollet">Nico Mollet</a>.
+
 = 6.3.0 =
-Released 2016-02-21
+Released 2017-02-21
 
 * Enhancement: new React-powered Dashboard to make configuring the plugin as intuitive and easy as possible
 
 = 6.2.11 =
-Released 2016-02-13
+Released 2017-02-13
 
 * Bug fix: Manual logs only logging one plugin update even if there are multiple
 

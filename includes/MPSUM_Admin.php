@@ -792,7 +792,7 @@ class MPSUM_Admin {
             return;	
         }
         
-    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20170221', true );
+    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20170706', true );
     	
     	$user_id = get_current_user_id();
 		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
