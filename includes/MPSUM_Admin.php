@@ -814,6 +814,18 @@ class MPSUM_Admin {
 			$ratings_nag_showing = false;
 		}
 		
+		/**
+		 * Filter whether a tracking nag is enabled/disabled or not
+		 *
+		 * @since 6.3.3
+		 *
+		 * @param bool true to show tracking nag, false if not
+		 */
+		$tracking_nag_showing = apply_filters( 'mpsum_tracking_nag', true );
+		if ( isset( $options[ 'core' ][ 'tracking_nag' ] ) && 'off' == $options[ 'core' ][ 'tracking_nag' ] ) {
+			$tracking_nag_showing = 'off';
+		}
+		
     	wp_localize_script( 'mpsum_dashboard', 'mpsum', array( 
     		'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
     		'tabs'              => _x( 'Tabs', 'Show or hide admin tabs', 'stops-core-theme-and-plugin-updates' ),
@@ -828,7 +840,15 @@ class MPSUM_Admin {
 	    		'affirm' => __( 'Sure! Absolutely.', 'stops-core-theme-and-plugin-updates' ),
 	    		'cancel' => __( 'No thanks!', 'stops-core-theme-and-plugin-updates' ),
 	    		'enabled' => $ratings_nag_showing
-    		)
+    		),
+    		'tracking_nag' => array(
+	    		'text' => __( 'Please help us improve this plugin. We are working on a new admin interface for you, and we need your help. Once a month you can automatically send us helpful data on how you are using the plugin. You can always turn it off later in the Advanced section.', 'stops-core-theme-and-plugin-updates' ),
+	    		'url' => 'https://easyupdatesmanager.com/tracking/',
+	    		'affirm' => __( 'Sure! Absolutely!', 'stops-core-theme-and-plugin-updates' ),
+	    		'cancel' => __( 'No Thanks, but Good Luck!', 'stops-core-theme-and-plugin-updates' ),
+	    		'help' => __( 'Learn More.', 'stops-core-theme-and-plugin-updates' ),
+	    		'enabled' => $tracking_nag_showing
+	    	),
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20170221' );
     }

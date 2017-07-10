@@ -83,7 +83,9 @@ class MPSUM_Admin_Core {
 			'notification_core_update_emails_translations' => 'on',
 			'logs'                                         => 'off',
 			'email_addresses'                              => array(),
-			'ratings_nag'                                  => true
+			'ratings_nag'                                  => 'on',
+			'tracking_nag'                                 => 'on',
+			'tracking_enabled'                             => 'off'
 		) );
 	}
 

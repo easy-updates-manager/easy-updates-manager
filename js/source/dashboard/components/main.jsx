@@ -7,6 +7,7 @@ import EventEmitter from 'Event-Emitter';
 import update from "immutability-helper";
 import LoadingGif from './loading.jsx';
 import RatingsNag from './ratingsnag.jsx';
+import TrackingNag from './trackingnag.jsx';
 
 
 var _storeJSON = null;
@@ -126,7 +127,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<RatingsNag />
+				<TrackingNag />
 				<div id="eum-dashboard-wrappers">
 					{this.createWrappers(this.state.options)}
 				</div>

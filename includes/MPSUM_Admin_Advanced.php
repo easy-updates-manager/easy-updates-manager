@@ -115,6 +115,13 @@ class MPSUM_Admin_Advanced {
             case 'mpsum_clear_logs':
                 MPSUM_Logs::clear();
                 break;
+            case 'mpsum_disable_tracking':
+            	check_admin_referer( 'mpsum_disable_tracking', '_mpsum' );
+            	$options = MPSUM_Updates_Manager::get_options( 'core' );
+                $options[ 'tracking_enabled' ] = 'off';
+                $options[ 'tracking_nag' ] = 'off';
+                MPSUM_Updates_Manager::update_options( $options, 'core' );
+            	break;
 			default:
 				return;	
 		}
@@ -298,5 +305,21 @@ class MPSUM_Admin_Advanced {
             </form>
         <?php
         endif;
+        $options = MPSUM_Updates_Manager::get_options( 'core' );
+        $tracking_enabled = isset( $options[ 'tracking_enabled' ] ) ? $options[ 'tracking_enabled' ] : 'off';
+        if ( 'on' === $tracking_enabled ):
+        ?>
+        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		<h3><?php esc_html_e( 'Tracking', 'stops-core-theme-and-plugin-updates' ); ?></h3>
+		<input type="hidden" name="action" value='mpsum_disable_tracking' />
+	    <?php
+		wp_nonce_field( 'mpsum_disable_tracking', '_mpsum' );
+		echo '<p class="submit">';
+		submit_button( __( 'Disable Tracking', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
+		echo '</p>';
+		?>
+        </form>
+        <?php
+	    endif; 
 	} //end tab_output
 }
