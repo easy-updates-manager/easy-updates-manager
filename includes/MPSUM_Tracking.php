@@ -31,7 +31,7 @@ class MPSUM_Tracking {
 	}
 	
 	public static function disable_cron() {
-		//wp_clear_scheduled_hook( 'eum-monthly' );
+		wp_clear_scheduled_hook( 'eum-monthly' );
 	}
 	
 	public static function send() {

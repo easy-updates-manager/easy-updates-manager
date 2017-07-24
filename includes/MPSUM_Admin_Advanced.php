@@ -121,6 +121,7 @@ class MPSUM_Admin_Advanced {
                 $options[ 'tracking_enabled' ] = 'off';
                 $options[ 'tracking_nag' ] = 'off';
                 MPSUM_Updates_Manager::update_options( $options, 'core' );
+                MPSUM_Tracking::disable_cron();
             	break;
 			default:
 				return;	
