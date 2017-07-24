@@ -2,3 +2,4 @@ deploy.sh
 /node_modules
 /js/source/components/.DS_Store
 /package-lock.json
+.DS_Store
