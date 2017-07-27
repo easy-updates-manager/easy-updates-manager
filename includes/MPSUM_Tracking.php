@@ -27,7 +27,7 @@ class MPSUM_Tracking {
 	
 		
 	public static function enable_cron() {
-		wp_schedule_event( time() + MONTH_IN_SECONDS, 'eum-monthly', 'eum-monthly' );
+		wp_schedule_event( time() + HOUR_IN_SECONDS, 'eum-monthly', 'eum-monthly' );
 	}
 	
 	public static function disable_cron() {
