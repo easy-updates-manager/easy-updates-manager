@@ -2,7 +2,7 @@
 Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
-Tested up to: 4.8.0
+Tested up to: 4.8.1
 Stable tag: 6.3.3
 License: GPLv2 or later
 
@@ -36,7 +36,7 @@ Easy Updates Manager is a light yet powerful plugin which enables you to manage 
 <li>Logging plugin updates</li>
 </ul>
 
-For more information on how to use Easy Updates Manager, check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
+For more information on how to use Easy Updates Manager, check out our <a href="https://easyupdatesmanager.com">website</a> and <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 If you want to contribute to the translation, please go to https://translate.wordpress.org/, select your language and search for plugin Easy Updates Manager. We appreciate all the translation help we can get.
 

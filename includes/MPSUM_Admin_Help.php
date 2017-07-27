@@ -25,14 +25,16 @@ class MPSUM_Admin_Help {
 		$screen  = get_current_screen();
 		$content1 = '<p>';
 	    $content1_strings = array(
-			'website' => esc_html__( 'Donate', 'stops-core-theme-and-plugin-updates' ),
+		        'website' => esc_html__( 'Our Website', 'stops-core-theme-and-plugin-updates' ),
+			'donate' => esc_html__( 'Donate', 'stops-core-theme-and-plugin-updates' ),
 			'support' => esc_html__( 'Support on WordPress', 'stops-core-theme-and-plugin-updates' ),
 			'github' => esc_html__( 'GitHub Repository', 'stops-core-theme-and-plugin-updates' ),
 			'official' => esc_html__( 'Official Documentation', 'stops-core-theme-and-plugin-updates' ),
 		);
 		$content1 = <<<CONTENT1
 	<p>
-        <a href="http://mediaron.com/contribute" class="button">{$content1_strings['website']}</a>
+	<a href="https://easyupdatesmanager.com" class="button">{$content1_strings['website']}</a>
+        <a href="http://mediaron.com/contribute" class="button">{$content1_strings['donate']}</a>
 	    <a href="http://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates" class="button">{$content1_strings['support']}</a>
 	    <a href="https://github.com/easy-updates-manager/easy-updates-manager" class="button">{$content1_strings['github']}</a>
 	     <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki" class="button">{$content1_strings['official']}</a>
