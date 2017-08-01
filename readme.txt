@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.8.1
-Stable tag: 6.3.3
+Stable tag: 6.4.0
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. Also works with WordPress Multisite.
@@ -107,6 +107,11 @@ For additional information and FAQs for Easy Updates Manager check out our <a hr
 
 == Changelog ==
 
+= 6.4.0 =
+Released 2017-08-01
+
+* New wizard for new users of the plugin. Automatic updates are recommended by default.
+
 = 6.3.3 =
 Released 2017-07-26
 
@@ -142,7 +147,12 @@ For past changelogs, please visit our <a href="https://github.com/easy-updates-m
 
 == Upgrade Notice ==
 
+= 6.4.0 =
+
+New wizard for new users of the plugin. Automatic updates are recommended by default.
+
 = 6.3.0 =
+
 Enhancement: new React-powered Dashboard to make configuring the plugin as intuitive and easy as possible
 
 = 6.2.11 =
