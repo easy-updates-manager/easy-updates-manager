@@ -344,6 +344,7 @@ class MPSUM_Updates_Manager {
 		$options['all_updates'] = 'off';
 		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
 		$options[ 'tracking_nag' ] = 'off';
+		$options[ 'logs' ] = 'on';
 		MPSUM_Updates_Manager::update_options( $options, 'core' );
 		die( '' );
 	}
