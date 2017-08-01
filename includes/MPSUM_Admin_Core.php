@@ -85,7 +85,8 @@ class MPSUM_Admin_Core {
 			'email_addresses'                              => array(),
 			'ratings_nag'                                  => 'on',
 			'tracking_nag'                                 => 'on',
-			'tracking_enabled'                             => 'off'
+			'tracking_enabled'                             => 'off',
+			'wizard'                                       => 'on'
 		) );
 	}
 

@@ -325,14 +325,45 @@ class MPSUM_Updates_Manager {
 		add_action( 'wp_ajax_mpsum_ajax_enable_tracking', array( $this, 'ajax_enable_tracking' ) );
 		add_action( 'wp_ajax_mpsum_ajax_remove_tracking_nag', array( $this, 'ajax_remove_tracking_nag' ) );
 		add_action( 'wp_ajax_mpsum_ajax_disable_updates', array( $this, 'ajax_disable_updates' ) );
-
-		
+		add_action( 'wp_ajax_mpsum_ajax_remove_wizard', array( $this, 'ajax_remove_wizard' ) );
+		add_action( 'wp_ajax_mpsum_ajax_enable_automatic_updates', array( $this, 'ajax_enable_automatic_updates' ) );
 		
 		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
 		$not_admin_disabled = ( !defined( 'MPSUM_DISABLE_ADMIN' ) || !MPSUM_DISABLE_ADMIN );
 		if ( is_admin() && $not_doing_ajax && $not_admin_disabled ) {
 			MPSUM_Admin::run();	
 		}	
+	}
+	
+	public function ajax_enable_automatic_updates() {
+		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
+			die( 'Cheating, huh' );
+		}
+		$options = MPSUM_Updates_Manager::get_options( 'core' );
+		
+		// Load auto update options
+		$options['automatic_translation_updates'] = 'on';
+		$options['automatic_theme_updates']       = 'on';
+		$options['logs']                          = 'on';
+		$options['automatic_minor_updates']       = 'on';
+		$options['automatic_plugin_updates']      = 'on';
+		$options['automatic_translation_updates'] = 'on';
+		$options['automatic_major_updates']       = 'on';
+		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
+		MPSUM_Updates_Manager::update_options( $options, 'core' );
+		die( '' );
+	}
+	
+	public function ajax_remove_wizard() {
+		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
+			die( 'Cheating, huh' );
+		}
+		$options = MPSUM_Updates_Manager::get_options( 'core' );
+		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
+		$options[ 'tracking_nag' ] = 'off';
+		$options[ 'logs' ] = 'on';
+		MPSUM_Updates_Manager::update_options( $options, 'core' );
+		die( '' );
 	}
 	
 	public function ajax_disable_updates() {
