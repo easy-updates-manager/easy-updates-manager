@@ -867,7 +867,7 @@ class MPSUM_Admin {
 	    	),
 	    	'welcome' => __( 'Welcome to Easy Updates Manager.', 'stops-core-theme-and-plugin-updates' ),
 	    	'welcome_intro' =>  __( 'What would you like to do?', 'stops-core-theme-and-plugin-updates' ),
-	    	'welcome_automatic' =>  __( 'Turn on Automatic Updates?', 'stops-core-theme-and-plugin-updates' ),
+	    	'welcome_automatic' =>  __( 'Turn on Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
 	    	'welcome_disable' =>  __( 'Disable All Updates', 'stops-core-theme-and-plugin-updates' ),
 	    	'welcome_skip' =>  __( 'Configure Manually', 'stops-core-theme-and-plugin-updates' ),
 	    	'new_user' => $has_wizard,
