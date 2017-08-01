@@ -27,9 +27,6 @@ jQuery( document ).ready( function( $ ) {
     '</button>',
     type: 'question',
   showCloseButton: true,
-  showCancelButton: true,
-  confirmButtonText:
-    '<i class="fa fa-thumbs-up"></i> I know what I\'m Doing!'
 })
 
 	jQuery( 'body' ).on( 'click', '#eum-configure-manually', function( e ) {
@@ -40,7 +37,10 @@ jQuery( document ).ready( function( $ ) {
 	
 	jQuery( 'body' ).on( 'click', '#eum-disable-manually', function( e ) {
 		e.preventDefault();
-		swal.close();
+		jQuery.post( ajaxurl, {action: 'mpsum_ajax_disable_updates', _ajax_nonce: mpsum.admin_nonce}, function( response ) {
+			swal.close();
+			window.top.location.reload();
+		} );
 	} );
 
 } );
