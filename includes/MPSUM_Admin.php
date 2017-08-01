@@ -801,7 +801,7 @@ class MPSUM_Admin {
         wp_enqueue_script( 'sweetalert', MPSUM_Updates_Manager::get_plugin_url( '/js/source/sweetalert2.js' ), array( 'jquery' ), '6.6.6', true );
         //wp_enqueue_script( 'sweetalert2', MPSUM_Updates_Manager::get_plugin_url( '/js/source/sweetalert2.common.js' ), array( 'sweetalert', 'jquery' ), '6.6.6', true );
         
-    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20170706', true );
+    	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20170801', true );
     	
     	$user_id = get_current_user_id();
 		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
@@ -872,8 +872,8 @@ class MPSUM_Admin {
 	    	'welcome_skip' =>  __( 'Configure Manually', 'stops-core-theme-and-plugin-updates' ),
 	    	'new_user' => $has_wizard,
     	) );
-    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20170221' );
-    	wp_enqueue_style( 'sweetalert2', MPSUM_Updates_Manager::get_plugin_url( '/css/sweetalert2.css' ), array(), '20170221' );
+    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20170801' );
+    	wp_enqueue_style( 'sweetalert2', MPSUM_Updates_Manager::get_plugin_url( '/css/sweetalert2.css' ), array(), '20170801' );
     }
 	
 	/**
