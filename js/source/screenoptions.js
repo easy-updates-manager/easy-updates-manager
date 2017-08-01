@@ -14,6 +14,7 @@ jQuery( document ).ready( function( $ ) {
     
     swal({
   html:
+  	'<div id="mpsum-welcome-modal">' +
     '<h2>' + mpsum.welcome + '</h2>, ' +
     '<h3>' + mpsum.welcome_intro + '</h3>' + 
     '<button id="eum-enable-autoupdates" class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
@@ -24,7 +25,8 @@ jQuery( document ).ready( function( $ ) {
     '</button>' +
     '<button id="eum-configure-manually" class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
     'Configure Manually' +
-    '</button>',
+    '</button>' +
+    '</div>',
     type: 'question',
   showCloseButton: true,
 })
@@ -37,8 +39,9 @@ jQuery( document ).ready( function( $ ) {
 	
 	jQuery( 'body' ).on( 'click', '#eum-disable-manually', function( e ) {
 		e.preventDefault();
+		jQuery( '#mpsum-welcome-modal' ).html();
 		jQuery.post( ajaxurl, {action: 'mpsum_ajax_disable_updates', _ajax_nonce: mpsum.admin_nonce}, function( response ) {
-			swal.close();
+			//swal.close();
 			window.top.location.reload();
 		} );
 	} );
