@@ -147,7 +147,12 @@ For past changelogs, please visit our <a href="https://github.com/easy-updates-m
 
 == Upgrade Notice ==
 
+= 6.4.0 =
+
+New wizard for new users of the plugin. Automatic updates are recommended by default.
+
 = 6.3.0 =
+
 Enhancement: new React-powered Dashboard to make configuring the plugin as intuitive and easy as possible
 
 = 6.2.11 =
