@@ -791,6 +791,8 @@ class MPSUM_Admin {
     	if ( $pagenow != 'mpsum-update-options' ) {
             return;	
         }
+        wp_enqueue_script( 'sweetalert', MPSUM_Updates_Manager::get_plugin_url( '/js/source/sweetalert2.js' ), array( 'jquery' ), '6.6.6', true );
+        //wp_enqueue_script( 'sweetalert2', MPSUM_Updates_Manager::get_plugin_url( '/js/source/sweetalert2.common.js' ), array( 'sweetalert', 'jquery' ), '6.6.6', true );
         
     	wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20170706', true );
     	
@@ -851,6 +853,7 @@ class MPSUM_Admin {
 	    	),
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20170221' );
+    	wp_enqueue_style( 'sweetalert2', MPSUM_Updates_Manager::get_plugin_url( '/css/sweetalert2.css' ), array(), '20170221' );
     }
 	
 	/**

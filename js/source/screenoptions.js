@@ -11,4 +11,20 @@ jQuery( document ).ready( function( $ ) {
     screen_options_html += '&nbsp;<label for="mpsum_dashboard">' + mpsum.dashboard + '</label>';
     screen_options_html += '</fieldset>';
     $( '#screen-options-wrap #adv-settings' ).prepend( screen_options_html );
+    
+    swal({
+  html:
+    '<h2>Welcome to Easy Updates Manager</h2>, ' +
+    '<p>What would you like to do?</p>' + 
+    '<button class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
+    'Turn On Automatic Updates' +
+    '</button>' +
+    '<button class="eum-button button button-primary" name="eum_type_disable_updates" value="on" id="eum_type_2">' +
+    '<label for="eum_type_2">Disable All Updates</label>',
+  showCloseButton: true,
+  showCancelButton: true,
+  confirmButtonText:
+    '<i class="fa fa-thumbs-up"></i> I know what I\'m Doing!'
+})
+
 } );

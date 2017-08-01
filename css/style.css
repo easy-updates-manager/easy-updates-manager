@@ -344,3 +344,13 @@ label {
     margin-top: 20px; }
   #eum-dashboard-app input[type=radio]:checked:before {
     margin: 0 !important; } }
+
+.eum-button {
+  padding: 20 10px;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px !important; }
+
+.swal2-confirm {
+  display: none; }
