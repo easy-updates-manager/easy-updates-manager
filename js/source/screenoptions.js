@@ -14,13 +14,14 @@ jQuery( document ).ready( function( $ ) {
     
     swal({
   html:
-    '<h2>Welcome to Easy Updates Manager</h2>, ' +
-    '<h3>What would you like to do?</h3>' + 
+    '<h2>' + mpsum.welcome + '</h2>, ' +
+    '<h3>' + mpsum.welcome_intro + '</h3>' + 
     '<button id="eum-enable-autoupdates" class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
-    'Turn On Automatic Updates' +
+    mpsum.welcome_automatic +
     '</button>' +
     '<button id="eum-disable-manually" class="eum-button button button-primary" name="eum_type_disable_updates" value="on" id="eum_type_2">' +
-    'Disable All Updates</button>' +
+    mpsum.welcome_disable +
+    '</button>' +
     '<button id="eum-configure-manually" class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
     'Configure Manually' +
     '</button>',

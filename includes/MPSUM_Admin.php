@@ -851,6 +851,11 @@ class MPSUM_Admin {
 	    		'help' => __( 'Learn More.', 'stops-core-theme-and-plugin-updates' ),
 	    		'enabled' => $tracking_nag_showing
 	    	),
+	    	'welcome' => __( 'Welcome to Easy Updates Manager.', 'stops-core-theme-and-plugin-updates' ),
+	    	'welcome_intro' =>  __( 'What would you like to do?', 'stops-core-theme-and-plugin-updates' ),
+	    	'welcome_automatic' =>  __( 'Turn on Automatic Updates?', 'stops-core-theme-and-plugin-updates' ),
+	    	'welcome_disable' =>  __( 'Disable All Updates', 'stops-core-theme-and-plugin-updates' ),
+	    	'welcome_skip' =>  __( 'Configure Manually', 'stops-core-theme-and-plugin-updates' )
     	) );
     	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20170221' );
     	wp_enqueue_style( 'sweetalert2', MPSUM_Updates_Manager::get_plugin_url( '/css/sweetalert2.css' ), array(), '20170221' );
