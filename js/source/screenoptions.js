@@ -15,16 +15,31 @@ jQuery( document ).ready( function( $ ) {
     swal({
   html:
     '<h2>Welcome to Easy Updates Manager</h2>, ' +
-    '<p>What would you like to do?</p>' + 
-    '<button class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
+    '<h3>What would you like to do?</h3>' + 
+    '<button id="eum-enable-autoupdates" class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
     'Turn On Automatic Updates' +
     '</button>' +
-    '<button class="eum-button button button-primary" name="eum_type_disable_updates" value="on" id="eum_type_2">' +
-    '<label for="eum_type_2">Disable All Updates</label>',
+    '<button id="eum-disable-manually" class="eum-button button button-primary" name="eum_type_disable_updates" value="on" id="eum_type_2">' +
+    'Disable All Updates</button>' +
+    '<button id="eum-configure-manually" class="eum-button button button-primary" name="eum_enable_automatic" value="on" id="eum_type_1">' +
+    'Configure Manually' +
+    '</button>',
+    type: 'question',
   showCloseButton: true,
   showCancelButton: true,
   confirmButtonText:
     '<i class="fa fa-thumbs-up"></i> I know what I\'m Doing!'
 })
+
+	jQuery( 'body' ).on( 'click', '#eum-configure-manually', function( e ) {
+		e.preventDefault();
+		swal.close()
+	} );
+	
+	
+	jQuery( 'body' ).on( 'click', '#eum-disable-manually', function( e ) {
+		e.preventDefault();
+		swal.close();
+	} );
 
 } );
