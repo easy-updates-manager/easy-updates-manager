@@ -838,7 +838,7 @@ class MPSUM_Admin {
 		$has_wizard = 'off';
 		$maybe_has_wizard = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( empty( $maybe_has_wizard ) ) {
-			$has_wizard = 'on';
+			$has_wizard = 'off'; // Change to "on" to turn back on modal
 		}
 		
 		//  tracking_nag

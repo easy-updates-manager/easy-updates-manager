@@ -85,6 +85,9 @@ class MPSUM_Admin_Advanced {
 				// Remove table version
 				delete_site_option( 'mpsum_log_table_version' );
 				
+				// Disable Tracking
+				MPSUM_Tracking::disable_cron();
+				
 				// Remove logs table
 				global $wpdb;
                 $tablename = $wpdb->base_prefix . 'eum_logs';
@@ -308,7 +311,7 @@ class MPSUM_Admin_Advanced {
         endif;
         $options = MPSUM_Updates_Manager::get_options( 'core' );
         $tracking_enabled = isset( $options[ 'tracking_enabled' ] ) ? $options[ 'tracking_enabled' ] : 'off';
-        if ( 'on' === $tracking_enabled ):
+        if ( 'on' === $tracking_enabled || false !== wp_next_scheduled( 'eum-monthly' ) ):
         ?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Tracking', 'stops-core-theme-and-plugin-updates' ); ?></h3>
