@@ -38,13 +38,22 @@ class MPSUM_Logs {
 	private $themes_cache = null;
 	
 	/**
+	 * Holds the WordPress Version.
+	 *
+	 * @since 6.4.4
+	 * @access private
+	 * @var string $wp_version
+	 */
+	private $wp_version = null;
+	
+	/**
 	* Holds version number of the table
 	*
 	* @since 6.0.0
 	* @access static
 	* @var string $slug
 	*/
-	private $version = '1.0.0';
+	private $version = '1.1.3';
 	
 	/**
 	* Set a class instance.
@@ -77,24 +86,27 @@ class MPSUM_Logs {
 			update_site_option( 'mpsum_log_table_version', $this->version );
 		}
 		
-		// Set plugin/theme variables for log error checking
+		// Set plugin/theme/wordpress/translation variables for log error checking
 		$this->plugins_cache = get_site_transient( 'update_plugins' );
 		$this->themes_cache = get_site_transient( 'update_themes' );
-		
+		$this->translations_cache = wp_get_translation_updates();
+		include( ABSPATH . WPINC . '/version.php' );
+		$this->wp_version = $wp_version;
+
 		add_action( 'automatic_updates_complete', array( $this, 'automatic_updates' ) );
 		add_action( 'upgrader_process_complete', array( $this, 'manual_updates' ), 5, 2 );
 	
 	} //end constructor
 	
 	/**
-	* automatic_updates
-	*
-	* Log automatic updates
-	*
-	* @since 6.0.0
-	* @access public
-	*
-	*/
+	 * automatic_updates
+	 *
+	 * Log automatic updates
+	 *
+	 * @since 6.0.0
+	 * @access public
+	 *
+	 */
 	public function automatic_updates( $update_results ) {
 		global $wpdb;
 		$tablename = $wpdb->base_prefix . 'eum_logs';
@@ -248,6 +260,40 @@ class MPSUM_Logs {
 		return '';
 	}
 	
+	/**
+	 * Get the version of a translation item to be updated
+	 *
+	 * @since 6.4.4
+	 * @access private
+	 *
+	 * @param	string type of translation update
+	 * @param	string $slug of item
+	 * @return string The name of the item being updated.
+	 */
+	private function get_version_for_type( $type, $slug ) {
+		
+		$translation_updates = $this->translations_cache;
+		switch ( $type ) {
+			case 'core':
+				return $this->wp_version;
+
+			case 'theme':
+			case 'plugin':
+				if ( is_array( $translation_updates ) && ! empty( $translation_updates ) ) {
+					foreach( $translation_updates as $translation_update ) {
+						if ( $type == $translation_update->type ) {
+							if ( $slug == $translation_update->slug ) {
+								return $translation_update->version;
+							}
+						}
+					}
+				}
+			
+				break;
+		}
+		return '';
+	}
+	
 	public function manual_updates( $upgrader_object, $options ) {
 		if ( !isset( $options[ 'action' ] ) || 'update' !== $options[ 'action' ] ) return;
 		global $wpdb;
@@ -260,13 +306,14 @@ class MPSUM_Logs {
 				 $wpdb->insert( 
 					 $tablename,
 					 array(
-						 'user_id' => $user_id,
-						 'name'	   => 'WordPress ' . $wp_version,
-						 'type'	   => $options[ 'type' ],
-						 'version' => $wp_version,
-						 'action'  => 'manual',
-						 'status'  => 1,
-						 'date'	   => current_time( 'mysql' ),
+						 'user_id'      => $user_id,
+						 'name'	        => 'WordPress ' . $wp_version,
+						 'type'	        => $options[ 'type' ],
+						 'version_from' => $this->wp_version,
+						 'version'      => $wp_version,
+						 'action'       => 'manual',
+						 'status'       => 1,
+						 'date'	        => current_time( 'mysql' ),
 					 ),
 					 array(
 						 '%d',
@@ -299,16 +346,18 @@ class MPSUM_Logs {
 							$wpdb->insert( 
 								 $tablename,
 								 array(
-									 'user_id' => $user_id,
-									 'name'	   => $plugin_data[ 'Name' ],
-									 'type'	   => $options[ 'type' ],
-									 'version' => $plugin_data[ 'Version' ],
-									 'action'  => 'manual',
-									 'status'  => $status,
-									 'date'	   => current_time( 'mysql' ),
+									 'user_id'      => $user_id,
+									 'name'	        => $plugin_data[ 'Name' ],
+									 'type'	        => $options[ 'type' ],
+									 'version_from' => $current_plugin,
+									 'version'      => $plugin_data[ 'Version' ],
+									 'action'       => 'manual',
+									 'status'       => $status,
+									 'date'	        => current_time( 'mysql' ),
 								 ),
 								 array(
 									 '%d',
+									 '%s',
 									 '%s',
 									 '%s',
 									 '%s',
@@ -337,16 +386,18 @@ class MPSUM_Logs {
 							$wpdb->insert( 
 								 $tablename,
 								 array(
-									 'user_id' => $user_id,
-									 'name'	   => $theme_data->get( 'Name' ),
-									 'type'	   => $options[ 'type' ],
-									 'version' => $theme_data->get( 'Version' ),
-									 'action'  => 'manual',
-									 'status'  => $status,
-									 'date'	   => current_time( 'mysql' ),
+									 'user_id'      => $user_id,
+									 'name'	        => $theme_data->get( 'Name' ),
+									 'type'	        => $options[ 'type' ],
+									 'version_from' => $theme_from_cache_version,
+									 'version'      => $theme_data->get( 'Version' ),
+									 'action'       => 'manual',
+									 'status'       => $status,
+									 'date'	        => current_time( 'mysql' ),
 								 ),
 								 array(
 									 '%d',
+									 '%s',
 									 '%s',
 									 '%s',
 									 '%s',
@@ -369,16 +420,18 @@ class MPSUM_Logs {
 						 $wpdb->insert( 
 							 $tablename,
 							 array(
-								 'user_id' => $user_id,
-								 'name'	   => $name . ' (' . $translation[ 'language' ] . ')',
-								 'type'	   => $translation[ 'type' ],
-								 'version' => $version,
-								 'action'  => 'manual',
-								 'status'  => $status,
-								 'date'	   => current_time( 'mysql' ),
+								 'user_id'      => $user_id,
+								 'name'	        => $name . ' (' . $translation[ 'language' ] . ')',
+								 'type'	        => $translation[ 'type' ],
+								 'version_from' => $this->get_version_for_type( $translation[ 'type' ], $slug ),
+								 'version'      => $version,
+								 'action'       => 'manual',
+								 'status'       => $status,
+								 'date'	        => current_time( 'mysql' ),
 							 ),
 							 array(
 								 '%d',
+								 '%s',
 								 '%s',
 								 '%s',
 								 '%s',
@@ -418,6 +471,7 @@ class MPSUM_Logs {
 						user_id BIGINT(20) NOT NULL DEFAULT 0,
 						name VARCHAR(255) NOT NULL,
 						type VARCHAR(255) NOT NULL,
+						version_from VARCHAR(255) NOT NULL,
 						version VARCHAR(255) NOT NULL,
 						action VARCHAR(255) NOT NULL,
 						status VARCHAR(255) NOT NULL,
