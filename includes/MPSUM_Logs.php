@@ -95,16 +95,15 @@ class MPSUM_Logs {
 		$this->plugins_cache = get_site_transient( 'MPSUM_PLUGINS' );
 		if ( false === $this->plugins_cache ) {
 			$this->plugins_cache = get_plugins();
-			set_site_transient( 'MPSUM_PLUGINS', $this->plugins_cache, 30 * MINUTE_IN_SECONDS );
+			set_site_transient( 'MPSUM_PLUGINS', $this->plugins_cache, 5 * MINUTE_IN_SECONDS );
 		}
 		
 		// Store themes cache for later use in version compares
 		$this->themes_cache = get_site_transient( 'MPSUM_THEMES' );
 		if ( false === $this->themes_cache ) {
 			$this->themes_cache = wp_get_themes();
-			set_site_transient( 'MPSUM_THEMES', $this->themes_cache, 30 * MINUTE_IN_SECONDS );
+			set_site_transient( 'MPSUM_THEMES', $this->themes_cache, 5 * MINUTE_IN_SECONDS );
 		}
-		
 		$this->translations_cache = wp_get_translation_updates();
 		include( ABSPATH . WPINC . '/version.php' );
 		$this->wp_version = $wp_version;
@@ -163,10 +162,7 @@ class MPSUM_Logs {
 						 $name = ( isset( $plugin->name ) && !empty( $plugin->name ) ) ? $plugin->name : $plugin->item->slug;
 						 
 						 // Get older version
-						 $plugin_data = get_plugins( '/' . $plugin->item->slug );
-						 error_log( print_r( $plugin_data, true ) );
-						 $plugin_data = reset( $plugin_data );
-						 
+						 $plugin_data = $this->plugins_cache[ $plugin->item->plugin ];
 						 
 						 $wpdb->insert( 
 							 $tablename,
@@ -189,16 +185,16 @@ class MPSUM_Logs {
 							 )
 						 );
 					 }
+					 delete_site_transient( 'MPSUM_PLUGINS' );
 					 break;
 				case 'theme':
 					foreach( $results as $theme ) {
 						$status = ( is_wp_error( $theme->result ) || empty( $theme->result ) ) ? 0: 1;
-						$old_version = '';
-						$theme_data_from_cache = wp_get_themes();
-				 		$theme_data = $theme_data_from_cache[ $theme->item->theme ];
-				 		$old_version = $theme_data->get( 'Version' );
+						
+						$old_theme_version = $this->themes_cache[ $theme->item->theme ];
+				 		$from_version = $old_theme_version->get( 'Version' );
 						if ( 0 == $status ) {
-					 		  $version = $old_version;
+					 		  $version = $from_version;
 						 } else {
 					 		  $version = $theme->item->new_version;
 						 }
@@ -207,7 +203,7 @@ class MPSUM_Logs {
 							 array(
 								 'name'	        => $theme->name,
 								 'type'	        => $type,
-								 'version_from' => $old_version,
+								 'version_from' => $from_version,
 								 'version'      => $version,
 								 'action'       => 'automatic',
 								 'status'       => $status,
@@ -224,6 +220,7 @@ class MPSUM_Logs {
 							 )
 						 );
 					 }
+					 delete_site_transient( 'MPSUM_THEMES' );
 					break;
 				case 'translation':
 					foreach( $results as $translation ) {
@@ -397,6 +394,7 @@ class MPSUM_Logs {
 						}
 					}
 				}
+				delete_site_transient( 'MPSUM_PLUGINS' );
 				break;
 			case 'theme':
 				if ( isset( $options[ 'themes' ] ) && !empty( $options[ 'themes' ] ) ) {
@@ -438,6 +436,7 @@ class MPSUM_Logs {
 						}
 					}
 				}
+				delete_site_transient( 'MPSUM_THEMES' );
 				break;
 			case 'translation':
 					foreach( $options[ 'translations' ] as $translation ) {
