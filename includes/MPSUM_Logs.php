@@ -87,8 +87,11 @@ class MPSUM_Logs {
 		}
 		
 		// Set plugin/theme/wordpress/translation variables for log error checking
-		$this->plugins_cache = get_site_transient( 'update_plugins' );
-		$this->themes_cache = get_site_transient( 'update_themes' );
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$this->plugins_cache = get_plugins();
+		$this->themes_cache = wp_get_themes();
 		$this->translations_cache = wp_get_translation_updates();
 		include( ABSPATH . WPINC . '/version.php' );
 		$this->wp_version = $wp_version;
@@ -123,12 +126,14 @@ class MPSUM_Logs {
 						 array(
 							 'name'	   => $core->name,
 							 'type'	   => $type,
+							 'version_from' => $this->wp_version,
 							 'version' => $version,
 							 'action'  => 'automatic',
 							 'status'  => $status,
 							 'date'	   => current_time( 'mysql' ),
 						 ),
 						 array(
+							 '%s',
 							 '%s',
 							 '%s',
 							 '%s',
@@ -143,15 +148,23 @@ class MPSUM_Logs {
 						 $status = is_wp_error( $plugin->result ) ? 0: 1;
 						 $version = isset( $plugin->item->new_version ) ? $plugin->item->new_version : '0.00';
 						 $name = ( isset( $plugin->name ) && !empty( $plugin->name ) ) ? $plugin->name : $plugin->item->slug;
+						 
+						 // Get older version
+						 $plugin_data = get_plugins( '/' . $plugin->item->slug );
+						 error_log( print_r( $plugin_data, true ) );
+						 $plugin_data = reset( $plugin_data );
+						 
+						 
 						 $wpdb->insert( 
 							 $tablename,
 							 array(
-								 'name'	   => $name,
-								 'type'	   => $type,
-								 'version' => $version,
-								 'action'  => 'automatic',
-								 'status'  => $status,
-								 'date'	   => current_time( 'mysql' ),
+								 'name'	        => $name,
+								 'type'	        => $type,
+								 'version_from' => $plugin_data['Version'],
+								 'version'      => $version,
+								 'action'       => 'automatic',
+								 'status'       => $status,
+								 'date'	        => current_time( 'mysql' ),
 							 ),
 							 array(
 								 '%s',
@@ -166,25 +179,29 @@ class MPSUM_Logs {
 					 break;
 				case 'theme':
 					foreach( $results as $theme ) {
-						 $status = ( is_wp_error( $theme->result ) || empty( $theme->result ) ) ? 0: 1;
-						 if ( 0 == $status ) {
-					 		  $theme_data_from_cache = wp_get_themes();
-					 		  $theme_data = $theme_data_from_cache[ $theme->item->theme ];
-					 		  $version = $theme_data->get( 'Version' );
+						$status = ( is_wp_error( $theme->result ) || empty( $theme->result ) ) ? 0: 1;
+						$old_version = '';
+						$theme_data_from_cache = wp_get_themes();
+				 		$theme_data = $theme_data_from_cache[ $theme->item->theme ];
+				 		$old_version = $theme_data->get( 'Version' );
+						if ( 0 == $status ) {
+					 		  $version = $old_version;
 						 } else {
 					 		  $version = $theme->item->new_version;
 						 }
 						 $wpdb->insert( 
 							 $tablename,
 							 array(
-								 'name'	   => $theme->name,
-								 'type'	   => $type,
-								 'version' => $version,
-								 'action'  => 'automatic',
-								 'status'  => $status,
-								 'date'	   => current_time( 'mysql' ),
+								 'name'	        => $theme->name,
+								 'type'	        => $type,
+								 'version_from' => $old_version,
+								 'version'      => $version,
+								 'action'       => 'automatic',
+								 'status'       => $status,
+								 'date'	        => current_time( 'mysql' ),
 							 ),
 							 array(
+								 '%s',
 								 '%s',
 								 '%s',
 								 '%s',
@@ -205,14 +222,16 @@ class MPSUM_Logs {
 						 $wpdb->insert( 
 							 $tablename,
 							 array(
-								 'name'	   => $name . ' (' . $translation->item->language . ')',
-								 'type'	   => $type,
-								 'version' => $version,
-								 'action'  => 'automatic',
-								 'status'  => $status,
-								 'date'	   => current_time( 'mysql' ),
+								 'name'         => $name . ' (' . $translation->item->language . ')',
+								 'type'         => $type,
+								 'version_from' => $this->get_version_for_type( $type, $slug ),
+								 'version'      => $version,
+								 'action'       => 'automatic',
+								 'status'       => $status,
+								 'date'	        => current_time( 'mysql' ),
 							 ),
 							 array(
+								 '%s',
 								 '%s',
 								 '%s',
 								 '%s',
@@ -323,33 +342,29 @@ class MPSUM_Logs {
 						 '%s',
 						 '%s',
 						 '%s',
+						 '%s',
 					 )
 				 );
 				 break;
 			case 'plugin':
-				$plugins = array();
-				if ( ! function_exists( 'get_plugins' ) ) {
-					require_once ABSPATH . 'wp-admin/includes/plugin.php';
-				}
-				$plugins_from_cache = get_site_transient( 'update_plugins' );
-				wp_clean_plugins_cache();
-				if ( false === $plugins_from_cache ) {
-					$plugins_from_cache = $this->plugins_cache;	
-				}
-				$plugins = get_plugins();
-				if ( !empty( $plugins ) && isset( $options[ 'plugins' ] ) && !empty( $options[ 'plugins' ] ) ) {
+				if ( ! empty( $this->plugins_cache ) && isset( $options[ 'plugins' ] ) && !empty( $options[ 'plugins' ] ) ) {
+					$plugins = get_plugins();
 					foreach( $options[ 'plugins' ] as $plugin ) {
 						$plugin_data = isset( $plugins[ $plugin ] ) ? $plugins[ $plugin ] : false;
-						$current_plugin = isset( $plugins_from_cache->checked[ $plugin ] ) ? $plugins_from_cache->checked[ $plugin ] : false;
-						if ( false !== $plugin_data && false !== $current_plugin ) {
-							$status = ( $plugin_data[ 'Version' ] == $current_plugin ) ? 0 : 1;
+						$version_from = '';
+						if ( isset( $this->plugins_cache[ $plugin ] ) ) {
+							$version_from = $this->plugins_cache[ $plugin ][ 'Version' ];
+						}
+						
+						if ( false !== $plugin_data ) {
+							$status = ( $plugin_data[ 'Version' ] == $version_from ) ? 0 : 1;
 							$wpdb->insert( 
 								 $tablename,
 								 array(
 									 'user_id'      => $user_id,
 									 'name'	        => $plugin_data[ 'Name' ],
 									 'type'	        => $options[ 'type' ],
-									 'version_from' => $current_plugin,
+									 'version_from' => $version_from,
 									 'version'      => $plugin_data[ 'Version' ],
 									 'action'       => 'manual',
 									 'status'       => $status,
