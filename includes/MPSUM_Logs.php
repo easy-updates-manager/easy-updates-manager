@@ -90,8 +90,21 @@ class MPSUM_Logs {
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		$this->plugins_cache = get_plugins();
-		$this->themes_cache = wp_get_themes();
+		
+		// Store plugins cache for later use in version compares
+		$this->plugins_cache = get_site_transient( 'MPSUM_PLUGINS' );
+		if ( false === $this->plugins_cache ) {
+			$this->plugins_cache = get_plugins();
+			set_site_transient( 'MPSUM_PLUGINS', $this->plugins_cache, 30 * MINUTE_IN_SECONDS );
+		}
+		
+		// Store themes cache for later use in version compares
+		$this->themes_cache = get_site_transient( 'MPSUM_THEMES' );
+		if ( false === $this->themes_cache ) {
+			$this->themes_cache = wp_get_themes();
+			set_site_transient( 'MPSUM_THEMES', $this->themes_cache, 30 * MINUTE_IN_SECONDS );
+		}
+		
 		$this->translations_cache = wp_get_translation_updates();
 		include( ABSPATH . WPINC . '/version.php' );
 		$this->wp_version = $wp_version;
@@ -387,24 +400,25 @@ class MPSUM_Logs {
 				break;
 			case 'theme':
 				if ( isset( $options[ 'themes' ] ) && !empty( $options[ 'themes' ] ) ) {
-
-					$theme_data_from_cache = get_site_transient( 'update_themes' );
-					wp_clean_themes_cache();
-					if ( false === $theme_data_from_cache ) {
-						$theme_data_from_cache = $this->themes_cache;	
-					}
+					
 					foreach( $options[ 'themes' ] as $theme ) {
 						$theme_data = wp_get_theme( $theme );
-						$theme_from_cache_version = isset( $theme_data_from_cache->checked[ $theme ] ) ? $theme_data_from_cache->checked[ $theme ] : false;
-						if ( $theme_data->exists() && false !== $theme_from_cache_version ) {
-							$status = ( $theme_from_cache_version == $theme_data->get( 'Version' ) ) ? 0 : 1;
+					
+						if ( $theme_data->exists() ) {
+							
+							$version_from = '';
+							error_log( print_r( $this->themes_cache, true ) );
+							if ( isset( $this->themes_cache[ $theme ] ) ) {
+								$version_from = $this->themes_cache[ $theme ]->get( 'Version' );
+							}
+							$status = ( $version_from == $theme_data->get( 'Version' ) ) ? 0 : 1;
 							$wpdb->insert( 
 								 $tablename,
 								 array(
 									 'user_id'      => $user_id,
 									 'name'	        => $theme_data->get( 'Name' ),
 									 'type'	        => $options[ 'type' ],
-									 'version_from' => $theme_from_cache_version,
+									 'version_from' => $version_from,
 									 'version'      => $theme_data->get( 'Version' ),
 									 'action'       => 'manual',
 									 'status'       => $status,
