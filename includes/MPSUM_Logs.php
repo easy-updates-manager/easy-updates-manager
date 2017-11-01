@@ -300,20 +300,18 @@ class MPSUM_Logs {
 	 * @return string The name of the item being updated.
 	 */
 	private function get_version_for_type( $type, $slug ) {
-		
 		$translation_updates = $this->translations_cache;
 		switch ( $type ) {
 			case 'core':
 				return $this->wp_version;
-
+				break;
+			case 'translation':
 			case 'theme':
 			case 'plugin':
 				if ( is_array( $translation_updates ) && ! empty( $translation_updates ) ) {
 					foreach( $translation_updates as $translation_update ) {
-						if ( $type == $translation_update->type ) {
-							if ( $slug == $translation_update->slug ) {
-								return $translation_update->version;
-							}
+						if ( $slug == $translation_update->slug ) {
+							return $translation_update->version;
 						}
 					}
 				}

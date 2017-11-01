@@ -76,7 +76,7 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 			$where .= $wpdb->prepare( " and $tablename.type = %s ", sanitize_text_field( $_GET[ 'type' ] ) );
 		}
 		
-		$select = "select * from $tablename WHERE 1=1";
+		$select = "select log_id, user_id, name, type, version_from, version, action, status, date from $tablename WHERE 1=1";
 		$orderby = " order by log_id DESC";
 		$limit = " limit %d,%d";
 		$query = $select . $where . $orderby . $limit;
