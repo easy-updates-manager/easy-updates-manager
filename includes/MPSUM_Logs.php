@@ -130,9 +130,18 @@ class MPSUM_Logs {
 		foreach( $update_results as $type => $results ) {
 			switch( $type ) {
 				case 'core':
-					 $core = $results[ 0 ];
-					 $status = is_wp_error( $core->result ) ? 0: 1;
-					 $version = ( 1 == $status ) ? $core->result : '';
+					 $status = 0;
+					 $version = '';
+					 if ( ! is_wp_error( $core->result ) ) {
+						 $version = $core->result;
+						 
+						 if ( $core->result == $this->wp_version || NULL === $core->result) {
+							 $version = $this->wp_version;
+							 $status = 0;
+						 } else {
+							 $status = 1;
+						 }
+					 }
 					 $wpdb->insert( 
 						 $tablename,
 						 array(
@@ -157,12 +166,24 @@ class MPSUM_Logs {
 					 break;
 				case 'plugin':
 					 foreach( $results as $plugin ) {
-						 $status = is_wp_error( $plugin->result ) ? 0: 1;
-						 $version = isset( $plugin->item->new_version ) ? $plugin->item->new_version : '0.00';
-						 $name = ( isset( $plugin->name ) && !empty( $plugin->name ) ) ? $plugin->name : $plugin->item->slug;
 						 
+						 $status = 0;
+						 $version = isset( $plugin->item->new_version ) ? $plugin->item->new_version : '0.00';
+
 						 // Get older version
 						 $plugin_data = $this->plugins_cache[ $plugin->item->plugin ];
+						 
+						 if ( ! is_wp_error( $plugin->result ) ) {
+							 if ( $version == $plugin_data['Version'] || NULL === $plugin->result  ) {
+								 $status = 0;
+							 } else {
+								 $status = 1;
+							 }
+						 }
+						 
+						 $name = ( isset( $plugin->name ) && !empty( $plugin->name ) ) ? $plugin->name : $plugin->item->slug;
+						 
+						 
 						 
 						 $wpdb->insert( 
 							 $tablename,
@@ -403,7 +424,6 @@ class MPSUM_Logs {
 						if ( $theme_data->exists() ) {
 							
 							$version_from = '';
-							error_log( print_r( $this->themes_cache, true ) );
 							if ( isset( $this->themes_cache[ $theme ] ) ) {
 								$version_from = $this->themes_cache[ $theme ]->get( 'Version' );
 							}
