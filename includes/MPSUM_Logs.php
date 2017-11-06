@@ -130,6 +130,7 @@ class MPSUM_Logs {
 		foreach( $update_results as $type => $results ) {
 			switch( $type ) {
 				case 'core':
+					 $core = $results[ 0 ];
 					 $status = 0;
 					 $version = '';
 					 if ( ! is_wp_error( $core->result ) ) {
