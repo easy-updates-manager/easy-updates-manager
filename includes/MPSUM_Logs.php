@@ -210,15 +210,22 @@ class MPSUM_Logs {
 					 break;
 				case 'theme':
 					foreach( $results as $theme ) {
-						$status = ( is_wp_error( $theme->result ) || empty( $theme->result ) ) ? 0: 1;
-						
+						$status = 0;
+												
+						// Retrive Older Version
 						$old_theme_version = $this->themes_cache[ $theme->item->theme ];
 				 		$from_version = $old_theme_version->get( 'Version' );
-						if ( 0 == $status ) {
-					 		  $version = $from_version;
-						 } else {
-					 		  $version = $theme->item->new_version;
+				 		
+						 if ( ! is_wp_error( $theme->result ) ) {
+							 if ( $from_version == $theme->item->new_version || NULL === $theme->result  ) {
+								 $version = $from_version;
+								 $status = 0;
+							 } else {
+								 $version = $theme->item->new_version;
+								 $status = 1;
+							 }
 						 }
+						
 						 $wpdb->insert( 
 							 $tablename,
 							 array(
