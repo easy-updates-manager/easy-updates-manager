@@ -85,44 +85,49 @@ class MPSUM_Admin_Advanced {
 				// Remove table version
 				delete_site_option( 'mpsum_log_table_version' );
 				
+				// Disable Tracking
+				MPSUM_Tracking::disable_cron();
+				
 				// Remove logs table
 				global $wpdb;
-                $tablename = $wpdb->base_prefix . 'eum_logs';
-                $sql = "drop table if exists $tablename";
-                $wpdb->query( $sql );
+				$tablename = $wpdb->base_prefix . 'eum_logs';
+				$sql = "drop table if exists $tablename";
+				$wpdb->query( $sql );
 
 				break;
-            case 'mpsum_force_updates':
-                wp_schedule_single_event( time() + 10, 'wp_update_plugins' );
-                wp_schedule_single_event( time() + 10, 'wp_version_check' );
-                wp_schedule_single_event( time() + 10, 'wp_update_themes' );
-                wp_schedule_single_event( time() + 45, 'wp_maybe_auto_update' );
-                break;
-            case 'mpsum_enable_logs':
-                check_admin_referer( 'mpsum_logs', '_mpsum' );
-                $options = MPSUM_Updates_Manager::get_options( 'core' );
-                $options[ 'logs' ] = 'on';
-                MPSUM_Updates_Manager::update_options( $options, 'core' );
-                break;
-            case 'mpsum_delete_logs':
-                check_admin_referer( 'mpsum_logs', '_mpsum' );
-                $options = MPSUM_Updates_Manager::get_options( 'core' );
-                $options[ 'logs' ] = 'off';
-                MPSUM_Updates_Manager::update_options( $options, 'core' );
-                update_site_option( 'mpsum_log_table_version', '0' );
-                MPSUM_Logs::drop();
-                break;
-            case 'mpsum_clear_logs':
-                MPSUM_Logs::clear();
-                break;
-            case 'mpsum_disable_tracking':
-            	check_admin_referer( 'mpsum_disable_tracking', '_mpsum' );
-            	$options = MPSUM_Updates_Manager::get_options( 'core' );
-                $options[ 'tracking_enabled' ] = 'off';
-                $options[ 'tracking_nag' ] = 'off';
-                MPSUM_Updates_Manager::update_options( $options, 'core' );
-                MPSUM_Tracking::disable_cron();
-            	break;
+			case 'mpsum_force_updates':
+				wp_schedule_single_event( time() + 10, 'wp_update_plugins' );
+				wp_schedule_single_event( time() + 10, 'wp_version_check' );
+				wp_schedule_single_event( time() + 10, 'wp_update_themes' );
+				wp_schedule_single_event( time() + 45, 'wp_maybe_auto_update' );
+				delete_site_transient( 'MPSUM_PLUGINS' );
+				delete_site_transient( 'MPSUM_THEMES' );
+				break;
+			case 'mpsum_enable_logs':
+				check_admin_referer( 'mpsum_logs', '_mpsum' );
+				$options = MPSUM_Updates_Manager::get_options( 'core' );
+				$options[ 'logs' ] = 'on';
+				MPSUM_Updates_Manager::update_options( $options, 'core' );
+				break;
+			case 'mpsum_delete_logs':
+				check_admin_referer( 'mpsum_logs', '_mpsum' );
+				$options = MPSUM_Updates_Manager::get_options( 'core' );
+				$options[ 'logs' ] = 'off';
+				MPSUM_Updates_Manager::update_options( $options, 'core' );
+				update_site_option( 'mpsum_log_table_version', '0' );
+				MPSUM_Logs::drop();
+				break;
+			case 'mpsum_clear_logs':
+				MPSUM_Logs::clear();
+				break;
+			case 'mpsum_disable_tracking':
+				check_admin_referer( 'mpsum_disable_tracking', '_mpsum' );
+				$options = MPSUM_Updates_Manager::get_options( 'core' );
+				$options[ 'tracking_enabled' ] = 'off';
+				$options[ 'tracking_nag' ] = 'off';
+				MPSUM_Updates_Manager::update_options( $options, 'core' );
+				MPSUM_Tracking::disable_cron();
+				break;
 			default:
 				return;	
 		}
@@ -150,33 +155,33 @@ class MPSUM_Admin_Advanced {
 	* @internal Uses the mpsum_admin_tab_main action
 	*/
 	public function tab_output() {
-    	
-		if ( isset( $_GET[ 'updated' ] ) ) {    
-    		$action = isset( $_GET[ 'mpaction' ] ) ? $_GET[ 'mpaction' ] : '';		
-            switch( $action ) {
-                case 'mpsum_save_excluded_users':
-                    $message = __( 'The exclusion of users option has been updated.', 'stops-core-theme-and-plugin-updates' );
-                    break;
-                case 'mpsum_reset_options':
-                    $message = __( 'The plugin settings have now been reset.', 'stops-core-theme-and-plugin-updates' );
-                    break;
-                case 'mpsum_force_updates':
-                    $message = __( 'Force update checks have been initialized. Please check your site in 90 seconds, and refresh to test automatic updates.', 'stops-core-theme-and-plugin-updates' );
-                    break;
-                case 'mpsum_enable_logs':
-                    $message = __( 'Logs are now enabled', 'stops-core-theme-and-plugin-updates' );
-                    break;
-                case 'mpsum_delete_logs':
-                    $message = __( 'Logs have been disabled', 'stops-core-theme-and-plugin-updates' );
-                    break;
-                case 'mpsum_clear_logs':
-                    $message = __( 'Logs have been emptied', 'stops-core-theme-and-plugin-updates' );
-                    break;
-                default:
-                    $message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
-                	break;	
-            }
-    		
+		
+		if ( isset( $_GET[ 'updated' ] ) ) {	  
+			$action = isset( $_GET[ 'mpaction' ] ) ? $_GET[ 'mpaction' ] : '';		
+			switch( $action ) {
+				case 'mpsum_save_excluded_users':
+					$message = __( 'The exclusion of users option has been updated.', 'stops-core-theme-and-plugin-updates' );
+					break;
+				case 'mpsum_reset_options':
+					$message = __( 'The plugin settings have now been reset.', 'stops-core-theme-and-plugin-updates' );
+					break;
+				case 'mpsum_force_updates':
+					$message = __( 'Force update checks have been initialized. Please check your site in 90 seconds, and refresh to test automatic updates.', 'stops-core-theme-and-plugin-updates' );
+					break;
+				case 'mpsum_enable_logs':
+					$message = __( 'Logs are now enabled', 'stops-core-theme-and-plugin-updates' );
+					break;
+				case 'mpsum_delete_logs':
+					$message = __( 'Logs have been disabled', 'stops-core-theme-and-plugin-updates' );
+					break;
+				case 'mpsum_clear_logs':
+					$message = __( 'Logs have been emptied', 'stops-core-theme-and-plugin-updates' );
+					break;
+				default:
+					$message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
+					break;	
+			}
+			
 			?>
 			<br />
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
@@ -184,9 +189,9 @@ class MPSUM_Admin_Advanced {
 		}
 		
 		?>
-        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Exclude Users', 'stops-core-theme-and-plugin-updates' ); ?></h3>
-		<p><?php esc_html_e( 'Select which users to be excluded from the settings of this plugin.  Default WordPress behavior will be used.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+		<p><?php esc_html_e( 'Select which users to be excluded from the settings of this plugin.	 Default WordPress behavior will be used.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<p><?php esc_html_e( 'This option is useful if, for example, you would like to disable updates, but have a user account that can still update WordPress.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<table class="form-table">
 			<tr>
@@ -208,7 +213,7 @@ class MPSUM_Admin_Advanced {
 							*
 							* @since 5.0.0
 							*
-							* @param string  $var administrator.
+							* @param string	$var administrator.
 							*/
 							$role = apply_filters( 'mpsum_admin_role', 'administrator' );
 							$users = get_users( array( 'role' => $role, 'orderby' => 'display_name', 'order' => 'ASC', 'fields' => 'ID' ) );	
@@ -226,25 +231,25 @@ class MPSUM_Admin_Advanced {
 			</tr>
 		</table>
 		<input type="hidden" name="action" value='mpsum_save_excluded_users' />
-	    <?php
+		 <?php
 		wp_nonce_field( 'mpsum_exclude_users', '_mpsum' );
 		echo '<p class="submit">';
 		submit_button( __( 'Save Users', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
 		echo '</p>';
 		?>
-        </form>
-        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		</form>
+		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Reset Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<p><?php esc_html_e( 'This will reset all options to as if you have just installed the plugin. WARNING!: This also disables and clears the logs.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<input type="hidden" name="action" value='mpsum_reset_options' />
-	    <?php
+		 <?php
 		wp_nonce_field( 'mpsum_reset_options', '_mpsum' );
 		echo '<p class="submit">';
 		submit_button( __( 'Reset All Options', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
 		echo '</p>';
 		?>
-        </form>
-        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		</form>
+		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<?php
 		if ( defined( 'AUTOMATIC_UPDATER_DISABLED' ) && true == AUTOMATIC_UPDATER_DISABLED ) {
@@ -260,67 +265,67 @@ class MPSUM_Admin_Advanced {
 		?>
 		<p><?php esc_html_e( 'This will attempt to force automatic updates. This is useful for debugging.', 'stops-core-theme-and-plugin-updates' ); ?></p>
 		<input type="hidden" name="action" value='mpsum_force_updates' />
-	    <?php
+		 <?php
 		wp_nonce_field( 'mpsum_force_updates', '_mpsum' );
 		echo '<p class="submit">';
 		submit_button( __( 'Force Updates', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
 		echo '</p>';
 		?>
-        </form>
-        <?php
-        $options = MPSUM_Updates_Manager::get_options( 'core' );
-        if ( !isset( $options[ 'logs' ] ) || 'off' == $options[ 'logs' ] ):
-        ?>
-            <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
-            <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
-    		<h3><?php echo esc_html( _x( 'Logs', 'Advanced title heading', 'stops-core-theme-and-plugin-updates' ) ); ?></h3>
-    		<p><?php printf( __( 'This feature enables a Logs tab which will log all updates that occur. <a href="%s">See Logs on YouTube</a>.', 'stops-core-theme-and-plugin-updates', 'stops-core-theme-and-plugin-updates' ), 'https://www.youtube.com/watch?v=Z6dPPv8Wttc' );?></p>
-    		<input type="hidden" name="action" value='mpsum_enable_logs' />
-    		<p class="submit">
-                <?php submit_button( __( 'Enable Logs', 'stops-core-theme-and-plugin-updates' ), 'primary', 'enable-log', false ); ?>
-    		</p>
-            </form>
-	    <?php
-        else:
-        ?>
-            <h3><?php echo esc_html( _x( 'Logs', 'Advanced title heading', 'stops-core-theme-and-plugin-updates' ) ); ?></h3>
-            <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
-                <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
-        		<input type="hidden" name="action" value='mpsum_clear_logs' />
-        		<?php
-            	echo '<p><em>' . __( 'This will clear the log table.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
-                echo '<p class="submit">';
-        		submit_button( __( 'Clear Logs', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'clear-log', false );
-        		echo '</p>';	
-                ?>
-            </form>
-            <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
-                <?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
-        		<input type="hidden" name="action" value='mpsum_delete_logs' />
-        		<?php
-                echo '<p><em>' . __( 'This will remove the log table and disable logging.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
-                echo '<p class="submit">';
-        		submit_button( __( 'Disable Logging', 'stops-core-theme-and-plugin-updates' ) , 'delete', 'delete-log', false );
-        		echo '</p>';	
-                ?>
-            </form>
-        <?php
-        endif;
-        $options = MPSUM_Updates_Manager::get_options( 'core' );
-        $tracking_enabled = isset( $options[ 'tracking_enabled' ] ) ? $options[ 'tracking_enabled' ] : 'off';
-        if ( 'on' === $tracking_enabled ):
-        ?>
-        <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+		</form>
+		<?php
+		$options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( !isset( $options[ 'logs' ] ) || 'off' == $options[ 'logs' ] ):
+		?>
+			<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+			<?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
+			<h3><?php echo esc_html( _x( 'Logs', 'Advanced title heading', 'stops-core-theme-and-plugin-updates' ) ); ?></h3>
+			<p><?php printf( __( 'This feature enables a Logs tab which will log all updates that occur. <a href="%s">See Logs on YouTube</a>.', 'stops-core-theme-and-plugin-updates', 'stops-core-theme-and-plugin-updates' ), 'https://www.youtube.com/watch?v=Z6dPPv8Wttc' );?></p>
+			<input type="hidden" name="action" value='mpsum_enable_logs' />
+			<p class="submit">
+				<?php submit_button( __( 'Enable Logs', 'stops-core-theme-and-plugin-updates' ), 'primary', 'enable-log', false ); ?>
+			</p>
+			</form>
+		 <?php
+		else:
+		?>
+			<h3><?php echo esc_html( _x( 'Logs', 'Advanced title heading', 'stops-core-theme-and-plugin-updates' ) ); ?></h3>
+			<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+				<?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
+				<input type="hidden" name="action" value='mpsum_clear_logs' />
+				<?php
+				echo '<p><em>' . __( 'This will clear the log table.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
+				echo '<p class="submit">';
+				submit_button( __( 'Clear Logs', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'clear-log', false );
+				echo '</p>';	
+				?>
+			</form>
+			<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+				<?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
+				<input type="hidden" name="action" value='mpsum_delete_logs' />
+				<?php
+				echo '<p><em>' . __( 'This will remove the log table and disable logging.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
+				echo '<p class="submit">';
+				submit_button( __( 'Disable Logging', 'stops-core-theme-and-plugin-updates' ) , 'delete', 'delete-log', false );
+				echo '</p>';	
+				?>
+			</form>
+		<?php
+		endif;
+		$options = MPSUM_Updates_Manager::get_options( 'core' );
+		$tracking_enabled = isset( $options[ 'tracking_enabled' ] ) ? $options[ 'tracking_enabled' ] : 'off';
+		if ( 'on' === $tracking_enabled || false !== wp_next_scheduled( 'eum-monthly' ) ):
+		?>
+		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Tracking', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<input type="hidden" name="action" value='mpsum_disable_tracking' />
-	    <?php
+		 <?php
 		wp_nonce_field( 'mpsum_disable_tracking', '_mpsum' );
 		echo '<p class="submit">';
 		submit_button( __( 'Disable Tracking', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
 		echo '</p>';
 		?>
-        </form>
-        <?php
-	    endif; 
+		</form>
+		<?php
+		 endif; 
 	} //end tab_output
 }

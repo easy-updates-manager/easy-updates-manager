@@ -76,7 +76,7 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
 			$where .= $wpdb->prepare( " and $tablename.type = %s ", sanitize_text_field( $_GET[ 'type' ] ) );
 		}
 		
-		$select = "select * from $tablename WHERE 1=1";
+		$select = "select log_id, user_id, name, type, version_from, version, action, status, date from $tablename WHERE 1=1";
 		$orderby = " order by log_id DESC";
 		$limit = " limit %d,%d";
 		$query = $select . $where . $orderby . $limit;
@@ -235,7 +235,8 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
     		'user'    => _x( 'User', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
 		    'name'    => _x( 'Name', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
 		    'type'    => _x( 'Type', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
-		    'version' => _x( 'Version', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
+		    'version_from' => _x( 'From', 'Column header for version number in logs', 'stops-core-theme-and-plugin-updates' ),
+		    'version' => _x( 'To', 'Column header for version number in logs', 'stops-core-theme-and-plugin-updates' ),
 		    'action'  => _x( 'Action', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
 		    'status'  => _x( 'Status', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
 		    'date'    => _x( 'Date', 'Column header for logs', 'stops-core-theme-and-plugin-updates' ),
@@ -298,6 +299,9 @@ class MPSUM_Logs_List_Table extends MPSUM_List_Table {
                             echo esc_html( ucfirst( $record_data ) );
                         }
                         break;
+                    case 'version_from':
+                    	echo esc_html( $record_data );
+                    	break;
                     case 'version':
                         echo esc_html( $record_data );
                         break;
