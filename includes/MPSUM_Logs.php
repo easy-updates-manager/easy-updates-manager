@@ -20,18 +20,18 @@ class MPSUM_Logs {
 	private static $instance = null;
 	
 	/**
-	 * Holds the class instance.
+	 * Plugin cache for version compares.
 	 *
-	 * @since 6.2.9
+	 * @since 6.4.4
 	 * @access private
 	 * @var stdClass plugins
 	 */
 	private $plugins_cache = null;
 	
 	/**
-	 * Holds the class instance.
+	 * Theme cache for version compares.
 	 *
-	 * @since 6.2.9
+	 * @since 6.4.4
 	 * @access private
 	 * @var stdClass $themes
 	 */
@@ -45,6 +45,15 @@ class MPSUM_Logs {
 	 * @var string $wp_version
 	 */
 	private $wp_version = null;
+	
+	/**
+	 * Holds the Translation cache for version compares.
+	 *
+	 * @since 6.4.4
+	 * @access private
+	 * @var string $wp_version
+	 */
+	private $translations_cache = null;
 	
 	/**
 	* Holds version number of the table
