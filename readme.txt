@@ -101,6 +101,10 @@ Check out our video on how the automatic updating works in WordPress.
 
 Not currently.
 
+= Does Easy Updates Manager work with third party plugins and themes? =
+
+Since third party providers use custom update mechanisms, we cannot guarantee that they will work with Easy Updates Manager.
+
 = Additional Information and FAQ =
 
 For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
