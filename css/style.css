@@ -370,3 +370,12 @@ label {
 .eum-plugin-name {
   display: inline-block;
   margin-left: 60px; }
+
+.updates-table-screenshot {
+  float: left;
+  padding: 0 10px 5px 0;
+  width: 85px;
+  height: 64px; }
+
+.eum-theme-name {
+  margin-right: 85px; }

@@ -30,7 +30,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			'plural' => 'themes',
 			'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
 		) );
-		
+
 		$this->tab = isset( $args[ 'tab' ] ) ? $args[ 'tab' ] : '';
 
 		$status = isset( $_REQUEST['theme_status'] ) ? $_REQUEST['theme_status'] : 'all';
@@ -57,12 +57,12 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			return current_user_can( 'manage_network_themes' );
 	}
 
-	public function prepare_items() {		
+	public function prepare_items() {
 		global $totals, $status;
 		$order = 'DESC';
 		$page = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : 1;
 		$orderby = 'Name';
-		
+
 		$themes = array(
 			/**
 			 * Filter the full array of WP_Theme objects to list in the Multisite
@@ -76,7 +76,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			'update_enabled' => array(),
 			'update_disabled' => array(),
 			'automatic' => array()
-			
+
 		);
 
 
@@ -92,23 +92,23 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 					$themes[ 'automatic' ][ $theme ] = $theme_data;
 				}
 			}
-		}		
-		
+		}
+
 		$totals = array();
-		
-		foreach ( $themes as $type => $list ) 
+
+		foreach ( $themes as $type => $list )
 			$totals[ $type ] = count( $list );
-			
+
 		//Disable the automatic updates view
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' !== $core_options[ 'automatic_theme_updates' ] ) {
 			unset( $totals[ 'automatic' ] );
 			$themes[ 'automatic' ] = array();
 		}
-			
+
 		if ( empty( $themes[ $status ] ) )
 			$status = 'all';
-			
+
 		$this->items = $themes[ $status ];
 		WP_Theme::sort_by_name( $this->items );
 
@@ -127,14 +127,14 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			}
 		}
 		$total_this_page = count( $themes[ 'all' ] );
-		
+
 		// Get themes per page
 		$user_id = get_current_user_id();
 		$themes_per_page = get_user_meta( $user_id, 'mpsum_items_per_page', true );
 		if ( ! is_numeric( $themes_per_page ) ) {
 			$themes_per_page = 100;
 		}
-		
+
 		$start = ( $page - 1 ) * $themes_per_page;
 
 		if ( $total_this_page > $themes_per_page )
@@ -260,7 +260,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 		global $status;
 
 		$actions = array();
-		        
+
 		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' );
 		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' );
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
@@ -268,7 +268,7 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
 			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
 		}
-		
+
 		return $actions;
 	}
 
@@ -309,11 +309,11 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
 		if ( false !== $key = array_search( $stylesheet, $theme_options ) ) {
 			$class = 'inactive';
-		} 
+		}
 		echo "<tr id='$id' class='$class'>";
 
 		list( $columns, $hidden ) = $this->get_column_info();
-		
+
 		foreach ( $columns as $column_name => $column_display_name ) {
 			$style = '';
 			if ( in_array( $column_name, $hidden ) )
@@ -324,7 +324,9 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 					echo "<th scope='row' class='check-column'>$checkbox</th>";
 					break;
 				case 'name':
-					echo "<td class='theme-title'$style><strong>" . $theme->display('Name') . "</strong>";
+					echo "<td class='theme-title'$style>";
+					echo "<img src='" . esc_url( $theme->get_screenshot() ) . "' width='85' height='64' class='updates-table-screenshot' alt='' />";
+					echo "<strong class='eum-theme-name'>" . $theme->display('Name') . "</strong>";
 					echo $this->row_actions( $actions, true );
 					echo "</td>";
 					break;
