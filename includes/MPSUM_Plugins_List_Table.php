@@ -8,7 +8,7 @@
  * @access private
  */
 class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
-	
+
 	private $tab = '';
 
 	/**
@@ -28,9 +28,9 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 			'plural' => 'plugins',
 			'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
 		) );
-		
+
 		$this->tab = isset( $args[ 'tab' ] ) ? $args[ 'tab' ] : '';
-		
+
 
 		$status = 'all';
 		if ( isset( $_REQUEST['plugin_status'] ) && in_array( $_REQUEST['plugin_status'], array( 'update_disabled', 'update_enabled', 'automatic' ) ) ) {
@@ -52,7 +52,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 	}
 
 	public function prepare_items() {
-		
+
 		global $orderby, $order, $totals, $status;
 		$order = 'DESC';
 		$page = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : 1;
@@ -76,9 +76,9 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 
 		$screen = $this->screen;
 
-		
+
 		$plugin_info = get_site_transient( 'update_plugins' );
-		
+
 		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
 		$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
 		foreach ( (array) $plugins['all'] as $plugin_file => $plugin_data ) {
@@ -88,8 +88,8 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 			} elseif ( isset( $plugin_info->no_update[ $plugin_file ] ) ) {
 				$plugins['all'][ $plugin_file ] = $plugin_data = array_merge( (array) $plugin_info->no_update[ $plugin_file ], $plugin_data );
 			}
-			
-			
+
+
 			if ( false !== $key = array_search( $plugin_file, $plugin_options ) ) {
 				$plugins[ 'update_disabled' ][ $plugin_file ] = $plugin_data;
 			} else {
@@ -99,18 +99,18 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 				}
 			}
 		}
-		
+
 		$totals = array();
 		foreach ( $plugins as $type => $list )
 			$totals[ $type ] = count( $list );
-			
+
 		//Disable the automatic updates view
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 		if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' !== $core_options[ 'automatic_plugin_updates' ] ) {
 			unset( $totals[ 'automatic' ] );
 			$plugins[ 'automatic' ] = array();
 		}
-		
+
 		if ( empty( $plugins[ $status ] ) )
 			$status = 'all';
 
@@ -122,19 +122,19 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		}
 
 		$total_this_page = $totals[ $status ];
-		
+
 		// Get plugins per page
 		$user_id = get_current_user_id();
 		$plugins_per_page = get_user_meta( $user_id, 'mpsum_items_per_page', true );
 		if ( ! is_numeric( $plugins_per_page ) ) {
 			$plugins_per_page = 100;
 		}
-		
+
 		$start = ( $page - 1 ) * $plugins_per_page;
 
 		if ( $total_this_page > $plugins_per_page )
 			$this->items = array_slice( $this->items, $start, $plugins_per_page );
-		
+
 		$this->set_pagination_args( array(
 			'total_items' => $total_this_page,
 			'per_page' => $plugins_per_page,
@@ -249,7 +249,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		global $status;
 
 		$actions = array();
-		        
+
 		$actions[ 'allow-update-selected' ] = esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' );
 		$actions[ 'disallow-update-selected' ] = esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' );
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
@@ -257,7 +257,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 			$actions[ 'allow-automatic-selected' ] = esc_html__( 'Allow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
 			$actions[ 'disallow-automatic-selected' ] = esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' );
 		}
-		
+
 		return $actions;
 	}
 
@@ -341,7 +341,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		list( $plugin_file, $plugin_data ) = $item;
 		$context = 'all';
 		$screen = $this->screen;
-		
+
 		/**
 		* Filter the action links that show up under each plugin row.
 		*
@@ -357,7 +357,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
 		if ( false !== $key = array_search( $plugin_file, $plugin_options ) ) {
 			$class = 'inactive';
-		} 
+		}
 		$checkbox_id =  "checkbox_" . md5($plugin_data['Name']);
 		$checkbox = "<label class='screen-reader-text' for='" . $checkbox_id . "' >" . sprintf( __( 'Select %s', 'stops-core-theme-and-plugin-updates' ), $plugin_data['Name'] ) . "</label>"
 				. "<input type='checkbox' name='checked[]' value='" . esc_attr( $plugin_file ) . "' id='" . $checkbox_id . "' />";
@@ -380,7 +380,17 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 					echo "<th scope='row' class='check-column'>$checkbox</th>";
 					break;
 				case 'name':
-					echo "<td class='plugin-title'$style><strong>$plugin_name</strong>";
+					echo "<td class='plugin-title'$style>";
+					$icon = '<span class="dashicons dashicons-admin-plugins"></span>';
+					$preferred_icons = array( 'svg', '1x', '2x', 'default' );
+					foreach ( $preferred_icons as $preferred_icon ) {
+						if ( isset( $plugin_data[ 'icons' ][ $preferred_icon ] ) && ! empty( $plugin_data[ 'icons' ][ $preferred_icon ] ) ) {
+							$icon = '<img src="' . esc_url( $plugin_data[ 'icons' ][ $preferred_icon ] ) . '" alt="" />';
+							break;
+						}
+					}
+					echo $icon;
+					echo "<strong>$plugin_name</strong>";
 					echo $this->row_actions( $actions, true );
 					echo "</td>";
 					break;
