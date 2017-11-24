@@ -3,7 +3,7 @@ Contributors: kidsguide, ronalfy, roary86, bigwing
 Tags: updates manager, easy updates manager, disable updates manager, disable updates, update control, plugin updates, theme updates, core updates, automatic updates, multisite, logs
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 6.4.4
+Stable tag: 6.4.6
 License: GPLv2 or later
 
 Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. Also works with WordPress Multisite.
@@ -101,72 +101,37 @@ Check out our video on how the automatic updating works in WordPress.
 
 Not currently.
 
+= Does Easy Updates Manager work with third party plugins and themes? =
+
+Since third party providers use custom update mechanisms, we cannot guarantee that they will work with Easy Updates Manager.
+
 = Additional Information and FAQ =
 
 For additional information and FAQs for Easy Updates Manager check out our <a href="https://github.com/easy-updates-manager/easy-updates-manager/wiki">wiki</a>.
 
 == Changelog ==
 
+= 6.4.6 =
+Released 2017-11-24
+
+* Added icons to the plugins and themes screen to align it with WordPress 4.9.
+
 = 6.4.4 =
 Released 2017-11-07
 
 * Removed wizard. It was annoying too many people. A better admin UI may help with this.
 * Bug fix: tracking could not be disabled if you enabled it, and Reset All Options. Tracking be disabled under the Advanced Tab.
-* Enhancement: Logs now show a From (version) and a To (version) to satisfy a user feature request and will hopefully make logs that more useful. 
+* Enhancement: Logs now show a From (version) and a To (version) to satisfy a user feature request and will hopefully make logs that more useful.
 
 = 6.4.0 =
 Released 2017-08-01
 
 * New wizard for new users of the plugin. Automatic updates are recommended by default.
 
-= 6.3.3 =
-Released 2017-07-26
-
-= 6.3.1 =
-Released 2017-07-06
-
-* Hot fix: Yoast SEO conflict with Babel Polyfill dependency resulting in empty EUM Dashboard. We have restructured our JavaScript build dependencies to minimize this occurring again. 
-* Bug fix: Allow white space after comma in email field. Props <a href="https://github.com/nicomollet">Nico Mollet</a>.
-
-= 6.3.0 =
-Released 2017-02-21
-
-* Enhancement: new React-powered Dashboard to make configuring the plugin as intuitive and easy as possible
-
-= 6.2.11 =
-Released 2017-02-13
-
-* Bug fix: Manual logs only logging one plugin update even if there are multiple
-
-= 6.2.9 =
-Released 2016-12-07
-
-* Bug fix: Manual logs not logging plugin or theme updates
-
-= 6.2.7 =
-Released 2016-12-01
-
-* Bug fix: Saving general settings disables logs
-* Logs now out of beta. Woo hoo!
-
-
 For past changelogs, please visit our <a href="https://github.com/easy-updates-manager/easy-updates-manager/releases">GitHub</a>.
 
 == Upgrade Notice ==
 
-= 6.4.0 =
+= 6.4.6 =
 
-New wizard for new users of the plugin. Automatic updates are recommended by default.
-
-= 6.3.0 =
-
-Enhancement: new React-powered Dashboard to make configuring the plugin as intuitive and easy as possible
-
-= 6.2.11 =
-Bug fix: Manual logs only logging one plugin update even if there are multiple
-
-= 6.2.9 =
-Bug fix: manual log updates not working with 4.7
-
-= 6.2.7 =
-Bug fix: logs disabled when general settings updated
+New icons in the plugins and themes tabs.
