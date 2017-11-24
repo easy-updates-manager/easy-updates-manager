@@ -397,10 +397,6 @@ label{
 	font-size:60px;
 	color:#B4B9BE
 }
-.eum-plugin-name {
-	display: inline-block;
-	margin-left: 60px;
-}
 
 .updates-table-screenshot {
 	float: left;
@@ -408,9 +404,12 @@ label{
 	width: 85px;
 	height: 64px;
 }
-.eum-theme-name {
-	margin-left: 90px;
-}
 .theme-title strong {
 	display: block;
+}
+.eum-plugin-name-actions {
+	margin-left: 70px;
+}
+.eum-theme-name-actions {
+	margin-left: 100px;
 }

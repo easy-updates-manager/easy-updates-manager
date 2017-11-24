@@ -390,8 +390,10 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 						}
 					}
 					echo $icon;
+					echo '<div class="eum-plugin-name-actions">';
 					echo "<strong class='eum-plugin-name'>$plugin_name</strong>";
 					echo $this->row_actions( $actions, true );
+					echo '</div>';
 					echo "</td>";
 					break;
 				case 'description':

@@ -326,8 +326,10 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 				case 'name':
 					echo "<td class='theme-title'$style>";
 					echo "<img src='" . esc_url( $theme->get_screenshot() ) . "' width='85' height='64' class='updates-table-screenshot' alt='' />";
+					echo '<div class="eum-theme-name-actions">';
 					echo "<strong class='eum-theme-name'>" . $theme->display('Name') . "</strong>";
 					echo $this->row_actions( $actions, true );
+					echo '</div>';
 					echo "</td>";
 					break;
 				case 'description':
