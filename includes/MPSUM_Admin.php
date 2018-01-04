@@ -148,7 +148,7 @@ class MPSUM_Admin {
 		new MPSUM_Admin_Plugins( self::get_slug() );
 		new MPSUM_Admin_Themes( self::get_slug() );
 		if ( isset( $core_options[ 'logs' ] ) && 'on' == $core_options[ 'logs' ] ) {
-    		new MPSUM_Admin_Logs( self::get_slug() );
+			new MPSUM_Admin_Logs( self::get_slug() );
 		}
 		new MPSUM_Admin_Core( self::get_slug() );
 		new MPSUM_Admin_Advanced( self::get_slug() );
@@ -783,16 +783,16 @@ class MPSUM_Admin {
 	}
 
 	public function enqueue_scripts() {
-    	$pagenow = isset( $_GET[ 'page' ] ) ? $_GET[  'page' ] : false;
-    	$is_active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : false;
+		$pagenow = isset( $_GET[ 'page' ] ) ? $_GET[  'page' ] : false;
+		$is_active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : false;
 
-    	//Check to make sure we're on the mpsum admin page
-    	if ( $pagenow != 'mpsum-update-options' ) {
-            return;
-        }
+		//Check to make sure we're on the mpsum admin page
+		if ( $pagenow != 'mpsum-update-options' ) {
+			return;
+		}
 
-        // Get user data
-        $user_id = get_current_user_id();
+		// Get user data
+		$user_id = get_current_user_id();
 		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
 
 		// Get options
@@ -800,7 +800,7 @@ class MPSUM_Admin {
 
 		wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20171106', true );
 
-    	$user_id = get_current_user_id();
+		$user_id = get_current_user_id();
 		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
 		if ( ! $dashboard_showing ) {
 			$dashboard_showing = 'on';
@@ -832,45 +832,33 @@ class MPSUM_Admin {
 			$tracking_nag_showing = 'off';
 		}
 
-		$has_wizard = 'off';
-		$maybe_has_wizard = MPSUM_Updates_Manager::get_options( 'core' );
-		if ( empty( $maybe_has_wizard ) ) {
-			$has_wizard = 'off'; // Change to "on" to turn back on modal
-		}
-
 		//  tracking_nag
-    	wp_localize_script( 'mpsum_dashboard', 'mpsum', array(
-    		'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
-    		'tabs'              => _x( 'Tabs', 'Show or hide admin tabs', 'stops-core-theme-and-plugin-updates' ),
-    		'dashboard'         => _x( 'Show Dashboard', 'Show or hide the dashboard', 'stops-core-theme-and-plugin-updates' ),
-    		'dashboard_showing' => $dashboard_showing,
-    		'enabled' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
-    		'disabled' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
-    		'admin_nonce' => wp_create_nonce( 'mpsum_options_save' ),
-    		'ratings_nag' => array(
-	    		'text' => __( 'Hey there! If Easy Updates Manager has helped you, can you do us a HUGE favor and give us a rating? THANKS! - The Easy Updates Manager team', 'stops-core-theme-and-plugin-updates' ),
-	    		'url' => 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post',
-	    		'affirm' => __( 'Sure! Absolutely.', 'stops-core-theme-and-plugin-updates' ),
-	    		'cancel' => __( 'No thanks!', 'stops-core-theme-and-plugin-updates' ),
-	    		'enabled' => $ratings_nag_showing
-    		),
-    		'tracking_nag' => array(
-	    		'text' => __( 'Please help us improve this plugin. We are working on a new admin interface for you, and we need your help. Once a month you can automatically send us helpful data on how you are using the plugin. You can always turn it off later in the Advanced section.', 'stops-core-theme-and-plugin-updates' ),
-	    		'url' => 'https://easyupdatesmanager.com/tracking/',
-	    		'affirm' => __( 'Sure! Absolutely!', 'stops-core-theme-and-plugin-updates' ),
-	    		'cancel' => __( 'No Thanks, but Good Luck!', 'stops-core-theme-and-plugin-updates' ),
-	    		'help' => __( 'Learn More.', 'stops-core-theme-and-plugin-updates' ),
-	    		'enabled' => $tracking_nag_showing
-	    	),
-	    	'welcome' => __( 'Welcome to Easy Updates Manager.', 'stops-core-theme-and-plugin-updates' ),
-	    	'welcome_intro' =>  __( 'What would you like to do?', 'stops-core-theme-and-plugin-updates' ),
-	    	'welcome_automatic' =>  __( 'Turn on Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
-	    	'welcome_disable' =>  __( 'Disable All Updates (not recommended)', 'stops-core-theme-and-plugin-updates' ),
-	    	'welcome_skip' =>  __( 'Configure Manually', 'stops-core-theme-and-plugin-updates' ),
-	    	'new_user' => $has_wizard,
-    	) );
-    	wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20171125' );
-    }
+		wp_localize_script( 'mpsum_dashboard', 'mpsum', array(
+			'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
+			'tabs'              => _x( 'Tabs', 'Show or hide admin tabs', 'stops-core-theme-and-plugin-updates' ),
+			'dashboard'         => _x( 'Show Dashboard', 'Show or hide the dashboard', 'stops-core-theme-and-plugin-updates' ),
+			'dashboard_showing' => $dashboard_showing,
+			'enabled' => __( 'Enabled', 'stops-core-theme-and-plugin-updates' ),
+			'disabled' => __( 'Disabled', 'stops-core-theme-and-plugin-updates' ),
+			'admin_nonce' => wp_create_nonce( 'mpsum_options_save' ),
+			'ratings_nag' => array(
+				'text' => __( 'Hey there! If Easy Updates Manager has helped you, can you do us a HUGE favor and give us a rating? THANKS! - The Easy Updates Manager team', 'stops-core-theme-and-plugin-updates' ),
+				'url' => 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post',
+				'affirm' => __( 'Sure! Absolutely.', 'stops-core-theme-and-plugin-updates' ),
+				'cancel' => __( 'No thanks!', 'stops-core-theme-and-plugin-updates' ),
+				'enabled' => $ratings_nag_showing
+			),
+			'tracking_nag' => array(
+				'text' => __( 'Please help us improve this plugin. We are working on a new admin interface for you, and we need your help. Once a month you can automatically send us helpful data on how you are using the plugin. You can always turn it off later in the Advanced section.', 'stops-core-theme-and-plugin-updates' ),
+				'url' => 'https://easyupdatesmanager.com/tracking/',
+				'affirm' => __( 'Sure! Absolutely!', 'stops-core-theme-and-plugin-updates' ),
+				'cancel' => __( 'No Thanks, but Good Luck!', 'stops-core-theme-and-plugin-updates' ),
+				'help' => __( 'Learn More.', 'stops-core-theme-and-plugin-updates' ),
+				'enabled' => $tracking_nag_showing
+			)
+		) );
+		wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20171125' );
+	}
 
 	/**
 	* Adds a sub-menu page for multisite.
@@ -925,19 +913,19 @@ class MPSUM_Admin {
 				<?php echo esc_html_e( 'Manage Updates', 'stops-core-theme-and-plugin-updates' ); ?>
 			</h1>
 			<?php
-            $core_options = MPSUM_Updates_Manager::get_options( 'core' );
+			$core_options = MPSUM_Updates_Manager::get_options( 'core' );
 			$tabs = array();
 
 			if ( 'off' !== get_user_meta( get_current_user_id(), 'mpsum_dashboard', true ) ) {
 				$tabs[] = array(
-	    			'url'    => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
-	    			'label'  => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
-	    			'get'    => 'dashboard' /*$_GET variable*/,
-	    			'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
-	            );
+					'url'    => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
+					'label'  => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
+					'get'    => 'dashboard' /*$_GET variable*/,
+					'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
+				);
 			}
 
-            $tabs[] = array(
+			$tabs[] = array(
 				'url'    => add_query_arg( array( 'tab' => 'main' ), self::get_url() ), /* URL to the tab */
 				'label'  => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
 				'get'    => 'main' /*$_GET variable*/,
@@ -956,14 +944,14 @@ class MPSUM_Admin {
 				'action' => 'mpsum_admin_tab_themes' /* action variable in do_action */
 			);
 			if ( isset( $core_options[ 'logs' ] ) && 'on' == $core_options[ 'logs' ] ) {
-        		$tabs[] = array(
+				$tabs[] = array(
 					'url'    => add_query_arg( array( 'tab' => 'logs' ), self::get_url() ), /* URL to the tab */
 					'label'  => esc_html__( 'Logs', 'stops-core-theme-and-plugin-updates' ),
 					'get'    => 'logs' /*$_GET variable*/,
 					'action' => 'mpsum_admin_tab_logs' /* action variable in do_action */
 				);
-    		}
-    		$tabs[] = array(
+			}
+			$tabs[] = array(
 				'url'    => add_query_arg( array( 'tab' => 'advanced' ), self::get_url() ), /* URL to the tab */
 				'label'  => esc_html__( 'Advanced', 'stops-core-theme-and-plugin-updates' ),
 				'get'    => 'advanced' /*$_GET variable*/,
@@ -1027,9 +1015,9 @@ class MPSUM_Admin {
 		$admin_anchor = sprintf( '<a href="%s">%s</a>', esc_url( $this->get_url() ), esc_html__( 'Configure', 'stops-core-theme-and-plugin-updates' ) );
 
 		if ( ! is_array( $settings ) ) {
-    		return array( $admin_anchor );
+			return array( $admin_anchor );
 		} else {
-    		return array_merge( array( $admin_anchor ), $settings );
+			return array_merge( array( $admin_anchor ), $settings );
 		}
 	}
 }
