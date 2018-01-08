@@ -33,7 +33,7 @@ var config = [
 		plugins: [
 			new webpack.DefinePlugin({
 				'process.env': {
-					NODE_ENV: JSON.stringify('production')
+					NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 				}
 			}),
 		]
@@ -55,7 +55,7 @@ var config = [
 						use: [
 							"css-loader",
 							"sass-loader"
-						]	
+						]
 					})
 				}
 			]
@@ -64,9 +64,9 @@ var config = [
 			new ExtractTextPlugin( 'style.css' ),new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-		]			
+		]
 	}
-	
+
 ];
 
 module.exports = config;

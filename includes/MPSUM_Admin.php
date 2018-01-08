@@ -832,6 +832,14 @@ class MPSUM_Admin {
 			$tracking_nag_showing = 'off';
 		}
 
+		$I18N = array(
+			'default' => _x( 'Default', 'Option as Default', 'stops-core-theme-and-plugin-updates' ),
+			'on'      => _x( 'On', 'Option enabled', 'stops-core-theme-and-plugin-updates' ),
+			'off'     => _x( 'Off', 'Option disabled', 'stops-core-theme-and-plugin-updates' ),
+			'custom'  => _x( 'Custom', 'Option allows for configuration', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_updates' => __( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' )
+		);
+
 		//  tracking_nag
 		wp_localize_script( 'mpsum_dashboard', 'mpsum', array(
 			'spinner'           => MPSUM_Updates_Manager::get_plugin_url( '/images/spinner.gif' ),
@@ -857,7 +865,8 @@ class MPSUM_Admin {
 				'enabled'       => $tracking_nag_showing
 			),
 			'rest_nonce'        => wp_create_nonce( 'wp_rest' ),
-			'rest_url'          => get_rest_url( null, '/eum/v1/' )
+			'rest_url'          => get_rest_url( null, '/eum/v1/' ),
+			'I18N'              => $I18N,
 		) );
 		wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20171125' );
 	}

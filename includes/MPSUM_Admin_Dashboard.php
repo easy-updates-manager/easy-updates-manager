@@ -17,7 +17,7 @@ class MPSUM_Admin_Dashboard {
 	* @var string $slug
 	*/
 	private $slug = '';
-	
+
 	/**
 	* Holds the tab name
 	*
@@ -26,7 +26,7 @@ class MPSUM_Admin_Dashboard {
 	* @var string $tab
 	*/
 	private $tab = 'main';
-	
+
 	/**
 	* Class constructor.
 	*
@@ -40,24 +40,24 @@ class MPSUM_Admin_Dashboard {
 	public function __construct( $slug = '' ) {
 		$this->slug = $slug;
 		//Admin Tab Actions
-		add_action( 'mpsum_admin_tab_dashboard', array( $this, 'tab_output' ) );	
+		add_action( 'mpsum_admin_tab_dashboard', array( $this, 'tab_output' ) );
     }
 
-	
+
 	/**
 	* Output the HTML interface for the main tab.
 	*
 	* Output the HTML interface for the main tab.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses the mpsum_admin_tab_main action
 	*/
 	public function tab_output() {
 		?>
-		<div id="eum-dashboard-app"></div>
-        <?php		
+		<div class="eum-dashboard-app"></div>
+        <?php
 		return;
 	} //end tab_output_plugins
 }
