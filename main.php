@@ -322,96 +322,11 @@ class MPSUM_Updates_Manager {
 			MPSUM_Disable_Updates::run();
 		}
 
-		add_action( 'wp_ajax_mpsum_ajax_action', array( $this, 'ajax_update_option' ) );
-		add_action( 'wp_ajax_mpsum_ajax_get_json', array( $this, 'ajax_get_json' ) );
-		add_action( 'wp_ajax_mpsum_ajax_remove_ratings_nag', array( $this, 'ajax_remove_ratings_nag' ) );
-		add_action( 'wp_ajax_mpsum_ajax_enable_tracking', array( $this, 'ajax_enable_tracking' ) );
-		add_action( 'wp_ajax_mpsum_ajax_remove_tracking_nag', array( $this, 'ajax_remove_tracking_nag' ) );
-		add_action( 'wp_ajax_mpsum_ajax_disable_updates', array( $this, 'ajax_disable_updates' ) );
-		add_action( 'wp_ajax_mpsum_ajax_remove_wizard', array( $this, 'ajax_remove_wizard' ) );
-		add_action( 'wp_ajax_mpsum_ajax_enable_automatic_updates', array( $this, 'ajax_enable_automatic_updates' ) );
-
 		$not_doing_ajax = ( !defined( 'DOING_AJAX' ) || !DOING_AJAX );
 		$not_admin_disabled = ( !defined( 'MPSUM_DISABLE_ADMIN' ) || !MPSUM_DISABLE_ADMIN );
 		if ( is_admin() && $not_doing_ajax && $not_admin_disabled ) {
 			MPSUM_Admin::run();
 		}
-	}
-
-	public function ajax_enable_automatic_updates() {
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-
-		// Load auto update options
-		$options['automatic_translation_updates'] = 'on';
-		$options['automatic_theme_updates']       = 'on';
-		$options['logs']                          = 'on';
-		$options['automatic_minor_updates']       = 'on';
-		$options['automatic_plugin_updates']      = 'on';
-		$options['automatic_translation_updates'] = 'on';
-		$options['automatic_major_updates']       = 'on';
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		MPSUM_Updates_Manager::update_options( $options, 'core' );
-		die( '' );
-	}
-
-	public function ajax_remove_wizard() {
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		$options[ 'tracking_nag' ] = 'off';
-		$options[ 'logs' ] = 'on';
-		MPSUM_Updates_Manager::update_options( $options, 'core' );
-		die( '' );
-	}
-
-	public function ajax_disable_updates() {
-
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options['all_updates'] = 'off';
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		$options[ 'tracking_nag' ] = 'off';
-		$options[ 'logs' ] = 'on';
-		MPSUM_Updates_Manager::update_options( $options, 'core' );
-		die( '' );
-	}
-
-	public function ajax_remove_tracking_nag() {
-
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		$options[ 'tracking_nag' ] = 'off';
-		MPSUM_Updates_Manager::update_options( $options, 'core' );
-		die( '' );
-	}
-
-	public function ajax_enable_tracking() {
-
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-
-		// Enable Tracking
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		$options[ 'tracking_nag' ] = 'off';
-		$options[ 'tracking_enabled' ] = 'on';
-		MPSUM_Updates_Manager::update_options( $options, 'core' );
-
-		$cron = new MPSUM_Tracking();
-		MPSUM_Tracking::enable_cron();
-
-		die( '' );
 	}
 
 	public function set_monthly_cron_schedule( $schedules ) {
@@ -420,80 +335,6 @@ class MPSUM_Updates_Manager {
 			'display' => __('Once Monthly')
 		);
 		return $schedules;
-	}
-
-	public function ajax_remove_ratings_nag() {
-
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-		wp_clear_scheduled_hook( 'eum-monthly' );
-		$options = MPSUM_Updates_Manager::get_options( 'core' );
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		$options[ 'ratings_nag' ] = 'off';
-		MPSUM_Updates_Manager::update_options( $options, 'core' );
-		die( '' );
-	}
-
-	public function ajax_get_json() {
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-		die( json_encode( MPSUM_Admin::run()->get_json_options() ) );
-	}
-
-	public function ajax_update_option() {
-
-		if ( !wp_verify_nonce( $_POST[ '_ajax_nonce' ], 'mpsum_options_save' ) || ! current_user_can( 'install_plugins' ) ) {
-			die( 'Cheating, huh' );
-		}
-		if ( !isset( $_POST[ 'context' ] ) || !isset( $_POST[ 'data_action' ] ) ) {
-			die('');
-		}
-		/* Get Ajax Options */
-		$context = sanitize_text_field( $_POST[ 'context' ] );
-		$option = sanitize_text_field( $_POST[ 'data_action' ] );
-		$option_value = sanitize_text_field( $_POST[ 'value' ] );
-		$id = sanitize_text_field( $_POST[ 'id' ] );
-
-		$options = MPSUM_Updates_Manager::get_options( $context );
-		$options = wp_parse_args( $options, MPSUM_Admin_Core::get_defaults() );
-		if ( 'core' == $context ) {
-			$options[ $option ] = $option_value;
-			MPSUM_Updates_Manager::update_options( $options, $context );
-		} else if ( 'plugins' == $context || 'themes' == $context	 ) {
-			$plugin_options = MPSUM_Updates_Manager::get_options( $context );
-			if ( 'on' == $option_value ) {
-				foreach( $plugin_options as $plugin ) {
-					if ( ( $plugin_index = array_search( $id, $plugin_options ) ) !== false ) {
-						unset( $plugin_options[ $plugin_index ] );
-					}
-				}
-			} else {
-				$plugin_options[] = $id;
-				$plugin_options = array_values( array_unique( $plugin_options ) );
-			}
-
-			MPSUM_Updates_Manager::update_options( $plugin_options, $context );
-		} elseif( 'plugins_automatic' == $context || 'themes_automatic' == $context ) {
-			$plugin_options = MPSUM_Updates_Manager::get_options( $context );
-			if ( 'off' == $option_value ) {
-				foreach( $plugin_options as $plugin ) {
-					if ( ( $theme_index = array_search( $id, $plugin_options ) ) !== false ) {
-						unset( $plugin_options[ $theme_index ] );
-					}
-				}
-			} else {
-				$options = MPSUM_Updates_Manager::get_options( $context );
-				$options[] = $id;
-				$plugin_options = array_values( array_unique( $options ) );
-			}
-
-			MPSUM_Updates_Manager::update_options( $plugin_options, $context );
-		}
-
-		die( json_encode( MPSUM_Admin::run()->get_json_options() ) );
-
 	}
 
 	/**
