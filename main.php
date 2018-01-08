@@ -113,6 +113,9 @@ class MPSUM_Updates_Manager {
 		if ( isset( $options[ 'logs' ] ) && 'on' == $options[ 'logs' ] ) {
 			MPSUM_Logs::run();
 		}
+
+		// REST
+		MPSUM_Rest::run();
 	}
 
 	/**
