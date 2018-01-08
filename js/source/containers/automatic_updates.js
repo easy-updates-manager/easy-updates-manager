@@ -8,7 +8,6 @@ export default class AutomaticUpdates extends Component {
 		const { options } = this.props;
 		return (
 			<Fragment>
-				{console.log( options )}
 				<h2>{mpsum.I18N.automatic_updates}</h2>
 			</Fragment>
 		);

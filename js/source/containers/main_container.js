@@ -3,6 +3,7 @@ import { getOptions } from '../actions/get_options';
 import { connect, Provider } from 'react-redux';
 import ReduxPromise from 'redux-promise';
 import AutomaticUpdates from './automatic_updates';
+import LoadingGif from '../components/loading';
 
 class Main extends Component {
 	constructor( props ) {
@@ -12,9 +13,16 @@ class Main extends Component {
 		this.props.getOptions();
 	}
 	render() {
-		return (
-			<AutomaticUpdates {...this.props}/>
-		);
+		if ( this.props.options.length === 0 ) {
+			return (
+				<LoadingGif />
+			)
+		} else {
+			return (
+				<AutomaticUpdates {...this.props}/>
+			);
+		}
+
 
 	}
 }
