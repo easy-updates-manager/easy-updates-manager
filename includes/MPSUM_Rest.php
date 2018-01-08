@@ -70,7 +70,7 @@ class MPSUM_Rest {
 	}
 
 	public function permission_callback() {
-		return true; // todo use cookie based authentication
+
 		if ( current_user_can( 'install_plugins' ) ) {
 			return true;
 		}
