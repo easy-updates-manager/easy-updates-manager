@@ -125,6 +125,13 @@ error_log( $id );
 					$options[ 'automatic_minor_updates' ] = 'off';
 				}
 				break;
+			case 'automatic-development-updates':
+				if( 'on' == $value ) {
+					$options[ 'automatic_development_updates' ] = 'on';
+				} else {
+					$options[ 'automatic_development_updates' ] = 'off';
+				}
+				break;
 		}
 
 		// Save options

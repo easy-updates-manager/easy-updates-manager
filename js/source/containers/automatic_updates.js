@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import LoadingGif from '../components/loading';
 import AutomaticUpdatesMajor from './automatic_updates_major';
 import AutomaticUpdatesMinor from './automatic_updates_minor';
+import AutomaticUpdatesDevelopment from './automatic_updates_development'
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
 
@@ -58,6 +59,7 @@ class AutomaticUpdates extends Component {
 					<Fragment>
 						<AutomaticUpdatesMajor />
 						<AutomaticUpdatesMinor />
+						<AutomaticUpdatesDevelopment />
 					</Fragment>
 				}
 			</div>
