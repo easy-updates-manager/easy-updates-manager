@@ -118,6 +118,13 @@ error_log( $id );
 					$options[ 'automatic_major_updates' ] = 'off';
 				}
 				break;
+			case 'automatic-minor-updates':
+				if( 'on' == $value ) {
+					$options[ 'automatic_minor_updates' ] = 'on';
+				} else {
+					$options[ 'automatic_minor_updates' ] = 'off';
+				}
+				break;
 		}
 
 		// Save options

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { getOptions } from '../actions/get_options';
 import { saveOptions } from '../actions/save_options';
-import { connect, Provider } from 'react-redux';
-import ReduxPromise from 'redux-promise';
+import { connect } from 'react-redux';
 import AutomaticUpdates from './automatic_updates';
 import LoadingGif from '../components/loading';
 

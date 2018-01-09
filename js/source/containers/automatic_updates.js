@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import LoadingGif from '../components/loading';
 import AutomaticUpdatesMajor from './automatic_updates_major';
+import AutomaticUpdatesMinor from './automatic_updates_minor';
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
 
@@ -54,7 +55,10 @@ class AutomaticUpdates extends Component {
 					<LoadingGif />
 				}
 				{ options.automatic_updates == 'custom' && ! this.state.loading &&
-					<AutomaticUpdatesMajor {...this.props} />
+					<Fragment>
+						<AutomaticUpdatesMajor />
+						<AutomaticUpdatesMinor />
+					</Fragment>
 				}
 			</div>
 		);
