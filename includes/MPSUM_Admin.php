@@ -554,7 +554,10 @@ class MPSUM_Admin {
 			'on'      => _x( 'On', 'Option enabled', 'stops-core-theme-and-plugin-updates' ),
 			'off'     => _x( 'Off', 'Option disabled', 'stops-core-theme-and-plugin-updates' ),
 			'custom'  => _x( 'Custom', 'Option allows for configuration', 'stops-core-theme-and-plugin-updates' ),
-			'automatic_updates' => __( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' )
+			'automatic_updates' => __( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
+			'major_releases' => _x( 'Major Releases', 'Major WordPress releases', 'stops-core-theme-and-plugin-updates' ),
+			'major_releases_description' => __( 'Examples of major releases are WordPress 4.8, 4.9, 5.0, etc.', 'stops-core-theme-and-plugin-updates' ),
+			'major_releases_label' => __( 'Enable or Disable Major Releases', 'stops-core-theme-and-plugin-updates' ),
 		);
 
 		//  tracking_nag

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import LoadingGif from '../components/loading';
+import AutomaticUpdatesMajor from './automatic_updates_major';
 
 export default class AutomaticUpdates extends Component {
 	constructor( props ) {
@@ -49,6 +50,9 @@ export default class AutomaticUpdates extends Component {
 				}
 				{ this.state.loading &&
 					<LoadingGif />
+				}
+				{ options.automatic_updates == 'custom' && ! this.state.loading &&
+					<AutomaticUpdatesMajor />
 				}
 			</div>
 		);

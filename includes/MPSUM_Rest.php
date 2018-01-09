@@ -112,6 +112,10 @@ class MPSUM_Rest {
 				$options[ 'automatic_updates' ] = 'custom';
 				break;
 		}
+
+		// Save options
+		MPSUM_Updates_Manager::update_options( $options, 'core' );
+		
 		return $options;
 	}
 
