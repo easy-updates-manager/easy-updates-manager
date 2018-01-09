@@ -132,6 +132,13 @@ error_log( $id );
 					$options[ 'automatic_development_updates' ] = 'off';
 				}
 				break;
+			case 'automatic-translation-updates':
+				if( 'on' == $value ) {
+					$options[ 'automatic_translation_updates' ] = 'on';
+				} else {
+					$options[ 'automatic_translation_updates' ] = 'off';
+				}
+				break;
 		}
 
 		// Save options
