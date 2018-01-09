@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import LoadingGif from '../components/loading';
 import AutomaticUpdatesMajor from './automatic_updates_major';
+import { saveOptions } from '../actions/save_options';
+import { connect } from 'react-redux';
 
-export default class AutomaticUpdates extends Component {
+class AutomaticUpdates extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -58,3 +60,12 @@ export default class AutomaticUpdates extends Component {
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		options: state.options,
+		saveOptions: state.saveOptions
+	};
+}
+
+export default connect( mapStateToProps, { saveOptions } )(AutomaticUpdates);

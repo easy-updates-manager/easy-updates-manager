@@ -20,7 +20,7 @@ class Main extends Component {
 			)
 		} else {
 			return (
-				<AutomaticUpdates {...this.props}/>
+				<AutomaticUpdates />
 			);
 		}
 
