@@ -13,7 +13,6 @@ export function saveOptions( id, value ) {
 		},
 		'json': true
 	};
-	console.log( 'save options' );
 	const request = axios( options );
 	return {
 		type: SAVE_OPTIONS,
