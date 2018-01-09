@@ -6,21 +6,28 @@ export default class AutomaticUpdatesMajor extends Component {
 		super( props );
 
 		this.state = {
-			loading: false
+			loading: false,
+			checked: 'off'
 		};
 	}
 
 	componentWillReceiveProps() {
 		this.setState( {
-			loading: false
+			loading: false,
 		} );
 	}
 
 	onInputChange = ( event ) => {
 		event.preventDefault();
-
+		let checked = 'off';
+		if ( event.target.value == 'on' ) {
+			checked = 'off';
+		} else {
+			checked = 'on';
+		}
 		this.setState( {
-			loading: true
+			loading: true,
+			checked: checked
 		} );
 
 		this.props.saveOptions( event.target.id, event.target.value );
@@ -36,7 +43,18 @@ export default class AutomaticUpdatesMajor extends Component {
 				</p>
 				{ ! this.state.loading &&
 					<Fragment>
-						<input type="checkbox" value="on" id="automatic-updates-major" checked={'off' == this.props.automatic_major_updates} className="eum-toggle" aria-label={mpsum.I18N.major_releases_label} /> <label htmlFor="automatic-updates-major" className="screen-reader-text">{mpsum.I18N.major_releases_label}</label>
+						<input
+							type="checkbox"
+							value={ 'on' == options.automatic_major_updates ? 'off' : 'on' } id="automatic-major-updates"
+							checked={ 'on' == options.automatic_major_updates ? 'checked' : false }
+							className="eum-toggle"
+							aria-label={mpsum.I18N.major_releases_label}
+							onChange={this.onInputChange}
+						/>
+							<label
+								htmlFor="automatic-major-updates"
+								className="screen-reader-text">{mpsum.I18N.major_releases_label}
+							</label>
 					</Fragment>
 				}
 				{ this.state.loading &&

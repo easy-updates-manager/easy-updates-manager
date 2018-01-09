@@ -79,7 +79,7 @@ class MPSUM_Rest {
 
 		$id = sanitize_text_field( $request->get_param( 'id' ) );
 		$value = sanitize_text_field( $request->get_param( 'value' ) );
-
+error_log( $id );
 		switch ( $id ) {
 			case 'automatic-updates-default':
 				$options[ 'automatic_development_updates' ] = 'off';
@@ -111,11 +111,18 @@ class MPSUM_Rest {
 			case 'automatic-updates-custom':
 				$options[ 'automatic_updates' ] = 'custom';
 				break;
+			case 'automatic-major-updates':
+				if( 'on' == $value ) {
+					$options[ 'automatic_major_updates' ] = 'on';
+				} else {
+					$options[ 'automatic_major_updates' ] = 'off';
+				}
+				break;
 		}
 
 		// Save options
 		MPSUM_Updates_Manager::update_options( $options, 'core' );
-		
+
 		return $options;
 	}
 

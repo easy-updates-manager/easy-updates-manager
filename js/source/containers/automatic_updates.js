@@ -52,7 +52,7 @@ export default class AutomaticUpdates extends Component {
 					<LoadingGif />
 				}
 				{ options.automatic_updates == 'custom' && ! this.state.loading &&
-					<AutomaticUpdatesMajor />
+					<AutomaticUpdatesMajor {...this.props} />
 				}
 			</div>
 		);
