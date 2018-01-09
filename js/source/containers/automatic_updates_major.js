@@ -42,20 +42,24 @@ export default class AutomaticUpdatesMajor extends Component {
 					{mpsum.I18N.major_releases_description}
 				</p>
 				{ ! this.state.loading &&
-					<Fragment>
-						<input
-							type="checkbox"
-							value={ 'on' == options.automatic_major_updates ? 'off' : 'on' } id="automatic-major-updates"
-							checked={ 'on' == options.automatic_major_updates ? 'checked' : false }
-							className="eum-toggle"
+					<div className="toggle-wrapper">
+						<label
+							htmlFor="automatic-major-updates"
+							className="eum-toggle-label"
 							aria-label={mpsum.I18N.major_releases_label}
-							onChange={this.onInputChange}
-						/>
-							<label
-								htmlFor="automatic-major-updates"
-								className="screen-reader-text">{mpsum.I18N.major_releases_label}
-							</label>
-					</Fragment>
+						>
+							<input
+								type="checkbox"
+								value={ 'on' == options.automatic_major_updates ? 'off' : 'on' } id="automatic-major-updates"
+								checked={ 'on' == options.automatic_major_updates ? 'checked' : false }
+								className="eum-toggle eum-hidden"
+								onChange={this.onInputChange}
+							/>
+							<span className="switch"></span>
+							<span className="toggle"></span>
+						{mpsum.I18N.major_releases_label}
+						</label>
+					</div>
 				}
 				{ this.state.loading &&
 					<LoadingGif />

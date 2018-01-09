@@ -10,82 +10,61 @@
 		clear: both;
 	}
 }
-.eum-section {
-	p {
-		margin-bottom: 0;
+.automatic-updates-custom {
+
+}
+.toggle-wrapper {
+	position: relative;
+}
+/* Let's give some toggle switches some love */
+/* From https://codepen.io/koenigsegg1/pen/QjZNVP */
+$toggle_width: 40px; // Change Me
+$toggle_height: $toggle_width / 2.5;
+
+input[type=checkbox].eum-hidden {
+	display: none;
+
+	&:checked ~ .toggle {
+		background: #009688;
+		left: ($toggle_width - ($toggle_height * 1.4 - $toggle_height) / 2) - $toggle_height;
+		transition: .5s;
 	}
-	input[type=checkbox] {
-		max-height: 0;
-		max-width: 0;
-		opacity: 0;
-		visibility: 0;
-		height: 0;
-		&:disabled {
-			opacity: 0;
-			visibility: 0;
-		}
-		&:checked {
-			&:before {
-				display: none;
-			}
-			+label:before {
-				width: 40px;
-				background: rgba(208, 208, 208, .3);
-				box-shadow: inset 0 0 0px 1px #0daf88;
-			}
-			+label:after {
-				left: 23px;
-				background:rgba(37, 175, 118, 1);
-			}
-		}
-		&:disabled {
-			+label:after {
-				background: gray;
-			}
-		}
 
-	}
-	input[type=checkbox] + label {
-		display: block;
-		position: relative;
-		text-indent: -5000px;
-		height: 20px;
-		width: 40px;
-		border-radius: 15px;
-
-		&:before {
-			content: "";
-			position: absolute;
-			display: block;
-			height: 20px;
-			width: 40px;
-			top: 0;
-			left: 0;
-			border-radius: 15px;
-			background: rgba(19, 191, 17, 0);
-			box-shadow: inset 0 0 0px 1px #e33524;
-
-			-moz-transition: .25s ease-in-out;
-			-webkit-transition: .25s ease-in-out;
-			transition: .25s ease-in-out;
-		}
-		&:after {
-			content: "";
-			position: absolute;
-			display: block;
-			height: 12px;
-			width: 12px;
-			top: 4px;
-			left: 5px;
-			border-radius: 15px;
-			background: #e33524;
-			-moz-transition: .25s ease-in-out;
-			-webkit-transition: .25s ease-in-out;
-			transition: .25s ease-in-out;
-
-		}
+	&:checked ~ .switch {
+		background: #6DBEB7;
+		transition: .5s;
 	}
 }
+.toggle-wrapper label {
+	margin-left: 50px;
+	font-weight: 700;
+}
+
+.switch {
+	display: block;
+	width: $toggle_width;
+	height: $toggle_height;
+	background: #939393;
+	border-radius: $toggle_height / 2;
+	position: absolute;
+	top: 3px;
+	transition: .5s;
+}
+
+.toggle {
+	height: $toggle_height * 1.4;
+	width: $toggle_height * 1.4;
+	border-radius: 50%;
+	background: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-shadow: 0 $toggle_width / 50 $toggle_width / 25 rgba(black, .4);
+	transition: .5s;
+}
+
+
+
 #eum-dashboard-wrappers {
 	clear: both;
 	@include flexbox;
@@ -326,11 +305,6 @@
 .multi-choice {
   clear: both;
   margin-top: 20px;
-}
-
-label{
-  font-weight: 100 !important;
-
 }
 
 .multi-choice-item input[type=radio] {
