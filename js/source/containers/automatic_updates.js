@@ -59,9 +59,13 @@ class AutomaticUpdates extends Component {
 				{ options.automatic_updates == 'custom' && ! this.state.loading &&
 					<Fragment>
 						<AutomaticUpdatesMajor />
+						<hr />
 						<AutomaticUpdatesMinor />
+						<hr />
 						<AutomaticUpdatesDevelopment />
+						<hr />
 						<AutomaticUpdatesTranslations />
+						<hr />
 					</Fragment>
 				}
 			</div>
