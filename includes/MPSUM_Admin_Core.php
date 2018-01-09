@@ -64,29 +64,24 @@ class MPSUM_Admin_Core {
 		 * @param array    associative array of options
 		 */
 		return (array) apply_filters( 'mpsum_default_options', array(
-			'all_updates'                                  => 'on',
-			'core_updates'                                 => 'on',
-			'plugin_updates'                               => 'on',
-			'theme_updates'                                => 'on',
-			'translation_updates'                          => 'on',
-			'automatic_development_updates'                => 'off',
-			'automatic_major_updates'                      => 'off',
-			'automatic_minor_updates'                      => 'on',
-			'automatic_plugin_updates'                     => 'default',
-			'automatic_theme_updates'                      => 'default',
-			'automatic_translation_updates'                => 'on',
-			'notification_core_update_emails'              => 'on',
-			'misc_browser_nag'                             => 'on',
-			'misc_wp_footer'                               => 'on',
-			'notification_core_update_emails_plugins'      => 'on',
-			'notification_core_update_emails_themes'       => 'on',
-			'notification_core_update_emails_translations' => 'on',
-			'logs'                                         => 'off',
-			'email_addresses'                              => array(),
-			'ratings_nag'                                  => 'on',
-			'tracking_nag'                                 => 'on',
-			'tracking_enabled'                             => 'off',
-			'wizard'                                       => 'on'
+			'all_updates'                     => 'on',
+			'core_updates'                    => 'on',
+			'plugin_updates'                  => 'on',
+			'theme_updates'                   => 'on',
+			'translation_updates'             => 'on',
+			'automatic_development_updates'   => 'off',
+			'automatic_major_updates'         => 'off',
+			'automatic_minor_updates'         => 'on',
+			'automatic_plugin_updates'        => 'default',
+			'automatic_theme_updates'         => 'default',
+			'automatic_translation_updates'   => 'on',
+			'notification_core_update_emails' => 'on',
+			'misc_browser_nag'                => 'on',
+			'misc_wp_footer'                  => 'on',
+			'logs'                            => 'off',
+			'email_addresses'                 => array(),
+			'tracking_enabled'                => 'off',
+			'automatic_updates'               => 'unset',
 		) );
 	}
 
@@ -112,17 +107,17 @@ class MPSUM_Admin_Core {
 		$query_args = array();
 		$query_args[ 'updated' ] = "1";
 		$query_args[ 'tab' ] = 'main';
-		
-		 
+
+
 
 		//Save options
 		$options = $_POST[ 'options' ];
 		if ( isset( $_POST[ 'reset' ] ) ) {
 			$options = self::get_defaults();
 		}
-		
+
 		$options_to_save = array();
-		
+
 		//Check for valid e-mail address
 		if ( isset( $options[ 'email_addresses' ] ) ) {
 			$email_addresses = explode( ',', $options[ 'email_addresses' ] );
@@ -138,16 +133,16 @@ class MPSUM_Admin_Core {
 						if ( ! empty( $email ) ) {
 							$email_addresses_to_save[] = $email;
 						}
-						
+
 					}
 				}
 			}
 			$options_to_save[ 'email_addresses' ] = $email_addresses_to_save;
 		}
-				
+
 		foreach( $options as $key => $value ) {
 			if ( 'email_addresses' == $key ) continue;
-			
+
 			$option_value = sanitize_text_field( $value );
 			$options_to_save[ sanitize_key( $key ) ] = $option_value;
 		}
@@ -178,7 +173,7 @@ class MPSUM_Admin_Core {
 			?>
 			<br />
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
-			<?php 
+			<?php
 			if ( isset( $_GET[ 'bad_email' ] ) ) {
 				?>
 				<div class="error"><p><strong><?php echo esc_html__( 'The email address is not valid', 'stops-core-theme-and-plugin-updates' ); ?></strong></p></div>
@@ -189,7 +184,7 @@ class MPSUM_Admin_Core {
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<?php
-		$logs = isset( $options[ 'logs' ] ) ? $options[ 'logs' ] : 'off';	
+		$logs = isset( $options[ 'logs' ] ) ? $options[ 'logs' ] : 'off';
 		?>
 		<input type="hidden" name="options[logs]" value="<?php echo esc_attr( $logs ); ?>" />
 		<h3><?php esc_html_e( 'Global Settings', 'stops-core-theme-and-plugin-updates' ); ?></h3>
@@ -299,13 +294,6 @@ class MPSUM_Admin_Core {
 					<input type="hidden" name="options[notification_core_update_emails_plugins]" value="on" />
 					<input type="hidden" name="options[notification_core_update_emails_themes]" value="on" />
                     <input type="hidden" name="options[notification_core_update_emails_translations]" value="on" />
-                    <?php /*
-                    <br />
-                    <input type="checkbox" name="options[notification_core_update_emails_plugins]" value="on" id="notification_core_update_emails_plugins_on" <?php checked( 'on', $options[ 'notification_core_update_emails_plugins' ] ); ?> />&nbsp;<label for="notification_core_update_emails_plugins_on">
-                    <?php esc_html_e( 'Core Plugin Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="checkbox" name="options[notification_core_update_emails_themes]" value="on" id="notification_core_update_emails_themes" <?php checked( 'on', $options[ 'notification_core_update_emails_themes' ] ); ?> />&nbsp;<label for="notification_core_update_emails_themes"><?php esc_html_e( 'Core Theme Emails', 'stops-core-theme-and-plugin-updates' ); ?></label><br />
-					<input type="checkbox" name="options[notification_core_update_emails_translations]" value="on" id="notification_core_update_emails_translations_on" <?php checked( 'on', $options[ 'notification_core_update_emails_translations' ] ); ?> />&nbsp;<label for="notification_core_update_emails_translations_on"><?php esc_html_e( 'Core Translation Emails', 'stops-core-theme-and-plugin-updates' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Disable e-mails that are sent when your site has been upgraded automatically. These will not be functional until WordPress 4.5.', 'stops-core-theme-and-plugin-updates' ); ?></p>*/ ?>
 				</td>
 			</tr>
 			<tr>
@@ -327,7 +315,7 @@ class MPSUM_Admin_Core {
 						} else {
 							$email_addresses = '';
 						}
-					}	
+					}
 					?>
     				<input type="text" name="options[email_addresses]" value="<?php echo esc_attr( $email_addresses ); ?>" style="width: 50%" /><br />
     				<p class="description"><?php echo esc_html_e( 'Emails can be comma separated', 'stops-core-theme-and-plugin-updates' ); ?></p>

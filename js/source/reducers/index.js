@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import GetOptions from './reducer_get_options';
+import GetOptions from './options';
 
 const rootReducer = combineReducers({
   options: GetOptions

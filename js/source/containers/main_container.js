@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getOptions } from '../actions/get_options';
+import { saveOptions } from '../actions/save_options';
 import { connect, Provider } from 'react-redux';
 import ReduxPromise from 'redux-promise';
 import AutomaticUpdates from './automatic_updates';
@@ -31,4 +32,4 @@ function mapStateToProps(state) {
 	return { options: state.options };
 }
 
-export default connect( mapStateToProps, { getOptions } )(Main);
+export default connect( mapStateToProps, { getOptions, saveOptions } )(Main);
