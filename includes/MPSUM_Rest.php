@@ -65,14 +65,6 @@ class MPSUM_Rest {
 				'methods' => 'post',
 				'callback' => array( $this, 'save_options' ),
 				'permission_callback' => array( $this, 'permission_callback' ),
-				'args' => array(
-					'id' => array(
-						'validate_callback' => 'sanitize_text_field',
-					),
-					'value' => array(
-						'validate_callback' => 'sanitize_text_field',
-					)
-				)
 			)
 		);
 	}
@@ -84,7 +76,42 @@ class MPSUM_Rest {
 		if ( empty( $options ) ) {
 			$options = MPSUM_Admin_Core::get_defaults();
 		}
-		error_log( print_r( $request->get_params(), true ) );
+
+		$id = sanitize_text_field( $request->get_param( 'id' ) );
+		$value = sanitize_text_field( $request->get_param( 'value' ) );
+
+		switch ( $id ) {
+			case 'automatic-updates-default':
+				$options[ 'automatic_development_updates' ] = 'off';
+				$options[ 'automatic_major_updates' ] = 'off';
+				$options[ 'automatic_minor_updates' ] = 'on';
+				$options[ 'automatic_plugin_updates' ] = 'default';
+				$options[ 'automatic_theme_updates' ] = 'default';
+				$options[ 'automatic_translation_updates' ] = 'on';
+				$options[ 'automatic_updates' ] = 'default';
+				break;
+			case 'automatic-updates-on':
+				$options[ 'automatic_development_updates' ] = 'off';
+				$options[ 'automatic_major_updates' ] = 'on';
+				$options[ 'automatic_minor_updates' ] = 'on';
+				$options[ 'automatic_plugin_updates' ] = 'on';
+				$options[ 'automatic_theme_updates' ] = 'on';
+				$options[ 'automatic_translation_updates' ] = 'on';
+				$options[ 'automatic_updates' ] = 'on';
+				break;
+			case 'automatic-updates-off':
+				$options[ 'automatic_development_updates' ] = 'off';
+				$options[ 'automatic_major_updates' ] = 'off';
+				$options[ 'automatic_minor_updates' ] = 'off';
+				$options[ 'automatic_plugin_updates' ] = 'off';
+				$options[ 'automatic_theme_updates' ] = 'off';
+				$options[ 'automatic_translation_updates' ] = 'off';
+				$options[ 'automatic_updates' ] = 'off';
+				break;
+			case 'automatic-updates-custom':
+				$options[ 'automatic_updates' ] = 'custom';
+				break;
+		}
 		return $options;
 	}
 
