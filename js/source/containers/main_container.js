@@ -7,6 +7,7 @@ import DisableUpdates from './disable_updates';
 import Logs from './logs';
 import BrowserNag from './browser_nag';
 import VersionFooter from './version_footer';
+import Emails from './emails';
 import LoadingGif from '../components/loading';
 
 class Main extends Component {
@@ -27,6 +28,7 @@ class Main extends Component {
 					<DisableUpdates />
 					<AutomaticUpdates />
 					<Logs />
+					<Emails />
 					<BrowserNag />
 					<VersionFooter />
 				</Fragment>

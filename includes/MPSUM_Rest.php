@@ -192,8 +192,14 @@ error_log( $id );
 					$options[ 'misc_wp_footer' ] = 'off';
 				}
 				break;
+			case 'email-notifications':
+				if( 'on' == $value ) {
+					$options[ 'notification_core_update_emails' ] = 'on';
+				} else {
+					$options[ 'notification_core_update_emails' ] = 'off';
+				}
+				break;
 		}
-
 		// Save options
 		MPSUM_Updates_Manager::update_options( $options, 'core' );
 

@@ -305,7 +305,10 @@ class MPSUM_Admin {
 			'browser_nag_label' => __( 'Enable or Disable the Browser Nag', 'stops-core-theme-and-plugin-updates' ),
 			'version_footer' => __( 'WordPress Version in Footer', 'stops-core-theme-and-plugin-updates' ),
 			'version_footer_description' => __( 'Enables or disables the WordPress version from showing in the footer of the admin area.', 'stops-core-theme-and-plugin-updates' ),
-			'version_footer_label' => __( 'Enable or Disable the WordPress Version in the Footer', 'stops-core-theme-and-plugin-updates' )
+			'version_footer_label' => __( 'Enable or Disable the WordPress Version in the Footer', 'stops-core-theme-and-plugin-updates' ),
+			'emails' => __( 'Core Notification E-mails', 'stops-core-theme-and-plugin-updates' ),
+			'emails_description' => __( 'WordPress periodically sends update notification e-mails, such as in the case of automatic updates.', 'stops-core-theme-and-plugin-updates' ),
+			'emails_label' => __( 'Enable or Disable Core Notification E-mails', 'stops-core-theme-and-plugin-updates' )
 		);
 
 		//  tracking_nag
