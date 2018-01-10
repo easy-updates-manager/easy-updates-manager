@@ -275,6 +275,7 @@ class MPSUM_Admin {
 			'off'                                  => _x( 'Off', 'Option disabled', 'stops-core-theme-and-plugin-updates' ),
 			'custom'                               => _x( 'Custom', 'Option allows for configuration', 'stops-core-theme-and-plugin-updates' ),
 			'automatic_updates'                    => __( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_updates_description' => __( 'These options will enable or disable automatic updates (background updates) of certain parts of WordPress. Select Custom for more flexibility. Leave as Default for normal WordPress behavior', 'stops-core-theme-and-plugin-updates' ),
 			'major_releases'                       => _x( 'Major Releases', 'Major WordPress releases', 'stops-core-theme-and-plugin-updates' ),
 			'major_releases_description'           => __( 'Automatically update to major releases (e.g., 4.1, 4.2, 4.3).', 'stops-core-theme-and-plugin-updates' ),
 			'major_releases_label'                 => __( 'Enable or Disable Major Releases', 'stops-core-theme-and-plugin-updates' ),
