@@ -170,6 +170,14 @@ error_log( $id );
 					$options[ 'all_updates' ] = 'off';
 				}
 				break;
+			case 'logs':
+				if( 'on' == $value ) {
+					$options[ 'logs' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'logs' ] = 'off';
+				}
+				break;
 		}
 
 		// Save options

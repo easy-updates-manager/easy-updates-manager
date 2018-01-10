@@ -295,7 +295,10 @@ class MPSUM_Admin {
 			'automatic_theme_updates_description'  => __( 'Automatically update your themes. Select always on, always off, the WordPress default, or select themes individually using the Themes tab.', 'stops-core-theme-and-plugin-updates' ),
 			'disable_updates' => __( 'Disable All Updates', 'stops-core-theme-and-plugin-updates' ),
 			'disable_updates_description' => __( 'This is a master switch and will enable or disable updates for the WordPress installation. Switching updates off is not recommended.', 'stops-core-theme-and-plugin-updates' ),
-			'disable_updates_label' => __( 'Enable or Disable All Updates ', 'stops-core-theme-and-plugin-updates' )
+			'disable_updates_label' => __( 'Enable or Disable All Updates ', 'stops-core-theme-and-plugin-updates' ),
+			'logs' => _x( 'Logs', 'Log what is stored when assets update', 'stops-core-theme-and-plugin-updates' ),
+			'logs_description' => __( 'Logs will show you what assets have updated and will show up in the Logs tag', 'stops-core-theme-and-plugin-updates' ),
+			'logs_label' => __( 'Enable or Disable Logs', 'stops-core-theme-and-plugin-updates' )
 		);
 
 		//  tracking_nag
