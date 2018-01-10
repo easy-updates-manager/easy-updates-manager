@@ -178,6 +178,20 @@ error_log( $id );
 					$options[ 'logs' ] = 'off';
 				}
 				break;
+			case 'browser-nag':
+				if( 'on' == $value ) {
+					$options[ 'misc_browser_nag' ] = 'on';
+				} else {
+					$options[ 'misc_browser_nag' ] = 'off';
+				}
+				break;
+			case 'version-footer':
+				if( 'on' == $value ) {
+					$options[ 'misc_wp_footer' ] = 'on';
+				} else {
+					$options[ 'misc_wp_footer' ] = 'off';
+				}
+				break;
 		}
 
 		// Save options

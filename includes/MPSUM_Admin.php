@@ -299,7 +299,13 @@ class MPSUM_Admin {
 			'disable_updates_label' => __( 'Enable or Disable All Updates ', 'stops-core-theme-and-plugin-updates' ),
 			'logs' => _x( 'Logs', 'Log what is stored when assets update', 'stops-core-theme-and-plugin-updates' ),
 			'logs_description' => __( 'Logs will show you what assets have updated and will show up in the Logs tab.', 'stops-core-theme-and-plugin-updates' ),
-			'logs_label' => __( 'Enable or Disable Logs', 'stops-core-theme-and-plugin-updates' )
+			'logs_label' => __( 'Enable or Disable Logs', 'stops-core-theme-and-plugin-updates' ),
+			'browser_nag' => _x( 'Browser Nag', 'WordPress shows a warning for older browsers', 'stops-core-theme-and-plugin-updates' ),
+			'browser_nag_description' => __( 'Enables or disables the browser nag for users using older browsers.', 'stops-core-theme-and-plugin-updates' ),
+			'browser_nag_label' => __( 'Enable or Disable the Browser Nag', 'stops-core-theme-and-plugin-updates' ),
+			'version_footer' => __( 'WordPress Version in Footer', 'stops-core-theme-and-plugin-updates' ),
+			'version_footer_description' => __( 'Enables or disables the WordPress version from showing in the footer of the admin area.', 'stops-core-theme-and-plugin-updates' ),
+			'version_footer_label' => __( 'Enable or Disable the WordPress Version in the Footer', 'stops-core-theme-and-plugin-updates' )
 		);
 
 		//  tracking_nag

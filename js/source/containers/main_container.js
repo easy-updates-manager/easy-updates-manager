@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import AutomaticUpdates from './automatic_updates';
 import DisableUpdates from './disable_updates';
 import Logs from './logs';
+import BrowserNag from './browser_nag';
+import VersionFooter from './version_footer';
 import LoadingGif from '../components/loading';
 
 class Main extends Component {
@@ -25,6 +27,8 @@ class Main extends Component {
 					<DisableUpdates />
 					<AutomaticUpdates />
 					<Logs />
+					<BrowserNag />
+					<VersionFooter />
 				</Fragment>
 			);
 		}
