@@ -11,7 +11,8 @@ class Emails extends Component {
 		this.state = {
 			loading: false,
 			checked: 'off',
-			emails: props.options.email_addresses
+			emails: props.options.email_addresses,
+			errors: false
 		};
 	}
 
@@ -37,15 +38,24 @@ class Emails extends Component {
 		this.props.saveOptions( event.target.id, event.target.value );
 	}
 
-	handleEmailDrag = ( email, currPos, newPos ) => {
+	handleEmailAdd = ( email ) => {
 		let emails = this.state.emails;
 
-		// mutate array
-		emails.splice(currPos, 1);
-		emails.splice(newPos, 0, email);
+		emails.push({
+			id: emails.length + 1,
+			text: email
+		});
+		this.setState( {
+			emails: emails
+		} );
+	}
 
-		// re-render
-		this.setState({ emails: emails });
+	handleEmailDelete = ( email ) => {
+		let emails = this.state.emails;
+		emails.splice( email, 1 );
+		this.setState( {
+			emails: emails
+		} );
 	}
 
 	render() {
@@ -81,7 +91,8 @@ class Emails extends Component {
 					<ReactTags
 						tags={this.state.emails}
 						placeholder={mpsum.I18N.emails_placeholder}
-						handleDrag={this.handleEmailDrag}
+						handleAddition={this.handleEmailAdd}
+						handleDelete={this.handleEmailDelete}
 					/>
 				</Fragment>
 				{ this.state.loading &&

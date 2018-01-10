@@ -309,7 +309,8 @@ class MPSUM_Admin {
 			'emails' => __( 'Core Notification E-mails', 'stops-core-theme-and-plugin-updates' ),
 			'emails_description' => __( 'WordPress periodically sends update notification e-mails, such as in the case of automatic updates.', 'stops-core-theme-and-plugin-updates' ),
 			'emails_label' => __( 'Enable or Disable Core Notification E-mails', 'stops-core-theme-and-plugin-updates' ),
-			'emails_placeholder' => __( 'Add an e-mail address', 'stops-core-theme-and-plugin-updates' )
+			'emails_placeholder' => __( 'Add an e-mail address', 'stops-core-theme-and-plugin-updates' ),
+			'emails_invalid' => __( 'Please enter a valid e-mail address', 'stops-core-theme-and-plugin-updates' ),
 		);
 
 		//  tracking_nag
