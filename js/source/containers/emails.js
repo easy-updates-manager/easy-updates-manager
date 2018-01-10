@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import LoadingGif from '../components/loading';
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
+import { WithContext as ReactTags } from 'react-tag-input';
 
 class Emails extends Component {
 	constructor( props ) {
@@ -9,13 +10,14 @@ class Emails extends Component {
 
 		this.state = {
 			loading: false,
-			checked: 'off'
+			checked: 'off',
+			emails: props.options.email_addresses
 		};
 	}
 
 	componentWillReceiveProps() {
 		this.setState( {
-			loading: false,
+			loading: false
 		} );
 	}
 
@@ -64,6 +66,12 @@ class Emails extends Component {
 						</label>
 					</div>
 				}
+				{console.log(this.state)}
+				<Fragment>
+					<ReactTags
+						tags={this.state.emails}
+					/>
+				</Fragment>
 				{ this.state.loading &&
 					<LoadingGif />
 				}

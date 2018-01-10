@@ -230,6 +230,18 @@ error_log( $id );
 			}
 		}
 
+		// Format E-mail Addresses into Tag Outputs
+		$email_addresses_formatted = array();
+		foreach( $options[ 'email_addresses'] as $index => $email_address ) {
+			if ( is_email( $email_address ) ) {
+				$email_addresses_formatted[] = array(
+					'id' => $index,
+					'text' => $email_address
+				);
+			}
+		}
+		$options[ 'email_addresses' ] = $email_addresses_formatted;
+
 		// return
 		return $options;
 	}

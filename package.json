@@ -35,9 +35,11 @@
     "axios": "^0.17.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-dnd": "^2.5.4",
     "react-dom": "^16.2.0",
     "react-promise": "^2.0.0",
     "react-redux": "^5.0.6",
+    "react-tag-input": "^4.7.2",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3"
   }
