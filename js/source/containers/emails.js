@@ -37,6 +37,17 @@ class Emails extends Component {
 		this.props.saveOptions( event.target.id, event.target.value );
 	}
 
+	handleEmailDrag = ( email, currPos, newPos ) => {
+		let emails = this.state.emails;
+
+		// mutate array
+		emails.splice(currPos, 1);
+		emails.splice(newPos, 0, email);
+
+		// re-render
+		this.setState({ emails: emails });
+	}
+
 	render() {
 		const { options } = this.props;
 		return (
@@ -70,6 +81,7 @@ class Emails extends Component {
 					<ReactTags
 						tags={this.state.emails}
 						placeholder={mpsum.I18N.emails_placeholder}
+						handleDrag={this.handleEmailDrag}
 					/>
 				</Fragment>
 				{ this.state.loading &&
