@@ -66,10 +66,10 @@ class Emails extends Component {
 						</label>
 					</div>
 				}
-				{console.log(this.state)}
 				<Fragment>
 					<ReactTags
 						tags={this.state.emails}
+						placeholder={mpsum.I18N.emails_placeholder}
 					/>
 				</Fragment>
 				{ this.state.loading &&

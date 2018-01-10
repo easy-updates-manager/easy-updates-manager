@@ -308,7 +308,8 @@ class MPSUM_Admin {
 			'version_footer_label' => __( 'Enable or Disable the WordPress Version in the Footer', 'stops-core-theme-and-plugin-updates' ),
 			'emails' => __( 'Core Notification E-mails', 'stops-core-theme-and-plugin-updates' ),
 			'emails_description' => __( 'WordPress periodically sends update notification e-mails, such as in the case of automatic updates.', 'stops-core-theme-and-plugin-updates' ),
-			'emails_label' => __( 'Enable or Disable Core Notification E-mails', 'stops-core-theme-and-plugin-updates' )
+			'emails_label' => __( 'Enable or Disable Core Notification E-mails', 'stops-core-theme-and-plugin-updates' ),
+			'emails_placeholder' => __( 'Add an e-mail address', 'stops-core-theme-and-plugin-updates' )
 		);
 
 		//  tracking_nag
