@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { getOptions } from '../actions/get_options';
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
 import AutomaticUpdates from './automatic_updates';
+import DisableUpdates from './disable_updates'
 import LoadingGif from '../components/loading';
 
 class Main extends Component {
@@ -19,7 +20,10 @@ class Main extends Component {
 			)
 		} else {
 			return (
-				<AutomaticUpdates />
+				<Fragment>
+					<DisableUpdates />
+					<AutomaticUpdates />
+				</Fragment>
 			);
 		}
 

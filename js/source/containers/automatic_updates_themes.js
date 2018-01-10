@@ -31,7 +31,7 @@ class AutomaticUpdatesThemes extends Component {
 	render() {
 		const { options } = this.props;
 		return (
-			<div className="eum-section">
+			<div className="eum-radio-group">
 				<h2>{mpsum.I18N.automatic_theme_updates}</h2>
 				{ ! this.state.loading &&
 					<Fragment>

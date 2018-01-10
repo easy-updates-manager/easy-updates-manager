@@ -51,6 +51,10 @@ input[type=checkbox].eum-hidden {
   clear: both;
   margin-top: 20px; }
 
+.eum-section {
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 15px; }
+
 .eum-section input[type=radio] {
   -webkit-appearance: none;
   /* remove default */

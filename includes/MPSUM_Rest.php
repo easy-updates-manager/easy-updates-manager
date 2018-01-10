@@ -163,6 +163,13 @@ error_log( $id );
 			case 'automatic-theme-updates-individual':
 				$options[ 'automatic_theme_updates' ] = 'individual';
 				break;
+			case 'disable-updates':
+				if( 'on' == $value ) {
+					$options[ 'all_updates' ] = 'on';
+				} else {
+					$options[ 'all_updates' ] = 'off';
+				}
+				break;
 		}
 
 		// Save options
