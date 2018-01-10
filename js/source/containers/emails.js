@@ -99,6 +99,9 @@ class Emails extends Component {
 						</label>
 					</div>
 				}
+				{ this.state.loading &&
+					<LoadingGif />
+				}
 				<Fragment>
 					<ReactTags
 						tags={this.state.emails}
@@ -113,9 +116,6 @@ class Emails extends Component {
 							<p>{mpsum.I18N.emails_invalid}</p>
 						</div>
 					</Fragment>
-				}
-				{ this.state.loading &&
-					<LoadingGif />
 				}
 			</div>
 		);

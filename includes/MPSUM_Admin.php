@@ -307,7 +307,7 @@ class MPSUM_Admin {
 			'version_footer_description' => __( 'Enables or disables the WordPress version from showing in the footer of the admin area.', 'stops-core-theme-and-plugin-updates' ),
 			'version_footer_label' => __( 'Enable or Disable the WordPress Version in the Footer', 'stops-core-theme-and-plugin-updates' ),
 			'emails' => __( 'Core Notification E-mails', 'stops-core-theme-and-plugin-updates' ),
-			'emails_description' => __( 'WordPress periodically sends update notification e-mails, such as in the case of automatic updates.', 'stops-core-theme-and-plugin-updates' ),
+			'emails_description' => __( 'WordPress periodically sends update notification e-mails, such as in the case of automatic updates. By default, the email used is the one in Settings->General, but you can override this below.', 'stops-core-theme-and-plugin-updates' ),
 			'emails_label' => __( 'Enable or Disable Core Notification E-mails', 'stops-core-theme-and-plugin-updates' ),
 			'emails_placeholder' => __( 'Add an e-mail address', 'stops-core-theme-and-plugin-updates' ),
 			'emails_invalid' => __( 'Please enter a valid e-mail address', 'stops-core-theme-and-plugin-updates' ),
