@@ -3,6 +3,7 @@ import LoadingGif from '../components/loading';
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
 import { WithContext as ReactTags } from 'react-tag-input';
+import { isEmail} from 'validator';
 
 class Emails extends Component {
 	constructor( props ) {
@@ -39,6 +40,17 @@ class Emails extends Component {
 	}
 
 	handleEmailAdd = ( email ) => {
+		if ( ! isEmail( email ) ) {
+			this.setState( {
+				errors: true
+			} );
+			setTimeout( () => {
+				this.setState( {
+					errors: false
+				})
+			}, 3000 );
+			return;
+		}
 		let emails = this.state.emails;
 
 		emails.push({
@@ -95,6 +107,13 @@ class Emails extends Component {
 						handleDelete={this.handleEmailDelete}
 					/>
 				</Fragment>
+				{ this.state.errors &&
+					<Fragment>
+						<div className="mpsum-error">
+							<p>{mpsum.I18N.emails_invalid}</p>
+						</div>
+					</Fragment>
+				}
 				{ this.state.loading &&
 					<LoadingGif />
 				}
