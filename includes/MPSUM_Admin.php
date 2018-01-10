@@ -298,7 +298,7 @@ class MPSUM_Admin {
 			'disable_updates_description' => __( 'This is a master switch and will enable or disable updates for the WordPress installation. Switching updates off is not recommended.', 'stops-core-theme-and-plugin-updates' ),
 			'disable_updates_label' => __( 'Enable or Disable All Updates ', 'stops-core-theme-and-plugin-updates' ),
 			'logs' => _x( 'Logs', 'Log what is stored when assets update', 'stops-core-theme-and-plugin-updates' ),
-			'logs_description' => __( 'Logs will show you what assets have updated and will show up in the Logs tag', 'stops-core-theme-and-plugin-updates' ),
+			'logs_description' => __( 'Logs will show you what assets have updated and will show up in the Logs tab.', 'stops-core-theme-and-plugin-updates' ),
 			'logs_label' => __( 'Enable or Disable Logs', 'stops-core-theme-and-plugin-updates' )
 		);
 
