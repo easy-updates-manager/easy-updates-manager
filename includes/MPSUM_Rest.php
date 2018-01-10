@@ -149,7 +149,19 @@ error_log( $id );
 				$options[ 'automatic_plugin_updates' ] = 'off';
 				break;
 			case 'automatic-plugin-updates-individual':
-				$options[ 'automatic_plugin_updates' ] = 'individual';
+				$options[ 'automatic_theme_updates' ] = 'individual';
+				break;
+			case 'automatic-theme-updates-default':
+				$options[ 'automatic_theme_updates' ] = 'default';
+				break;
+			case 'automatic-theme-updates-on':
+				$options[ 'automatic_theme_updates' ] = 'on';
+				break;
+			case 'automatic-theme-updates-off':
+				$options[ 'automatic_theme_updates' ] = 'off';
+				break;
+			case 'automatic-theme-updates-individual':
+				$options[ 'automatic_theme_updates' ] = 'individual';
 				break;
 		}
 

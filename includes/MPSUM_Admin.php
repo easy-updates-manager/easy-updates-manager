@@ -270,27 +270,29 @@ class MPSUM_Admin {
 		}
 
 		$I18N = array(
-			'default'                    => _x( 'Default', 'Option as Default', 'stops-core-theme-and-plugin-updates' ),
-			'on'                         => _x( 'On', 'Option enabled', 'stops-core-theme-and-plugin-updates' ),
-			'off'                        => _x( 'Off', 'Option disabled', 'stops-core-theme-and-plugin-updates' ),
-			'custom'                     => _x( 'Custom', 'Option allows for configuration', 'stops-core-theme-and-plugin-updates' ),
-			'automatic_updates'          => __( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
-			'major_releases'             => _x( 'Major Releases', 'Major WordPress releases', 'stops-core-theme-and-plugin-updates' ),
-			'major_releases_description' => __( 'Automatically update to major releases (e.g., 4.1, 4.2, 4.3).', 'stops-core-theme-and-plugin-updates' ),
-			'major_releases_label'       => __( 'Enable or Disable Major Releases', 'stops-core-theme-and-plugin-updates' ),
-			'minor_releases'             => _x( 'Minor Releases', 'Minor point releases for WordPress', 'stops-core-theme-and-plugin-updates' ),
-			'minor_releases_description' => __( 'Automatically update to minor releases (e.g., 4.1.1, 4.1.2, 4.1.3).', 'stops-core-theme-and-plugin-updates' ),
-			'minor_releases_label'       => __( 'Enable or Disable Minor Releases', 'stops-core-theme-and-plugin-updates' ),
-			'development_releases'             => _x( 'Development Updates', 'Beta and RC releases for WordPress', 'stops-core-theme-and-plugin-updates' ),
-			'development_releases_description' => __( 'Allow your install to receive development updates from WordPress (for advanced users only)', 'stops-core-theme-and-plugin-updates' ),
-			'development_releases_label'       => __( 'Enable or Disable Development Updates', 'stops-core-theme-and-plugin-updates' ),
+			'default'                              => _x( 'Default', 'Option as Default', 'stops-core-theme-and-plugin-updates' ),
+			'on'                                   => _x( 'On', 'Option enabled', 'stops-core-theme-and-plugin-updates' ),
+			'off'                                  => _x( 'Off', 'Option disabled', 'stops-core-theme-and-plugin-updates' ),
+			'custom'                               => _x( 'Custom', 'Option allows for configuration', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_updates'                    => __( 'Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
+			'major_releases'                       => _x( 'Major Releases', 'Major WordPress releases', 'stops-core-theme-and-plugin-updates' ),
+			'major_releases_description'           => __( 'Automatically update to major releases (e.g., 4.1, 4.2, 4.3).', 'stops-core-theme-and-plugin-updates' ),
+			'major_releases_label'                 => __( 'Enable or Disable Major Releases', 'stops-core-theme-and-plugin-updates' ),
+			'minor_releases'                       => _x( 'Minor Releases', 'Minor point releases for WordPress', 'stops-core-theme-and-plugin-updates' ),
+			'minor_releases_description'           => __( 'Automatically update to minor releases (e.g., 4.1.1, 4.1.2, 4.1.3).', 'stops-core-theme-and-plugin-updates' ),
+			'minor_releases_label'                 => __( 'Enable or Disable Minor Releases', 'stops-core-theme-and-plugin-updates' ),
+			'development_releases'                 => _x( 'Development Updates', 'Beta and RC releases for WordPress', 'stops-core-theme-and-plugin-updates' ),
+			'development_releases_description'     => __( 'Allow your install to receive development updates from WordPress (for advanced users only)', 'stops-core-theme-and-plugin-updates' ),
+			'development_releases_label'           => __( 'Enable or Disable Development Updates', 'stops-core-theme-and-plugin-updates' ),
 
-			'translation_releases'             => _x( 'Translation Updates', 'Enable or disable translation updates', 'stops-core-theme-and-plugin-updates' ),
-			'translation_releases_description' => __( 'Automatically update your translations.', 'stops-core-theme-and-plugin-updates' ),
-			'translation_releases_label'       => __( 'Enable or Disable Translation Updates', 'stops-core-theme-and-plugin-updates' ),
-			'select_individually' => __( 'Select Individually', 'stops-core-theme-and-plugin-updates' ),
-			'automatic_plugin_updates' => __( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
+			'translation_releases'                 => _x( 'Translation Updates', 'Enable or disable translation updates', 'stops-core-theme-and-plugin-updates' ),
+			'translation_releases_description'     => __( 'Automatically update your translations.', 'stops-core-theme-and-plugin-updates' ),
+			'translation_releases_label'           => __( 'Enable or Disable Translation Updates', 'stops-core-theme-and-plugin-updates' ),
+			'select_individually'                  => __( 'Select Individually', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_plugin_updates'             => __( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
 			'automatic_plugin_updates_description' => __( 'Automatically update your plugins. Select always on, always off, the WordPress default, or select plugins individually using the Plugins tab.', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_theme_updates'              => __( 'Automatic Theme Updates', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_theme_updates_description'  => __( 'Automatically update your themes. Select always on, always off, the WordPress default, or select themes individually using the Themes tab.', 'stops-core-theme-and-plugin-updates' )
 		);
 
 		//  tracking_nag
