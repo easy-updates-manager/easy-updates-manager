@@ -139,6 +139,18 @@ error_log( $id );
 					$options[ 'automatic_translation_updates' ] = 'off';
 				}
 				break;
+			case 'automatic-plugin-updates-default':
+				$options[ 'automatic_plugin_updates' ] = 'default';
+				break;
+			case 'automatic-plugin-updates-on':
+				$options[ 'automatic_plugin_updates' ] = 'on';
+				break;
+			case 'automatic-plugin-updates-off':
+				$options[ 'automatic_plugin_updates' ] = 'off';
+				break;
+			case 'automatic-plugin-updates-individual':
+				$options[ 'automatic_plugin_updates' ] = 'individual';
+				break;
 		}
 
 		// Save options

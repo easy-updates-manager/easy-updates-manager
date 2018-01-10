@@ -288,6 +288,9 @@ class MPSUM_Admin {
 			'translation_releases'             => _x( 'Translation Updates', 'Enable or disable translation updates', 'stops-core-theme-and-plugin-updates' ),
 			'translation_releases_description' => __( 'Automatically update your translations.', 'stops-core-theme-and-plugin-updates' ),
 			'translation_releases_label'       => __( 'Enable or Disable Translation Updates', 'stops-core-theme-and-plugin-updates' ),
+			'select_individually' => __( 'Select Individually', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_plugin_updates' => __( 'Automatic Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
+			'automatic_plugin_updates_description' => __( 'Automatically update your plugins. Select always on, always off, the WordPress default, or select plugins individually using the Plugins tab.', 'stops-core-theme-and-plugin-updates' ),
 		);
 
 		//  tracking_nag

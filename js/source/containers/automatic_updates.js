@@ -4,6 +4,7 @@ import AutomaticUpdatesMajor from './automatic_updates_major';
 import AutomaticUpdatesMinor from './automatic_updates_minor';
 import AutomaticUpdatesDevelopment from './automatic_updates_development';
 import AutomaticUpdatesTranslations from './automatic_updates_translations';
+import AutomaticUpdatesPlugins from './automatic_updates_plugins';
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
 
@@ -65,6 +66,8 @@ class AutomaticUpdates extends Component {
 						<AutomaticUpdatesDevelopment />
 						<hr />
 						<AutomaticUpdatesTranslations />
+						<hr />
+						<AutomaticUpdatesPlugins />
 						<hr />
 					</Fragment>
 				}
