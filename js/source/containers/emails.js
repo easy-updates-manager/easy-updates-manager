@@ -2,9 +2,6 @@ import React, { Component, Fragment } from 'react';
 import LoadingGif from '../components/loading';
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
-import { WithContext as ReactTags } from 'react-tag-input';
-import { isEmail} from 'validator';
-import { toArray } from 'lodash';
 
 class Emails extends Component {
 	constructor( props ) {
@@ -132,12 +129,10 @@ class Emails extends Component {
 					<LoadingGif />
 				}
 				<Fragment>
-					<ReactTags
-						tags={this.state.emails}
+					<input
+						className="eum-input-email"
+						type="email"
 						placeholder={mpsum.I18N.emails_placeholder}
-						handleAddition={this.handleEmailAdd}
-						handleDelete={this.handleEmailDelete}
-						autofocus={false}
 					/>
 				</Fragment>
 				<Fragment>
