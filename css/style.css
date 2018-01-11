@@ -70,7 +70,7 @@ input[type=checkbox].eum-hidden {
   -webkit-transition: background-position 0.15s cubic-bezier(0.8, 0, 1, 1), -webkit-transform 0.25s cubic-bezier(0.8, 0, 1, 1); }
 
 .eum-section input[type=radio]:checked:before {
-  background-color: #0daf88 !important; }
+  display: none; }
 
 .eum-section input[type="radio"]:checked {
   -webkit-transition: background-position 0.2s 0.15s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);

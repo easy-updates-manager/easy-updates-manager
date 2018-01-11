@@ -85,7 +85,7 @@ input[type=checkbox].eum-hidden {
 }
 
 .eum-section input[type=radio]:checked:before {
-  background-color:#0daf88 !important;
+  display: none;
 }
 
 .eum-section input[type="radio"]:checked {

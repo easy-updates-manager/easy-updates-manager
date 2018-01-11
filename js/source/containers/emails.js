@@ -108,6 +108,7 @@ class Emails extends Component {
 						placeholder={mpsum.I18N.emails_placeholder}
 						handleAddition={this.handleEmailAdd}
 						handleDelete={this.handleEmailDelete}
+						autofocus={false}
 					/>
 				</Fragment>
 				{ this.state.errors &&
