@@ -13,8 +13,10 @@ class Emails extends Component {
 			loading: false,
 			checked: 'off',
 			emails: props.options.email_addresses,
-			errors: false
+			errors: false,
+			saving: false
 		};
+		console.log( props.options.email_addresses );
 	}
 
 	componentWillReceiveProps() {
@@ -70,6 +72,12 @@ class Emails extends Component {
 		} );
 	}
 
+	handleEmailSave = ( event ) => {
+		this.setState( {
+			saving: true
+		} );
+	}
+
 	render() {
 		const { options } = this.props;
 		return (
@@ -111,6 +119,16 @@ class Emails extends Component {
 						autofocus={false}
 					/>
 				</Fragment>
+				{this.state.emails.length > 0 &&
+					<Fragment>
+						<button
+							disabled={this.state.saving ? true : false } className="eum-save button button-primary"
+							onClick={this.handleEmailSave}
+						>
+							{this.state.saving ? mpsum.I18N.emails_saving : mpsum.I18N.emails_save}
+						</button>
+					</Fragment>
+				}
 				{ this.state.errors &&
 					<Fragment>
 						<div className="mpsum-error">

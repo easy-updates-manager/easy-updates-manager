@@ -129,7 +129,12 @@ div.ReactTags__selected span.ReactTags__tag {
 	padding: 5px;
 	margin: 0 5px;
 	border-radius: 2px;
+
+	&:first-child {
+		margin-left: 0;
+	}
 }
+
 div.ReactTags__selected a.ReactTags__remove {
 	color: #aaa;
 	margin-left: 5px;
@@ -159,6 +164,11 @@ div.ReactTags__suggestions li mark {
 div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
 	background: #b7cfe0;
 	cursor: pointer;
+}
+
+.wp-core-ui button.eum-save {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .button.delete {
