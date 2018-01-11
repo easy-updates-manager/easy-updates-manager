@@ -4,6 +4,7 @@ import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
 import { WithContext as ReactTags } from 'react-tag-input';
 import { isEmail} from 'validator';
+import { toArray } from 'lodash';
 
 class Emails extends Component {
 	constructor( props ) {
@@ -16,13 +17,20 @@ class Emails extends Component {
 			errors: false,
 			saving: false
 		};
-		console.log( props.options.email_addresses );
 	}
 
-	componentWillReceiveProps() {
+	componentWillReceiveProps( newProps ) {
 		this.setState( {
-			loading: false
+			loading: false,
+			saving: false,
+			emails: newProps.options.email_addresses,
+			errors: newProps.options.errors
 		} );
+		setTimeout( () => {
+			this.setState( {
+				errors: false
+			})
+		}, 3000 );
 	}
 
 	onInputChange = ( event ) => {
@@ -76,6 +84,19 @@ class Emails extends Component {
 		this.setState( {
 			saving: true
 		} );
+
+		let email_addresses = [];
+		for (var value of this.state.emails) {
+			email_addresses.push( toArray(value)[1] );
+		}
+		let comma_separated_emails = email_addresses.join( ',' );
+
+		if ( '' === comma_separated_emails ) {
+			comma_separated_emails = 'remove';
+		}
+
+		this.props.saveOptions( 'notification-emails', comma_separated_emails );
+
 	}
 
 	render() {
@@ -119,16 +140,14 @@ class Emails extends Component {
 						autofocus={false}
 					/>
 				</Fragment>
-				{this.state.emails.length > 0 &&
-					<Fragment>
-						<button
-							disabled={this.state.saving ? true : false } className="eum-save button button-primary"
-							onClick={this.handleEmailSave}
-						>
-							{this.state.saving ? mpsum.I18N.emails_saving : mpsum.I18N.emails_save}
-						</button>
-					</Fragment>
-				}
+				<Fragment>
+					<button
+						disabled={this.state.saving ? true : false } className="eum-save button button-primary"
+						onClick={this.handleEmailSave}
+					>
+						{this.state.saving ? mpsum.I18N.emails_saving : mpsum.I18N.emails_save}
+					</button>
+				</Fragment>
 				{ this.state.errors &&
 					<Fragment>
 						<div className="mpsum-error">

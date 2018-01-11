@@ -60,7 +60,7 @@ class MPSUM_Rest {
 		);
 		register_rest_route(
 			'eum/v1',
-			'/save/(?P<id>[a-zA-Z0-9-]+)/(?P<value>[a-zA-Z0-9-]+)',
+			'/save/(?P<id>[a-zA-Z0-9-]+)/(?P<value>.*)',
 			array(
 				'methods' => 'post',
 				'callback' => array( $this, 'save_options' ),
@@ -79,7 +79,8 @@ class MPSUM_Rest {
 
 		$id = sanitize_text_field( $request->get_param( 'id' ) );
 		$value = sanitize_text_field( $request->get_param( 'value' ) );
-error_log( $id );
+
+		$email_errors = false;
 		switch ( $id ) {
 			case 'automatic-updates-default':
 				$options[ 'automatic_development_updates' ] = 'off';
@@ -199,10 +200,40 @@ error_log( $id );
 					$options[ 'notification_core_update_emails' ] = 'off';
 				}
 				break;
+			case 'notification-emails':
+
+				if ( 'remove' == $value ) {
+					$options[ 'email_addresses' ] = array();
+				} else {
+					if ( empty( $value ) ) {
+						$email_errors = true;
+					}
+					$email_addresses = explode( ',', $value );
+					foreach( $email_addresses as $index => &$email ) {
+						$email = trim( $email );
+						if ( ! is_email( $email ) ) {
+
+							// Email error. Get out.
+							$email_errors = true;
+							break;
+						}
+					}
+					if ( ! $email_errors ) {
+						$options[ 'email_addresses' ] = $email_addresses;
+					}
+				}
+				break;
 		}
 		// Save options
 		MPSUM_Updates_Manager::update_options( $options, 'core' );
 
+		// Return email addresses in format
+		$options[ 'email_addresses' ] = $this->format_emails_for_react( $options[ 'email_addresses' ] );
+
+		// Add error to options for returning
+		if ( $email_errors ) {
+			$options[ 'errors' ] = true;
+		}
 		return $options;
 	}
 
@@ -230,9 +261,16 @@ error_log( $id );
 			}
 		}
 
+		$options[ 'email_addresses' ] = $this->format_emails_for_react( $options[ 'email_addresses' ] );
+
+		// return
+		return $options;
+	}
+
+	public function format_emails_for_react( $email_addresses ) {
 		// Format E-mail Addresses into Tag Outputs
 		$email_addresses_formatted = array();
-		foreach( $options[ 'email_addresses'] as $index => $email_address ) {
+		foreach( $email_addresses as $index => $email_address ) {
 			if ( is_email( $email_address ) ) {
 				$email_addresses_formatted[] = array(
 					'id' => $index,
@@ -240,10 +278,7 @@ error_log( $id );
 				);
 			}
 		}
-		$options[ 'email_addresses' ] = $email_addresses_formatted;
-
-		// return
-		return $options;
+		return $email_addresses_formatted;
 	}
 
 	public function permission_callback() {
