@@ -201,26 +201,19 @@ class MPSUM_Rest {
 				}
 				break;
 			case 'notification-emails':
+				$emails = explode( ',', $value );
+				foreach( $emails as $index => &$email ) {
+					$email = trim( $email );
+					if ( ! is_email ( $email ) ) {
 
-				if ( 'remove' == $value ) {
-					$options[ 'email_addresses' ] = array();
-				} else {
-					if ( empty( $value ) ) {
+						// Email error. Get out.
 						$email_errors = true;
+						break;
 					}
-					$email_addresses = explode( ',', $value );
-					foreach( $email_addresses as $index => &$email ) {
-						$email = trim( $email );
-						if ( ! is_email( $email ) ) {
+				}
 
-							// Email error. Get out.
-							$email_errors = true;
-							break;
-						}
-					}
-					if ( ! $email_errors ) {
-						$options[ 'email_addresses' ] = $email_addresses;
-					}
+				if ( ! $email_errors ) {
+					$options[ 'email_addresses' ] = $emails;
 				}
 				break;
 		}
@@ -228,11 +221,12 @@ class MPSUM_Rest {
 		MPSUM_Updates_Manager::update_options( $options, 'core' );
 
 		// Return email addresses in format
-		$options[ 'email_addresses' ] = $this->format_emails_for_react( $options[ 'email_addresses' ] );
+		$options[ 'email_addresses' ] = implode( ',', $options[ 'email_addresses' ] );
 
 		// Add error to options for returning
 		if ( $email_errors ) {
 			$options[ 'errors' ] = true;
+			$options[ 'email_addresses' ] = $value;
 		}
 		return $options;
 	}
@@ -261,24 +255,10 @@ class MPSUM_Rest {
 			}
 		}
 
-		$options[ 'email_addresses' ] = $this->format_emails_for_react( $options[ 'email_addresses' ] );
+		$options[ 'email_addresses' ] = implode( ',', $options[ 'email_addresses' ] );
 
 		// return
 		return $options;
-	}
-
-	public function format_emails_for_react( $email_addresses ) {
-		// Format E-mail Addresses into Tag Outputs
-		$email_addresses_formatted = array();
-		foreach( $email_addresses as $index => $email_address ) {
-			if ( is_email( $email_address ) ) {
-				$email_addresses_formatted[] = array(
-					'id' => $index,
-					'text' => $email_address
-				);
-			}
-		}
-		return $email_addresses_formatted;
 	}
 
 	public function permission_callback() {

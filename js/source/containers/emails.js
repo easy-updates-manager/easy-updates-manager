@@ -12,8 +12,9 @@ class Emails extends Component {
 			checked: 'off',
 			emails: props.options.email_addresses,
 			errors: false,
-			saving: false
+			saving: false,
 		};
+		console.log( this.state );
 	}
 
 	componentWillReceiveProps( newProps ) {
@@ -21,7 +22,7 @@ class Emails extends Component {
 			loading: false,
 			saving: false,
 			emails: newProps.options.email_addresses,
-			errors: newProps.options.errors
+			errors: newProps.options.errors,
 		} );
 		setTimeout( () => {
 			this.setState( {
@@ -46,35 +47,11 @@ class Emails extends Component {
 		this.props.saveOptions( event.target.id, event.target.value );
 	}
 
-	handleEmailAdd = ( email ) => {
-		if ( ! isEmail( email ) ) {
-			this.setState( {
-				errors: true
-			} );
-			setTimeout( () => {
-				this.setState( {
-					errors: false
-				})
-			}, 3000 );
-			return;
-		}
-		let emails = this.state.emails;
-
-		emails.push({
-			id: emails.length + 1,
-			text: email
-		});
+	onInputChangeEmails = ( event ) => {
+		event.preventDefault();
 		this.setState( {
-			emails: emails
-		} );
-	}
-
-	handleEmailDelete = ( email ) => {
-		let emails = this.state.emails;
-		emails.splice( email, 1 );
-		this.setState( {
-			emails: emails
-		} );
+			emails: event.target.value
+		} )
 	}
 
 	handleEmailSave = ( event ) => {
@@ -82,17 +59,7 @@ class Emails extends Component {
 			saving: true
 		} );
 
-		let email_addresses = [];
-		for (var value of this.state.emails) {
-			email_addresses.push( toArray(value)[1] );
-		}
-		let comma_separated_emails = email_addresses.join( ',' );
-
-		if ( '' === comma_separated_emails ) {
-			comma_separated_emails = 'remove';
-		}
-
-		this.props.saveOptions( 'notification-emails', comma_separated_emails );
+		this.props.saveOptions( 'notification-emails', this.state.emails );
 
 	}
 
@@ -129,20 +96,26 @@ class Emails extends Component {
 					<LoadingGif />
 				}
 				<Fragment>
+					<p><label htmlFor="notification-emails" className="eum-input-label">
+						{mpsum.I18N.emails_input_label}
+					</label></p>
 					<input
+						id="notification-emails"
 						className="eum-input-email"
 						type="email"
 						placeholder={mpsum.I18N.emails_placeholder}
+						onChange={this.onInputChangeEmails}
+						value={this.state.emails}
 					/>
 				</Fragment>
-				<Fragment>
+				<div>
 					<button
 						disabled={this.state.saving ? true : false } className="eum-save button button-primary"
 						onClick={this.handleEmailSave}
 					>
 						{this.state.saving ? mpsum.I18N.emails_saving : mpsum.I18N.emails_save}
 					</button>
-				</Fragment>
+				</div>
 				{ this.state.errors &&
 					<Fragment>
 						<div className="mpsum-error">

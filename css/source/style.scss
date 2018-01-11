@@ -37,6 +37,10 @@ input[type=checkbox].eum-hidden {
 	font-weight: 700;
 }
 
+.eum-input-label {
+	font-weight: 700;
+}
+
 .switch {
 	display: block;
 	width: $toggle_width;
@@ -98,72 +102,13 @@ input[type=checkbox].eum-hidden {
 	background: grey;
 }
 
-/* React Tags */
-/* Example Styles for React Tags*/
-div.ReactTags__tags {
-	position: relative;
-	margin-top: 15px;
-}
-
-/* Styles for the input */
-div.ReactTags__tagInput {
-	width: 200px;
-	border-radius: 2px;
-	display: inline-block;
-}
-div.ReactTags__tagInput input.ReactTags__tagInputField,
-div.ReactTags__tagInput input.ReactTags__tagInputField:focus {
-	height: 31px;
-	margin: 0;
-	font-size: 12px;
-	width: 100%;
-	border: 1px solid #eee;
-}
-
-/* Styles for selected tags */
-div.ReactTags__selected span.ReactTags__tag {
-	border: 1px solid #ddd;
-	background: #eee;
-	font-size: 12px;
-	display: inline-block;
-	padding: 5px;
-	margin: 0 5px;
-	border-radius: 2px;
-
-	&:first-child {
-		margin-left: 0;
-	}
-}
-
-div.ReactTags__selected a.ReactTags__remove {
-	color: #aaa;
-	margin-left: 5px;
-	cursor: pointer;
-}
-
-/* Styles for suggestions */
-div.ReactTags__suggestions {
-	position: absolute;
-}
-div.ReactTags__suggestions ul {
-	list-style-type: none;
-	box-shadow: .05em .01em .5em rgba(0,0,0,.2);
-	background: white;
-	width: 200px;
-}
-div.ReactTags__suggestions li {
-	border-bottom: 1px solid #ddd;
-	padding: 5px 10px;
-	margin: 0;
-}
-div.ReactTags__suggestions li mark {
-	text-decoration: underline;
-	background: none;
-	font-weight: 600;
-}
-div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
-	background: #b7cfe0;
-	cursor: pointer;
+input[type=email].eum-input-email {
+	background: #FFF;
+	box-shadow: none;
+	font-size:18px;
+	padding:10px 10px 10px 5px;
+	display:block;
+	min-width: 500px;
 }
 
 .wp-core-ui button.eum-save {
