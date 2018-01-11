@@ -109,6 +109,9 @@ input[type=email].eum-input-email {
 	padding:10px 10px 10px 5px;
 	display:block;
 	min-width: 500px;
+	@media only screen and (max-width:510px) {
+		min-width: 100%;
+	}
 }
 
 .wp-core-ui button.eum-save {

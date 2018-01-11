@@ -6,6 +6,7 @@ import reducers from './reducers';
 import Main from './containers/main_container';
 import ReduxPromise from 'redux-promise';
 import { Provider } from 'react-redux';
+import 'raf/polyfill'; // For IE9
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 

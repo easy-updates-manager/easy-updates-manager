@@ -14,7 +14,6 @@ class Emails extends Component {
 			errors: false,
 			saving: false,
 		};
-		console.log( this.state );
 	}
 
 	componentWillReceiveProps( newProps ) {
