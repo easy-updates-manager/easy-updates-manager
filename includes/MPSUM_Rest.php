@@ -223,6 +223,11 @@ class MPSUM_Rest {
 		// Return email addresses in format
 		$options[ 'email_addresses' ] = implode( ',', $options[ 'email_addresses' ] );
 
+		// Check automatic updates for fresh installation
+		if ( 'unset' == $options[ 'automatic_updates' ] ) {
+			$options[ 'automatic_updates' ] = 'default';
+		}
+
 		// Add error to options for returning
 		if ( $email_errors ) {
 			$options[ 'errors' ] = true;
