@@ -86,7 +86,7 @@ input[type=checkbox].eum-hidden {
 input[type=email].eum-input-email {
   background: #FFF;
   box-shadow: none;
-  font-size: 18px;
+  font-size: 14px;
   padding: 10px 10px 10px 5px;
   display: block;
   min-width: 500px; }

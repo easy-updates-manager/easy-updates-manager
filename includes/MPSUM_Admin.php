@@ -321,6 +321,7 @@ class MPSUM_Admin {
 			'emails_input_label' => __( 'Enter Comma Separated E-mail Addresses', 'stops-core-theme-and-plugin-updates' ),
 			'emails_invalid' => __( 'One or more e-mail addresses are invalid.', 'stops-core-theme-and-plugin-updates' ),
 			'emails_save' => __( 'Save E-mail Addresses', 'stops-core-theme-and-plugin-updates' ),
+			'emails_save_empty' => __( 'Please enter an e-mail address', 'stops-core-theme-and-plugin-updates' ),
 			'emails_saving' =>__( 'Saving...', 'stops-core-theme-and-plugin-updates' ),
 		);
 

@@ -58,6 +58,14 @@ class Emails extends Component {
 			saving: true
 		} );
 
+		if ( '' == this.state.emails ) {
+			this.setState( {
+				saving: false
+			} );
+			return;
+		}
+
+
 		this.props.saveOptions( 'notification-emails', this.state.emails );
 
 	}
@@ -109,7 +117,7 @@ class Emails extends Component {
 				</Fragment>
 				<div>
 					<button
-						disabled={this.state.saving ? true : false } className="eum-save button button-primary"
+						disabled={this.state.saving || this.state.emails.length == 0 ? true : false } className="eum-save button button-primary"
 						onClick={this.handleEmailSave}
 					>
 						{this.state.saving ? mpsum.I18N.emails_saving : mpsum.I18N.emails_save}
