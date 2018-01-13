@@ -75,7 +75,7 @@ class Emails extends Component {
 						<label
 							htmlFor="email-notifications"
 							className="eum-toggle-label"
-							aria-label={mpsum.I18N.emails_label}
+							aria-label={'on' == options.notification_core_update_emails ? mpsum.I18N.emails_label_off : mpsum.I18N.emails_label_on}
 						>
 							<input
 								type="checkbox"
@@ -87,7 +87,7 @@ class Emails extends Component {
 							/>
 							<span className="switch"></span>
 							<span className="toggle"></span>
-						{mpsum.I18N.emails_label}
+						{'on' == options.notification_core_update_emails ? mpsum.I18N.emails_label_off : mpsum.I18N.emails_label_on}
 						</label>
 					</div>
 				}
