@@ -48,7 +48,7 @@ class AutomaticUpdatesMinor extends Component {
 						<label
 							htmlFor="automatic-minor-updates"
 							className="eum-toggle-label"
-							aria-label={mpsum.I18N.minor_releases_label}
+							aria-label={'on' == options.automatic_minor_updates ? mpsum.I18N.minor_releases_label_off : mpsum.I18N.minor_releases_label_on}
 						>
 							<input
 								type="checkbox"
@@ -60,7 +60,7 @@ class AutomaticUpdatesMinor extends Component {
 							/>
 							<span className="switch"></span>
 							<span className="toggle"></span>
-						{mpsum.I18N.minor_releases_label}
+						{'on' == options.automatic_minor_updates ? mpsum.I18N.minor_releases_label_off : mpsum.I18N.minor_releases_label_on}
 						</label>
 					</div>
 				}
