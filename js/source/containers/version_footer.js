@@ -48,7 +48,7 @@ class VersionFooter extends Component {
 						<label
 							htmlFor="version-footer"
 							className="eum-toggle-label"
-							aria-label={mpsum.I18N.version_footer_label}
+							aria-label={'on' == options.misc_wp_footer ? mpsum.I18N.version_footer_label_off : mpsum.I18N.version_footer_label_on}
 						>
 							<input
 								type="checkbox"
@@ -60,7 +60,7 @@ class VersionFooter extends Component {
 							/>
 							<span className="switch"></span>
 							<span className="toggle"></span>
-						{mpsum.I18N.version_footer_label}
+						{'on' == options.misc_wp_footer ? mpsum.I18N.version_footer_label_off : mpsum.I18N.version_footer_label_on}
 						</label>
 					</div>
 				}
