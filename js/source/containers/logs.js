@@ -48,7 +48,7 @@ class Logs extends Component {
 						<label
 							htmlFor="logs"
 							className="eum-toggle-label"
-							aria-label={mpsum.I18N.logs_label}
+							aria-label={'on' == options.logs ? mpsum.I18N.logs_label_off : mpsum.I18N.logs_label_on}
 						>
 							<input
 								type="checkbox"
@@ -60,7 +60,7 @@ class Logs extends Component {
 							/>
 							<span className="switch"></span>
 							<span className="toggle"></span>
-						{mpsum.I18N.logs_label}
+						{'on' == options.logs ? mpsum.I18N.logs_label_off : mpsum.I18N.logs_label_on}
 						</label>
 					</div>
 				}
