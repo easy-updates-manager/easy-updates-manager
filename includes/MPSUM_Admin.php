@@ -285,8 +285,8 @@ class MPSUM_Admin {
 			'minor_releases_label'                 => __( 'Enable or Disable Minor Releases', 'stops-core-theme-and-plugin-updates' ),
 			'development_releases'                 => _x( 'Development Updates', 'Beta and RC releases for WordPress', 'stops-core-theme-and-plugin-updates' ),
 			'development_releases_description'     => __( 'Allow your install to receive development updates from WordPress (for advanced users only)', 'stops-core-theme-and-plugin-updates' ),
-			'development_releases_label'           => __( 'Enable or Disable Development Updates', 'stops-core-theme-and-plugin-updates' ),
-
+			'development_releases_label_on'           => __( 'Enable Development Updates', 'stops-core-theme-and-plugin-updates' ),
+			'development_releases_label_off'           => __( 'Disable Development Updates', 'stops-core-theme-and-plugin-updates' ),
 			'translation_releases'                 => _x( 'Translation Updates', 'Enable or disable translation updates', 'stops-core-theme-and-plugin-updates' ),
 			'translation_releases_description'     => __( 'Automatically update your translations.', 'stops-core-theme-and-plugin-updates' ),
 			'translation_releases_label'           => __( 'Enable or Disable Translation Updates', 'stops-core-theme-and-plugin-updates' ),
