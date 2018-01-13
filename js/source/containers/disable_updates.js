@@ -48,7 +48,7 @@ class DisableUpdates extends Component {
 						<label
 							htmlFor="disable-updates"
 							className="eum-toggle-label"
-							aria-label={mpsum.I18N.disable_updates_label}
+							aria-label={'on' == options.all_updates ? mpsum.I18N.disable_updates_label_off : mpsum.I18N.disable_updates_label_on }
 						>
 							<input
 								type="checkbox"
@@ -60,7 +60,7 @@ class DisableUpdates extends Component {
 							/>
 							<span className="switch"></span>
 							<span className="toggle"></span>
-						{mpsum.I18N.disable_updates_label}
+						{'on' == options.all_updates ? mpsum.I18N.disable_updates_label_off : mpsum.I18N.disable_updates_label_on }
 						</label>
 					</div>
 				}
