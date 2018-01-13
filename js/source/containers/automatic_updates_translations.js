@@ -48,7 +48,7 @@ class AutomaticUpdatesTranslations extends Component {
 						<label
 							htmlFor="automatic-translation-updates"
 							className="eum-toggle-label"
-							aria-label={mpsum.I18N.translation_releases_label}
+							aria-label={'on' == options.automatic_translation_updates ? mpsum.I18N.translation_releases_label_off : mpsum.I18N.translation_releases_label_on}
 						>
 							<input
 								type="checkbox"
@@ -60,7 +60,7 @@ class AutomaticUpdatesTranslations extends Component {
 							/>
 							<span className="switch"></span>
 							<span className="toggle"></span>
-						{mpsum.I18N.translation_releases_label}
+						{'on' == options.automatic_translation_updates ? mpsum.I18N.translation_releases_label_off : mpsum.I18N.translation_releases_label_on}
 						</label>
 					</div>
 				}
