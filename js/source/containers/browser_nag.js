@@ -48,7 +48,7 @@ class BrowserNag extends Component {
 						<label
 							htmlFor="browser-nag"
 							className="eum-toggle-label"
-							aria-label={mpsum.I18N.browser_nag_label}
+							aria-label={'on' == options.misc_browser_nag ? mpsum.I18N.browser_nag_label_off : mpsum.I18N.browser_nag_label_on}
 						>
 							<input
 								type="checkbox"
@@ -60,7 +60,7 @@ class BrowserNag extends Component {
 							/>
 							<span className="switch"></span>
 							<span className="toggle"></span>
-						{mpsum.I18N.browser_nag_label}
+						{'on' == options.misc_browser_nag ? mpsum.I18N.browser_nag_label_off : mpsum.I18N.browser_nag_label_on}
 						</label>
 					</div>
 				}
