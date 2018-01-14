@@ -201,7 +201,6 @@ class MPSUM_Rest {
 				}
 				break;
 			case 'notification-emails':
-				error_log( $value );
 				if ( 'unset' === $value ) {
 					$options[ 'email_addresses' ] = '';
 					break;
@@ -226,6 +225,7 @@ class MPSUM_Rest {
 		MPSUM_Updates_Manager::update_options( $options, 'core' );
 
 		// Return email addresses in format
+		$value = trim( $value );
 		if ( 'unset' === $value ) {
 			$options[ 'email_addresses' ] = array();
 		}
