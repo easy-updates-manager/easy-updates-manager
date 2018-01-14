@@ -201,6 +201,11 @@ class MPSUM_Rest {
 				}
 				break;
 			case 'notification-emails':
+				error_log( $value );
+				if ( 'unset' === $value ) {
+					$options[ 'email_addresses' ] = '';
+					break;
+				}
 				$emails = explode( ',', $value );
 				foreach( $emails as $index => &$email ) {
 					$email = trim( $email );
@@ -221,6 +226,9 @@ class MPSUM_Rest {
 		MPSUM_Updates_Manager::update_options( $options, 'core' );
 
 		// Return email addresses in format
+		if ( 'unset' === $value ) {
+			$options[ 'email_addresses' ] = array();
+		}
 		$options[ 'email_addresses' ] = implode( ',', $options[ 'email_addresses' ] );
 
 		// Check automatic updates for fresh installation
