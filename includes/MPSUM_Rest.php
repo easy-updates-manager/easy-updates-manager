@@ -268,6 +268,9 @@ class MPSUM_Rest {
 			}
 		}
 
+		if ( ! is_array( $options[ 'email_addresses' ] ) ) {
+			$options[ 'email_addresses' ] = array();
+		}
 		$options[ 'email_addresses' ] = implode( ',', $options[ 'email_addresses' ] );
 
 		// return
