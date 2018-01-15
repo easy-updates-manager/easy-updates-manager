@@ -153,8 +153,21 @@ input[type=email].eum-input-email {
 	}
 }
 
+.eum-toggle-button {
+	padding: 5px 10px;
+	display: inline-block;
+
+	&:first-child {
+		border-right: 0;
+	}
+
+	&.eum-active {
+		background: #25af76;
+		color: #FFF;
+	}
+}
 .eum-button  {
-	padding: 20 10px;
+	padding: 20px 10px;
 	display: block;
 	width: 90%;
 	margin: 0 auto;

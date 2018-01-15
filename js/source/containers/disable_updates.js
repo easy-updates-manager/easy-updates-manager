@@ -9,7 +9,6 @@ class DisableUpdates extends Component {
 
 		this.state = {
 			loading: false,
-			checked: 'off'
 		};
 	}
 
@@ -19,17 +18,10 @@ class DisableUpdates extends Component {
 		} );
 	}
 
-	onInputChange = ( event ) => {
+	onButtonClick = ( event ) => {
 		event.preventDefault();
-		let checked = 'off';
-		if ( event.target.value == 'on' ) {
-			checked = 'off';
-		} else {
-			checked = 'on';
-		}
 		this.setState( {
 			loading: true,
-			checked: checked
 		} );
 
 		this.props.saveOptions( event.target.id, event.target.value );
@@ -37,6 +29,7 @@ class DisableUpdates extends Component {
 
 	render() {
 		const { options } = this.props;
+		console.log( options );
 		return (
 			<div className="eum-section">
 				<h3>{mpsum.I18N.disable_updates}</h3>
@@ -45,23 +38,24 @@ class DisableUpdates extends Component {
 				</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
-						<label
-							htmlFor="disable-updates"
-							className="eum-toggle-label"
-							aria-label={'on' == options.all_updates ? mpsum.I18N.disable_updates_label_off : mpsum.I18N.disable_updates_label_on }
+						<button
+							id="disable-updates"
+							className={`eum-toggle-button ${'on' == options.all_updates ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.disable_updates_label_on}
+							onClick={this.onButtonClick}
+							value="on"
 						>
-							<input
-								type="checkbox"
-								value={ 'on' == options.all_updates ? 'off' : 'on' }
-								id="disable-updates"
-								checked={ 'on' == options.all_updates ? 'checked' : false }
-								className="eum-toggle eum-hidden"
-								onChange={this.onInputChange}
-							/>
-							<span className="switch"></span>
-							<span className="toggle"></span>
-						{'on' == options.all_updates ? mpsum.I18N.disable_updates_label_off : mpsum.I18N.disable_updates_label_on }
-						</label>
+							{mpsum.I18N.disable_updates_label_on}
+						</button>
+						<button
+							id="disable-updates"
+							className={`eum-toggle-button ${'off' == options.all_updates ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.disable_updates_label_off}
+							onClick={this.onButtonClick}
+							value="off"
+						>
+						{mpsum.I18N.disable_updates_label_off}
+						</button>
 					</div>
 				}
 				{ this.state.loading &&

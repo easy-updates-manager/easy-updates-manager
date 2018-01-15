@@ -229,7 +229,12 @@ class MPSUM_Rest {
 		if ( 'unset' === $value ) {
 			$options[ 'email_addresses' ] = array();
 		}
-		$options[ 'email_addresses' ] = implode( ',', $options[ 'email_addresses' ] );
+		if ( is_array( $options[ 'email_addresses' ] ) ) {
+			$options[ 'email_addresses' ] = implode( ',', $options[ 'email_addresses' ] );
+		} else {
+			$options[ 'email_addresses' ] = array();
+		}
+
 
 		// Check automatic updates for fresh installation
 		if ( 'unset' == $options[ 'automatic_updates' ] ) {
