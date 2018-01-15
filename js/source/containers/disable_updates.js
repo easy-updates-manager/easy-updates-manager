@@ -24,12 +24,11 @@ class DisableUpdates extends Component {
 			loading: true,
 		} );
 
-		this.props.saveOptions( event.target.id, event.target.value );
+		this.props.saveOptions( event.target.getAttribute ( 'data-id' ), event.target.value );
 	}
 
 	render() {
 		const { options } = this.props;
-		console.log( options );
 		return (
 			<div className="eum-section">
 				<h3>{mpsum.I18N.disable_updates}</h3>
@@ -39,7 +38,7 @@ class DisableUpdates extends Component {
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
 						<button
-							id="disable-updates"
+							data-id="disable-updates"
 							className={`eum-toggle-button ${'on' == options.all_updates ? 'eum-active' : '' }`}
 							aria-label={mpsum.I18N.disable_updates_label_on}
 							onClick={this.onButtonClick}
@@ -48,7 +47,7 @@ class DisableUpdates extends Component {
 							{mpsum.I18N.disable_updates_label_on}
 						</button>
 						<button
-							id="disable-updates"
+							data-id="disable-updates"
 							className={`eum-toggle-button ${'off' == options.all_updates ? 'eum-active' : '' }`}
 							aria-label={mpsum.I18N.disable_updates_label_off}
 							onClick={this.onButtonClick}
