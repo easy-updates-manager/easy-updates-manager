@@ -19,20 +19,13 @@ class VersionFooter extends Component {
 		} );
 	}
 
-	onInputChange = ( event ) => {
+	onButtonClick = ( event ) => {
 		event.preventDefault();
-		let checked = 'off';
-		if ( event.target.value == 'on' ) {
-			checked = 'off';
-		} else {
-			checked = 'on';
-		}
 		this.setState( {
 			loading: true,
-			checked: checked
 		} );
 
-		this.props.saveOptions( event.target.id, event.target.value );
+		this.props.saveOptions( event.target.getAttribute ( 'data-id' ), event.target.value );
 	}
 
 	render() {
@@ -45,23 +38,24 @@ class VersionFooter extends Component {
 				</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
-						<label
-							htmlFor="version-footer"
-							className="eum-toggle-label"
-							aria-label={'on' == options.misc_wp_footer ? mpsum.I18N.version_footer_label_off : mpsum.I18N.version_footer_label_on}
+						<button
+							data-id="version-footer"
+							className={`eum-toggle-button ${'on' == options.misc_wp_footer ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.version_footer_label_on}
+							onClick={this.onButtonClick}
+							value="on"
 						>
-							<input
-								type="checkbox"
-								value={ 'on' == options.misc_wp_footer ? 'off' : 'on' }
-								id="version-footer"
-								checked={ 'on' == options.misc_wp_footer ? 'checked' : false }
-								className="eum-toggle eum-hidden"
-								onChange={this.onInputChange}
-							/>
-							<span className="switch"></span>
-							<span className="toggle"></span>
-						{'on' == options.misc_wp_footer ? mpsum.I18N.version_footer_label_off : mpsum.I18N.version_footer_label_on}
-						</label>
+							{mpsum.I18N.version_footer_label_on}
+						</button>
+						<button
+							data-id="version-footer"
+							className={`eum-toggle-button ${'off' == options.misc_wp_footer ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.version_footer_label_off}
+							onClick={this.onButtonClick}
+							value="off"
+						>
+						{mpsum.I18N.version_footer_label_off}
+						</button>
 					</div>
 				}
 				{ this.state.loading &&
