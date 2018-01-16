@@ -134,7 +134,8 @@ input[type=email].eum-input-email {
   display: inline-block;
   background: #FFF;
   border-right: 0;
-  border-color: #CCC; }
+  border-color: #CCC;
+  font-size: 1.2em; }
   .toggle-wrapper button:first-child {
     border-radius: 5px 0px 0px 5px; }
   .toggle-wrapper button:last-child {
