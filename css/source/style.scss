@@ -156,7 +156,7 @@ input[type=email].eum-input-email {
 .toggle-wrapper button {
 	padding: 5px 10px;
 	display: inline-block;
-	background: #FFF;
+	background: #f8f8f8;
 	border-right: 0;
 	border-color: #CCC;
 	font-size: 1.2em;
@@ -172,6 +172,19 @@ input[type=email].eum-input-email {
 	&.eum-active {
 		background: #25af76;
 		color: #FFF;
+	}
+
+	@media only screen and (max-width: 600px) {
+		display: block;
+		width: 100%;
+		border-radius: 0 0 0 0;
+		border: 1px solid #CCC;
+		&:first-child {
+			border-radius: 0;
+		}
+		&:last-child {
+			border-radius: 0;
+		}
 	}
 }
 .eum-button  {
