@@ -202,7 +202,7 @@ class MPSUM_Rest {
 				break;
 			case 'notification-emails':
 				if ( 'unset' === $value ) {
-					$options[ 'email_addresses' ] = '';
+					$options[ 'email_addresses' ] = array();
 					break;
 				}
 				$emails = explode( ',', $value );
@@ -237,7 +237,7 @@ class MPSUM_Rest {
 
 
 		// Check automatic updates for fresh installation
-		if ( 'unset' == $options[ 'automatic_updates' ] ) {
+		if ( ! isset( $options[ 'automatic_updates' ] ) || 'unset' == $options[ 'automatic_updates' ] ) {
 			$options[ 'automatic_updates' ] = 'default';
 		}
 

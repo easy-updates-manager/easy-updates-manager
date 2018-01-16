@@ -160,6 +160,7 @@ input[type=email].eum-input-email {
 	border-right: 0;
 	border-color: #CCC;
 	font-size: 1.2em;
+	cursor:pointer;
 
 	&:first-child {
 		border-radius: 5px 0px 0px 5px;
