@@ -18,14 +18,13 @@ class AutomaticUpdatesPlugins extends Component {
 		} );
 	}
 
-	onInputChange = ( event ) => {
+	onButtonClick = ( event ) => {
 		event.preventDefault();
-
 		this.setState( {
-			loading: true
+			loading: true,
 		} );
 
-		this.props.saveOptions( event.target.id, event.target.value );
+		this.props.saveOptions( event.target.getAttribute ( 'data-id' ), event.target.value );
 	}
 
 	render() {
@@ -36,20 +35,44 @@ class AutomaticUpdatesPlugins extends Component {
 				{ ! this.state.loading &&
 					<Fragment>
 						<p className="eum-description">{mpsum.I18N.automatic_plugin_updates_description}</p>
-						<ul>
-							<li>
-								<input type="radio" value="default" id="automatic-plugin-updates-default" checked={ 'default' == options.automatic_plugin_updates } onChange={this.onInputChange} /> <label htmlFor="automatic-plugin-updates-default">{mpsum.I18N.default}</label>
-							</li>
-							<li>
-								<input type="radio" value="on" id="automatic-plugin-updates-on" checked={ 'on' == options.automatic_plugin_updates }  onChange={this.onInputChange} /> <label htmlFor="automatic-plugin-updates-on">{mpsum.I18N.on}</label>
-							</li>
-							<li>
-								<input type="radio" value="off" id="automatic-plugin-updates-off" checked={ 'off' == options.automatic_plugin_updates } onChange={this.onInputChange} /> <label htmlFor="automatic-plugin-updates-off">{mpsum.I18N.off}</label>
-							</li>
-							<li>
-								<input type="radio" value="individual" id="automatic-plugin-updates-individual" checked={ 'individual' == options.automatic_plugin_updates } onChange={this.onInputChange} /> <label htmlFor="automatic-plugin-updates-individual">{mpsum.I18N.select_individually}</label>
-							</li>
-						</ul>
+						<div class="toggle-wrapper">
+							<button
+								data-id="automatic-plugin-updates-default"
+								className={`eum-toggle-button ${'default' == options.automatic_plugin_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.default}
+								onClick={this.onButtonClick}
+								value="default"
+							>
+								{mpsum.I18N.default}
+							</button>
+							<button
+								data-id="automatic-plugin-updates-on"
+								className={`eum-toggle-button ${'on' == options.automatic_plugin_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.on}
+								onClick={this.onButtonClick}
+								value="on"
+							>
+								{mpsum.I18N.on}
+							</button>
+							<button
+								data-id="automatic-plugin-updates-off"
+								className={`eum-toggle-button ${'off' == options.automatic_plugin_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.off}
+								onClick={this.onButtonClick}
+								value="off"
+							>
+								{mpsum.I18N.off}
+							</button>
+							<button
+								data-id="automatic-plugin-updates-individual"
+								className={`eum-toggle-button ${'individual' == options.automatic_plugin_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.select_individually}
+								onClick={this.onButtonClick}
+								value="individual"
+							>
+								{mpsum.I18N.select_individually}
+							</button>
+						</div>
 					</Fragment>
 				}
 				{ this.state.loading &&
