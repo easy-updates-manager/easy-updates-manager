@@ -153,12 +153,19 @@ input[type=email].eum-input-email {
 	}
 }
 
-.eum-toggle-button {
+.toggle-wrapper button {
 	padding: 5px 10px;
 	display: inline-block;
+	background: #FFF;
+	border-right: 0;
+	border-color: #CCC;
 
 	&:first-child {
-		border-right: 0;
+		border-radius: 5px 0px 0px 5px;
+	}
+	&:last-child {
+		border-radius: 0px 5px 5px 0px;
+		border-right: 1px solid #CCC;
 	}
 
 	&.eum-active {

@@ -129,12 +129,18 @@ input[type=email].eum-input-email {
 .eum-ratings-nag a {
   display: inline-block; }
 
-.eum-toggle-button {
+.toggle-wrapper button {
   padding: 5px 10px;
-  display: inline-block; }
-  .eum-toggle-button:first-child {
-    border-right: 0; }
-  .eum-toggle-button.eum-active {
+  display: inline-block;
+  background: #FFF;
+  border-right: 0;
+  border-color: #CCC; }
+  .toggle-wrapper button:first-child {
+    border-radius: 5px 0px 0px 5px; }
+  .toggle-wrapper button:last-child {
+    border-radius: 0px 5px 5px 0px;
+    border-right: 1px solid #CCC; }
+  .toggle-wrapper button.eum-active {
     background: #25af76;
     color: #FFF; }
 
