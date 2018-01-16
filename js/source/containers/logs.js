@@ -19,20 +19,13 @@ class Logs extends Component {
 		} );
 	}
 
-	onInputChange = ( event ) => {
+	onButtonClick = ( event ) => {
 		event.preventDefault();
-		let checked = 'off';
-		if ( event.target.value == 'on' ) {
-			checked = 'off';
-		} else {
-			checked = 'on';
-		}
 		this.setState( {
 			loading: true,
-			checked: checked
 		} );
 
-		this.props.saveOptions( event.target.id, event.target.value );
+		this.props.saveOptions( event.target.getAttribute ( 'data-id' ), event.target.value );
 	}
 
 	render() {
@@ -45,23 +38,24 @@ class Logs extends Component {
 				</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
-						<label
-							htmlFor="logs"
-							className="eum-toggle-label"
-							aria-label={'on' == options.logs ? mpsum.I18N.logs_label_off : mpsum.I18N.logs_label_on}
+						<button
+							data-id="logs"
+							className={`eum-toggle-button ${'on' == options.logs ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.logs_label_on}
+							onClick={this.onButtonClick}
+							value="on"
 						>
-							<input
-								type="checkbox"
-								value={ 'on' == options.logs ? 'off' : 'on' }
-								id="logs"
-								checked={ 'on' == options.logs ? 'checked' : false }
-								className="eum-toggle eum-hidden"
-								onChange={this.onInputChange}
-							/>
-							<span className="switch"></span>
-							<span className="toggle"></span>
-						{'on' == options.logs ? mpsum.I18N.logs_label_off : mpsum.I18N.logs_label_on}
-						</label>
+							{mpsum.I18N.logs_label_on}
+						</button>
+						<button
+							data-id="logs"
+							className={`eum-toggle-button ${'off' == options.logs ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.logs_label_off}
+							onClick={this.onButtonClick}
+							value="off"
+						>
+						{mpsum.I18N.logs_label_off}
+						</button>
 					</div>
 				}
 				{ this.state.loading &&

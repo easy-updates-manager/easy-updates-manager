@@ -30,20 +30,13 @@ class Emails extends Component {
 		}, 3000 );
 	}
 
-	onInputChange = ( event ) => {
+	onButtonClick = ( event ) => {
 		event.preventDefault();
-		let checked = 'off';
-		if ( event.target.value == 'on' ) {
-			checked = 'off';
-		} else {
-			checked = 'on';
-		}
 		this.setState( {
 			loading: true,
-			checked: checked
 		} );
 
-		this.props.saveOptions( event.target.id, event.target.value );
+		this.props.saveOptions( event.target.getAttribute ( 'data-id' ), event.target.value );
 	}
 
 	onInputChangeEmails = ( event ) => {
@@ -80,23 +73,24 @@ class Emails extends Component {
 				</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
-						<label
-							htmlFor="email-notifications"
-							className="eum-toggle-label"
-							aria-label={'on' == options.notification_core_update_emails ? mpsum.I18N.emails_label_off : mpsum.I18N.emails_label_on}
+						<button
+							data-id="email-notifications"
+							className={`eum-toggle-button ${'on' == options.notification_core_update_emails ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.emails_label_on}
+							onClick={this.onButtonClick}
+							value="on"
 						>
-							<input
-								type="checkbox"
-								value={ 'on' == options.notification_core_update_emails ? 'off' : 'on' }
-								id="email-notifications"
-								checked={ 'on' == options.notification_core_update_emails ? 'checked' : false }
-								className="eum-toggle eum-hidden"
-								onChange={this.onInputChange}
-							/>
-							<span className="switch"></span>
-							<span className="toggle"></span>
-						{'on' == options.notification_core_update_emails ? mpsum.I18N.emails_label_off : mpsum.I18N.emails_label_on}
-						</label>
+							{mpsum.I18N.emails_label_on}
+						</button>
+						<button
+							data-id="email-notifications"
+							className={`eum-toggle-button ${'off' == options.notification_core_update_emails ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.emails_label_off}
+							onClick={this.onButtonClick}
+							value="off"
+						>
+						{mpsum.I18N.emails_label_off}
+						</button>
 					</div>
 				}
 				{ this.state.loading &&
