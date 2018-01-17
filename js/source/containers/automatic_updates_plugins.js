@@ -32,9 +32,23 @@ class AutomaticUpdatesPlugins extends Component {
 		return (
 			<div className="eum-radio-group">
 				<h2>{mpsum.I18N.automatic_plugin_updates}</h2>
+				<p className="eum-description">{mpsum.I18N.automatic_plugin_updates_description}</p>
+				<p className="eum-status">
+					{ 'default' == options.automatic_plugin_updates &&
+						mpsum.I18N.automatic_plugin_updates_default_status
+					}
+					{ 'on' == options.automatic_plugin_updates &&
+						mpsum.I18N.automatic_plugin_updates_on_status
+					}
+					{ 'off' == options.automatic_plugin_updates &&
+						mpsum.I18N.automatic_plugin_updates_off_status
+					}
+					{ 'individual' == options.automatic_plugin_updates &&
+						mpsum.I18N.automatic_plugin_updates_individual_status
+					}
+				</p>
 				{ ! this.state.loading &&
 					<Fragment>
-						<p className="eum-description">{mpsum.I18N.automatic_plugin_updates_description}</p>
 						<div class="toggle-wrapper">
 							<button
 								data-id="automatic-plugin-updates-default"
