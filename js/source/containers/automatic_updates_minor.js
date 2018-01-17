@@ -36,6 +36,9 @@ class AutomaticUpdatesMinor extends Component {
 				<p className="eum-description">
 					{mpsum.I18N.minor_releases_description}
 				</p>
+				<p className="eum-status">
+					{'on' == options.automatic_minor_updates ? mpsum.I18N.minor_releases_label_on_status : mpsum.I18N.minor_releases_label_off_status }
+				</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
 						<button
