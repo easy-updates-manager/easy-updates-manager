@@ -163,6 +163,9 @@ input[type=email].eum-input-email {
   margin: 0 auto;
   margin-top: 20px !important; }
 
+.eum-status {
+  font-style: italic; }
+
 /* These styles are for the plugins/themes screen for versions less than WordPress 4.9 */
 .plugins .plugin-title .dashicons,
 .plugins .plugin-title img {
