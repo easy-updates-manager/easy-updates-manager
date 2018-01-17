@@ -36,6 +36,7 @@ class AutomaticUpdatesTranslations extends Component {
 				<p className="eum-description">
 					{mpsum.I18N.translation_releases_description}
 				</p>
+				<p className="eum-status">{'on' == options.automatic_translation_updates ? mpsum.I18N.translation_releases_label_on_status : mpsum.I18N.translation_releases_label_off_status }</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
 						<button
