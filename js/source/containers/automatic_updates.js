@@ -40,7 +40,21 @@ class AutomaticUpdates extends Component {
 				<h2>{mpsum.I18N.automatic_updates}</h2>
 				{ ! this.state.loading &&
 					<Fragment>
-						<p>{mpsum.I18N.automatic_updates_description}</p>
+						<p className="eum-description">{mpsum.I18N.automatic_updates_description}</p>
+						<p className="eum-status">
+							{ 'on' == options.automatic_updates &&
+								mpsum.I18N.automatic_updates_on_status
+							}
+							{ 'off' == options.automatic_updates &&
+								mpsum.I18N.automatic_updates_off_status
+							}
+							{ 'default' == options.automatic_updates &&
+								mpsum.I18N.automatic_updates_default_status
+							}
+							{ 'custom' == options.automatic_updates &&
+								mpsum.I18N.automatic_updates_custom_status
+							}
+						</p>
 						<div class="toggle-wrapper">
 							<button
 								data-id="automatic-updates-default"
