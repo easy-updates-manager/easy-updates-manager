@@ -444,19 +444,21 @@ class MPSUM_Admin {
 
 			if ( 'off' !== get_user_meta( get_current_user_id(), 'mpsum_dashboard', true ) ) {
 				$tabs[] = array(
-					'url'    => add_query_arg( array( 'tab' => 'dashboard' ), self::get_url() ), /* URL to the tab */
-					'label'  => esc_html__( 'Dashboard', 'stops-core-theme-and-plugin-updates' ),
+					'url'    => add_query_arg( array( 'tab' => 'general' ), self::get_url() ), /* URL to the tab */
+					'label'  => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
 					'get'    => 'dashboard' /*$_GET variable*/,
 					'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
 				);
 			}
 
-			$tabs[] = array(
-				'url'    => add_query_arg( array( 'tab' => 'main' ), self::get_url() ), /* URL to the tab */
+			/*$tabs[] = array(
+				'url'    => add_query_arg( array( 'tab' => 'main' ), self::get_url() ),
 				'label'  => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
-				'get'    => 'main' /*$_GET variable*/,
-				'action' => 'mpsum_admin_tab_main' /* action variable in do_action */
+				'get'    => 'main' ,
+				'action' => 'mpsum_admin_tab_main'
 			);
+			*/
+
 			$tabs[] = array(
 				'url'    => add_query_arg( array( 'tab' => 'plugins' ), self::get_url() ), /* URL to the tab */
 				'label'  => esc_html__( 'Plugins', 'stops-core-theme-and-plugin-updates' ),
