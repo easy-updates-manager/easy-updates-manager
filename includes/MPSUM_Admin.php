@@ -446,7 +446,7 @@ class MPSUM_Admin {
 				$tabs[] = array(
 					'url'    => add_query_arg( array( 'tab' => 'general' ), self::get_url() ), /* URL to the tab */
 					'label'  => esc_html__( 'General', 'stops-core-theme-and-plugin-updates' ),
-					'get'    => 'dashboard' /*$_GET variable*/,
+					'get'    => 'general' /*$_GET variable*/,
 					'action' => 'mpsum_admin_tab_dashboard' /* action variable in do_action */
 				);
 			}
