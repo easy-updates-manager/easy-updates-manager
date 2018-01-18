@@ -97,6 +97,7 @@ class Emails extends Component {
 				{ this.state.loading &&
 					<LoadingGif />
 				}
+				{ 'on' == options.notification_core_update_emails &&
 				<Fragment>
 					<p><label htmlFor="notification-emails" className="eum-input-label">
 						{mpsum.I18N.emails_input_label}
@@ -109,21 +110,22 @@ class Emails extends Component {
 						onChange={this.onInputChangeEmails}
 						value={this.state.emails}
 					/>
+					<div>
+						<button
+							disabled={this.state.saving ? true : false } className="eum-save button button-primary"
+							onClick={this.handleEmailSave}
+						>
+							{this.state.saving ? mpsum.I18N.emails_saving : mpsum.I18N.emails_save}
+						</button>
+					</div>
+					{ this.state.errors &&
+						<Fragment>
+							<div className="mpsum-error">
+								<p>{mpsum.I18N.emails_invalid}</p>
+							</div>
+						</Fragment>
+					}
 				</Fragment>
-				<div>
-					<button
-						disabled={this.state.saving ? true : false } className="eum-save button button-primary"
-						onClick={this.handleEmailSave}
-					>
-						{this.state.saving ? mpsum.I18N.emails_saving : mpsum.I18N.emails_save}
-					</button>
-				</div>
-				{ this.state.errors &&
-					<Fragment>
-						<div className="mpsum-error">
-							<p>{mpsum.I18N.emails_invalid}</p>
-						</div>
-					</Fragment>
 				}
 			</div>
 		);
