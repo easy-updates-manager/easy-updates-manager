@@ -36,6 +36,7 @@ class BrowserNag extends Component {
 				<p className="eum-description">
 					{mpsum.I18N.browser_nag_description}
 				</p>
+				<p className="eum-status">{'on' == options.misc_browser_nag ? mpsum.I18N.browser_nag_label_on_status : mpsum.I18N.browser_nag_label_off_status }</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
 						<button

@@ -36,6 +36,7 @@ class Logs extends Component {
 				<p className="eum-description">
 					{mpsum.I18N.logs_description}
 				</p>
+				<p className="eum-status">{'on' == options.logs ? mpsum.I18N.logs_label_on_status : mpsum.I18N.logs_label_off_status }</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
 						<button
