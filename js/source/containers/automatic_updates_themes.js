@@ -32,47 +32,61 @@ class AutomaticUpdatesThemes extends Component {
 		return (
 			<div className="eum-radio-group">
 				<h2>{mpsum.I18N.automatic_theme_updates}</h2>
+				<p className="eum-description">{mpsum.I18N.automatic_theme_updates_description}</p>
+				<p className="eum-status">
+					{ 'default' == options.automatic_theme_updates &&
+						mpsum.I18N.automatic_theme_updates_default_status
+					}
+					{ 'on' == options.automatic_theme_updates &&
+						mpsum.I18N.automatic_theme_updates_on_status
+					}
+					{ 'off' == options.automatic_theme_updates &&
+						mpsum.I18N.automatic_theme_updates_off_status
+					}
+					{ 'individual' == options.automatic_theme_updates &&
+						mpsum.I18N.automatic_theme_updates_individual_status
+					}
+				</p>
 				{ ! this.state.loading &&
 					<Fragment>
-						<p className="eum-description">{mpsum.I18N.automatic_theme_updates_description}</p>
-							<div class="toggle-wrapper">
-								<button
-									data-id="automatic-theme-updates-default"
-									className={`eum-toggle-button ${'default' == options.automatic_theme_updates ? 'eum-active' : '' }`}
-									aria-label={mpsum.I18N.default}
-									onClick={this.onButtonClick}
-									value="default"
-								>
-									{mpsum.I18N.default}
-								</button>
-								<button
-									data-id="automatic-theme-updates-on"
-									className={`eum-toggle-button ${'on' == options.automatic_theme_updates ? 'eum-active' : '' }`}
-									aria-label={mpsum.I18N.on}
-									onClick={this.onButtonClick}
-									value="on"
-								>
-									{mpsum.I18N.on}
-								</button>
-								<button
-									data-id="automatic-theme-updates-off"
-									className={`eum-toggle-button ${'off' == options.automatic_theme_updates ? 'eum-active' : '' }`}
-									aria-label={mpsum.I18N.off}
-									onClick={this.onButtonClick}
-									value="off"
-								>
-									{mpsum.I18N.off}
-								</button>
-								<button
-									data-id="automatic-theme-updates-individual"
-									className={`eum-toggle-button ${'individual' == options.automatic_theme_updates ? 'eum-active' : '' }`}
-									aria-label={mpsum.I18N.select_individually}
-									onClick={this.onButtonClick}
-									value="individual"
-								>
-									{mpsum.I18N.select_individually}
-								</button>
-							</div>
+						<div class="toggle-wrapper">
+							<button
+								data-id="automatic-theme-updates-default"
+								className={`eum-toggle-button ${'default' == options.automatic_theme_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.default}
+								onClick={this.onButtonClick}
+								value="default"
+							>
+								{mpsum.I18N.default}
+							</button>
+							<button
+								data-id="automatic-theme-updates-on"
+								className={`eum-toggle-button ${'on' == options.automatic_theme_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.on}
+								onClick={this.onButtonClick}
+								value="on"
+							>
+								{mpsum.I18N.on}
+							</button>
+							<button
+								data-id="automatic-theme-updates-off"
+								className={`eum-toggle-button ${'off' == options.automatic_theme_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.off}
+								onClick={this.onButtonClick}
+								value="off"
+							>
+								{mpsum.I18N.off}
+							</button>
+							<button
+								data-id="automatic-theme-updates-individual"
+								className={`eum-toggle-button ${'individual' == options.automatic_theme_updates ? 'eum-active' : '' }`}
+								aria-label={mpsum.I18N.select_individually}
+								onClick={this.onButtonClick}
+								value="individual"
+							>
+								{mpsum.I18N.select_individually}
+							</button>
+						</div>
 					</Fragment>
 				}
 				{ this.state.loading &&
