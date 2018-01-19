@@ -345,9 +345,31 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 					$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
 					$disable_url = remove_query_arg( 'disabled', $disable_url );
 					printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $disable_url ), esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ), esc_attr( $disable_class ), esc_html__( 'Off', 'stops-core-theme-and-plugin-updates' ) );
-
-
 					echo '</div>';
+
+					//Automatic Link
+					$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
+					$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+					if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' == $core_options[ 'automatic_theme_updates' ] && ! $key ) {
+						echo '<h4>Automatic Updates</h4>';
+						echo '<div class="toggle-wrapper">';
+						$enable_class = $disable_class = '';
+						if ( in_array( $stylesheet, $theme_automatic_options ) ) {
+							$enable_class = 'eum-active';
+						} else {
+							$disable_class = 'eum-active';
+						}
+
+						//Enable Link
+						$enable_automatic_url = add_query_arg( array( 'action' => 'allow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
+						printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $enable_automatic_url ), esc_html__( 'Enable Automatic Updates', 'stops-core-theme-and-plugin-updates' ), esc_attr( $enable_class ), esc_html__( 'On', 'stops-core-theme-and-plugin-updates' ) );
+
+						//Disable Link
+						$disable_automatic_url = add_query_arg( array( 'action' => 'disallow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
+						printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $disable_automatic_url ), esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' ), esc_attr( $disable_class ), esc_html__( 'Off', 'stops-core-theme-and-plugin-updates' ) );
+					}
+
+
 					echo '</div>';
 					echo "</td>";
 					break;
