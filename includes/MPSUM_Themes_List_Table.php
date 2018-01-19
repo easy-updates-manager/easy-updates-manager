@@ -327,8 +327,27 @@ class MPSUM_Themes_List_Table extends MPSUM_List_Table {
 					echo "<td class='theme-title'$style>";
 					echo "<img src='" . esc_url( $theme->get_screenshot() ) . "' width='85' height='64' class='updates-table-screenshot' alt='' />";
 					echo '<div class="eum-theme-name-actions">';
-					echo "<strong class='eum-theme-name'>" . $theme->display('Name') . "</strong>";
-					echo $this->row_actions( $actions, true );
+					echo "<h3 class='eum-theme-name'>" . $theme->display('Name') . "</h3>";
+					echo '<h4>Theme Updates</h4>';
+					$enable_class = $disable_class = '';
+					$key = in_array( $stylesheet, $theme_options );
+					if ( $key ) {
+						$disable_class = 'eum-active';
+					} else {
+						$enable_class = 'eum-active';
+					}
+
+					echo '<div class="toggle-wrapper">';
+					$enable_url = add_query_arg( array( 'action' => 'allow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
+					$enable_url = remove_query_arg( 'disabled', $enable_url );
+					printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $enable_url ), esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' ), esc_attr( $enable_class ), esc_html__( 'on', 'stops-core-theme-and-plugin-updates' ) );
+
+					$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
+					$disable_url = remove_query_arg( 'disabled', $disable_url );
+					printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $disable_url ), esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ), esc_attr( $disable_class ), esc_html__( 'Off', 'stops-core-theme-and-plugin-updates' ) );
+
+
+					echo '</div>';
 					echo '</div>';
 					echo "</td>";
 					break;
