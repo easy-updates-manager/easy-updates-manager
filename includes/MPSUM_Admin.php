@@ -353,6 +353,12 @@ class MPSUM_Admin {
 			'emails_save'                                => __( 'Save E-mail Addresses', 'stops-core-theme-and-plugin-updates' ),
 			'emails_save_empty'                          => __( 'Please enter an e-mail address', 'stops-core-theme-and-plugin-updates' ),
 			'emails_saving'                              =>__( 'Saving...', 'stops-core-theme-and-plugin-updates' ),
+			'core_updates'                            => __( 'WordPress Core Updates', 'stops-core-theme-and-plugin-updates' ),
+			'core_updates_description'                => __( 'This allows you to disable or enable all core updates, including automatic updates.', 'stops-core-theme-and-plugin-updates' ),
+			'core_updates_label_on'                   => __( 'Enable Core Updates ', 'stops-core-theme-and-plugin-updates' ),
+			'core_updates_label_on_status'            => __( 'Core updates are enabled.', 'stops-core-theme-and-plugin-updates' ),
+			'core_updates_label_off'                  => __( 'Disable Core Updates ', 'stops-core-theme-and-plugin-updates' ),
+			'core_updates_label_off_status'           => __( 'Core updates are disabled.', 'stops-core-theme-and-plugin-updates' ),
 		);
 
 		//  tracking_nag

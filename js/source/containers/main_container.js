@@ -8,6 +8,7 @@ import Logs from './logs';
 import BrowserNag from './browser_nag';
 import VersionFooter from './version_footer';
 import Emails from './emails';
+import CoreUpdates from './core-updates';
 import LoadingGif from '../components/loading';
 
 class Main extends Component {
@@ -29,6 +30,7 @@ class Main extends Component {
 					<AutomaticUpdates />
 					<Logs />
 					<Emails />
+					<CoreUpdates />
 					<BrowserNag />
 					<VersionFooter />
 				</Fragment>
