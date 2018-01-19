@@ -127,15 +127,6 @@ class MPSUM_Admin_Plugins {
 	* @param string $plugin The relative plugin path.
 	*/
 	public function plugin_action_links( $settings, $plugin ) {
-		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
-		if ( false !== $key = array_search( $plugin, $plugin_options ) ) {
-			$enable_url = add_query_arg( array( 'action' => 'allow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
-			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_url ), esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' ) );
-		} else {
-			//Disable Link
-			$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
-			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_url ), esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ) );
-		}
 		return $settings;
 	}
 
