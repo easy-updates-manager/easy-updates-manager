@@ -363,6 +363,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 				. "<input type='checkbox' name='checked[]' value='" . esc_attr( $plugin_file ) . "' id='" . $checkbox_id . "' />";
 		$description = '<p>' . ( $plugin_data['Description'] ? $plugin_data['Description'] : '&nbsp;' ) . '</p>';
 		$plugin_name = $plugin_data['Name'];
+		$plugin_slug = $item[0];
 
 		$id = sanitize_title( $plugin_name );
 
@@ -391,8 +392,56 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 					}
 					echo $icon;
 					echo '<div class="eum-plugin-name-actions">';
-					echo "<strong class='eum-plugin-name'>$plugin_name</strong>";
-					echo $this->row_actions( $actions, true );
+					echo "<h3 class='eum-plugin-name'>$plugin_name</h3>";
+					echo '<h4>Plugin Updates</h4>';
+
+					echo '<div class="toggle-wrapper">';
+
+					$enable_class = $disable_class = '';
+					$key = array_search( $plugin_slug, $plugin_options );
+					if ( ! $key ) {
+						$enable_class = 'eum-active';
+					} else {
+						$disable_class = 'eum-active';
+					}
+
+					// Enable link
+					$enable_url = add_query_arg( array( 'action' => 'allow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin_slug ) ) );
+					printf( '<a href="%s" aria-label="%s"  class="eum-toggle-button %s">%s</a>', esc_url( $enable_url ), esc_attr__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' ), esc_attr( $enable_class ), esc_html__( 'On', 'stops-core-theme-and-plugin-updates' ) );
+
+					// Disable Link
+					$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin_slug ) ) );
+					printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $disable_url ), esc_attr__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ),
+					esc_attr( $disable_class ),
+					esc_html__( 'Off', 'stops-core-theme-and-plugin-updates' ) );
+					echo '</div>';
+					//Automatic Link
+					$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
+					$core_options = MPSUM_Updates_Manager::get_options( 'core' );
+					if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] && ! $key ) {
+						echo '<h4>Automatic Updates</h4>';
+						echo '<div class="toggle-wrapper">';
+						$enable_class = $disable_class = '';
+						if ( in_array( $plugin_slug, $plugin_automatic_options ) ) {
+							$enable_class = 'eum-active';
+						} else {
+							$disable_class = 'eum-active';
+						}
+
+						//Enable Link
+						$enable_automatic_url = add_query_arg( array( 'action' => 'allow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin_slug ) ) );
+						printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $enable_automatic_url ), esc_html__( 'Enable Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
+						esc_attr( $enable_class ),
+						 esc_html__( 'On', 'stops-core-theme-and-plugin-updates' ) );
+
+						//Disable Link
+						$disable_automatic_url = add_query_arg( array( 'action' => 'disallow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin_slug ) ) );
+						printf( '<a href="%s" aria-label="%s" class="eum-toggle-button %s">%s</a>', esc_url( $disable_automatic_url ), esc_attr__( 'Enable Automatic Updates', 'stops-core-theme-and-plugin-updates' ),
+						esc_attr( $disable_class ), esc_html__( 'Off', 'stops-core-theme-and-plugin-updates' ) );
+
+
+						echo '</div>';
+					}
 					echo '</div>';
 					echo "</td>";
 					break;

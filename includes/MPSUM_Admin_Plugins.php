@@ -17,7 +17,7 @@ class MPSUM_Admin_Plugins {
 	* @var string $slug
 	*/
 	private $slug = '';
-	
+
 	/**
 	* Holds the tab name
 	*
@@ -26,7 +26,7 @@ class MPSUM_Admin_Plugins {
 	* @var string $tab
 	*/
 	private $tab = 'plugins';
-	
+
 	/**
 	* Class constructor.
 	*
@@ -44,13 +44,13 @@ class MPSUM_Admin_Plugins {
 		add_filter( 'mpsum_plugin_action_links', array( $this, 'plugin_action_links' ), 11, 2 );
 		add_action( 'admin_init', array( $this, 'maybe_save_plugin_options' ) );
 	}
-	
+
 	/**
 	* Determine whether the plugins can be updated or not.
 	*
 	* Determine whether the plugins can be updated or not.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access private
 	*
 	* @return bool True if the plugins can be updated, false if not.
@@ -65,13 +65,13 @@ class MPSUM_Admin_Plugins {
 		}
 		return true;
 	}
-	
+
 	/**
 	* Determine whether the save the plugin options or not.
 	*
 	* Determine whether the save the plugin options or not.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses admin_init action
@@ -83,42 +83,42 @@ class MPSUM_Admin_Plugins {
 		if ( !isset( $_GET[ 'tab' ] ) || $_GET[ 'tab' ] != $this->tab ) return;
 		if ( !isset( $_REQUEST[ 'action' ] ) && ! isset( $_REQUEST[ 'action2' ] ) ) return;
 		if ( !isset( $_REQUEST[ '_mpsum' ] ) ) return;
-		
+
 		if ( isset( $_REQUEST['action'] ) && -1 != $_REQUEST[ 'action' ] )
 			$action = $_REQUEST[ 'action' ];
 
 		if ( isset( $_REQUEST[ 'action2' ] ) && -1 != $_REQUEST[ 'action2' ] )
 			$action = $_REQUEST[ 'action2' ];
-		
-		
+
+
 		//Build Query Args
 		$paged = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : false;
 		$query_args = array();
 		$query_args[ 'page' ] = $this->slug;
 		if ( false !== $paged ) {
-			$query_args[ 'paged' ] = $paged;	
+			$query_args[ 'paged' ] = $paged;
 		}
 		$query_args[ 'action' ] = $action;
 		$query_args[ 'tab' ] = $this->tab;
 		$plugin_status = isset( $_REQUEST[ 'plugin_status' ] ) ? $_REQUEST[ 'plugin_status' ] : false;
 		if ( false !== $plugin_status ) {
-			$query_args[ 'plugin_status' ] = $plugin_status;	
+			$query_args[ 'plugin_status' ] = $plugin_status;
 		}
-		
+
 		//Save theme options
 		$this->save_plugin_update_options( $action );
-				
+
 		//Redirect back to settings screen
 		wp_redirect( esc_url_raw( add_query_arg( $query_args, MPSUM_Admin::get_url() ) ) );
 		exit;
 	}
-	
+
 	/**
 	* Outputs the plugin action links beneath each plugin row.
 	*
 	* Outputs the plugin action links beneath each plugin row.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal uses mpsum_plugin_action_links filter
@@ -135,31 +135,16 @@ class MPSUM_Admin_Plugins {
 			//Disable Link
 			$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
 			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_url ), esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ) );
-			
-			//Automatic Link
-			$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
-			$core_options = MPSUM_Updates_Manager::get_options( 'core' );
-			if ( isset( $core_options[ 'automatic_plugin_updates' ] ) && 'individual' == $core_options[ 'automatic_plugin_updates' ] ) {
-				if ( in_array( $plugin, $plugin_automatic_options ) ) {
-					//Disable Link
-					$disable_automatic_url = add_query_arg( array( 'action' => 'disallow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
-					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_automatic_url ), esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
-				} else {
-					//Enable Link
-					$enable_automatic_url = add_query_arg( array( 'action' => 'allow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_plugin_update' ), 'checked' => array( $plugin ) ) );
-					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_automatic_url ), esc_html__( 'Enable Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
-				}
-			}
 		}
-		return $settings;	
+		return $settings;
 	}
-	
+
 	/**
 	* Save the plugin options based on the passed action.
 	*
 	* Save the plugin options based on the passed action.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access private
 	* @see maybe_save_plugin_options
 	* @param string $action Action to take action on
@@ -169,25 +154,25 @@ class MPSUM_Admin_Plugins {
 		//Check capability
 		$capability = 'update_plugins'; //On single site, admins can use this, on multisite, only network admins can
 		if ( !current_user_can( $capability ) ) return;
-		
+
 		$plugins = isset( $_REQUEST[ 'checked' ] ) ? (array) $_REQUEST[ 'checked' ] : array();
 		$plugin_options = MPSUM_Updates_Manager::get_options( 'plugins' );
 		$plugin_automatic_options = MPSUM_Updates_Manager::get_options( 'plugins_automatic' );
 		switch( $action ) {
 			case 'disallow-update-selected':
 				foreach( $plugins as $plugin ) {
-					$plugin_options[] = $plugin;	
+					$plugin_options[] = $plugin;
 					if ( ( $key = array_search( $plugin, $plugin_automatic_options ) ) !== false ) {
 						unset( $plugin_automatic_options[ $key ] );
-					} 
+					}
 				}
-				
+
 				break;
 			case 'allow-update-selected':
 				foreach( $plugins as $plugin ) {
 					if ( ( $key = array_search( $plugin, $plugin_options ) ) !== false ) {
 						unset( $plugin_options[ $key ] );
-					}	
+					}
 				}
 				break;
 			case 'allow-automatic-selected':
@@ -195,21 +180,21 @@ class MPSUM_Admin_Plugins {
 					$plugin_automatic_options[] = $plugin;
 					if ( ( $key = array_search( $plugin, $plugin_options ) ) !== false ) {
 						unset( $plugin_options[ $key ] );
-					}		
+					}
 				}
 				break;
 			case 'disallow-automatic-selected':
 				foreach( $plugins as $plugin ) {
 					if ( ( $key = array_search( $plugin, $plugin_automatic_options ) ) !== false ) {
 						unset( $plugin_automatic_options[ $key ] );
-					}	
+					}
 				}
 				break;
 			default:
-				return; 
+				return;
 		}
 		//Check nonce
-		
+
 		check_admin_referer( 'mpsum_plugin_update', '_mpsum' );
 
 		//Update option
@@ -218,15 +203,15 @@ class MPSUM_Admin_Plugins {
 		$options = MPSUM_Updates_Manager::get_options();
 		$options[ 'plugins' ] = $plugin_options;
 		$options[ 'plugins_automatic' ] = $plugin_automatic_options;
-		MPSUM_Updates_Manager::update_options( $options ); 
+		MPSUM_Updates_Manager::update_options( $options );
 	}
-	
+
 	/**
 	* Output the HTML interface for the plugins tab.
 	*
 	* Output the HTML interface for the plugins tab.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses the mpsum_admin_tab_plugins action
@@ -248,13 +233,13 @@ class MPSUM_Admin_Plugins {
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
 			<?php
 		}
-		
+
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 	    <?php
 		$plugin_status = isset( $_GET[ 'plugin_status' ] ) ? $_GET[ 'plugin_status' ] : false;
 		if ( false !== $plugin_status ) {
-			printf( '<input type="hidden" name="plugin_status" value="%s" />', esc_attr( $plugin_status ) );	
+			printf( '<input type="hidden" name="plugin_status" value="%s" />', esc_attr( $plugin_status ) );
 		}
 		wp_nonce_field( 'mpsum_plugin_update', '_mpsum' );
 		?>

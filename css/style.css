@@ -132,31 +132,54 @@ input[type=email].eum-input-email {
 .eum-ratings-nag a {
   display: inline-block; }
 
-.toggle-wrapper button {
+.toggle-wrapper button,
+.toggle-wrapper a {
   padding: 5px 10px;
   display: inline-block;
   background: #f8f8f8;
   border-right: 0;
   border-color: #CCC;
   font-size: 1.2em;
-  cursor: pointer; }
-  .toggle-wrapper button:first-child {
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  align-items: flex-start;
+  text-align: center;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em;
+  -webkit-appearance: button;
+  appearance: button; }
+  .toggle-wrapper button:first-child,
+  .toggle-wrapper a:first-child {
     border-radius: 5px 0px 0px 5px; }
-  .toggle-wrapper button:last-child {
+  .toggle-wrapper button:last-child,
+  .toggle-wrapper a:last-child {
     border-radius: 0px 5px 5px 0px;
     border-right: 1px solid #CCC; }
-  .toggle-wrapper button.eum-active {
+  .toggle-wrapper button.eum-active,
+  .toggle-wrapper a.eum-active {
     background: #25af76;
     color: #FFF; }
   @media only screen and (max-width: 600px) {
-    .toggle-wrapper button {
+    .toggle-wrapper button,
+    .toggle-wrapper a {
       display: block;
       width: 100%;
       border-radius: 0 0 0 0;
       border: 1px solid #CCC; }
-      .toggle-wrapper button:first-child {
+      .toggle-wrapper button:first-child,
+      .toggle-wrapper a:first-child {
         border-radius: 0; }
-      .toggle-wrapper button:last-child {
+      .toggle-wrapper button:last-child,
+      .toggle-wrapper a:last-child {
         border-radius: 0; } }
 
 .eum-button {

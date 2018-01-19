@@ -156,15 +156,31 @@ input[type=email].eum-input-email {
 	}
 }
 
-.toggle-wrapper button {
+.toggle-wrapper button,
+.toggle-wrapper a {
 	padding: 5px 10px;
 	display: inline-block;
 	background: #f8f8f8;
 	border-right: 0;
 	border-color: #CCC;
 	font-size: 1.2em;
+	border-style: solid;
+	border-width: 1px;
 	cursor:pointer;
-
+	align-items: flex-start;
+	text-align: center;
+	text-rendering: auto;
+	color: initial;
+	letter-spacing: normal;
+	word-spacing: normal;
+	text-transform: none;
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	text-align: start;
+	margin: 0em;
+	-webkit-appearance: button;
+	appearance: button;
 	&:first-child {
 		border-radius: 5px 0px 0px 5px;
 	}
