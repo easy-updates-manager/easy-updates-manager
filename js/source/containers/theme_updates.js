@@ -3,7 +3,7 @@ import LoadingGif from '../components/loading';
 import { saveOptions } from '../actions/save_options';
 import { connect } from 'react-redux';
 
-class PluginUpdates extends Component {
+class ThemeUpdates extends Component {
 	constructor( props ) {
 		super( props );
 
@@ -31,30 +31,30 @@ class PluginUpdates extends Component {
 		const { options } = this.props;
 		return (
 			<div className="eum-section">
-				<h3>{mpsum.I18N.plugin_updates}</h3>
+				<h3>{mpsum.I18N.theme_updates}</h3>
 				<p className="eum-description">
-					{mpsum.I18N.plugin_updates_description}
+					{mpsum.I18N.theme_updates_description}
 				</p>
-				<p className="eum-status">{'on' == options.plugin_updates ? mpsum.I18N.plugin_updates_label_on_status : mpsum.I18N.plugin_updates_label_off_status }</p>
+				<p className="eum-status">{'on' == options.theme_updates ? mpsum.I18N.theme_updates_label_on_status : mpsum.I18N.theme_updates_label_off_status }</p>
 				{ ! this.state.loading &&
 					<div className="toggle-wrapper">
 						<button
-							data-id="plugin-updates"
-							className={`eum-toggle-button ${'on' == options.plugin_updates ? 'eum-active' : '' }`}
-							aria-label={mpsum.I18N.plugin_updates_label_on}
+							data-id="theme-updates"
+							className={`eum-toggle-button ${'on' == options.theme_updates ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.theme_updates_label_on}
 							onClick={this.onButtonClick}
 							value="on"
 						>
-							{mpsum.I18N.plugin_updates_label_on}
+							{mpsum.I18N.theme_updates_label_on}
 						</button>
 						<button
-							data-id="plugin-updates"
-							className={`eum-toggle-button ${'off' == options.plugin_updates ? 'eum-active' : '' }`}
-							aria-label={mpsum.I18N.plugin_updates_label_off}
+							data-id="theme-updates"
+							className={`eum-toggle-button ${'off' == options.theme_updates ? 'eum-active' : '' }`}
+							aria-label={mpsum.I18N.theme_updates_label_off}
 							onClick={this.onButtonClick}
 							value="off"
 						>
-						{mpsum.I18N.plugin_updates_label_off}
+						{mpsum.I18N.theme_updates_label_off}
 						</button>
 					</div>
 				}
@@ -73,4 +73,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect( mapStateToProps, { saveOptions } )(PluginUpdates);
+export default connect( mapStateToProps, { saveOptions } )(ThemeUpdates);

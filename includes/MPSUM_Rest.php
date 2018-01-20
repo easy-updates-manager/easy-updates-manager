@@ -195,6 +195,22 @@ class MPSUM_Rest {
 					$options[ 'plugin_updates' ] = 'off';
 				}
 				break;
+			case 'theme-updates':
+				if( 'on' == $value ) {
+					$options[ 'theme_updates' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'theme_updates' ] = 'off';
+				}
+				break;
+			case 'translation-updates':
+				if( 'on' == $value ) {
+					$options[ 'translation_updates' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'translation_updates' ] = 'off';
+				}
+				break;
 			case 'browser-nag':
 				if( 'on' == $value ) {
 					$options[ 'misc_browser_nag' ] = 'on';

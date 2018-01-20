@@ -10,6 +10,8 @@ import VersionFooter from './version_footer';
 import Emails from './emails';
 import CoreUpdates from './core-updates';
 import PluginUpdates from './plugin_updates';
+import ThemeUpdates from './theme_updates';
+import TranslationUpdates from './translation_updates';
 import LoadingGif from '../components/loading';
 
 class Main extends Component {
@@ -33,6 +35,8 @@ class Main extends Component {
 					<Emails />
 					<CoreUpdates />
 					<PluginUpdates />
+					<ThemeUpdates />
+					<TranslationUpdates />
 					<BrowserNag />
 					<VersionFooter />
 				</Fragment>
