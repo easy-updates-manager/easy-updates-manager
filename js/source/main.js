@@ -19,10 +19,12 @@ class App extends Component {
 		);
 	}
 }
-
-ReactDOM.render(
-	<Provider store={createStoreWithMiddleware(reducers)}>
-		<App />
-	</Provider>
-	,document.querySelector( '.eum-dashboard-app' )
-);
+let dashboardApp = document.querySelector( '.eum-dashboard-app' );
+if ( null !== dashboardApp ) {
+	ReactDOM.render(
+		<Provider store={createStoreWithMiddleware(reducers)}>
+			<App />
+		</Provider>
+		,document.querySelector( '.eum-dashboard-app' )
+	);
+}

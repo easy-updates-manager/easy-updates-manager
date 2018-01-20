@@ -9,7 +9,7 @@
  * @package WordPress
  */
 class MPSUM_Admin_Themes {
-	
+
 	/**
 	* Holds the slug to the admin panel page
 	*
@@ -18,7 +18,7 @@ class MPSUM_Admin_Themes {
 	* @var string $slug
 	*/
 	private $slug = '';
-	
+
 	/**
 	* Holds the tab name
 	*
@@ -27,7 +27,7 @@ class MPSUM_Admin_Themes {
 	* @var string $tab
 	*/
 	private $tab = 'themes';
-	
+
 	/**
 	* Class constructor.
 	*
@@ -41,17 +41,17 @@ class MPSUM_Admin_Themes {
 	public function __construct( $slug = '' ) {
 		$this->slug = $slug;
 		//Admin Tab Actions
-		add_action( 'mpsum_admin_tab_themes', array( $this, 'tab_output_themes' ) );	
+		add_action( 'mpsum_admin_tab_themes', array( $this, 'tab_output_themes' ) );
 		add_filter( 'mpsum_theme_action_links', array( $this, 'theme_action_links' ), 11, 2 );
 		add_action( 'admin_init', array( $this, 'maybe_save_theme_options' ) );
 	}
-	
+
 	/**
 	* Determine whether the themes can be updated or not.
 	*
 	* Determine whether the themes can be updated or not.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access private
 	*
 	* @return bool True if the themes can be updated, false if not.
@@ -66,13 +66,13 @@ class MPSUM_Admin_Themes {
 		}
 		return true;
 	}
-	
+
 	/**
 	* Determine whether the save the theme options or not.
 	*
 	* Determine whether the save the theme options or not.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses admin_init action
@@ -84,42 +84,42 @@ class MPSUM_Admin_Themes {
 		if ( !isset( $_GET[ 'tab' ] ) || $_GET[ 'tab' ] != $this->tab ) return;
 		if ( !isset( $_REQUEST[ 'action' ] ) && ! isset( $_REQUEST[ 'action2' ] ) ) return;
 		if ( !isset( $_REQUEST[ '_mpsum' ] ) ) return;
-		
+
 		if ( isset( $_REQUEST['action'] ) && -1 != $_REQUEST[ 'action' ] )
 			$action = $_REQUEST[ 'action' ];
 
 		if ( isset( $_REQUEST[ 'action2' ] ) && -1 != $_REQUEST[ 'action2' ] )
 			$action = $_REQUEST[ 'action2' ];
-			
-		
+
+
 		//Build Query Args
 		$paged = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : false;
 		$query_args = array();
 		$query_args[ 'page' ] = $this->slug;
 		if ( false !== $paged ) {
-			$query_args[ 'paged' ] = $paged;	
+			$query_args[ 'paged' ] = $paged;
 		}
 		$query_args[ 'action' ] = $action;
 		$query_args[ 'tab' ] = $this->tab;
 		$theme_status = isset( $_REQUEST[ 'theme_status' ] ) ? $_REQUEST[ 'theme_status' ] : false;
 		if ( false !== $theme_status ) {
-			$query_args[ 'theme_status' ] = $theme_status;	
+			$query_args[ 'theme_status' ] = $theme_status;
 		}
-		
+
 		//Save theme options
 		$this->save_theme_update_options( $action );
-				
+
 		//Redirect back to settings screen
 		wp_redirect( esc_url_raw( add_query_arg( $query_args, MPSUM_Admin::get_url() ) ) );
 		exit;
 	}
-	
+
 	/**
 	* Save the theme options based on the passed action.
 	*
 	* Save the theme options based on the passed action.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access private
 	* @see maybe_save_theme_options
 	* @param string $action Action to take action on
@@ -129,8 +129,8 @@ class MPSUM_Admin_Themes {
 		//Check capability
 		$capability = 'update_themes'; //On single site, admins can use this, on multisite, only network admins can
 		if ( !current_user_can( $capability ) ) return;
-		
-		$themes = isset( $_REQUEST[ 'checked' ] ) ? (array) $_REQUEST[ 'checked' ] : array();		
+
+		$themes = isset( $_REQUEST[ 'checked' ] ) ? (array) $_REQUEST[ 'checked' ] : array();
 		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
 		$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
 
@@ -140,15 +140,15 @@ class MPSUM_Admin_Themes {
 					$theme_options[] = $theme;
 					if ( ( $key = array_search( $theme, $theme_automatic_options ) ) !== false ) {
 						unset( $theme_automatic_options[ $key ] );
-					} 	
+					}
 				}
-				
+
 				break;
 			case 'allow-update-selected':
 				foreach( $themes as $theme ) {
 					if ( ( $key = array_search( $theme, $theme_options ) ) !== false ) {
 						unset( $theme_options[ $key ] );
-					}	
+					}
 				}
 				break;
 			case 'allow-automatic-selected':
@@ -156,37 +156,37 @@ class MPSUM_Admin_Themes {
 					$theme_automatic_options[] = $theme;
 					if ( ( $key = array_search( $theme, $theme_options ) ) !== false ) {
 						unset( $theme_options[ $key ] );
-					}		
+					}
 				}
 				break;
 			case 'disallow-automatic-selected':
 				foreach( $themes as $theme ) {
 					if ( ( $key = array_search( $theme, $theme_automatic_options ) ) !== false ) {
 						unset( $theme_automatic_options[ $key ] );
-					}	
+					}
 				}
 				break;
 			default:
-				return; 
+				return;
 		}
 		//Check nonce
 		check_admin_referer( 'mpsum_theme_update', '_mpsum' );
-		
+
 		//Update option
 		$theme_options = array_values( array_unique( $theme_options ) );
 		$theme_automatic_options = array_values( array_unique( $theme_automatic_options ) );
 		$options = MPSUM_Updates_Manager::get_options();
 		$options[ 'themes' ] = $theme_options;
 		$options[ 'themes_automatic' ] = $theme_automatic_options;
-		MPSUM_Updates_Manager::update_options( $options );  	
+		MPSUM_Updates_Manager::update_options( $options );
 	}
-	
+
 	/**
 	* Output the HTML interface for the themes tab.
 	*
 	* Output the HTML interface for the themes tab.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses the mpsum_admin_tab_themes action
@@ -202,29 +202,29 @@ class MPSUM_Admin_Themes {
 					$message = __( 'The selected theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' );
 			} elseif( 'allow-update-selected' == $_GET[ 'action' ] ) {
 				$message = __( 'The selected theme updates have been enabled.', 'stops-core-theme-and-plugin-updates' );
-			}	
+			}
 			?>
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
 			<?php
 		}
-		
-		
+
+
 		?>
         <form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 	    <?php
 		$theme_status = isset( $_GET[ 'theme_status' ] ) ? $_GET[ 'theme_status' ] : false;
 		if ( false !== $theme_status ) {
-			printf( '<input type="hidden" name="theme_status" value="%s" />', esc_attr( $theme_status ) );	
+			printf( '<input type="hidden" name="theme_status" value="%s" />', esc_attr( $theme_status ) );
 		}
 		wp_nonce_field( 'mpsum_theme_update', '_mpsum' );
 		?>
         <h3><?php esc_html_e( 'Theme Update Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
         <?php
 		$core_options = MPSUM_Updates_Manager::get_options( 'core' );
-		
+
 		if ( false === $this->can_update() ) {
 			printf( '<div class="error"><p><strong>%s</strong></p></div>', esc_html__( 'All theme updates have been disabled.', 'stops-core-theme-and-plugin-updates' ) );
-		} 
+		}
 		$theme_table = new MPSUM_Themes_List_Table( $args = array( 'screen' => $this->slug, 'tab' => $this->tab ) );
 		$theme_table->prepare_items();
 		$theme_table->views();
@@ -233,13 +233,13 @@ class MPSUM_Admin_Themes {
         </form>
     <?php
 	} //end tab_output_plugins
-	
+
 	/**
 	* Outputs the theme action links beneath each theme row.
 	*
 	* Outputs the theme action links beneath each theme row.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal uses mpsum_theme_action_links filter
@@ -248,33 +248,6 @@ class MPSUM_Admin_Themes {
 	* @param WP_Theme $theme The theme object to take action on.
 	*/
 	public function theme_action_links( $settings, $theme ) {
-		$stylesheet = $theme->get_stylesheet();
-		$theme_options = MPSUM_Updates_Manager::get_options( 'themes' );
-		if ( false !== $key = array_search( $stylesheet, $theme_options ) ) {
-			$enable_url = add_query_arg( array( 'action' => 'allow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
-			$enable_url = remove_query_arg( 'disabled', $enable_url );
-			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_url ), esc_html__( 'Allow Updates', 'stops-core-theme-and-plugin-updates' ) );
-		} else {
-			//Disable Link
-			$disable_url = add_query_arg( array( 'action' => 'disallow-update-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
-			$disable_url = remove_query_arg( 'disabled', $disable_url );
-			$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_url ), esc_html__( 'Disallow Updates', 'stops-core-theme-and-plugin-updates' ) );
-			
-			//Automatic Link
-			$theme_automatic_options = MPSUM_Updates_Manager::get_options( 'themes_automatic' );
-			$core_options = MPSUM_Updates_Manager::get_options( 'core' );
-			if ( isset( $core_options[ 'automatic_theme_updates' ] ) && 'individual' == $core_options[ 'automatic_theme_updates' ] ) {
-				if ( in_array( $stylesheet, $theme_automatic_options ) ) {
-					//Disable Link
-					$disable_automatic_url = add_query_arg( array( 'action' => 'disallow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
-					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $disable_automatic_url ), esc_html__( 'Disallow Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
-				} else {
-					//Enable Link
-					$enable_automatic_url = add_query_arg( array( 'action' => 'allow-automatic-selected', '_mpsum' => wp_create_nonce( 'mpsum_theme_update' ), 'checked' => array( $stylesheet ) ) );
-					$settings[] = sprintf( '<a href="%s">%s</a>', esc_url( $enable_automatic_url ), esc_html__( 'Enable Automatic Updates', 'stops-core-theme-and-plugin-updates' ) );
-				}
-			}
-		}
-		return $settings;	
+		return $settings;
 	}
 }
