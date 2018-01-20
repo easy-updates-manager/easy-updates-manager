@@ -398,7 +398,7 @@ class MPSUM_Plugins_List_Table extends MPSUM_List_Table {
 					echo '<div class="toggle-wrapper">';
 
 					$enable_class = $disable_class = '';
-					$key = array_search( $plugin_slug, $plugin_options );
+					$key = in_array( $plugin_slug, $plugin_options );
 					if ( ! $key ) {
 						$enable_class = 'eum-active';
 					} else {
