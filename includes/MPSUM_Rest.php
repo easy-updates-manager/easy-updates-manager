@@ -179,6 +179,38 @@ class MPSUM_Rest {
 					$options[ 'logs' ] = 'off';
 				}
 				break;
+			case 'core-updates':
+				if( 'on' == $value ) {
+					$options[ 'core_updates' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'core_updates' ] = 'off';
+				}
+				break;
+			case 'plugin-updates':
+				if( 'on' == $value ) {
+					$options[ 'plugin_updates' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'plugin_updates' ] = 'off';
+				}
+				break;
+			case 'theme-updates':
+				if( 'on' == $value ) {
+					$options[ 'theme_updates' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'theme_updates' ] = 'off';
+				}
+				break;
+			case 'translation-updates':
+				if( 'on' == $value ) {
+					$options[ 'translation_updates' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'translation_updates' ] = 'off';
+				}
+				break;
 			case 'browser-nag':
 				if( 'on' == $value ) {
 					$options[ 'misc_browser_nag' ] = 'on';
