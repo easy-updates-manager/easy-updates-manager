@@ -359,6 +359,12 @@ class MPSUM_Admin {
 			'core_updates_label_on_status'            => __( 'Core updates are enabled.', 'stops-core-theme-and-plugin-updates' ),
 			'core_updates_label_off'                  => __( 'Disable Core Updates ', 'stops-core-theme-and-plugin-updates' ),
 			'core_updates_label_off_status'           => __( 'Core updates are disabled.', 'stops-core-theme-and-plugin-updates' ),
+			'plugin_updates'                            => __( 'WordPress Plugin Updates', 'stops-core-theme-and-plugin-updates' ),
+			'plugin_updates_description'                => __( 'This allows you to disable or enable all all plugin updates. Disabling this option will also disable automatic updates.', 'stops-core-theme-and-plugin-updates' ),
+			'plugin_updates_label_on'                   => __( 'Enable Plugin Updates ', 'stops-core-theme-and-plugin-updates' ),
+			'plugin_updates_label_on_status'            => __( 'Plugin updates are enabled.', 'stops-core-theme-and-plugin-updates' ),
+			'plugin_updates_label_off'                  => __( 'Disable Plugin Updates ', 'stops-core-theme-and-plugin-updates' ),
+			'plugin_updates_label_off_status'           => __( 'Plugin updates are disabled.', 'stops-core-theme-and-plugin-updates' ),
 		);
 
 		//  tracking_nag

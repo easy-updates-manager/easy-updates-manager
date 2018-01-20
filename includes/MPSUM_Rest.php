@@ -187,6 +187,14 @@ class MPSUM_Rest {
 					$options[ 'core_updates' ] = 'off';
 				}
 				break;
+			case 'plugin-updates':
+				if( 'on' == $value ) {
+					$options[ 'plugin_updates' ] = 'on';
+				} else {
+					MPSUM_Logs::drop();
+					$options[ 'plugin_updates' ] = 'off';
+				}
+				break;
 			case 'browser-nag':
 				if( 'on' == $value ) {
 					$options[ 'misc_browser_nag' ] = 'on';
