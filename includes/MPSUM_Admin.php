@@ -236,7 +236,7 @@ class MPSUM_Admin {
 		// Get options
 		$options = MPSUM_Updates_Manager::get_options( 'core' );
 
-		wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20171106', true );
+		wp_enqueue_script( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/js/admin.js' ), array( 'jquery' ), '20180126', true );
 
 		$user_id = get_current_user_id();
 		$dashboard_showing = get_user_meta( $user_id, 'mpsum_dashboard', true );
@@ -408,7 +408,7 @@ class MPSUM_Admin {
 			'rest_url'          => get_rest_url( null, '/eum/v1/' ),
 			'I18N'              => $I18N,
 		) );
-		wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20171125' );
+		wp_enqueue_style( 'mpsum_dashboard', MPSUM_Updates_Manager::get_plugin_url( '/css/style.css' ), array(), '20180126' );
 	}
 
 	/**
@@ -571,7 +571,7 @@ class MPSUM_Admin {
 			return array_merge( array( $admin_anchor ), $settings );
 		}
 	}
-	
+
 	/**
 	* Add a ratings nag to the footer.
 	*
@@ -583,19 +583,19 @@ class MPSUM_Admin {
 	* @return string URL to the admin panel page.
 	*/
 	public function ratings_nag( $text ) {
-		
+
 		if ( ! isset( $_GET[ 'page' ] ) || 'mpsum-update-options' != $_GET[ 'page' ] ) {
 			return $text;
 		}
-		
-		
+
+
 		$text = sprintf( __( 'Thank you for creating with <a href="%s">WordPress</a>.' ), __( 'https://wordpress.org/' ) );
-		
+
 		$return = '<span id="footer-thankyou">';
 		$return .= $text;
 		$return .= sprintf( ' <a href="%s">Please Rate Us! <img src="%s" alt="Five Star Rating" /> ', esc_url( 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post' ), esc_url( MPSUM_Updates_Manager::get_plugin_url( '/images/ratings.png' ) ) );
 		$return .= '</span>';
 		return $return;
-		
+
 	}
 }

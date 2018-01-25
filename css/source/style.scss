@@ -192,6 +192,8 @@ input[type=email].eum-input-email {
 	&.eum-active {
 		background: #25af76;
 		color: #FFF;
+		-webkit-appearance: inherit;
+		appearance: inherit;
 	}
 
 	@media only screen and (max-width: 600px) {
