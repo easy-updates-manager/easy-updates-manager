@@ -593,7 +593,7 @@ class MPSUM_Admin {
 
 		$return = '<span id="footer-thankyou">';
 		$return .= $text;
-		$return .= sprintf( ' <a href="%s">%s <img src="%s" alt="Five Star Rating" /> ', esc_url( 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post' ), esc_html__( 'Please Rate Us!', 'stops-core-theme-and-plugin-updates' ), esc_url( MPSUM_Updates_Manager::get_plugin_url( '/images/ratings.png' ) ) );
+		$return .= sprintf( ' <a href="%s">%s <img src="%s" alt="Five Star Rating" /> ', esc_url( 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post' ), esc_html__( 'Please Rate Easy Updates Manager!', 'stops-core-theme-and-plugin-updates' ), esc_url( MPSUM_Updates_Manager::get_plugin_url( '/images/ratings.png' ) ) );
 		$return .= '</span>';
 		return $return;
 
