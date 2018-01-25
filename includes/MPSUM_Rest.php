@@ -173,9 +173,11 @@ class MPSUM_Rest {
 				break;
 			case 'logs':
 				if( 'on' == $value ) {
+					update_site_option( 'mpsum_log_table_version', 0 );
 					$options[ 'logs' ] = 'on';
 				} else {
 					MPSUM_Logs::drop();
+					update_site_option( 'mpsum_log_table_version', 0 );
 					$options[ 'logs' ] = 'off';
 				}
 				break;
