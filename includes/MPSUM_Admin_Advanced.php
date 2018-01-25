@@ -17,7 +17,7 @@ class MPSUM_Admin_Advanced {
 	* @var string $slug
 	*/
 	private $slug = '';
-	
+
 	/**
 	* Holds the tab name
 	*
@@ -26,7 +26,7 @@ class MPSUM_Admin_Advanced {
 	* @var string $tab
 	*/
 	private $tab = 'advanced';
-	
+
 	/**
 	* Class constructor.
 	*
@@ -40,16 +40,16 @@ class MPSUM_Admin_Advanced {
 	public function __construct( $slug = '' ) {
 		$this->slug = $slug;
 		//Admin Tab Actions
-		add_action( 'mpsum_admin_tab_advanced', array( $this, 'tab_output' ) );	
+		add_action( 'mpsum_admin_tab_advanced', array( $this, 'tab_output' ) );
 		add_action( 'admin_init', array( $this, 'maybe_save_options' ) );
 	}
-		
+
 	/**
 	* Determine whether the save the advanced options or not.
 	*
 	* Determine whether the save the advanced options or not.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses admin_init action
@@ -78,16 +78,16 @@ class MPSUM_Admin_Advanced {
 				break;
 			case 'mpsum_reset_options':
 				check_admin_referer( 'mpsum_reset_options', '_mpsum' );
-				
+
 				// Reset options
 				MPSUM_Updates_Manager::update_options( array() );
-				
+
 				// Remove table version
 				delete_site_option( 'mpsum_log_table_version' );
-				
+
 				// Disable Tracking
 				MPSUM_Tracking::disable_cron();
-				
+
 				// Remove logs table
 				global $wpdb;
 				$tablename = $wpdb->base_prefix . 'eum_logs';
@@ -129,35 +129,35 @@ class MPSUM_Admin_Advanced {
 				MPSUM_Tracking::disable_cron();
 				break;
 			default:
-				return;	
+				return;
 		}
-		
+
 		//Redirect args
 		$query_args = array();
 		$query_args[ 'updated' ] = "1";
 		$query_args[ 'tab' ] = $this->tab;
 		$query_args[ 'mpaction' ] = $action;
-		
-				
+
+
 		//Redirect back to settings screen
 		wp_redirect( esc_url_raw( add_query_arg( $query_args, MPSUM_Admin::get_url() ) ) );
 		exit;
 	}
-	
+
 	/**
 	* Output the HTML interface for the advanced tab.
 	*
 	* Output the HTML interface for the advanced tab.
 	*
-	* @since 5.0.0 
+	* @since 5.0.0
 	* @access public
 	* @see __construct
 	* @internal Uses the mpsum_admin_tab_main action
 	*/
 	public function tab_output() {
-		
-		if ( isset( $_GET[ 'updated' ] ) ) {	  
-			$action = isset( $_GET[ 'mpaction' ] ) ? $_GET[ 'mpaction' ] : '';		
+
+		if ( isset( $_GET[ 'updated' ] ) ) {
+			$action = isset( $_GET[ 'mpaction' ] ) ? $_GET[ 'mpaction' ] : '';
 			switch( $action ) {
 				case 'mpsum_save_excluded_users':
 					$message = __( 'The exclusion of users option has been updated.', 'stops-core-theme-and-plugin-updates' );
@@ -179,15 +179,15 @@ class MPSUM_Admin_Advanced {
 					break;
 				default:
 					$message = __( 'Options saved.', 'stops-core-theme-and-plugin-updates' );
-					break;	
+					break;
 			}
-			
+
 			?>
 			<br />
 			<div class="updated"><p><strong><?php echo esc_html( $message ); ?></strong></p></div>
 			<?php
 		}
-		
+
 		?>
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Exclude Users', 'stops-core-theme-and-plugin-updates' ); ?></h3>
@@ -204,7 +204,7 @@ class MPSUM_Admin_Advanced {
 							global $wpdb;
 							$logins = implode( "', '", get_super_admins() );
 							$users = $wpdb->get_col( "SELECT ID FROM $wpdb->users WHERE user_login IN ('$logins') GROUP BY user_login" );
-						
+
 						} else {
 							/**
 							* Determine which role gets queried for admin users.
@@ -216,7 +216,7 @@ class MPSUM_Admin_Advanced {
 							* @param string	$var administrator.
 							*/
 							$role = apply_filters( 'mpsum_admin_role', 'administrator' );
-							$users = get_users( array( 'role' => $role, 'orderby' => 'display_name', 'order' => 'ASC', 'fields' => 'ID' ) );	
+							$users = get_users( array( 'role' => $role, 'orderby' => 'display_name', 'order' => 'ASC', 'fields' => 'ID' ) );
 						}
 						if ( is_array( $users ) && !empty( $users ) ) {
 							echo '<input type="hidden" value="0" name="mpsum_excluded_users[]" />';
@@ -238,17 +238,7 @@ class MPSUM_Admin_Advanced {
 		echo '</p>';
 		?>
 		</form>
-		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
-		<h3><?php esc_html_e( 'Reset Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
-		<p><?php esc_html_e( 'This will reset all options to as if you have just installed the plugin. WARNING!: This also disables and clears the logs.', 'stops-core-theme-and-plugin-updates' ); ?></p>
-		<input type="hidden" name="action" value='mpsum_reset_options' />
-		 <?php
-		wp_nonce_field( 'mpsum_reset_options', '_mpsum' );
-		echo '<p class="submit">';
-		submit_button( __( 'Reset All Options', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
-		echo '</p>';
-		?>
-		</form>
+
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<?php
@@ -256,7 +246,7 @@ class MPSUM_Admin_Advanced {
 			?>
 			<div class="mpsum-error"><p><strong><?php esc_html_e( 'Automatic updates are disabled. Please check your wp-config.php file for AUTOMATIC_UPDATER_DISABLED and remove the line.' ); ?> </strong></p></div>
 			<?php
-		}	
+		}
 		if ( defined( 'WP_AUTO_UPDATE_CORE' ) && false == WP_AUTO_UPDATE_CORE ) {
 			?>
 			<div class="mpsum-error"><p><strong><?php esc_html_e( 'Automatic updates for Core are disabled. Please check your wp-config.php file for WP_AUTO_UPDATE_CORE and remove the line.' ); ?> </strong></p></div>
@@ -296,17 +286,7 @@ class MPSUM_Admin_Advanced {
 				echo '<p><em>' . __( 'This will clear the log table.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
 				echo '<p class="submit">';
 				submit_button( __( 'Clear Logs', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'clear-log', false );
-				echo '</p>';	
-				?>
-			</form>
-			<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
-				<?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
-				<input type="hidden" name="action" value='mpsum_delete_logs' />
-				<?php
-				echo '<p><em>' . __( 'This will remove the log table and disable logging.', 'stops-core-theme-and-plugin-updates' ) . '</em></p>';
-				echo '<p class="submit">';
-				submit_button( __( 'Disable Logging', 'stops-core-theme-and-plugin-updates' ) , 'delete', 'delete-log', false );
-				echo '</p>';	
+				echo '</p>';
 				?>
 			</form>
 		<?php
@@ -326,6 +306,19 @@ class MPSUM_Admin_Advanced {
 		?>
 		</form>
 		<?php
-		 endif; 
+		endif;
+		?>
+		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
+ 		<h3><?php esc_html_e( 'Reset Options', 'stops-core-theme-and-plugin-updates' ); ?></h3>
+ 		<p><?php esc_html_e( 'This will reset all options to as if you have just installed the plugin. WARNING!: This also disables and clears the logs.', 'stops-core-theme-and-plugin-updates' ); ?></p>
+ 		<input type="hidden" name="action" value='mpsum_reset_options' />
+ 		 <?php
+ 		wp_nonce_field( 'mpsum_reset_options', '_mpsum' );
+ 		echo '<p class="submit">';
+ 		submit_button( __( 'Reset All Options', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false );
+ 		echo '</p>';
+ 		?>
+ 		</form>
+		<?php
 	} //end tab_output
 }
