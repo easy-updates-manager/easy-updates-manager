@@ -238,7 +238,7 @@ class MPSUM_Admin_Advanced {
 		echo '</p>';
 		?>
 		</form>
-
+		<?php do_action( 'eum-advanced' ); ?>
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<?php
