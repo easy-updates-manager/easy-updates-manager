@@ -25,6 +25,6 @@ if ( null !== dashboardApp ) {
 		<Provider store={createStoreWithMiddleware(reducers)}>
 			<App />
 		</Provider>
-		,document.querySelector( '.eum-dashboard-app' )
+		,dashboardApp
 	);
 }
