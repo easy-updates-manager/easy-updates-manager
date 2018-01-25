@@ -65,6 +65,7 @@ class MPSUM_Admin {
 	private function __construct() {
 		add_action( 'init', array( $this, 'init' ), 9 );
 		add_filter( 'set-screen-option', array( $this, 'add_screen_option_save' ), 10, 3 );
+		add_filter( 'admin_footer_text', array( $this, 'ratings_nag' ) );
 	} //end constructor
 
 	/**
@@ -569,5 +570,32 @@ class MPSUM_Admin {
 		} else {
 			return array_merge( array( $admin_anchor ), $settings );
 		}
+	}
+	
+	/**
+	* Add a ratings nag to the footer.
+	*
+	* Add a ratings nag to the footer.
+	*
+	* @since 7.0.0
+	* @access static
+	*
+	* @return string URL to the admin panel page.
+	*/
+	public function ratings_nag( $text ) {
+		
+		if ( ! isset( $_GET[ 'page' ] ) || 'mpsum-update-options' != $_GET[ 'page' ] ) {
+			return $text;
+		}
+		
+		
+		$text = sprintf( __( 'Thank you for creating with <a href="%s">WordPress</a>.' ), __( 'https://wordpress.org/' ) );
+		
+		$return = '<span id="footer-thankyou">';
+		$return .= $text;
+		$return .= sprintf( ' <a href="%s">Please Rate Us! <img src="%s" alt="Five Star Rating" /> ', esc_url( 'https://wordpress.org/support/plugin/stops-core-theme-and-plugin-updates/reviews/#new-post' ), esc_url( MPSUM_Updates_Manager::get_plugin_url( '/images/ratings.png' ) ) );
+		$return .= '</span>';
+		return $return;
+		
 	}
 }
