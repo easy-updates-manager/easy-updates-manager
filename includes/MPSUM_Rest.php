@@ -118,6 +118,7 @@ class MPSUM_Rest {
 				} else {
 					$options[ 'automatic_major_updates' ] = 'off';
 				}
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-minor-updates':
 				if( 'on' == $value ) {
@@ -125,6 +126,7 @@ class MPSUM_Rest {
 				} else {
 					$options[ 'automatic_minor_updates' ] = 'off';
 				}
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-development-updates':
 				if( 'on' == $value ) {
@@ -132,6 +134,7 @@ class MPSUM_Rest {
 				} else {
 					$options[ 'automatic_development_updates' ] = 'off';
 				}
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-translation-updates':
 				if( 'on' == $value ) {
@@ -139,30 +142,39 @@ class MPSUM_Rest {
 				} else {
 					$options[ 'automatic_translation_updates' ] = 'off';
 				}
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-plugin-updates-default':
 				$options[ 'automatic_plugin_updates' ] = 'default';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-plugin-updates-on':
 				$options[ 'automatic_plugin_updates' ] = 'on';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-plugin-updates-off':
 				$options[ 'automatic_plugin_updates' ] = 'off';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-plugin-updates-individual':
 				$options[ 'automatic_plugin_updates' ] = 'individual';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-theme-updates-default':
 				$options[ 'automatic_theme_updates' ] = 'default';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-theme-updates-on':
 				$options[ 'automatic_theme_updates' ] = 'on';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-theme-updates-off':
 				$options[ 'automatic_theme_updates' ] = 'off';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'automatic-theme-updates-individual':
 				$options[ 'automatic_theme_updates' ] = 'individual';
+				$options[ 'automatic_updates' ] = 'custom';
 				break;
 			case 'disable-updates':
 				if( 'on' == $value ) {
