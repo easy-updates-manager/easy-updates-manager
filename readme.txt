@@ -6,12 +6,12 @@ Tested up to: 4.9
 Stable tag: 7.0.0
 License: GPLv2 or later
 
-Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. Also works with WordPress Multisite.
+Manage all your WordPress updates, including individual updates, automatic updates, logs, and loads more. Also works very well with WordPress Multisite.
 
 == Description ==
 Easy Updates Manager is a light yet powerful plugin which enables you to manage all types of updates on your single site install or in WordPress Multisite. With loads of settings making endless possibilities for configuration, Easy Updates Manager is an obvious choice for anyone wanting to take control of their websites updates.
 
-[youtube https://www.youtube.com/watch?v=MmNrNAkCI0g&list=PL7YF6bIhLLz0HzndENZZAdoh2nJBefTeA]
+[youtube https://www.youtube.com/watch?v=UEcS3meVv6g&feature=youtu.be]
 
 = Features Include =
 <ul>
