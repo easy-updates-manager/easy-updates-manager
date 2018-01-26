@@ -58,9 +58,6 @@ CONTENT1;
 <p>
 {$content4_strings['intro']}
 <br>
-<br>
-{$content4_strings['dashboard']}
-<br>
 {$content4_strings['general']}
 <br>
 {$content4_strings['plugins']}
