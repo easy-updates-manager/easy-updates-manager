@@ -43,19 +43,11 @@ If you want to contribute to the translation, please go to https://translate.wor
 == Screenshots ==
 1. Single site install settings page location
 2. Multisite install settings page location
-3. Dashboard tab full
-4. Dashboard tab small
-5. Global settings in General tab
-6. Automatic Update settings in General tab
-7. Notification and Miscellaneous settings in Global tab
-8. Enable/Disable updates and automatic updates individually for plugins
-9. Enable/Disable updates and automatic updates individually for themes
-10. Advanced options tab
-11. Help tab
-12. Screen Options
-13. Enable Logs in Advanced options tab
-14. Disable or Clear logs
-15. Logs tab
+3. General Tab with main options
+4. Plugins tab with individual options allowed
+5. Logs feature
+6. Advanced Tab
+
 
 == Installation ==
 <strong>Installing Easy Updates Manager in your WordPress Dashboard</strong> (recommended)
