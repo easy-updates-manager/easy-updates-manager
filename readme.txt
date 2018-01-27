@@ -91,11 +91,11 @@ Go to the General tab in our settings. You can enter a single email address, or 
 = Automatic Updates =
 
 Check out our video on how the automatic updating works in WordPress.
-[youtube https://www.youtube.com/watch?v=V8AWwBc6GrU]
+[youtube https://www.youtube.com/watch?v=Rgj2fAQlxrc]
 
 = How Do I Enable Logging? =
 
-[youtube https://www.youtube.com/watch?v=Z6dPPv8Wttc]
+[youtube https://www.youtube.com/watch?v=jTDgUo3CIrw]
 
 = Does Logging work with Jetpack Manage? =
 

@@ -269,7 +269,7 @@ class MPSUM_Admin_Advanced {
 			<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 			<?php wp_nonce_field( 'mpsum_logs', '_mpsum' ); ?>
 			<h3><?php echo esc_html( _x( 'Logs', 'Advanced title heading', 'stops-core-theme-and-plugin-updates' ) ); ?></h3>
-			<p><?php printf( __( 'This feature enables a Logs tab which will log all updates that occur. <a href="%s">See Logs on YouTube</a>.', 'stops-core-theme-and-plugin-updates', 'stops-core-theme-and-plugin-updates' ), 'https://www.youtube.com/watch?v=Z6dPPv8Wttc' );?></p>
+			<p><?php printf( __( 'This feature enables a Logs tab which will log all updates that occur. <a href="%s">See Logs on YouTube</a>.', 'stops-core-theme-and-plugin-updates', 'stops-core-theme-and-plugin-updates' ), 'https://www.youtube.com/watch?v=jTDgUo3CIrw' );?></p>
 			<input type="hidden" name="action" value='mpsum_enable_logs' />
 			<p class="submit">
 				<?php submit_button( __( 'Enable Logs', 'stops-core-theme-and-plugin-updates' ), 'primary', 'enable-log', false ); ?>
