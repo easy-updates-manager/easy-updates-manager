@@ -123,30 +123,17 @@ class MPSUM_Update_Cron {
 	 * @param  integer $cron_id ID of cron schedule
 	 * @return void
 	 */
-	private function set_fortnightly_cron($event, $cron_id) {
-		$selected_schedule = "wpo_fortnightly";
+	public function set_fortnightly_cron($event, $time) {
+		$selected_schedule = "eum_fortnightly";
 
-		$user_week_number = $event['week'];
-		$user_day_number = $event['day'];
-		$today_day_number = date('N');
-
-		// Need to match between $wp_locale->get_weekday() and php's date('N')
-		if (1 === $user_day_number) {
-			$user_day_number = 7;
-		} else {
-			$user_day_number--;
-		}
-
-		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $event['time']);
-		$week_offset = ($user_day_number - $today_day_number) * DAY_IN_SECONDS;
+		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $time);
+		$week_offset = 14 * DAY_IN_SECONDS;
 		$gmt_offset = HOUR_IN_SECONDS * get_option('gmt_offset');
 		$cron_schedule_date_time = $cron_schedule_user_date_time - $gmt_offset + $week_offset;
 
-		if ($cron_schedule_date_time < time() || '2nd' == $user_week_number) {
-			$cron_schedule_date_time += WEEK_IN_SECONDS;
-		}
-
-		wp_schedule_event($cron_schedule_date_time, $selected_schedule, 'eum_cron_event', array($cron_id, $selected_schedule));
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_plugins' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_themes' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_version_check' );
 	}
 
 	/**

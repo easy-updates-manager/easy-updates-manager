@@ -123,6 +123,8 @@ class MPSUM_Admin_Advanced {
 					$cron->set_daily_cron( 'eum_daily', $eum_cron_time );
 				} elseif ( 'weekly' === $eum_interval ) {
 					$cron->set_weekly_cron( 'eum_weekly', $eum_cron_time );
+				} elseif( 'fortnightly' === $eum_interval ) {
+					$cron->set_fortnightly_cron( 'eum_fortnightly', $eum_interval );
 				}
 				break;
 			case 'mpsum_enable_logs':
