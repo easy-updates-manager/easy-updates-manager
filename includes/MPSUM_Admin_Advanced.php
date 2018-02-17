@@ -103,6 +103,9 @@ class MPSUM_Admin_Advanced {
 				delete_site_transient( 'MPSUM_PLUGINS' );
 				delete_site_transient( 'MPSUM_THEMES' );
 				break;
+			case 'mpsum_cron':
+
+				break;
 			case 'mpsum_enable_logs':
 				check_admin_referer( 'mpsum_logs', '_mpsum' );
 				$options = MPSUM_Updates_Manager::get_options( 'core' );
@@ -246,7 +249,7 @@ class MPSUM_Admin_Advanced {
 			$options[ 'cron_schedule' ] = 'twicedaily';
 		}
 		?>
-		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>">
+		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 			<select class="eum_interval" name="eum_interval">
 				<option value="twicedaily" <?php selected( 'twicedaily', $options[ 'cron_schedule' ] ); ?>>Every 12 hours</option>
 				<option value="daily" <?php selected( 'daily', $options[ 'cron_schedule' ] ); ?>>Daily</option>
@@ -255,6 +258,9 @@ class MPSUM_Admin_Advanced {
 				<option value="monthly" <?php selected( 'monthly', $options[ 'cron_schedule' ] ); ?>>Monthly</option>
 			</select>
 			<input title="Enter in format HH:MM (e.g. 14:22). The time zone used is that from your WordPress settings, in Settings -> General." type="text" class="fix-time" maxlength="5" name="eum_cron_time" value="00:05">
+			<input type="hidden" name="action" value='mpsum_cron' />
+			<?php wp_nonce_field( 'mpsum_save_cron', '_mpsum' ); ?>
+			<?php submit_button( __( 'Save Scheduling', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false ); ?>
 		</form>
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
