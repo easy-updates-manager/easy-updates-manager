@@ -104,7 +104,26 @@ class MPSUM_Admin_Advanced {
 				delete_site_transient( 'MPSUM_THEMES' );
 				break;
 			case 'mpsum_cron':
+				check_admin_referer( 'mpsum_save_cron', '_mpsum' );
 
+				// Save options
+				$options = MPSUM_Updates_Manager::get_options( 'core' );
+				$eum_interval = $_POST[ 'eum_interval' ];
+				$eum_cron_time = $_POST[ 'eum_cron_time' ];
+				$options[ 'cron_schedule' ] = sanitize_text_field( $eum_interval );
+				$options[ 'cron_interval' ] = sanitize_text_field( $eum_cron_time );
+				MPSUM_Updates_Manager::update_options( $options, 'core' );
+
+				// Set up new crons
+				$cron = MPSUM_Update_Cron::get_instance();
+				$cron->clear_wordpress_crons();
+
+				// Set up daily cron
+				if ( 'daily' === $eum_interval ) {
+					$cron->set_daily_cron( 'eum_daily', $eum_cron_time );
+				} elseif ( 'weekly' === $eum_interval ) {
+					$cron->set_weekly_cron( 'eum_weekly', $eum_cron_time );
+				}
 				break;
 			case 'mpsum_enable_logs':
 				check_admin_referer( 'mpsum_logs', '_mpsum' );
@@ -257,7 +276,7 @@ class MPSUM_Admin_Advanced {
 				<option value="fortnightly" <?php selected( 'fortnightly', $options[ 'cron_schedule' ] ); ?>>Fortnightly</option>
 				<option value="monthly" <?php selected( 'monthly', $options[ 'cron_schedule' ] ); ?>>Monthly</option>
 			</select>
-			<input title="Enter in format HH:MM (e.g. 14:22). The time zone used is that from your WordPress settings, in Settings -> General." type="text" class="fix-time" maxlength="5" name="eum_cron_time" value="00:05">
+			<input title="Enter in format HH:MM (e.g. 14:22). The time zone used is that from your WordPress settings, in Settings -> General." type="text" class="fix-time" maxlength="5" name="eum_cron_time" value="<?php echo isset( $options[ 'cron_interval' ] ) ? esc_attr( $options[ 'cron_interval' ] ) : '00:15' ?>">
 			<input type="hidden" name="action" value='mpsum_cron' />
 			<?php wp_nonce_field( 'mpsum_save_cron', '_mpsum' ); ?>
 			<?php submit_button( __( 'Save Scheduling', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false ); ?>

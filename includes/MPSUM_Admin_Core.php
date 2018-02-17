@@ -82,7 +82,8 @@ class MPSUM_Admin_Core {
 			'email_addresses'                 => array(),
 			'tracking_enabled'                => 'off',
 			'automatic_updates'               => 'unset',
-			'cron_schedule'	                  => 'twicedaily'
+			'cron_schedule'	                  => 'twicedaily',
+			'cron_interval'                   => '00:00'
 		) );
 	}
 

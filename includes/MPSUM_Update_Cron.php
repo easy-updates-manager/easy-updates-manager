@@ -34,12 +34,22 @@ class MPSUM_Update_Cron {
 	}
 
 	/**
+	 * Clear the WordPress crons
+	 *
+	 */
+	 public function clear_wordpress_crons() {
+		wp_clear_scheduled_hook('wp_update_plugins');
+		wp_clear_scheduled_hook('wp_update_themes');
+		wp_clear_scheduled_hook('wp_version_check');
+	 }
+
+	/**
 	 * Returns next event timestamp
 	 *
 	 * @param  timestamp $event timestamp of next scheduled event
 	 * @return timestamp | false
 	 */
-	public function wpo_cron_next_event($event) {
+	public function cron_next_event($event) {
 		$cron_events = get_option('cron');
 		ksort($cron_events);
 		$eum_cron_event = array();
@@ -66,18 +76,19 @@ class MPSUM_Update_Cron {
 	 * @param  integer $cron_id ID of cron schedule
 	 * @return void
 	 */
-	private function set_daily_cron($event, $cron_id) {
-		$selected_schedule = "wpo_daily";
+	public function set_daily_cron( $shedule, $time ) {
+		$selected_schedule = "eum_daily";
 
-		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $event['time']);
+		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $time);
 		$gmt_offset = HOUR_IN_SECONDS * get_option('gmt_offset');
 		$cron_schedule_date_time = $cron_schedule_user_date_time - $gmt_offset;
 
 		if ($cron_schedule_date_time < time()) {
 			$cron_schedule_date_time += DAY_IN_SECONDS;
 		}
-
-		wp_schedule_event($cron_schedule_date_time, $selected_schedule, 'eum_cron_event', array($cron_id, $selected_schedule));
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_plugins' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_themes' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_version_check' );
 	}
 
 	/**
@@ -87,29 +98,21 @@ class MPSUM_Update_Cron {
 	 * @param  integer $cron_id ID of cron schedule
 	 * @return void
 	 */
-	private function set_weekly_cron($event, $cron_id) {
-		$selected_schedule = "wpo_weekly";
-
-		$user_day_number = $event['day'];
-
-		// Need to match between $wp_locale->get_weekday() and php's date('N')
-		if (1 === $user_day_number) {
-			$user_day_number = 7;
-		} else {
-			$user_day_number--;
-		}
+	public function set_weekly_cron( $schedule, $time ) {
+		$selected_schedule = "eum_weekly";
 
 		$today_day_number = date('N');
-		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $event['time']);
-		$week_offset = ($user_day_number - $today_day_number) * DAY_IN_SECONDS;
+		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $time);
+		$week_offset = 7 * DAY_IN_SECONDS;
 		$gmt_offset = HOUR_IN_SECONDS * get_option('gmt_offset');
 		$cron_schedule_date_time = $cron_schedule_user_date_time - $gmt_offset + $week_offset;
 
 		if ($cron_schedule_date_time < time()) {
 			$cron_schedule_date_time += WEEK_IN_SECONDS;
 		}
-
-		wp_schedule_event($cron_schedule_date_time, $selected_schedule, 'eum_cron_event', array($cron_id, $selected_schedule));
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_plugins' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_themes' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_version_check' );
 	}
 
 
