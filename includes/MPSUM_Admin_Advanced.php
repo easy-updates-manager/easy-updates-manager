@@ -239,6 +239,17 @@ class MPSUM_Admin_Advanced {
 		?>
 		</form>
 		<?php do_action( 'eum-advanced' ); ?>
+		<h3><?php esc_html_e( 'Automatic Update Scheduling' ); ?></h3>
+		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>">
+			<select class="eum_interval" name="eum_interval">
+				<option value="twicedaily" selected="selected">Every 12 hours</option>
+				<option value="daily">Daily</option>
+				<option value="weekly">Weekly</option>
+				<option value="fortnightly">Fortnightly</option>
+				<option value="monthly">Monthly</option>
+			</select>
+			<input title="Enter in format HH:MM (e.g. 14:22). The time zone used is that from your WordPress settings, in Settings -> General." type="text" class="fix-time" maxlength="5" name="eum_cron_time" value="00:05">
+		</form>
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>
 		<?php
