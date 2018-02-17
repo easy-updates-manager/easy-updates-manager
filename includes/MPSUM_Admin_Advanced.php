@@ -239,14 +239,20 @@ class MPSUM_Admin_Advanced {
 		?>
 		</form>
 		<?php do_action( 'eum-advanced' ); ?>
-		<h3><?php esc_html_e( 'Automatic Update Scheduling' ); ?></h3>
+		<h3><?php esc_html_e( 'Automatic Update Scheduling', 'stops-core-theme-and-plugin-updates' ); ?></h3>
+		<?php
+		$options = MPSUM_Updates_Manager::get_options( 'core' );
+		if ( ! isset( $options[ 'cron_schedule' ] ) ) {
+			$options[ 'cron_schedule' ] = 'twicedaily';
+		}
+		?>
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>">
 			<select class="eum_interval" name="eum_interval">
-				<option value="twicedaily" selected="selected">Every 12 hours</option>
-				<option value="daily">Daily</option>
-				<option value="weekly">Weekly</option>
-				<option value="fortnightly">Fortnightly</option>
-				<option value="monthly">Monthly</option>
+				<option value="twicedaily" <?php selected( 'twicedaily', $options[ 'cron_schedule' ] ); ?>>Every 12 hours</option>
+				<option value="daily" <?php selected( 'daily', $options[ 'cron_schedule' ] ); ?>>Daily</option>
+				<option value="weekly" <?php selected( 'weekly', $options[ 'cron_schedule' ] ); ?>>Weekly</option>
+				<option value="fortnightly" <?php selected( 'fortnightly', $options[ 'cron_schedule' ] ); ?>>Fortnightly</option>
+				<option value="monthly" <?php selected( 'monthly', $options[ 'cron_schedule' ] ); ?>>Monthly</option>
 			</select>
 			<input title="Enter in format HH:MM (e.g. 14:22). The time zone used is that from your WordPress settings, in Settings -> General." type="text" class="fix-time" maxlength="5" name="eum_cron_time" value="00:05">
 		</form>

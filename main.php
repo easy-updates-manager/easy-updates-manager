@@ -116,6 +116,9 @@ class MPSUM_Updates_Manager {
 
 		// REST
 		MPSUM_Rest::run();
+
+		// Cron Run
+		$cron = MPSUM_Update_Cron::get_instance();
 	}
 
 	/**
