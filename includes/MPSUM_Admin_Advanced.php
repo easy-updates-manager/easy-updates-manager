@@ -124,7 +124,11 @@ class MPSUM_Admin_Advanced {
 				} elseif ( 'weekly' === $eum_interval ) {
 					$cron->set_weekly_cron( 'eum_weekly', $eum_cron_time );
 				} elseif( 'fortnightly' === $eum_interval ) {
-					$cron->set_fortnightly_cron( 'eum_fortnightly', $eum_interval );
+					$cron->set_fortnightly_cron( 'eum_fortnightly', $eum_cron_time );
+				} elseif( 'monthly' === $eum_interval ) {
+					$cron->set_monthly_cron( 'eum_monthly', $eum_cron_time );
+				} else {
+					$cron->set_twice_daily_cron( 'eum_twice_daily', $eum_cron_time );
 				}
 				break;
 			case 'mpsum_enable_logs':
@@ -282,6 +286,13 @@ class MPSUM_Admin_Advanced {
 			<input type="hidden" name="action" value='mpsum_cron' />
 			<?php wp_nonce_field( 'mpsum_save_cron', '_mpsum' ); ?>
 			<?php submit_button( __( 'Save Scheduling', 'stops-core-theme-and-plugin-updates' ) , 'primary', 'submit', false ); ?>
+			<?php
+			$cron = MPSUM_Update_Cron::get_instance();
+			$time = $cron->cron_next_event();
+			?>
+			<p>
+				<?php printf( 'Your next scheduled event is at: %s', date( 'Y-m-d H:i', $time ) ); ?>
+			</p>
 		</form>
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
 		<h3><?php esc_html_e( 'Force Automatic Updates', 'stops-core-theme-and-plugin-updates' ); ?></h3>

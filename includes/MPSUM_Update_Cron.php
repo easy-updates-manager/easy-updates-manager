@@ -49,24 +49,47 @@ class MPSUM_Update_Cron {
 	 * @param  timestamp $event timestamp of next scheduled event
 	 * @return timestamp | false
 	 */
-	public function cron_next_event($event) {
+	public function cron_next_event() {
 		$cron_events = get_option('cron');
 		ksort($cron_events);
 		$eum_cron_event = array();
 		foreach ($cron_events as $timestamp => $schedule) {
 			if (!is_array($schedule)) continue;
 			foreach ($schedule as $key => $value) {
-				if ('eum_cron_event' == $key) {
+				if ( 'wp_update_plugins' === $key || 'wp_update_themes' === $key || 'wp_version_check' === $key ) {
 					$eum_cron_event[$timestamp][$key] = $value;
 				}
 			}
 		}
 
 		$keys = array_keys($eum_cron_event);
+
 		if (!empty($keys)) {
 			return $keys[0];
 		}
 		return false;
+	}
+
+	/**
+	 * Activate twice daily events
+	 *
+	 * @param  array   $event   Details of event
+	 * @param  integer time
+	 * @return void
+	 */
+	public function set_twice_daily_cron( $shedule, $time ) {
+		$selected_schedule = "eum_twice_daily";
+
+		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $time);
+		$gmt_offset = HOUR_IN_SECONDS * get_option('gmt_offset');
+		$cron_schedule_date_time = $cron_schedule_user_date_time - $gmt_offset;
+
+		if ($cron_schedule_date_time < time()) {
+			$cron_schedule_date_time += DAY_IN_SECONDS/2;
+		}
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_plugins' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_themes' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_version_check' );
 	}
 
 	/**
@@ -143,32 +166,18 @@ class MPSUM_Update_Cron {
 	 * @param  integer $cron_id ID of cron schedule
 	 * @return void
 	 */
-	private function set_monthly_cron($event, $cron_id) {
-		$selected_schedule = 'wpo_monthly';
-
-		$user_day_number = min($event['day_number'], date("t"));
+	public function set_monthly_cron($event, $time) {
+		$selected_schedule = 'eum_monthly';
+		$cron_schedule_user_date_time = strtotime(date("Y-m-d") . ' ' . $time);
+		$user_day_number =date("t");
 		$schedule_day_number = $user_day_number;
-		$cron_schedule_user_date_time = strtotime(date("Y-m-" . $schedule_day_number) . ' ' . $event['time']);
+		$month_offset = 30 * DAY_IN_SECONDS;
 		$gmt_offset = HOUR_IN_SECONDS * get_option('gmt_offset');
-		$cron_schedule_date_time = $cron_schedule_user_date_time - $gmt_offset;
+		$cron_schedule_date_time = $cron_schedule_user_date_time - $gmt_offset + $month_offset;
 
-		wp_schedule_event($cron_schedule_date_time, $selected_schedule, 'eum_cron_event', array($cron_id, $selected_schedule));
-	}
-
-	/**
-	 * Activate once (one off) events
-	 *
-	 * @param  array   $event   Details of event
-	 * @param  integer $cron_id ID of cron schedule
-	 * @return void
-	 */
-	private function set_once_cron($event, $cron_id) {
-		$cron_schedule_user_date_time_human = $event['date'] . ' ' . $event['time'];
-		$cron_schedule_user_date_time = strtotime($cron_schedule_user_date_time_human);
-
-		$gmt_offset = HOUR_IN_SECONDS * get_option('gmt_offset');
-		$cron_schedule_date_time = $cron_schedule_user_date_time - $gmt_offset;
-		wp_schedule_single_event($cron_schedule_date_time, 'eum_cron_event', array($cron_id, 'wpo_once'));
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_plugins' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_update_themes' );
+		wp_schedule_event( $cron_schedule_date_time, $selected_schedule, 'wp_version_check' );
 	}
 
 }
