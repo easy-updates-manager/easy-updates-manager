@@ -291,7 +291,7 @@ class MPSUM_Admin_Advanced {
 			$time = $cron->cron_next_event();
 			?>
 			<p>
-				<?php printf( 'Your next scheduled event is at: %s', date( 'Y-m-d H:i', $time ) ); ?>
+				<?php printf( __( 'Your next scheduled event is at: %s', 'stops-core-theme-and-plugin-updates' ), date( 'Y-m-d H:i', $time ) ); ?>
 			</p>
 		</form>
 		<form action="<?php echo esc_url( add_query_arg( array() ) ); ?>" method="post">
